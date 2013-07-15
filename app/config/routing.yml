@@ -1,4 +1,4 @@
-# BricksReridectBundle controllers are loaded before any other
+# BricksRedirectBundle controllers are loaded before any other
 bricks_redirect:
     resource: "@BricksRedirectBundle/Controller/"
     type:     annotation
