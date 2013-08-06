@@ -28,7 +28,7 @@ fos_message_bundle:
     related_to_brick: related to brick %link%
     reply: Reply
     send: send
-    send_from_brick: Send a message to the autor
+    send_from_brick: Send a message to the author
     send_new: Compose a new message
     send_new_title: New message
     sent: sent
