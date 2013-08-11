@@ -26,7 +26,7 @@
         "friendsofsymfony/jsrouting-bundle": "*",
         "knplabs/knp-disqus-bundle": "dev-master",
         "friendsofsymfony/message-bundle": "dev-master",
-        "raulfraile/ladybug-bundle": "dev-master",
+        "raulfraile/ladybug-bundle": "0.*@dev",
         "presta/sitemap-bundle": "dev-master",
         "pk/markdownify-bundle": "2.1.*",
         "vich/uploader-bundle": "dev-master",
