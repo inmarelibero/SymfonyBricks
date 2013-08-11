@@ -14,7 +14,7 @@ assetic:
     assets:
         lesses:
             inputs:
-                - %kernel.root_dir%/../web/assets/bootstrap/less/bootstrap.less
+                - %kernel.root_dir%/../web/assets/bootstrap-2.3.2/less/bootstrap.less
                 - @BricksSiteBundle/Resources/less/*.less
                 - @BricksWikiBundle/Resources/less/*.less
                 - @BricksUserBundle/Resources/less/*.less
@@ -38,7 +38,7 @@ assetic:
                 - ?yui_css
         javascripts_footer:
             inputs:
-                - %kernel.root_dir%/../web/assets/bootstrap/js/bootstrap.min.js
+                - %kernel.root_dir%/../web/assets/bootstrap-2.3.2/js/bootstrap.min.js
                 - %kernel.root_dir%/../web/assets/bootstrap-tags/lib/bootstrap-tags.js
                 - %kernel.root_dir%/../web/assets/socialite/socialite.js
 
