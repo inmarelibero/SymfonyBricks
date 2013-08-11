@@ -20,7 +20,7 @@ class RedirectController extends Controller
      * to urls with the syntax (route "brick_show"):
      *      /brick/{slug}
      *
-     * @Route("/{_locale}/brick/{id}/{slug}", requirements={"_locale": "%route_locale_requirements%"})
+     * @Route("/{_locale}/brick/{id}/{slug}", requirements={"_locale": "%route_locale_requirements%", "id": "\d+"})
      */
     public function brickAction($slug)
     {

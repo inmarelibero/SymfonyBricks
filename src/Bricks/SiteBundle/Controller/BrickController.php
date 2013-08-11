@@ -80,7 +80,7 @@ class BrickController extends Controller
      * 
      * @Route("/toggle-star/{brick_id}", name="user_brick_toggle_star", options={"expose"=true})
      * #TODO: security access
-     * 
+     *
      * @param unknown_type $id
      */
     public function toggleStarAction($brick_id)
