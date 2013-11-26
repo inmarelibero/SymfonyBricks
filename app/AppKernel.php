@@ -35,9 +35,6 @@ class AppKernel extends Kernel
             // FOSMessageBundle
             new FOS\MessageBundle\FOSMessageBundle(),
 
-            // RaulFraileLadybugBundle
-            new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(),
-
             // PrestaSitemapBundle
             new Presta\SitemapBundle\PrestaSitemapBundle(),
 
