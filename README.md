@@ -1,56 +1,171 @@
-# SymfonyBricks
+Symfony Standard Edition
+========================
 
-This is the public code repository of the entire [symfonybricks.com](http://symfonybricks.com) website.
+Welcome to the Symfony Standard Edition - a fully-functional Symfony2
+application that you can use as the skeleton for your new applications.
 
-## Purpose
+This document contains information on how to download, install, and start
+using Symfony. For a more detailed explanation, see the [Installation][1]
+chapter of the Symfony Documentation.
 
-__[symfonybricks.com](http://symfonybricks.com)__ wants to be a website built by the community for the community.
+1) Installing the Standard Edition
+----------------------------------
 
-The purpose is to create an open source platform containing a repository of code snippets and guides related to Symfony and submitted by users.
+When it comes to installing the Symfony Standard Edition, you have the
+following options.
 
-## Documentation
+### Use Composer (*recommended*)
 
-Documentation can be found [in the doc/ folder](https://github.com/inmarelibero/SymfonyBricks/tree/master/doc): it's the main source of information regarding how SymfonyBrics works, discussions, drafts, etc... You are invited to spend some time on it and to contribute, tweaking doc it is a very very important task.
+As Symfony uses [Composer][2] to manage its dependencies, the recommended way
+to create a new project is to use it.
 
-[Read the documentation](doc/index.md)
+If you don't have Composer yet, download it following the instructions on
+http://getcomposer.org/ or just run the following command:
 
-[Check open RFCs](https://github.com/inmarelibero/SymfonyBricks/tree/master/doc/RFC)
+    curl -s http://getcomposer.org/installer | php
 
+Then, use the `create-project` command to generate a new Symfony application:
 
-## Philosophy of symfonybricks.com
+    php composer.phar create-project symfony/framework-standard-edition path/to/install
 
-When a developer (eg: you) has to face a difficult task for him/her, a common behavior should be (before spending *x* hours multiplied by *3*) searching on internet if someone (more or less in order) already resolved that problem, or resolved a similar problem, or wrote something requiring help and someone other helped him.
+Composer will install Symfony and all its dependencies under the
+`path/to/install` directory.
 
-Many times you found useful information, but it is often fragmentary, put in very different places and not consistent regarding the format. In one word: __not organic__.
+### Download an Archive File
 
+To quickly test Symfony, you can also download an [archive][3] of the Standard
+Edition and unpack it somewhere under your web server root directory.
 
-The philosophy of __[symfonybricks.com](http://symfonybricks.com)__ follows two binaries:
+If you downloaded an archive "without vendors", you also need to install all
+the necessary dependencies. Download composer (see above) and run the
+following command:
 
-1. provide a repository of publicly shared:
-    - recipes
-    - code snippets
-    - cookbooks
-    - suggestions
-    - help requests
-    - ... (what more?)
+    php composer.phar install
 
-2. leave the development of the entire platform to the community
+2) Checking your System Configuration
+-------------------------------------
 
+Before starting coding, make sure that your local system is properly
+configured for Symfony.
 
-__[symfonybricks.com](http://symfonybricks.com)__, as well as containing many cool snippets of great code, wants to be itself an example of Symfony best practices. And more: __the entire platform serves and is created by the community with an open-source philosophy__, the same that distinguishes Symfony. If you are a Symfony lover, you should be definitively interested in symfonybricks.com!
+Execute the `check.php` script from the command line:
 
-## How you can help
+    php app/check.php
 
-- examine [RFC 1 - Brick](https://github.com/inmarelibero/SymfonyBricks/blob/master/doc/RFC/RFC_1_-_Brick.md)
-- comment the issue [is the purpose of symfonybricks.com clear?](https://github.com/inmarelibero/SymfonyBricks/issues/1)
+The script returns a status code of `0` if all mandatory requirements are met,
+`1` otherwise.
 
+Access the `config.php` script from a browser:
 
-- follow [inmarelibero (me)](https://twitter.com/inmarelibero) and [SymfonyBricks](https://twitter.com/SymfonyBricks) on Twitter
-- fork this repo to get a local working copy by following the instruction of [this wiki page](https://github.com/inmarelibero/SymfonyBricks/wiki/Get-a-working-local-copy:-instructions)
-- you can keep in touch, watch, follow, tweet, retweet and many other beautyful bozzwords!
+    http://localhost/path/to/symfony/app/web/config.php
 
-## Who is behind symfonybricks.com
+If you get any warnings or recommendations, fix them before moving on.
 
-The repository mantainer is me, inmarelbero [(twitter)](https://github.com/inmarelibero). I'm a Symfony lover and had this idea, simply.
+3) Browsing the Demo Application
+--------------------------------
 
-This project may have been started for fun, but I think I'm not the only one having fun with Symfony.
+Congratulations! You're now ready to use Symfony.
+
+From the `config.php` page, click the "Bypass configuration and go to the
+Welcome page" link to load up your first Symfony page.
+
+You can also use a web-based configurator by clicking on the "Configure your
+Symfony Application online" link of the `config.php` page.
+
+To see a real-live Symfony page in action, access the following page:
+
+    web/app_dev.php/demo/hello/Fabien
+
+4) Getting started with Symfony
+-------------------------------
+
+This distribution is meant to be the starting point for your Symfony
+applications, but it also contains some sample code that you can learn from
+and play with.
+
+A great way to start learning Symfony is via the [Quick Tour][4], which will
+take you through all the basic features of Symfony2.
+
+Once you're feeling good, you can move onto reading the official
+[Symfony2 book][5].
+
+A default bundle, `AcmeDemoBundle`, shows you Symfony2 in action. After
+playing with it, you can remove it by following these steps:
+
+  * delete the `src/Acme` directory;
+
+  * remove the routing entry referencing AcmeDemoBundle in `app/config/routing_dev.yml`;
+
+  * remove the AcmeDemoBundle from the registered bundles in `app/AppKernel.php`;
+
+  * remove the `web/bundles/acmedemo` directory;
+
+  * remove the `security.providers`, `security.firewalls.login` and
+    `security.firewalls.secured_area` entries in the `security.yml` file or
+    tweak the security configuration to fit your needs.
+
+What's inside?
+---------------
+
+The Symfony Standard Edition is configured with the following defaults:
+
+  * Twig is the only configured template engine;
+
+  * Doctrine ORM/DBAL is configured;
+
+  * Swiftmailer is configured;
+
+  * Annotations for everything are enabled.
+
+It comes pre-configured with the following bundles:
+
+  * **FrameworkBundle** - The core Symfony framework bundle
+
+  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
+    template and routing annotation capability
+
+  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+
+  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+
+  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
+    component
+
+  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
+    sending emails
+
+  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
+
+  * [**AsseticBundle**][12] - Adds support for Assetic, an asset processing
+    library
+
+  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
+    the web debug toolbar
+
+  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
+    configuring and working with Symfony distributions
+
+  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
+    capabilities
+
+  * **AcmeDemoBundle** (in dev/test env) - A demo bundle with some example
+    code
+
+All libraries and bundles included in the Symfony Standard Edition are
+released under the MIT or BSD license.
+
+Enjoy!
+
+[1]:  http://symfony.com/doc/2.4/book/installation.html
+[2]:  http://getcomposer.org/
+[3]:  http://symfony.com/download
+[4]:  http://symfony.com/doc/2.4/quick_tour/the_big_picture.html
+[5]:  http://symfony.com/doc/2.4/index.html
+[6]:  http://symfony.com/doc/2.4/bundles/SensioFrameworkExtraBundle/index.html
+[7]:  http://symfony.com/doc/2.4/book/doctrine.html
+[8]:  http://symfony.com/doc/2.4/book/templating.html
+[9]:  http://symfony.com/doc/2.4/book/security.html
+[10]: http://symfony.com/doc/2.4/cookbook/email.html
+[11]: http://symfony.com/doc/2.4/cookbook/logging/monolog.html
+[12]: http://symfony.com/doc/2.4/cookbook/assetic/asset_management.html
+[13]: http://symfony.com/doc/2.4/bundles/SensioGeneratorBundle/index.html

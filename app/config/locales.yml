@@ -18,7 +18,7 @@ parameters:
         
     # parameter to be used in routes.yml
     # add |[locale] if a new interface locale is available
-    route_locale_requirements: 'it|en|es'
+    route_locale_requirements: '^it|en|es$'
     
 twig:
     globals:

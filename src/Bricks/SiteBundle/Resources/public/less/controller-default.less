@@ -1,0 +1,89 @@
+/******************************************************************************************
+CONTROLLER-DEFAULT.LESS
+
+rules for all the templates loaded through Bricks\SiteBundle\DefaultController
+******************************************************************************************/
+
+/**
+    homepage
+
+    route: route-index_not_localized , homepage
+*/
+body.route-index_not_localized , body.route-homepage {
+
+    #index-logo {
+        max-width:  100%;
+        overflow:   hidden;
+    }
+
+    .right-col {
+        #btn-signup {
+            padding:    10px;
+            font-size:  20px;
+            text-align: left;
+            margin-bottom: 10px;
+
+            .text-small { font-weight: normal; }
+        }
+        p {
+            float:  left;
+            clear:  left;
+            margin-top: 10px;
+        }
+    }
+
+    .bricks-list {
+        a.title {
+            font-size: 18px;
+            i { color: rgb(107, 107, 107); }
+        }
+        li {
+            margin-bottom:  15px;
+            p {
+                font-size:  12px;
+            }
+            .brick-info {
+                margin-top: 3px;
+                padding-left: 25px;
+                &, a, p { color: rgb(107, 107, 107); }
+            }
+        }
+    }
+}
+
+/**
+    page "contribute"
+
+    route: contribute
+*/
+body.route-contribute {
+    ul#github-issues { margin-left: 20px;
+
+        li {
+            margin-bottom: 20px;
+            padding-left:   10px;
+            border-left:4px solid #CCC;
+
+            .info { font-size: 12px; }
+        }
+    }
+}
+
+/**
+    page "developers"
+
+    route: developers
+*/
+body.route-developers {
+    div.main-developers { overflow: hidden;
+        div.name { font-weight: bold; font-size: 20px; margin-bottom: 10px; }
+        a.btn { margin-bottom: 5px; }
+        ul{ padding-left: 20px; margin-left: 10px;
+            li { list-style-type: disc; }
+        }
+    }
+    div#github-contrbutors {
+        .row { margin-bottom: 20px; }
+        a.btn { margin-bottom: 5px; }
+    }
+}

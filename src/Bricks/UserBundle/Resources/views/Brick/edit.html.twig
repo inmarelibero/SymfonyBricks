@@ -5,16 +5,16 @@
 {% block main %}
 
     <div class="row">
-        <div class="span12">
-            <form action="{{ (entity.isNew) ? path('user_brick_create') : path('user_brick_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }} id="user-brick-edit" class="form form-horizontal" novalidate>
+        <div class="col-md-12">
+            <form action="{{ (entity.isNew) ? path('user_brick_create') : path('user_brick_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }} id="user-brick-edit" class="form" novalidate>
 
                 <p>
                     <div class="pull-right">
                     <button type="submit" class="btn btn-success">
-                        <i class="icon-ok"></i> {{ 'save'|trans|capitalize }}
+                        <span class="glyphicon glyphicon-ok"></span> {{ 'save'|trans|capitalize }}
                     </button>
                     <a href="{{ path('user_brick') }}" class="btn">
-                        <i class="icon-chevron-left"></i> {{ 'back_to_the_list'|trans|capitalize }}
+                        <span class="glyphicon glyphicon-chevron-left"></span> {{ 'back_to_the_list'|trans|capitalize }}
                     </a>
                     </div>
                     
@@ -22,127 +22,138 @@
                 </p>
                 
                 <br>
-                
-                {% if form_errors(form) %}
-                    <div class="form-errors">
-                        {{ form_errors(form) }}
-                    </div>
-                {% endif %}
 
-                <div class="control-group">
-                    {# info modal #}
-                    <div class="control-label pull-right" for="{{ form.title.vars.id }}">
+
+                {# BRICK TITLE #}
+                <div class="form-group {{ (form_errors(form.title))?'has-error':'' }}">
+                    <div class="control-label">
+                        <strong>
+                            {{ 'brick.title'|trans({}, 'UserBundle')|capitalize }}
+                        </strong>
+
+                        {# info modal #}
                         {{ macrosInfo.bootstrapInfoModal('brick.help.title.title'|trans({}, 'UserBundle'), 'brick.help.title.body'|trans({}, 'UserBundle')) }}
                     </div>
-
-                    {# label #}
-                    <div class="control-label" for="{{ form.title.vars.id }}">
-                        {{ 'brick.title'|trans({}, 'UserBundle')|capitalize }}
-                    </div>
                     <div class="controls">
-                        {{ form_widget(form.title) }}
+                        {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+
+                        {% if form_errors(form.title) %}
+                            <div class="form-errors">
+                                {{ form_errors(form.title) }}
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
 
-                <div class="control-group">
-                    {# info modal #}
-                    <div class="control-label pull-right" for="{{ form.brick_license.vars.id }}">
+                {# BRICK LICENSE #}
+                <div class="form-group">
+                    <div class="control-label">
+                        <strong>
+                            {{ 'brick.license'|trans({}, 'UserBundle')|capitalize }}
+                        </strong>
+
+                        {# info modal #}
                         {{ macrosInfo.bootstrapInfoModal('brick.help.license.title'|trans({}, 'UserBundle'), 'brick.help.license.body'|trans({}, 'UserBundle')) }}
                     </div>
-
-                    {# label #}
-                    <div class="control-label" for="{{ form.brick_license.vars.id }}">
-                        {{ 'brick.license'|trans({}, 'UserBundle')|capitalize }}
-                    </div>
                     <div class="controls">
-                        {{ form_widget(form.brick_license) }}
+                        <div id="license-wrapper">
+                            {{ form_widget(form.brick_license, {'attr': {'class': 'form-control input-sm'}}) }}
+                        </div>
                     </div>
                 </div>
                 
-                <div class="control-group">
-                    {# info modal #}
-                    <div class="control-label pull-right" for="{{ form.brickHasTags.vars.id }}">
+                {# BRICK TAGS #}
+                <div class="form-group">
+                    <div class="control-label">
+                        <strong>
+                            {{ 'brick.tags'|trans({}, 'UserBundle')|capitalize }}
+                        </strong>
+
+                        {# info modal #}
                         {{ macrosInfo.bootstrapInfoModal('brick.help.tags.title'|trans({}, 'UserBundle'), 'brick.help.tags.body'|trans({}, 'UserBundle')) }}
-                    </div>
-                    
-                    {# label #}
-                    <div class="control-label" for="{{ form.brickHasTags.vars.id }}">
-                        {{ 'brick.tags'|trans({}, 'UserBundle')|capitalize }}
                     </div>
                     <div class="controls">
                     
-                        <div id="tags-labels" class="tag-list">
-                            <div class="tags"></div>
-                            <p id="tags-labels-help-text">
+                        <div id="tags-labels">
+                            <div id="tags"></div>
+
+                            <p class="help-text">
                                 {{ 'brick.brickHasTags.help_text'|trans({}, 'UserBundle') }}
                             </p>
+
+                            <input id="input-add-tag" class="tags-input" type="text" />
                         </div>
-                        
                         
                         {{ form_widget(form.brickHasTags) }}
                     </div>
                 </div>
                 
-                <div class="control-group">
-                    {# info modal #}
-                    <div class="control-label pull-right" for="{{ form.description.vars.id }}">
+                {# BRICK DESCRIPTION #}
+                <div class="form-group">
+                    <div class="control-label">
+                        <strong>
+                            {{ 'brick.description'|trans({}, 'UserBundle')|capitalize }}
+                        </strong>
+
+                        {# info modal #}
                         {{ macrosInfo.bootstrapInfoModal('brick.help.description.title'|trans({}, 'UserBundle'), 'brick.help.description.body'|trans({}, 'UserBundle')) }}
                     </div>
-                    
-                    {# label #}
-                    <div class="control-label" for="{{ form.description.vars.id }}">
-                        {{ 'brick.description'|trans({}, 'UserBundle')|capitalize }}
-                    </div>
                     <div class="controls">
-                        {{ form_widget(form.description) }}
+                        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
                     </div>
                 </div>
                 
-                <div class="control-group">
-                    {# info modal #}
-                    <div class="control-label pull-right" for="{{ form.canonical_url.vars.id }}">
+                {# BRICK CANONICAL URL #}
+                <div class="form-group">
+                    <div class="control-label">
+                        <strong>
+                            {{ 'brick.canonical_url'|trans({}, 'UserBundle')|capitalize }}
+                        </strong>
+
+                        {# info modal #}
                         {{ macrosInfo.bootstrapInfoModal('brick.help.canonical_url.title'|trans({}, 'UserBundle'), 'brick.help.canonical_url.body'|trans({}, 'UserBundle')) }}
                     </div>
-                    
-                    {# label #}
-                    <div class="control-label" for="{{ form.canonical_url.vars.id }}">
-                        {{ 'brick.canonical_url'|trans({}, 'UserBundle')|capitalize }}
-                    </div>
                     <div class="controls">
-                        {{ form_widget(form.canonical_url) }}
+                        {{ form_widget(form.canonical_url, {'attr': {'class': 'form-control'}}) }}
                     </div>
                 </div>
-                
-                <div id="control-group-content" class="control-group">
+
+                {# BRICK CONTENT #}
+                <div id="form-group-content" class="form-group">
                     <div class="controls">
                         <ul class="nav nav-tabs" id="content-tab">
                             <li class="active">
                                 <a href="#content-code" data-toggle="tab">
-                                    {{ 'brick.content'|trans({}, 'UserBundle')|capitalize }}
+                                    <strong>
+                                        {{ 'brick.content'|trans({}, 'UserBundle')|capitalize }}
+                                    </strong>
                                 </a>
                             </li>
                             <li>
                                 <a href="#content-preview" data-toggle="tab">
-                                    {{ 'brick.preview'|trans({}, 'UserBundle')|capitalize }}
+                                    <strong>
+                                        {{ 'brick.preview'|trans({}, 'UserBundle')|capitalize }}
+                                    </strong>
                                 </a>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="content-code">
-                                {{ form_widget(form.content) }}
+                                {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
                             </div>
                             <div class="tab-pane" id="content-preview"></div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="control-group">
+
+                {# actions #}
+                <div class="form-group">
                     <div class="controls">
                         <button type="submit" class="btn btn-success">
-                            <i class="icon-ok"></i> {{ 'save'|trans|capitalize }}
+                            <span class="glyphicon glyphicon-ok"></span> {{ 'save'|trans|capitalize }}
                         </button>
                         <a href="{{ path('user_brick') }}" class="btn">
-                            <i class="icon-chevron-left"></i> {{ 'back_to_the_list'|trans|capitalize }}
+                            <span class="glyphicon glyphicon-chevron-left"></span> {{ 'back_to_the_list'|trans|capitalize }}
                         </a>
                     </div>
                 </div>
@@ -166,8 +177,8 @@
             /**
              * preview the content of the brick by calling the markup parser via ajax
              */
-            $('a[data-toggle="tab"]').on('shown', function (e) {
-                
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+
                 // tab element pressed
                 var tabCaller = $(e.target);
 
@@ -204,8 +215,139 @@
             /****************************************************************************************
              * Tag management
              ***************************************************************************************/
-            var tagsElement = $('#tags-labels');
-            
+            /**
+             * Javascript object for managing the tags
+             *
+             * options:
+             *  - inputAddTag = jQuery element
+             *  - onAddTag = function()
+             *  - onRemoveTag = function()
+             */
+            function TagsManager(container, options) {
+                /***********************************************************************
+                 functions
+                 ***********************************************************************/
+                // initialize input to add a tag
+                this.initInputAddTag = function() {
+                    self.inputAddTag.keydown(function(event) {
+                        if (event.which == '13') {
+                            event.preventDefault();
+
+                            var srcElement = $(event.srcElement);
+                            var tagValue = srcElement.val();
+
+                            srcElement.val("");
+
+                            if (tagValue != '') {
+                                self.addTag(tagValue);
+                            }
+                        }
+                    });
+                }
+
+                /**
+                 * Add an array of tags
+                 */
+                this.addTags = function(tags) {
+                    for (i = 0; i < tags.length; i++) {
+                        self.addTag(tags[i]);
+                    }
+                }
+
+                /**
+                 * Add a single tag
+                 */
+                this.addTag= function(tag) {
+
+                    if (self.isTagAlreadyPresent(tag)) {
+                        return false;
+                    }
+
+                    // html element to insert
+                    var tagHtml =
+                        $('<div class="tag" data-id="'+self.incrementalId+'" />').append(
+                            tag,
+                            $('<a href="javascript:void(0);" />').html(
+                                $('<span class="glyphicon glyphicon-remove-sign" ></span>')
+                            )
+                        )
+                    ;
+                    self.container.append(tagHtml);
+
+                    // click for removing a tag
+                    tagHtml.find('span.glyphicon').click(function() {
+                        self.removeTag(tagHtml.data('id'));
+                    })
+
+                    // add tag to internal array of tags
+                    self.tags[self.incrementalId] = tag;
+
+                    if (self.options.onAddTag != null) {
+                        self.options.onAddTag(self.getTags());
+                    }
+
+                    // increment variable on each insert
+                    self.incrementalId++;
+                }
+
+                this.isTagAlreadyPresent = function(tag) {
+                    var result = $.grep(self.tags, function(value) {
+                        return value == tag;
+                    });
+
+                    return result.length > 0;
+
+                }
+
+                /**
+                 * Remove a single tag
+                 */
+                this.removeTag = function(id) {
+                    self.container.find('.tag[data-id="'+id+'"]').remove();
+
+                    // remove tag from internal array
+                    delete self.tags[id];
+                    //console.log(self.tags);
+
+                    if (self.options.onRemoveTag != null) {
+                        self.options.onRemoveTag(self.getTags());
+                    }
+                }
+
+                /**
+                 * Get all tags (array of strings
+                 */
+                this.getTags = function() {
+                    var output = [];
+
+                    for (property in self.tags) {
+                        output.push(self.tags[property])
+                    }
+
+                    return output;
+                }
+
+                /***********************************************************************
+                 logic
+                 ***********************************************************************/
+
+                var self = this;
+
+                self.container = container;
+                self.options = $.extend(options, {});
+
+                // array of inserted tags
+                self.tags = {};
+
+                // increment on each insert
+                self.incrementalId = 0;
+
+                self.inputAddTag = options.inputAddTag;
+                self.initInputAddTag();
+
+                return self;
+            }
+
             /**
              * updates the form.brickHasTags form field when user adds/removes tags
              * through the bootstrap plugin
@@ -213,53 +355,36 @@
              * hack: everything is wrapped in a timeout function,
              * waiting for https://github.com/maxwells/bootstrap-tags/issues/2
              */
-            updateBrickHasTagsInput = function() {
+            updateBrickHasTagsInput = function(tags) {
 
-                setTimeout(function() {
-            	    /**
-                     * wrap everything in a timeout function
-                     */
-                    // form.brickHasTags form field
-                    var brickHasTagsInput = $("#{{ form.brickHasTags.vars.id }}");
-    
-                    /**
-                     * get all tags values
-                     *
-                     * waiting for https://github.com/maxwells/bootstrap-tags/issues/3
-                     */
-                    var tags = tagsElement.tags().getTags();
-                    
-                    // set tags values to brick form input
-                    $("#{{ form.brickHasTags.vars.id }}").val(tags.join("|"));
-                }, 400);
+                // wrap everything in a timeout function
+                //setTimeout(function() {
+                // form.brickHasTags form field
+                var brickHasTagsInput = $("#{{ form.brickHasTags.vars.id }}");
+
+                // set tags values to brick form input
+                $("#{{ form.brickHasTags.vars.id }}").val(tags.join("|"));
+
+                //console.log($("#{{ form.brickHasTags.vars.id }}").val());
             };
 
-
             // tags values for bootstrap plugin
+            var tagData = [];
             {% if (entity.brickHasTags|length > 0) %}
                 tagData = "{{ form.brickHasTags.vars.value }}".split('|');
-            {% else %}
-                tagData = [];
             {% endif %}
 
-            /**
-             * initialize tags box with bootstrap-tags jquery plugin
-             * https://github.com/maxwells/bootstrap-tags
-             */
-            tagsElement.tags( {
-                tagData: tagData,
-                tagClass: "btn btn-mini",
-                
-                pressedReturn: function(e) {
-                    e.preventDefault();
+
+            var tagsElement = $('#tags-labels #tags');
+            var tagsManager = new TagsManager(tagsElement,  {
+                'inputAddTag': $('#input-add-tag'),
+                'onAddTag': function (tags) {
+                    updateBrickHasTagsInput(tags);
                 },
-                whenAddingTag: function (tag) {
-                	updateBrickHasTagsInput();
-                },
-                tagRemoved: function () {
-                	updateBrickHasTagsInput();
+                'onRemoveTag': function (tags) {
+                    updateBrickHasTagsInput(tags);
                 }
-            });
+            }).addTags(tagData);
 
         });
     </script>

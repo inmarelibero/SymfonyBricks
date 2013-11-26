@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
 use Bricks\SiteBundle\Entity\Brick;
@@ -78,7 +78,7 @@ class ButtonModalMessageController extends Controller
         $form = $this->createForm($this->container->get('message_bundle.bricks_message_new_thread_message_from_brick_form.type'));
 
         // bind the request
-        $form->bind($this->getRequest());
+        $form->handleRequest($this->getRequest());
 
         // send a message
         if ($form->isValid()) {
@@ -111,7 +111,7 @@ class ButtonModalMessageController extends Controller
             // send the message
             $this->container->get('fos_message.sender')->send($message);
 
-            return new Response(json_encode(array()), 200, array('Content-Type'=>'application/json'));
+            return new JsonResponse();
         }
 
         // initialize json empty array
@@ -120,14 +120,17 @@ class ButtonModalMessageController extends Controller
         // build json errors array
         $fields = $form->all();
         foreach ($fields as $field) {
-            if ($field->hasErrors()) {
+
+            $errors = $field->getErrors();
+
+            if (count($errors) > 0) {
                 $json['errors'][$field->getName()] = array();
-                foreach ($field->getErrors() as $error) {
+                foreach ($errors as $error) {
                     $json['errors'][$field->getName()][] = $error->getMessageTemplate();
                 }
             }
         }
 
-        return new Response(json_encode($json), 400, array('Content-Type'=>'application/json'));
+        return new JsonResponse($json, 400);
     }
 }

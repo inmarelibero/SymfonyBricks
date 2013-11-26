@@ -12,78 +12,88 @@
     {{ form_id }} variable must be passed by the extending template. (@FIX: generating a random number?)
 #}
 
-{% import 'BricksSiteBundle::macros/macrosBootstrapForms.html.twig' as macrosBootstrapForms %}
 
 {# button to open the modal to send a message. if uer is not logged, ask the login #}
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
-    <button id="button-{{ form_id }}" type="button" data-toggle="modal" data-target="#modal-{{ form_id }}" class="btn btn-mini">
+    <a id="button-{{ form_id }}" data-toggle="modal" data-target="#modal-{{ form_id }}">
         {{ call_to_action_value|raw }}
-    </button>
+    </a>
 
-    <div id="modal-{{ form_id }}" class="modal hide fade button-modal-message-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <form id="{{ form_id }}" class="form form-horizontal button-modal-message-form" action="{{ path('message_ajax_send') }}" method="POST" novalidate>
+    <div id="modal-{{ form_id }}" class="modal fade button-modal-message-modal" tabindex="-1" role="dialog" aria-hidden="true">
 
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3>
-                    {% block title %}
-                        {{ 'fos_message_bundle.send_new'|trans({}, 'FOSMessageBundle')|capitalize }}
-                    {% endblock %}
-                </h3>
-            </div>
-            <div class="modal-body">
 
-                <div id="ajax-messages">
-                    <div class="success" >
-                        {{ 'fos_message_bundle.sent_confirmation'|trans({}, 'FOSMessageBundle') }}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="{{ form_id }}" class="form-horizontal button-modal-message-form" action="{{ path('message_ajax_send') }}" method="POST" role="form" novalidate>
 
-                        <div class="actions" >
-                            <a href="javascript:void(0);" data-dismiss="modal" aria-hidden="true">{{ 'close'|trans }}</a>
-                             |
-                            <a href="{{ path('fos_message_sent') }}">{{ 'fos_message_bundle.go_to_sent'|trans({}, 'FOSMessageBundle')|lower }}</a>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3>
+                            {% block title %}
+                                {{ 'fos_message_bundle.send_new'|trans({}, 'FOSMessageBundle')|capitalize }}
+                            {% endblock %}
+                        </h3>
+                    </div>
+                    <div class="modal-body">
+
+                        <div id="ajax-messages">
+                            <div class="success" >
+                                {{ 'fos_message_bundle.sent_confirmation'|trans({}, 'FOSMessageBundle') }}
+
+                                <div class="actions" >
+                                    <a href="javascript:void(0);" data-dismiss="modal" aria-hidden="true">{{ 'close'|trans }}</a>
+                                    |
+                                    <a href="{{ path('fos_message_sent') }}">{{ 'fos_message_bundle.go_to_sent'|trans({}, 'FOSMessageBundle')|lower }}</a>
+                                </div>
+                            </div>
+                            <div class="errors"></div>
                         </div>
+
+                        {% block help '' %}
+
+                        <div class="form-group ">
+                            <label class="col-lg-2 control-label">
+                                {{ 'fos_message_bundle.form.recipient.label'|trans({}, 'FOSMessageBundle') }}
+                            </label>
+                            <div class="col-lg-10">
+                                {% block recipient %}
+                                    <p class="form-control-static">
+                                        {{ form.recipient.vars.value }}
+                                    </p>
+                                {% endblock %}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                {{ 'fos_message_bundle.form.body.label'|trans({}, 'FOSMessageBundle') }}
+                            </label>
+                            <div class="col-lg-10">
+                                {{ form_widget(form.body, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+
+                        {{ form_widget(form.recipient, {'attr': {'style': 'display:none'}}) }}
+                        {{ form_widget(form.brick, {'attr': {'style': 'display:none'}}) }}
+
+                        {{ form_rest(form) }}
                     </div>
-                    <div class="errors"></div>
-                </div>
 
-                {% block help '' %}
-
-                <div class="control-group ">
-                    <label class="control-label">
-                        {{ 'fos_message_bundle.form.recipient.label'|trans({}, 'FOSMessageBundle') }}
-                    </label>
-                    <div class="controls">
-                        {% block recipient %}
-                            {{ form.recipient.vars.value }}
-                        {% endblock %}
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-ok"></span> {{ 'fos_message_bundle.send'|trans({}, 'FOSMessageBundle') }}
+                        </button>
                     </div>
-                </div>
 
-                {{
-                    macrosBootstrapForms.controlGroup(form.body, {
-                        label: 'fos_message_bundle.form.body.label'|trans({}, 'FOSMessageBundle')
-                    })
-                }}
-
-                {{ form_widget(form.recipient, {'attr': {'style': 'display:none'}}) }}
-                {{ form_widget(form.brick, {'attr': {'style': 'display:none'}}) }}
-
-                {{ form_rest(form) }}
+                </form>
             </div>
-
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">
-                    <i class="icon-ok"></i> {{ 'fos_message_bundle.send'|trans({}, 'FOSMessageBundle') }}
-                </button>
-            </div>
-
-        </form>
+        </div>
     </div>
 
 {% else %}
 
-    <a href="#modal-login" id="button-{{ form_id }}" class="btn btn-mini" data-toggle="modal">
+    <a href="#modal-login" id="button-{{ form_id }}" data-toggle="modal">
         {{ call_to_action_value|raw }}
     </a>
 

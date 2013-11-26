@@ -1,0 +1,67 @@
+/* import bootstrap assets */
+@import "../../../../../../web/assets/bootstrap-3.0.0/less/variables.less";
+
+/* Up to Small devices (< 768px) */
+@media (max-width: @screen-sm) {
+    /**
+        homepage
+
+        route: route-index_not_localized , homepage
+    */
+    body.route-index_not_localized , body.route-homepage {
+        .right-col {
+            margin-top: 16px;
+            text-align: center;
+            p { text-align: left; }
+        }
+    }
+
+    body.user {
+        &.route-user_dashboard {
+            div#large-icons {
+                .box {
+                    margin:      4%;
+                    a {
+                        padding:    10px;
+                        font-size:  16px;
+                    }
+                }
+            }
+        }
+    }
+
+    body.route-user_brick {
+        table#bricks-table {
+            thead {
+                display: none;
+            }
+            tbody {
+                tr {
+                    td {
+                        float:  left;
+                        width:  100%;
+                        border-top: 0px none;
+
+                        text-align: left !important;
+
+                        &:first-child {
+                            border-top: 1px solid #CCC;
+                        }
+
+                        .visible-xs { display: inline-block !important; }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Up to Medium devices (< 992px) */
+@media (max-width: @screen-md) {
+
+}
+
+/* Up to Large devices (< 1200px) */
+@media (max-width: @screen-lg) {
+
+}

@@ -16,22 +16,19 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new JMS\AopBundle\JMSAopBundle(),
-            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
-            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-                
+
             // FOSUserBundle
             new FOS\UserBundle\FOSUserBundle(),
-            
+
             // StofDoctrineExtensionsBundle
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            
+
             // KnpMarkdownBundle
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
-                
+
             // FOSJsRoutingBundle
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-                
+
             // KnpDisqusBundle
             new Knp\Bundle\DisqusBundle\KnpDisqusBundle(),
 
@@ -48,7 +45,6 @@ class AppKernel extends Kernel
             new PK\MarkdownifyBundle\PKMarkdownifyBundle(),
 
             // VichUploaderBundle, KnpGaufretteBundle
-            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
 
             // AvalancheImagineBundle

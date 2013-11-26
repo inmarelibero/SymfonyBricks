@@ -125,9 +125,9 @@ class BrickController extends Controller
         
         /*
         if ($entity->getPublished()) {
-            $this->get('session')->setFlash('success', 'alert.brick.togglePublished.published');
+            $this->get('session')->getFlashBag()->add('success', 'alert.brick.togglePublished.published');
         } else {
-            $this->get('session')->setFlash('information', 'alert.brick.togglePublished.unpublished');
+            $this->get('session')->getFlashBag()->add('information', 'alert.brick.togglePublished.unpublished');
         }
         */
         

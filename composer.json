@@ -1,56 +1,67 @@
 {
     "name": "symfony/framework-standard-edition",
+    "license": "MIT",
+    "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
         "psr-0": { "": "src/" }
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.1.*",
+        "symfony/symfony": "2.3.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
-        "doctrine/doctrine-bundle": "1.0.*",
+        "doctrine/doctrine-bundle": "1.2.*",
         "twig/extensions": "1.0.*",
-        "symfony/assetic-bundle": "2.1.*",
-        "symfony/swiftmailer-bundle": "2.1.*",
-        "symfony/monolog-bundle": "2.1.*",
-        "sensio/distribution-bundle": "2.1.*",
-        "sensio/framework-extra-bundle": "2.1.*",
-        "sensio/generator-bundle": "2.1.*",
-        "jms/security-extra-bundle": "1.2.*",
-        "jms/di-extra-bundle": "1.1.*",
-        
-        "friendsofsymfony/user-bundle": "*",
+        "symfony/assetic-bundle": "2.3.*",
+        "symfony/swiftmailer-bundle": "2.3.*",
+        "symfony/monolog-bundle": "2.3.*",
+        "sensio/distribution-bundle": "2.3.*",
+        "sensio/framework-extra-bundle": "2.3.*",
+        "sensio/generator-bundle": "2.3.*",
+        "incenteev/composer-parameter-handler": "~2.0",
+
+        "friendsofsymfony/user-bundle": "~2.0@dev",
         "leafo/lessphp": "dev-master",
-        "stof/doctrine-extensions-bundle": "dev-master",
+        "stof/doctrine-extensions-bundle": "~1.1@dev",
         "knplabs/knp-markdown-bundle": "1.2.*@dev",
-        "friendsofsymfony/jsrouting-bundle": "*",
+        "friendsofsymfony/jsrouting-bundle": "~1.1",
         "knplabs/knp-disqus-bundle": "dev-master",
         "friendsofsymfony/message-bundle": "dev-master",
-        "raulfraile/ladybug-bundle": "0.*@dev",
+        "raulfraile/ladybug-bundle": "~1.0",
         "presta/sitemap-bundle": "dev-master",
         "pk/markdownify-bundle": "2.1.*",
         "vich/uploader-bundle": "dev-master",
-        "knplabs/knp-gaufrette-bundle" : "dev-master",
         "avalanche123/imagine-bundle": "v2.1",
         "eko/feedbundle": "1.0.*@dev"
     },
     "scripts": {
         "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ]
     },
-    "minimum-stability": "dev",
+    "config": {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "stable",
     "extra": {
         "symfony-app-dir": "app",
-        "symfony-web-dir": "web"
+        "symfony-web-dir": "web",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        },
+        "branch-alias": {
+            "dev-master": "2.3-dev"
+        }
     }
 }

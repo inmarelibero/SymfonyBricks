@@ -23,9 +23,9 @@
                     {{ brick.title }}
                 </a>
                 <p>
-                    <i class="icon-user"></i> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
+                    <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
                     |
-                    <i class="icon-calendar"></i> last update: {{ brick.updatedAt|date('d/m/Y') }}
+                    <span class="glyphicon glyphicon-calendar"></span> last update: {{ brick.updatedAt|date('d/m/Y') }}
                 </p>
             </li>
         {% endfor %}

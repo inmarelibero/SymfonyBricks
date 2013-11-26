@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<html>
     <head>
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
@@ -18,6 +18,7 @@
         <meta property="og:description" content="{% block meta_og_description_content %}Built by the community for the community. SymfonyBricks aims to be a repository of code, snippets and recipes useful to Symfony developers{% endblock %}" />
         <meta property="og:image" content="{% block meta_og_image_content %}http://symfonybricks.com/img/logo-square.png{% endblock %}" />
         {# END META TAGS #}
+
         
         {# canonical url #}
         <link rel="canonical" href="{% block canonical_url %}{{ app.request.uri }}{% endblock canonical_url %}"/>
@@ -26,7 +27,12 @@
         {% javascripts '@javascripts_header' %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        
+
+        {# load stylesheets #}
+        {% stylesheets "@stylesheets" %}
+            <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
         {# FOSJsRoutingBundle generated routes by controller #}
         <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
@@ -42,194 +48,188 @@
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
             })();
         </script>
-        
-        {# load stylesheets #}
-        {% stylesheets '@stylesheets' %}
-            <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
-        {% endstylesheets %}
     </head>
 
     <body lang="{{app.request.locale}}" class="route-{{ app.request.get('_route') }} {% block body_class '' %}">
 
         <div class="wrapper">
             <header>
-                <div class="navbar" id="main-navbar">
-                    <div class="navbar-inner">
-                        <div class="container">
-                            <ul class="nav">
-                                <li>
-                                    <a href="{{ path('homepage') }}" id="brand" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'homepage']);">
-                                        SymfonyBricks
-                                    </a>
-                                </li>
-                                <li id="nav-search-bricks">
-                                    <form action="{{ path('brick_search') }}">
-                                        <div class="input-append">
-                                            <input name="q" class="span2" size="16" type="text">
-                                            <button class="btn" type="submit"><i class="icon-search"></i> </button>
-                                        </div>
-                                    </form>
-                                </li>
-                            </ul>
-                            <ul class="nav" id="links-list">
-                                <li>
-                                    <a href="http://blog.symfonybricks.com" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'blog']);">
-                                        blog
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('wiki_homepage') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'wiki']);">
-                                        {{ 'main_navbar.wiki'|trans }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('changelog') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'changelog']);">
-                                        changelog
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('developers') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'developers']);">
-                                        {{ 'main_navbar.developers'|trans }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('contribute') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'contribute']);">
-                                        {{ 'main_navbar.contribute'|trans }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'github repository']);">
-                                        {{ 'main_navbar.github_repository'|trans }}
-                                    </a>
-                                </li>
-                            </ul>
 
-                            <ul class="nav pull-right" id="nav-locales">
-                                <li>
-                                    <div class="btn-group">
-                                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                                            {% if interface_translation_locales[app.request.locale] is not null %}
-                                                <img src="{{ asset('img/flags/'~interface_translation_locales[app.request.locale]['flag']) }}">
-                                            {% else %}
-                                                {{ app.request.locale }}
-                                            {% endif %}
-                                            <span class="caret"></span>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            {% for locale in interface_translation_locales %}
-                                                <li>
-                                                    <a href="{{ path('homepage', {'_locale': locale.code}) }}">
-                                                        <img src="{{ asset('img/flags/'~locale.flag) }}">
-                                                    </a>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-
-                            <ul class="nav pull-right" id="user">
-                                {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
-                                    <li class="dropdown">
-                                        <a href="{{ path('user_dashboard') }}" class="dropdown-toggle" data-toggle="dropdown">
-                                            {% if app.user.profileImage and app.user.profileImage.isReadable %}
-                                                <img src="{{ vich_uploader_asset(app.user, 'profileImage') | apply_filter('user_profile_small_thumb') }}" class="user_profile_image">
-                                            {% else %}
-                                                <i class="icon-user"></i>
-                                            {% endif %}
-                                            {{ app.user.username }}
-
-                                            <b class="caret"></b>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="{{ path('user_dashboard') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'user dasboard']);">
-                                                    <i class="icon-home"></i> {{ 'user_navbar.dashboard'|trans({}, 'UserBundle')|capitalize }}
-                                                </a>
-                                            </li>
-                                            <li id="messages">
-                                                <a href="{{ path('fos_message_inbox') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'user inbox']);">
-                                                    <i class="icon-inbox"></i> {{ 'user_navbar.message'|trans({}, 'UserBundle')|capitalize }}
-                                                </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                            <a href="{{ path('user_brick_starred') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'user starred bricks']);">
-                                                <i class="icon-star"></i> {{ 'user_navbar.bricks_starred'|trans({}, 'UserBundle')|capitalize }}
-                                            </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ path('user_brick') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'user bricks']);">
-                                                    <i class="icon-book"></i> {{ 'user_navbar.bricks'|trans({}, 'UserBundle')|capitalize }}
-                                                </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="{{ path('fos_user_profile_edit') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'user profile edit']);">
-                                                    <i class="icon-user"></i> {{ 'user_navbar.edit_profile'|trans({}, 'UserBundle')|capitalize }}
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ path('fos_user_change_password') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'user change password']);">
-                                                    <i class="icon-lock"></i> {{ 'user_navbar.change_password'|trans({}, 'UserBundle')|capitalize }}
-                                                </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="{{ path('logout') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'logout']);">
-                                                    <i class="icon-signout"></i> {{ 'user_navbar.logout'|trans({}, 'UserBundle')|capitalize }}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                {% else %}
-                                    <li>
-                                        <a href="{{ path('fos_user_registration_register') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'registration']);">
-                                            <i class="icon-user"></i> {{ 'main_navbar.register'|trans }}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ path('fos_user_security_login') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'login']);">
-                                            <i class="icon-signin"></i> {{ 'main_navbar.sign_in'|trans }}
-                                        </a>
-                                    </li>
-                                {% endif %}
-                            </ul>
-
-                        </div>
-                        {% block user_menu '' %}
+                <nav id="main-navbar" class="navbar navbar-default" role="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="{{ path('homepage') }}" class="navbar-brand" id="brand" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'homepage']);">
+                            SymfonyBricks
+                        </a>
                     </div>
-                </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <form action="{{ path('brick_search') }}" class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input name="q" class="form-control" placeholder="Search" size="16" type="text">
+                            </div>
+                            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span> </button>
+                        </form>
+
+                        <ul class="nav navbar-nav">
+                            <li {#class="active"#}>
+                                <a href="http://blog.symfonybricks.com" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'blog']);">
+                                    blog
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'github repository']);">
+                                    {{ 'main_navbar.github_repository'|trans }}
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="{{ path('user_dashboard') }}" class="dropdown-toggle" data-toggle="dropdown">
+                                    more <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{ path('wiki_homepage') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'wiki']);">
+                                            {{ 'main_navbar.wiki'|trans }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('changelog') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'changelog']);">
+                                            changelog
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('developers') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'developers']);">
+                                            {{ 'main_navbar.developers'|trans }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('contribute') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'contribute']);">
+                                            {{ 'main_navbar.contribute'|trans }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+
+                            {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <li class="dropdown">
+                                    <a href="{{ path('user_dashboard') }}" class="dropdown-toggle" data-toggle="dropdown">
+                                        {% if app.user.profileImage and app.user.profileImage.isReadable %}
+                                            <img src="{{ vich_uploader_asset(app.user, 'profileImage') | apply_filter('user_profile_small_thumb') }}" class="user_profile_image">
+                                        {% else %}
+                                            <span class="glyphicon glyphicon-user"></span>
+                                        {% endif %}
+                                        {{ app.user.username }}
+
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="{{ path('user_dashboard') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'user dasboard']);">
+                                                <span class="glyphicon glyphicon-home"></span> {{ 'user_navbar.dashboard'|trans({}, 'UserBundle')|capitalize }}
+                                            </a>
+                                        </li>
+                                        <li id="messages">
+                                            <a href="{{ path('fos_message_inbox') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'user inbox']);">
+                                                <span class="glyphicon glyphicon-inbox"></span> {{ 'user_navbar.message'|trans({}, 'UserBundle')|capitalize }}
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="{{ path('user_brick_starred') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'user starred bricks']);">
+                                                <span class="glyphicon glyphicon-star"></span> {{ 'user_navbar.bricks_starred'|trans({}, 'UserBundle')|capitalize }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('user_brick') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'user bricks']);">
+                                                <span class="glyphicon glyphicon-book"></span> {{ 'user_navbar.bricks'|trans({}, 'UserBundle')|capitalize }}
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="{{ path('fos_user_profile_edit') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'user profile edit']);">
+                                                <span class="glyphicon glyphicon-user"></span> {{ 'user_navbar.edit_profile'|trans({}, 'UserBundle')|capitalize }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('fos_user_change_password') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'user change password']);">
+                                                <span class="glyphicon glyphicon-lock"></span> {{ 'user_navbar.change_password'|trans({}, 'UserBundle')|capitalize }}
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="{{ path('logout') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'logout']);">
+                                                <span class="glyphicon glyphicon-log-out"></span> {{ 'user_navbar.logout'|trans({}, 'UserBundle')|capitalize }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a href="{{ path('fos_user_registration_register') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'registration']);">
+                                        <span class="glyphicon glyphicon-user"></span> {{ 'main_navbar.register'|trans }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('fos_user_security_login') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'login']);">
+                                        <span class="glyphicon glyphicon-log-in"></span> {{ 'main_navbar.sign_in'|trans }}
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {# language selector #}
+                            <li id="locale-selector" class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    {% if interface_translation_locales[app.request.locale] is not null %}
+                                        <img src="{{ asset('img/flags/'~interface_translation_locales[app.request.locale]['flag']) }}">
+                                    {% else %}
+                                        {{ app.request.locale }}
+                                    {% endif %}
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    {% for locale in interface_translation_locales %}
+                                        {% if locale != app.request.locale %}
+                                            <li>
+                                                <a href="{{ path('homepage', {'_locale': locale.code}) }}">
+                                                    <img src="{{ asset('img/flags/'~locale.flag) }}">
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>
             </header>
 
             <section id="main">
             
                 <div class="container">
-                    {% if app.session.hasFlash('success') or app.session.hasFlash('error') or app.session.hasFlash('information') %}
+
+                    {% set flash_messages = app.session.flashbag.all %}
+
+                    {% if flash_messages|length > 0 %}
                         <div class="row">
-                            <div class="span12">
-                            
-                                {% set alertClass = '' %}
-                                {% if app.session.hasFlash('success') %}
-                                    {% set alertClass = 'alert-success' %}
-                                {% elseif app.session.hasFlash('error') %}
-                                    {% set alertClass = 'alert-error' %}
-                                {% elseif app.session.hasFlash('information') %}
-                                    {% set alertClass = 'alert-information' %}
-                                {% endif %}
-                                
-                                <div class="alert {{ alertClass }}">
-                                    <a class="close" data-dismiss="alert">×</a>
-                                    
-                                    {% if app.session.hasFlash('success') %}
-                                        {{ app.session.getFlash('success')|trans({}, 'alert') }}
-                                    {% elseif app.session.hasFlash('error') %}
-                                        {{ app.session.getFlash('error')|trans({}, 'alert') }}
-                                    {% elseif app.session.hasFlash('information') %}
-                                        {{ app.session.getFlash('information')|trans({}, 'alert') }}
-                                    {% endif %}
-                                </div>
-                                
+                            <div class="col-md-12">
+                                {% for type, messages in flash_messages %}
+                                    <div class="alert alert-{{ type }}">
+                                        <a class="close" data-dismiss="alert">×</a>
+                                        {% for message in messages %}
+                                            {{ message|trans({}, 'alert') }}
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
                             </div>
                         </div>
                         
@@ -244,22 +244,22 @@
         <footer class="footer">
             <div class="container">
                 <div class="row">
-                    <div class="span4">
+                    <div class="col-md-4 col-xs-6">
                         <ul>
                             <li><a href="{{ path('homepage') }}" target="_new">SymfonyBricks.com</a></li>
                             <li><a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">SymfonyBricks github repository</a></li>
                         </ul>
                     </div>
-                    <div class="span4" style="text-align: center">
+                    <div class="col-md-4 hidden-sm hidden-xs" style="text-align: center">
                         {% if 'it' == app.request.locale %}
                             online da: Lun 1 Ott 2012, 23:15:23 CEST
                         {% elseif 'es' == app.request.locale %}
-                            en línea dese: Lun 1 Oct 2012, 23:15:23 CEST
+                            en línea desde: Lun 1 Oct 2012, 23:15:23 CEST
                         {% else %}
                             online since: Mon 1 Oct 2012, 23:15:23 CEST
                         {% endif %}
                     </div>
-                    <div class="span4" style="text-align: right">
+                    <div class="col-md-4 col-xs-6" style="text-align: right">
                         <a  class="socialite twitter-follow"
                             href="https://twitter.com/SymfonyBricks"
                             data-show-count="false"
@@ -303,7 +303,7 @@
         {# block #}
         {% block javascripts_footer '' %}
 
-        {% render 'BricksUserBundle:Security:_modalLogin' %}
+        {% render(controller('BricksUserBundle:Security:_modalLogin', {'targetPath': app.request.uri})) %}
         {% include 'BricksSiteBundle:Brick:_modal_brick_from_url.html.twig' %}
 
     </body>

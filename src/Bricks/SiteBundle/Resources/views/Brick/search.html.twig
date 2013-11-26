@@ -15,24 +15,24 @@
 {% block main %}
 
     <div class="row">
-        <div class="span12">
+        <div class="col-md-12">
         
-            <form action="{{ path('brick_search') }}" id="form-search" class="well">
-                <h1>{{ 'brick.search.page_title'|trans }}</h1>
-                
-                <div class="box">
+            <h1>{{ 'brick.search.page_title'|trans }}</h1>
+
+            <form id="form-search" class="well form-inline" action="{{ path('brick_search') }}" role="form">
+
+                <div class="form-group group-title">
                     <label>{{ 'brick.search.form.q'|trans }}</label>
-                    <input name="q" class="span6" type="text" value="{{ app.request.get('q') }}">
+                    <input name="q" class="form-control" type="text" value="{{ app.request.get('q') }}">
                 </div>
                 
-                <div class="box">
+                <div class="form-group group-tag">
                     <label>Tag</label>
-                    <input name="tag" class="span3" size="16" type="text" value="{{ app.request.get('tag') }}">
+                    <input name="tag" class="form-control" size="16" type="text" value="{{ app.request.get('tag') }}">
                 </div>
                 
-                <div class="box buttons">
-                    <label>&nbsp;</label>
-                    <button class="btn btn-primary" type="submit"><i class="icon-search"></i> {{ 'brick.search.form.button_submit'|trans }}</button>
+                <div class="form-group group-btn">
+                    <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></span> {{ 'brick.search.form.button_submit'|trans }}</button>
                 </div>
             </form>
             
@@ -44,13 +44,13 @@
                                 {{ brick.title }}
                             </a>
                             <p class="brick-info">
-                                <i class="icon-user"></i> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
+                                <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
                                 |
-                                <i class="icon-calendar"></i> {{ 'brick.last_update'|trans }}: {{ brick.updatedAt|date('d M Y') }}
-                                <br>
+                                <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans }}: {{ brick.updatedAt|date('d M Y') }}
+                                |
                                 {{ macrosBrick.toggleUserStarsBrick(brick) }}
                                 |
-                                <i class="icon-tag"></i> {{ brick_formatted_tags(brick)|raw }}
+                                <span class="glyphicon glyphicon-tag"></span> {{ brick_formatted_tags(brick)|raw }}
                             </p>
                         </li>
                     {% endfor %}

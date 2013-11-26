@@ -4,7 +4,7 @@
     displays an icon through which open a modal dialog box, to display some informations
     
     parameters:
-        - title: the title of the modal box (preceed by default by the label "Help:"). the id of the tag is based on this field,
+        - title: the title of the modal box (preceded by default by the label "Help:"). the id of the tag is based on this field,
                  so it should be unique
         - body: html or plain text to display in the main section of the modal box
 #}
@@ -12,22 +12,26 @@
 
     {% set modalId = "modal-"~title|lower|replace({' ': '-', ':': '-'}) %}
 
-    <a href="#{{ modalId }}" class="info-modal-caller" role="button" data-toggle="modal">
-        <i class="icon-question-sign"></i>
+    <a class="info-modal-caller" href="#{{ modalId }}" data-toggle="modal">
+        <span class="glyphicon glyphicon-question-sign"></span>
     </a>
 
-    <div id="{{ modalId }}" class="modal hide fade info-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>
-                <i class="icon-question-sign"></i> {{ title|raw }}
-            </h3>
-        </div>
-        <div class="modal-body">
-            {{ body|raw }}
-        </div>
-        <div class="modal-footer">
-            <a href="#" class="btn" data-dismiss="modal" >Close</a>
+    <div id="{{ modalId }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title">
+                        <span class="glyphicon glyphicon-question-sign"></span> {{ title|raw }}
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    {{ body|raw }}
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-primary" data-dismiss="modal" >Close</a>
+                </div>
+            </div>
         </div>
     </div>
 

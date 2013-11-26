@@ -1,11 +1,11 @@
 {% block subject %}{{ 'registration.email.subject'|trans({}, 'FOSUserBundle') }}{% endblock %}
 
 {% block body_text %}
-{% autoescape false %}
-{{ 'registration.email.message'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl, '%loginUrl%': url('login')}, 'FOSUserBundle') }}
-{% endautoescape %}
+    {% autoescape false %}
+        {{ 'registration.email.message'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl, '%loginUrl%': url('login')}, 'FOSUserBundle') }}
+    {% endautoescape %}
 {% endblock %}
 
 {% block body_html %}
-{{ 'registration.email.message_html'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl, '%loginUrl%': url('login')}, 'FOSUserBundle')|raw }}
+    {{ 'registration.email.message_html'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl, '%loginUrl%': url('login')}, 'FOSUserBundle')|raw }}
 {% endblock %}

@@ -22,9 +22,7 @@ class BrickType extends AbstractType
         $brick = $builder->getData();
         
         $builder
-            ->add('title', 'text', array(
-                'error_bubbling' => true
-            ))
+            ->add('title', 'text')
             ->add('description', 'textarea')
             ->add('canonical_url', 'text')
             ->add('content', 'textarea')
@@ -44,8 +42,7 @@ class BrickType extends AbstractType
         
         // add brickHasTags field, with Data Transformer
         $builder->add(
-            $builder->create('brickHasTags', 'hidden')
-                ->prependNormTransformer($transformer)
+            $builder->create('brickHasTags', 'hidden')->addModelTransformer($transformer)
         );
     }
 

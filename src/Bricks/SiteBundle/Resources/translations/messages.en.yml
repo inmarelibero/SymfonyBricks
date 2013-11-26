@@ -9,7 +9,7 @@
 main_navbar:
     contribute: contribute
     developers: developers
-    github_repository: github repository
+    github_repository: github
     register: register
     sign_in: sign in
     wiki: wiki
@@ -28,6 +28,7 @@ brick:
     not_published: not published
     not_starring_text: Star
     published: published
+    not_published: not published
 
     # brick search
     search:

@@ -2,7 +2,6 @@
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ BricksSiteBundle, BricksUserBundle ]
     java:           %java_path%
     filters:
         cssrewrite: ~
@@ -10,36 +9,40 @@ assetic:
             jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar
         yui_js:
             jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar
-        lessphp: ~
+        lessphp:
+            apply_to: "\.less$"
+            formatter: "compressed"
+            preserve_comments: false
+
     assets:
         lesses:
             inputs:
-                - %kernel.root_dir%/../web/assets/bootstrap-2.3.2/less/bootstrap.less
-                - @BricksSiteBundle/Resources/less/*.less
-                - @BricksWikiBundle/Resources/less/*.less
-                - @BricksUserBundle/Resources/less/*.less
-                - @BricksMessageBundle/Resources/less/*.less
+                # BricksSiteBundle
+                - %kernel.root_dir%/../web/bundles/brickssite/less/*.less
+                - %kernel.root_dir%/../web/bundles/brickswiki/less/*.less
+                - %kernel.root_dir%/../web/bundles/bricksuser/less/*.less
+                - %kernel.root_dir%/../web/bundles/bricksmessage/less/*.less
+
+                # responsive
+                - %kernel.root_dir%/../web/bundles/brickssite/less/responsive.less
+
             filters: lessphp
         stylesheets:
             inputs:
-                - %kernel.root_dir%/../web/assets/rainbow/themes/github.css
-
+                - %kernel.root_dir%/../web/assets/bootstrap-3.0.0/dist/css/bootstrap.min.css
                 - @lesses
-                - %kernel.root_dir%/../web/assets/FortAwesome-Font-Awesome-3.0/css/font-awesome.min.css
-            filters:
-                - cssrewrite
-                - ?yui_css
+                - %kernel.root_dir%/../web/assets/rainbow/themes/github.css
+            filters: [?yui_css, cssrewrite]
+
         javascripts_header:
             inputs:
                 - %kernel.root_dir%/../web/assets/jquery/jquery-1.8.2.js
-                - bundles/fosjsrouting/js/router.js
-            filters:
-                - cssrewrite
-                - ?yui_css
+                - %kernel.root_dir%/../web/bundles/fosjsrouting/js/router.js
+            filters: [?yui_js, cssrewrite]
+
         javascripts_footer:
             inputs:
-                - %kernel.root_dir%/../web/assets/bootstrap-2.3.2/js/bootstrap.min.js
-                - %kernel.root_dir%/../web/assets/bootstrap-tags/lib/bootstrap-tags.js
+                - %kernel.root_dir%/../web/assets/bootstrap-3.0.0/dist/js/bootstrap.min.js
                 - %kernel.root_dir%/../web/assets/socialite/socialite.js
 
                 #https://github.com/ccampbell/rainbow
@@ -48,12 +51,9 @@ assetic:
                 - %kernel.root_dir%/../web/assets/rainbow/js/language/php.js
                 - %kernel.root_dir%/../web/assets/rainbow/js/language/html.js
                 - %kernel.root_dir%/../web/assets/rainbow/js/language/javascript.js
-                # https://github.com/Blender3D/rainbow.linenumbers.js
                 - %kernel.root_dir%/../web/assets/rainbow.linenumbers.js-master/rainbow.linecount.js
 
-                - @BricksSiteBundle/Resources/js/*.js
-                - @BricksSiteBundle/Resources/js/*/*.js
-                - @BricksMessageBundle/Resources/js/*.js
-            filters:
-                - cssrewrite
-                - ?yui_css
+                - %kernel.root_dir%/../web/bundles/brickssite/js/*.js
+                - %kernel.root_dir%/../web/bundles/brickssite/js/*/*.js
+                - %kernel.root_dir%/../web/bundles/bricksmessage/js/*.js
+            filters: [?yui_js, cssrewrite]

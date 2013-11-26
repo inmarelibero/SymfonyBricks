@@ -5,42 +5,84 @@
 {% block main %}
 
     <div class="row">
-        <div class="span8 offset2">
+        <div class="col-md-8 col-md-offset-2">
         
             <h1>{{ 'profile.page_title'|trans({}, 'FOSUserBundle') }}</h1>
             
             <br><br>
         
-            <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit security-form form form-horizontal" novalidate>
+            <form class="fos_user_profile_edit security-form form-horizontal" action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" novalidate>
 
 
-                {{ macrosBootstrapForms.controlGroup(form.username) }}
+                <div class="form-group {{ (form_errors(form.username))?'has-error':'' }}">
+                    <label class="col-lg-3 control-label">
+                        {{ 'form.username'|trans({}, 'FOSUserBundle') }}
+                    </label>
+                    <div class="col-lg-9">
+                        {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
 
-                {{ macrosBootstrapForms.controlGroup(form.email) }}
+                        {% if form_errors(form.username) %}
+                            <div class="help-block errors">
+                                {{ form_errors(form.username) }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
 
-                <div class="control-group ">
+                <div class="form-group {{ (form_errors(form.email))?'has-error':'' }}">
+                    <label class="col-lg-3 control-label">
+                        {{ 'form.email'|trans({}, 'FOSUserBundle') }}
+                    </label>
+                    <div class="col-lg-9">
+                        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
 
-                    <label class="control-label">{{ form.profileImage.vars.label }}</label>
+                        {% if form_errors(form.email) %}
+                            <div class="help-block errors">
+                                {{ form_errors(form.email) }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
 
-                    <div class="controls">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">
+                        {{ form.profileImage.vars.label }}:
+                    </label>
+                    <div class="col-lg-9">
 
                         {% if app.user.profileImage and app.user.profileImage.isReadable %}
                             <img src="{{ vich_uploader_asset(app.user, 'profileImage') | apply_filter('user_profile_small_thumb') }}" class="user_profile_image">
                         {% endif %}
 
                         {{ form_widget(form.profileImage) }}
+
+                        {% if form_errors(form.profileImage) %}
+                            <div class="help-block errors">
+                                {{ form_errors(form.profileImage) }}
+                            </div>
+                        {% endif %}
                     </div>
 
                 </div>
 
-                {{ macrosBootstrapForms.controlGroup(form.emailpolicy_send_on_new_message) }}
+                <div class="form-group">
+                    <div class="col-lg-offset-3 col-lg-9">
+                        <div class="checkbox">
+                            <label>
+                                {{ form_widget(form.emailpolicy_send_on_new_message) }} {{ form.emailpolicy_send_on_new_message.vars.label|trans({}, 'FOSUserBundle') }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-3 col-lg-9">
+                        <input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-primary" />
+                    </div>
+                </div>
 
 
                 {{ form_rest(form) }}
-
-                <div>
-                    <input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-primary" />
-                </div>
 
             </form>
             

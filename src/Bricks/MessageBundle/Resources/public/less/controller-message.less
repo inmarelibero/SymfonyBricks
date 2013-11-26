@@ -1,0 +1,124 @@
+/******************************************************************************************
+CONTROLLER-MESSAGE.LESS
+
+rules for all the templates loaded through Bricks\MessageBundle\MessageController
+******************************************************************************************/
+
+/* import bootstrap assets */
+@import "../../../../../../web/assets/bootstrap-3.0.0/less/variables.less";
+@import "../../../../../../web/assets/bootstrap-3.0.0/less/mixins.less";
+
+/* common bar */
+#messages-bar {
+    padding:        5px;
+    margin-bottom:  10px;
+    overflow: hidden;
+
+    border:     1px solid #CCC;
+    border-radius: 2px;
+    background: #FAFAFA;
+
+    .btn-group { float: left; }
+}
+
+/**
+  Show the UserMessage form to send a comment to the brick author, creating a new UserThread
+
+  route: _userMessageFormAction
+*/
+div.button-modal-message-modal {
+    #ajax-messages {
+        margin-bottom: 20px;
+        text-align: center;
+
+        div.errors {
+            display: none;
+            color: red;
+        }
+        div.success {
+            display: none;
+            color: green;
+        }
+        div.actions { padding: 0px;
+            a { font-size: 13px; font-weight: normal; }
+        }
+    }
+
+    textarea {
+        height: 200px;
+    }
+}
+
+/**
+    inbox, sent messages
+
+    route: fos_message_inbox, fos_message_sent
+*/
+body.route-fos_message_inbox, body.route-fos_message_sent {
+    table.table-threads { border: 1px solid #CCC;
+        td,th { padding:  4px; }
+
+        thead { background: #F1F1F1; }
+        tbody {
+            tr {
+                &.message-read {
+                    td.last-message {
+                        a { font-weight: normal; }
+                    }
+                }
+                &.message-not-read { background: #F9F9F9; }
+
+                td.subject { font-size: 14px;
+                    .info { font-size: 11px; }
+                }
+
+                td.last-message { font-size: 14px;
+                    .by { font-size: 12px; }
+                }
+
+                td.actions { text-align: right; }
+            }
+        }
+    }
+}
+
+/**
+    show a Thread
+
+    route: fos_message_thread_view
+*/
+body.route-fos_message_thread_view {
+    .messenger_thread_message {
+        margin-bottom:  10px;
+        border: 1px solid #CCC;
+        border-radius: 2px;
+        background: #FAFAFA;
+
+        .messenger_thread_message_info {
+            padding:    5px;
+            background: #CCC;
+            font-size: 13px;
+        }
+        .messenger_thread_message_body {
+            padding:    5px;
+        }
+    }
+
+    form#form-message-reply {
+        textarea { width: 100%; height: 100px; }
+        .errors { color: red; }
+    }
+}
+
+/**
+    compose a new Message
+
+    route: fos_message_thread_new
+*/
+body.route-fos_message_thread_new {
+    #form-message-new-thread {
+        input[type="text"] { width: 400px; }
+        textarea { width: 414px; height: 200px; }
+        .help-inline { vertical-align: top; padding-top: 4px;}
+    }
+}

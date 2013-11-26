@@ -1,0 +1,193 @@
+/******************************************************************************************
+CONTROLLER-BRICK.LESS
+
+rules for all the templates loaded through Bricks\SiteBundle\BrickController
+******************************************************************************************/
+
+/* import bootstrap assets */
+@import "../../../../../../web/assets/bootstrap-3.0.0/less/mixins.less";
+@import "../../../../../../web/assets/bootstrap-3.0.0/less/variables.less";
+
+/**
+    show a brick
+    
+    route: brick_show
+*/
+body.route-brick_show {
+
+    #brick {
+        .title { font-family: 'FrutigerRoman'; }
+        .description {
+            font-size: 14px;
+            padding-bottom: 20px;
+        }
+    }
+    
+    #info {
+        padding: 10px;
+        border: 1px solid #CCC;
+        border-radius: 4px;
+        background: rgb(247, 247, 247);
+
+        &, a { font-size:  14px; font-weight: normal; }
+
+        table {
+            margin-bottom:  20px;
+            tr {
+                th, td {
+                    padding: 3px 5px 3px 0px;
+
+                    span, p, a {
+                        font-size: 14px;
+                        font-weight: normal;
+                        margin-bottom: 0px;
+                    }
+                }
+            }
+        }
+
+        .message-actions { margin-top:  30px;
+        }
+    }
+
+    #affix-info {
+        top:      0px;
+        left:   0px;
+        z-index:  100;
+
+        margin-bottom:  30px;
+        width:  100%;
+
+        .content {
+            float:  left;
+            width:  100%;
+            #gradient > .vertical(#F1F1F1, #E0E0E0);
+            border-radius: 4px;
+        }
+
+        &.affix-top {
+            .container {
+                padding:    0px;
+            }
+        }
+        &.affix {
+            #scroll-to-top { visibility: visible; }
+        }
+
+        #brick-chapters { float: left; }
+        #scroll-to-top {
+            visibility:   hidden;
+            float: left;
+            margin-top:   4px;
+            margin-left:  20px;
+        }
+
+        #social-share {
+            float:  right;
+            margin-top: 4px;
+            margin-right: 20px;
+        }
+    }
+
+    #brick {
+        .content {
+            h1, h2, h3, h4, h5, h6 { font-family: 'FrutigerRoman'; }
+
+            h1 {
+                font-size:  20px;
+                margin-top: 40px;
+                border-bottom:  1px solid #CCC;
+
+                &:first-child { margin-top: 0px; }
+            }
+
+            ul { margin: 0 0 10px 25px;
+                li { list-style-type: disc; }
+            }
+
+            ol { margin: 0 0 10px 25px;
+                li { list-style-type: decimal; }
+            }
+
+            &, p, a { font-size: 14px; }
+            a { font-weight: normal; }
+
+            pre {
+                border:     0px none;
+                padding:    0px;
+            }
+        }
+    }
+}
+
+/**
+    search bricks
+    
+    route: brick_search
+*/
+body.route-brick_search {
+    #form-search {
+        .group-btn {
+            vertical-align: bottom;
+        }
+    }
+    /*
+        .box {
+            float:  left;
+            margin-right:   10px;
+            
+            &.buttons { float: right; }
+        }
+    }
+    */
+    
+    ul.bricks-list {
+        p.brick-info { padding-left: 20px; }
+        li {
+            margin-bottom:  10px;
+            border-bottom:  1px solid #CCC;
+        }
+    }
+}
+
+/**
+    <p> element containing info about a brick. eg: user, last update, tags, etc..
+*/
+p.brick-info {
+    &, a {
+        font-size:  13px;
+        font-weight:    normal;
+    }
+}
+
+/**
+    toggle-user-stars-brick element
+    
+    rules for the toggleUserStarsBrick element to toggle "Starred" state for a brick
+*/
+.toggle-user-stars-brick {
+    color:  #A2A2A2;
+    font-weight:  normal;
+    
+    &:hover { text-decoration: none;
+        i { color: #DBCD24; }
+    }
+    
+    &.active {
+        color:  inherit;
+        i { color: #DBCD24; }
+    }
+}
+
+/**
+  modal to fetch url content to create a brick
+*/
+#modal-brick-from-url {
+    #url-wrapper { text-align: center;
+        p#help { text-align: left; margin-bottom: 20px; }
+        input { width: 95%; }
+    }
+  .error { margin: 40px 0px; color: red; display: none; }
+
+  .modal-footer { text-align: center; }
+}

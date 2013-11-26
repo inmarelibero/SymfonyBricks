@@ -32,7 +32,7 @@
                         {% if thread.lastMessage %}
                             <a href="{{ url('fos_message_thread_view', {'threadId': thread.id}) }}#message_{{ thread.lastMessage.id }}" title="{% trans from 'FOSMessageBundle' %}goto_last{% endtrans %}">
                                 {% if not fos_message_is_read(thread) %}
-                                    <i class="icon-envelope"></i>{% endif %}
+                                    <span class="glyphicon glyphicon-envelope"></span>{% endif %}
                                 {{ thread.lastMessage.body|truncate }}
                             </a>
                             <div class="by">
@@ -48,7 +48,7 @@
                     <td class="actions">
                         <form action="{{ url('fos_message_thread_delete', {'threadId': thread.id}) }}" method="post" onsubmit="return confirm('{{ 'fos_message_bundle.delete_thread_confirm'|trans({}, 'FOSMessageBundle')|escape('js') }}')">
                             <button type="submit" class="btn btn-mini">
-                                <i class="icon-trash"></i> {% trans from 'FOSMessageBundle' %}fos_message_bundle.delete_thread{% endtrans %}
+                                <span class="glyphicon glyphicon-trash"></span> {% trans from 'FOSMessageBundle' %}fos_message_bundle.delete_thread{% endtrans %}
                             </button>
                         </form>
                     </td>

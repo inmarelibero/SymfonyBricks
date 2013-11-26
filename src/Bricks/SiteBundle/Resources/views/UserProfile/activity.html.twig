@@ -19,7 +19,7 @@
     <ul class="activity">
         {% for log in brickLogEntries %}
             <li>
-                <i class="icon-calendar"></i> last update: {{ log.loggedAt|date('d/m/Y') }}
+                <span class="glyphicon glyphicon-calendar"></span> last update: {{ log.loggedAt|date('d/m/Y') }}
                 {#
                 <a href="{{ path('brick_show', {id: brick.id, slug: brick.slug}) }}">
                     {{ brick.title }}

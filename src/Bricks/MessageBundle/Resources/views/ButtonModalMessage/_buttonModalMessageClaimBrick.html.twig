@@ -3,7 +3,7 @@
 {# to refactor: may be not unique in the page #}
 {% set form_id = 'form-modal-message-claim-brick' %}
 
-{% set call_to_action_value = '<i class="icon-lock"></i> '~'fos_message_bundle.claim_brick'|trans({}, 'FOSMessageBundle')|capitalize %}
+{% set call_to_action_value = '<span class="glyphicon glyphicon-lock"></span> '~'fos_message_bundle.claim_brick'|trans({}, 'FOSMessageBundle')|capitalize %}
 
 {% block title %}
     {{ 'fos_message_bundle.form.claim_brick.title'|trans({}, 'FOSMessageBundle')|capitalize }}
@@ -11,7 +11,7 @@
 
 {% block help %}
     <p>
-        <i class="icon-question-sign"></i> {{ 'fos_message_bundle.form.claim_brick.help'|trans({}, 'FOSMessageBundle') }}
+        <span class="glyphicon glyphicon-question-sign"></span> {{ 'fos_message_bundle.form.claim_brick.help'|trans({}, 'FOSMessageBundle') }}
     </p>
 {% endblock %}
 

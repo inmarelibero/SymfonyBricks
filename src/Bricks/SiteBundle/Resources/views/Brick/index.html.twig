@@ -23,9 +23,9 @@
                             {{ brick.title }}
                         </a>
                         <p>
-                            <i class="icon-user"></i> {{ brick.user }}
+                            <span class="glyphicon glyphicon-user"></span> {{ brick.user }}
                             |
-                            <i class="icon-calendar"></i> {{ 'brick.last_update'|trans }}: {{ brick.updatedAt|date('d/m/Y') }}
+                            <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans }}: {{ brick.updatedAt|date('d/m/Y') }}
                         </p>
                     </li>
                 {% endfor %}

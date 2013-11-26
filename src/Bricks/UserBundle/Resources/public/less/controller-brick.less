@@ -1,0 +1,232 @@
+/******************************************************************************************
+CONTROLLER-BRICK.LESS
+
+rules for all the templates loaded through Bricks\UserBundle\BrickController
+******************************************************************************************/
+
+/* import bootstrap assets */
+//@import "../../../../../../web/assets/bootstrap-3.0.0/less/variables.less";
+@import "../../../../../../web/assets/bootstrap-3.0.0/less/mixins.less";
+
+/**
+    bricks index (user reserved area)
+    
+    route: user_brick
+*/
+body.route-user_brick {
+    table#bricks-table {
+        border: 1px solid #CCC;
+    
+        thead {
+            #gradient .vertical(#F8F8F8, #DEDEDE);
+            font-weight:    bold;
+
+            td.published { width: 125px; text-align: center; }
+            td.last_update { width: 150px; }
+            td.license { width: 100px; }
+            td.actions { width: 55px; text-align: center; }
+        }
+        tbody {
+            td.published { text-align: center;
+                a {
+                    i.icon-published { color: #51A351; }
+                    i.icon-not-published {
+                        color: #CCC;
+                        &:hover { color: #E94132; }
+                    }
+                }
+            }
+            td.license { font-size: 11px; text-align: center; }
+            td.last_update {
+                font-size:  12px;
+            }
+            td.actions { text-align: center;
+                a {
+                    color: #333;
+                    margin-right:   4px;
+                }
+            }
+        }
+    }
+}
+
+/**
+    create and edit a brick
+    
+    route: user_brick_new, user_brick_edit
+*/
+body.route-user_brick_new, body.route-user_brick_create, body.route-user_brick_edit, body.route-user_brick_update {
+    #user-brick-edit {
+
+        a.info-modal-caller {
+            color:  #C5C5C5;
+        }
+
+        input[type="text"], textarea {
+            border-radius: 0px;
+        }
+        .control-label {
+            float: none;
+            width:  auto;
+            display: inline-block;
+            padding:    3px 20px;
+            
+            border: 1px solid #CCC;
+            border-bottom:  0px none;
+            .border-top-radius(3px);
+            .border-bottom-radius(0px);
+
+            #gradient .vertical(#F8F8F8, #FFF);
+            
+            text-align: left;
+            font-weight:    normal;
+            font-size:  14px;
+        }
+        .controls {
+            margin-left:    0px;
+        }
+        .form-errors {
+            font-weight: bold;
+            color:  red;
+        }
+        .help-text {
+            margin: 0px;
+            margin-top: 10px;
+            font-size:  13px;
+            font-style: italic;
+        }
+        
+        #bricks_userbundle_bricktype_description {
+            height: 160px;
+        }
+
+        #license-wrapper {
+            background: #FFF;
+
+            border:     1px solid #CCC;
+            padding:    10px;
+
+            select {
+                width:  auto;
+            }
+        }
+        
+        #tags-labels {
+            width: 100%;
+            margin-bottom:  20px;
+            position: relative;
+            height: inherit !important;
+            background: #FFF;
+
+            border:     1px solid #CCC;
+            padding:    10px;
+            
+            .tag-data {
+                display:none;
+            }
+            .tags-input {
+                width:  200px;
+                margin: 0;
+                padding:   0px !important;
+                font-size:  12px !important;
+            }
+            #tags {
+                padding:    0;
+                overflow:   hidden;
+                min-height: 26px;
+
+                .tag {
+                    float:          left;
+                    padding:        3px 5px;
+                    margin:         1px;
+                    margin-bottom:  5px;
+                    margin-right:   5px;
+                    border:         1px solid #CCC;
+                    text-shadow:    none;
+                    border-radius:  5px;
+
+                    .glyphicon {
+                        font-size:  12px;
+                        margin-left:    5px;
+                    }
+
+                    &, a {
+                        color: #333;
+                        font-weight: normal;
+                    }
+                }
+            }
+        }
+        
+        ul#content-tab {
+            margin-bottom:   0px;
+            li {
+                margin-bottom:   0px;
+
+                margin-left:   -1px;
+                &:first-child { margin-left:   0px; }
+
+                a {
+                    margin: 0px;
+                    padding:    3px 20px;
+
+                    border: 1px solid #CCC;
+                    border-bottom:  0px;
+                    .border-top-radius(3px);
+                    .border-bottom-radius(0px);
+
+                    color:  #888;
+                    font-weight:    normal;
+                    font-size:  12px;
+                    /*
+                    border: 1px solid #CCC;
+                    border-bottom:  0px;
+                    .border-radius(3px 3px 0px 0px);
+                    #gradient .vertical(#F8F8F8, #DEDEDE);
+
+                    text-align: left;
+                    font-weight:    normal;
+                    font-size:  12px;
+
+                    color:  #888;
+                    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+                    border-bottom:  0px none;
+                    */
+                }
+
+                &.active {
+                    a {
+                        /*
+                        color:  #333;
+                        background: white;
+                        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+                        border-color:   #B4B4B4;
+                        */
+
+                        #gradient .vertical(#F8F8F8, #DEDEDE);
+
+                        color:  #333;
+                        text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+                        border-bottom:  0px none;
+                    }
+                }
+            }
+        }
+
+        .tab-content {
+            .tab-pane {
+                margin-top: -3px;
+            }
+
+            textarea#bricks_userbundle_bricktype_content {
+                height: 600px;
+                border-top: 0px;
+            }
+            #content-preview {
+                padding:    4px 6px;
+                border: 1px solid #CCC;
+                border-top: 0px;
+            }
+        }
+    }
+}

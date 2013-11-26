@@ -3,10 +3,10 @@
 {% block main %}
 
     <div class="row">
-        <div class="span12">
+        <div class="col-md-12">
         
             <a href="{{ path('user_brick_new') }}" class="btn btn-primary pull-right">
-                <i class="icon-check"></i> {{ 'brick.create_new_brick'|trans({}, 'UserBundle') }}
+                <span class="glyphicon glyphicon-plus"></span> {{ 'brick.create_new_brick'|trans({}, 'UserBundle') }}
             </a>
             
             <h1>Bricks</h1>
@@ -15,19 +15,19 @@
                 <thead>
                     <tr>
                         <td>
-                            <i class="icon-book"></i> {{ 'brick.title'|trans|capitalize }}
+                            <span class="glyphicon glyphicon-book"></span> {{ 'brick.title'|trans|capitalize }}
                         </td>
                         <td class="published">
-                            <i class="icon-bullhorn"></i> {{ 'brick.published'|trans|capitalize }}
+                            <span class="glyphicon glyphicon-bullhorn"></span> {{ 'brick.published'|trans|capitalize }}
                         </td>
                         <td class="license">
-                            <i class="icon-legal"></i> {{ 'brick.license'|trans|capitalize }}
+                            <span class="glyphicon glyphicon-flag"></span> {{ 'brick.license'|trans|capitalize }}
                         </td>
                         <td class="last_update">
-                            <i class="icon-calendar"></i> {{ 'brick.last_update'|trans|capitalize }}
+                            <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans|capitalize }}
                         </td>
                         <td class="actions">
-                            <i class="icon-reorder"></i>
+                            <span class="glyphicon glyphicon-reorder"></span>
                         </td>
                     </tr>
                 </thead>
@@ -40,13 +40,14 @@
                             <td class="published">
                                 <a href="{{ path('user_brick_toggle_published', { 'id': entity.id }) }}">
                                     {% if (entity.published) %}
-                                        <i class="icon-published icon-ok"></i>
+                                        <span class="glyphicon glyphicon-ok-circle"></span> <span class="visible-xs">{{ 'brick.published'|trans|capitalize }}</span>
                                     {% else %}
-                                        <i class="icon-not-published icon-ok"></i>
+                                        <span class="glyphicon glyphicon-remove-circle"></span> <span class="visible-xs">{{ 'brick.not_published'|trans|capitalize }}</span>
                                     {% endif %}
                                 </a>
                             </td>
                             <td class="license">
+                                <span class="visible-xs">{{ 'brick.license'|trans|capitalize }}:</span>
                                 {% if entity.brickLicense %}
                                     {{ entity.brickLicense.titleShort }}
                                 {% else %}
@@ -54,14 +55,16 @@
                                 {% endif %}
                             </td>
                             <td class="last_update">
+                                <span class="visible-xs">{{ 'brick.last_update'|trans|capitalize }}:</span>
+
                                 {{ entity.updatedat|date('d M Y') }}
-                                <br>
+                                <br class="hidden-xs">
                                 {{ entity.updatedat|date('H:i:s') }}
 
                             </td>
                             <td class="actions">
-                                <a href="{{ path('user_brick_edit', { 'id': entity.id }) }}" ><i class="icon-edit"></i></a>
-                                {% render 'BricksUserBundle:Brick:_deleteForm' with {'id': entity.id} %}
+                                <a href="{{ path('user_brick_edit', { 'id': entity.id }) }}" ><span class="glyphicon glyphicon-edit"></span></a>
+                                {% render(controller('BricksUserBundle:Brick:_deleteForm', {'id': entity.id})) %}
                             </td>
                         </tr>
                     {% endfor %}

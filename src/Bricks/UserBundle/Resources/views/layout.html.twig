@@ -12,35 +12,35 @@
                     <ul class="nav">
                         <li id="bashboard">
                             <a href="{{ path('user_dashboard') }}">
-                                <i class="icon-home"></i> {{ 'user_navbar.dashboard'|trans({}, 'UserBundle')|capitalize }}
+                                <span class="glyphicon glyphicon-home"></span> {{ 'user_navbar.dashboard'|trans({}, 'UserBundle')|capitalize }}
                             </a>
                         </li>
                         <li id="messages">
                             <a href="{{ path('fos_message_inbox') }}">
-                                <i class="icon-inbox"></i> {{ 'user_navbar.message'|trans({}, 'UserBundle')|capitalize }}
+                                <span class="glyphicon glyphicon-inbox"></span> {{ 'user_navbar.message'|trans({}, 'UserBundle')|capitalize }}
                             </a>
                         </li>
                         <li>
                             <a href="{{ path('user_brick_starred') }}">
-                                <i class="icon-star"></i> {{ 'user_navbar.bricks_starred'|trans({}, 'UserBundle')|capitalize }}
+                                <span class="glyphicon glyphicon-star"></span> {{ 'user_navbar.bricks_starred'|trans({}, 'UserBundle')|capitalize }}
                             </a>
                         </li>
                         <li>
                             <a href="{{ path('user_brick') }}">
-                                <i class="icon-book"></i> {{ 'user_navbar.bricks'|trans({}, 'UserBundle')|capitalize }}
+                                <span class="glyphicon glyphicon-book"></span> {{ 'user_navbar.bricks'|trans({}, 'UserBundle')|capitalize }}
                             </a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-plus"></i> {{ 'user_navbar.create_brick'|trans({}, 'UserBundle')|capitalize }}
+                                <span class="glyphicon glyphicon-plus"></span> {{ 'user_navbar.create_brick'|trans({}, 'UserBundle')|capitalize }}
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="{{ path('user_brick_new') }}"><i class="icon-file-alt"></i> {{ 'user_navbar.create_brick_blank'|trans({}, 'UserBundle')|capitalize }}</a>
+                                    <a href="{{ path('user_brick_new') }}"><span class="glyphicon glyphicon-plus"></span> {{ 'user_navbar.create_brick_blank'|trans({}, 'UserBundle')|capitalize }}</a>
                                 </li>
                                 <li>
-                                    <a href="#modal-brick-from-url" role="button" data-toggle="modal"><i class="icon-link"></i> {{ 'user_navbar.create_brick_by_fetching_url'|trans({}, 'UserBundle')|capitalize }}</a>
+                                    <a href="#modal-brick-from-url" role="button" data-toggle="modal"><span class="glyphicon glyphicon-link"></span> {{ 'user_navbar.create_brick_by_fetching_url'|trans({}, 'UserBundle')|capitalize }}</a>
                                 </li>
                             </ul>
                         </li>
@@ -48,15 +48,15 @@
                     <ul class="nav pull-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-user"></i> {{ 'user_navbar.profile'|trans({}, 'UserBundle')|capitalize }}
+                                <span class="glyphicon glyphicon-user"></span> {{ 'user_navbar.profile'|trans({}, 'UserBundle')|capitalize }}
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="{{ path('fos_user_profile_edit') }}"><i class="icon-user"></i> {{ 'user_navbar.edit_profile'|trans({}, 'UserBundle')|capitalize }}</a>
+                                    <a href="{{ path('fos_user_profile_edit') }}"><span class="glyphicon glyphicon-user"></span> {{ 'user_navbar.edit_profile'|trans({}, 'UserBundle')|capitalize }}</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('fos_user_change_password') }}"><i class="icon-lock"></i> {{ 'user_navbar.change_password'|trans({}, 'UserBundle')|capitalize }}</a>
+                                    <a href="{{ path('fos_user_change_password') }}"><span class="glyphicon glyphicon-lock"></span> {{ 'user_navbar.change_password'|trans({}, 'UserBundle')|capitalize }}</a>
                                 </li>
                             </ul>
                         </li>

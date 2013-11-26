@@ -26,16 +26,18 @@ class BrickFormHandler
         $this->em = $em;
     }
 
-    public function process(Brick $brick)
+    public function process($form)
     {
-        $form = $this->form_factory->create(new BrickType($this->em), $brick);
+        //$form = $this->form_factory->create(new BrickType($this->em), $brick);
         
         if ('POST' === $this->request->getMethod()) {
+
+            $brick = $form->getData();
             
             // BrickHasTag (array) before binding request
             $this->originalBrickHasTags = $brick->getBrickHasTags()->toArray();
             
-            $form->bind($this->request);
+            $form->handleRequest($this->request);
 
             if ($form->isValid()) {
                 $this->onSuccess($brick);

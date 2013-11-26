@@ -104,22 +104,20 @@ class BrickController extends Controller
         
         $formHandler = $this->container->get('brick.form.handler');
         
-        $process = $formHandler->process($entity);
-        
-        if ($process) {
+        if ($formHandler->process($form)) {
             // set the user
             $user = $this->container->get('security.context')->getToken()->getUser();
             $entity->setUser($user);
-            
+
             $em->persist($entity);
             $em->flush();
-            
-            $this->get('session')->setFlash('success', 'alert.brick.create.success');
-        
+
+            $this->get('session')->getFlashBag()->add('success', 'alert.brick.create.success');
+
             return $this->redirect($this->generateUrl('user_brick_edit', array('id' => $entity->getId())));
         }
-        
-        $this->get('session')->setFlash('error', 'alert.brick.create.error');
+
+        $this->get('session')->getFlashBag()->add('danger', 'alert.brick.create.error');
 
         return array(
             'entity' => $entity,
@@ -142,10 +140,10 @@ class BrickController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Brick entity.');
         }
-        
+
         // check user permissions on this brick
         $this->checkUserCanEditBrick($entity);
-        
+
         $editForm = $this->createForm(new BrickType($em), $entity);
 
         return array(
@@ -170,25 +168,24 @@ class BrickController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Brick entity.');
         }
-        
+
         // check user permissions on this brick
         $this->checkUserCanEditBrick($entity);
 
-        $editForm = $this->createForm(new BrickType($em), $entity);
+        $form = $this->createForm(new BrickType($em), $entity);
         $formHandler = $this->container->get('brick.form.handler');
-        
-        $process = $formHandler->process($entity);
-        if ($process) {
-            $this->get('session')->setFlash('success', 'alert.brick.update.success');
-            
+
+        if ($formHandler->process($form)) {
+            $this->get('session')->getFlashBag()->add('success', 'alert.brick.update.success');
+
             return $this->redirect($this->generateUrl('user_brick_edit', array('id' => $id)));
         }
-        
-        $this->get('session')->setFlash('error', 'alert.brick.update.error');
+
+        $this->get('session')->getFlashBag()->add('error', 'alert.brick.update.error');
 
         return array(
             'entity'  => $entity,
-            'form'    => $editForm->createView(),
+            'form'    => $form->createView(),
         );
     }
     
@@ -219,7 +216,7 @@ class BrickController extends Controller
     public function deleteAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $form->handle($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -235,9 +232,9 @@ class BrickController extends Controller
             $em->remove($entity);
             $em->flush();
             
-            $this->get('session')->setFlash('success', 'alert.brick.delete.success');
+            $this->get('session')->getFlashBag()->add('success', 'alert.brick.delete.success');
         } else {
-            $this->get('session')->setFlash('error', 'alert.brick.delete.error');
+            $this->get('session')->getFlashBag()->add('error', 'alert.brick.delete.error');
         }
 
         return $this->redirect($this->generateUrl('user_brick'));
@@ -307,9 +304,9 @@ class BrickController extends Controller
         $em->flush();
         
         if ($entity->getPublished()) {
-            $this->get('session')->setFlash('success', 'alert.brick.togglePublished.published');
+            $this->get('session')->getFlashBag()->add('success', 'alert.brick.togglePublished.published');
         } else {
-            $this->get('session')->setFlash('information', 'alert.brick.togglePublished.unpublished');
+            $this->get('session')->getFlashBag()->add('success', 'alert.brick.togglePublished.unpublished');
         }
         
         return $this->redirect($this->generateUrl('user_brick'));

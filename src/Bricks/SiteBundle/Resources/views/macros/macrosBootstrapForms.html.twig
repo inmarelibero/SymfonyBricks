@@ -17,7 +17,7 @@
         {% endif %}
 
         <div class="controls">
-            {{ form_widget(formField) }}
+            {{ form_widget(formField, {'attr': {'class': 'form-control'}}) }}
             
             {% if form_errors(formField) %}
                 <span class="help-inline">

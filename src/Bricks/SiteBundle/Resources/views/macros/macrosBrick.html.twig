@@ -23,7 +23,7 @@
             data-starring-text="{{ 'brick.starring_text'|trans }}"
             data-notstarring-text="{{ 'brick.not_starring_text'|trans }}"
         >
-            <i class="icon-star"></i>
+            <span class="glyphicon glyphicon-star"></span>
             <span id="text">
                 {% if userIsStarringBrick %}
                     {{ 'brick.starring_text'|trans }}
@@ -35,7 +35,7 @@
     {% else %}
     
         <a href="#modal-login" class="toggle-user-stars-brick" data-toggle="modal">
-            <i class="icon-star"></i> {{ 'brick.not_starring_text'|trans }}
+            <span class="glyphicon glyphicon-star"></span> {{ 'brick.not_starring_text'|trans }}
         </a>
     
     {% endif %}

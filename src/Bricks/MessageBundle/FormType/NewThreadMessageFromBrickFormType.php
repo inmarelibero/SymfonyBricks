@@ -51,7 +51,8 @@ class NewThreadMessageFromBrickFormType extends AbstractType
         ));
 
         $resolver->setDefaults(array(
-            'constraints' => $collectionConstraint
+            'constraints' => $collectionConstraint,
+            //'validation_groups' => array('NewThreadMessageFromBrickFormType')
         ));
     }
 

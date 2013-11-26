@@ -10,15 +10,15 @@
             <div id="messages-bar">
 
                 <a href="{{ url('fos_message_thread_new' )}}" class="btn btn-small btn-primary pull-right">
-                    <i class="icon-pencil"></i> {% trans from 'FOSMessageBundle' %}fos_message_bundle.send_new{% endtrans %}
+                    <span class="glyphicon glyphicon-pencil"></span> {% trans from 'FOSMessageBundle' %}fos_message_bundle.send_new{% endtrans %}
                 </a>
 
                 <div class="btn-group">
                     <a href="{{ url('fos_message_inbox') }}" class="btn btn-small {{ (app.request.get('_route') == 'fos_message_inbox') ? 'btn-success':'' }}">
-                        <i class="icon-inbox"></i> {% trans from 'FOSMessageBundle' %}fos_message_bundle.inbox{% endtrans %}
+                        <span class="glyphicon glyphicon-inbox"></span> {% trans from 'FOSMessageBundle' %}fos_message_bundle.inbox{% endtrans %}
                     </a>
                     <a href="{{ url('fos_message_sent') }}" class="btn btn-small {{ (app.request.get('_route') == 'fos_message_sent') ? 'btn-success':'' }}">
-                        <i class="icon-envelope"></i> {% trans from 'FOSMessageBundle' %}fos_message_bundle.sent{% endtrans %}
+                        <span class="glyphicon glyphicon-envelope"></span> {% trans from 'FOSMessageBundle' %}fos_message_bundle.sent{% endtrans %}
                     </a>
                 </div>
             </div>

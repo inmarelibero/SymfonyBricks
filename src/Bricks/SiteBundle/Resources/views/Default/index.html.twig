@@ -5,23 +5,39 @@
 {% block main %}
 
     <div class="row">
-        <div class="span8" style="text-align: left;">
-            <img src="{{ asset('img/homepage-logo-cropped.png') }}" alt="SymfonyBricks" {#style="height: 80px;"#} />
+        <div class="col-md-8">
+            <img id="index-logo" src="{{ asset('img/homepage-logo-cropped.png') }}" alt="SymfonyBricks" />
+        </div>
+        <div class="col-md-4 right-col">
+            <a id="btn-signup" class="btn btn-success col-md-12" href="{{ path('fos_user_registration_register') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'page#index', 'registration']);">
+                <span class="glyphicon glyphicon-user"></span> {{ 'sign_up'|trans({}, 'route_homepage')|raw }}
+            </a>
 
-            <br><br>
+            <a href="{{ path('contribute') }}" class="btn btn-primary col-md-5" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'page#index', 'contribute']);">
+                <span class="glyphicon glyphicon-random"></span> {{ 'how_to_contribute'|trans({}, 'route_homepage') }}
+            </a>
+            <a href="{{ path('wiki_homepage') }}" class="btn btn-primary col-md-5 col-md-offset-2" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'page#index', 'wiki']);">
+                <span class="glyphicon glyphicon-plus"></span> {{ 'know_more'|trans({}, 'route_homepage') }}
+            </a>
 
-            <p style="font-size: 22px;">
+
+            <p style="">
                 {% if 'it' == app.request.locale %}
-                    Costruito dalla comunità Symfony, per la comunità.
+                    SymfonyBricks è una piattaforma social dove gli sviluppatori possano condividere la loro esperienza sul lavorare con Symfony.
+                    <br />
+                    Il codice sorgente è interamente disponibile su <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">github</a>.
                 {% elseif 'es' == app.request.locale %}
-                    Construido por la comunidad Symfony, para la comunidad.
+                    SymfonyBricks es una plataforma social donde los desarrolladores pueden compartir sus experiencias sobre el trabajo con Symfony.
+                    <br />
+                    El código fuente está disponible en <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">github</a>.
                 {% else %}
-                    Built by the Symfony community, for the community.
+                    SymfonyBricks is a social platform where developers can share their experiences about working with Symfony.
+                    <br>
+                    The source code is fully open on <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">github</a>.
                 {% endif %}
             </p>
-            <br>
+
             <p>
-                <i class="icon-lightbulb" style="vertical-align: middle;"></i>
                 {% if 'it' == app.request.locale %}
                     Hai creato qualcosa di nuovo o risolto un problema relativo ad progetto Symfony?
                     <br />
@@ -31,73 +47,52 @@
                     <br />
                     ¡Comparte aquí tus ideas y experiencia!
                 {% else %}
+<<<<<<< HEAD
                     Did you create something new or resolve a problem related to a Symfony project?
                     <br />
+=======
+                    Did you create something new o resolved a problem related to a Symfony project?
+                    <br>
+>>>>>>> 2e39965... updated code to Symfony v2.3
                     Share here your ideas and experience!
                 {% endif %}
             </p>
         </div>
-        <div class="span4 right-col">
-            <ul>
-                <li>
-                    <a href="{{ path('fos_user_registration_register') }}" id="btn-signup" class="btn btn-success" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'page#index', 'registration']);">
-                        <i class="icon-user"></i> {{ 'sign_up'|trans({}, 'route_homepage')|raw }}
-                    </a>
-                </li>
-            </ul>
-            <ul id="two-buttons">
-                <li>
-                    <a href="{{ path('contribute') }}" class="btn btn-primary" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'page#index', 'contribute']);">
-                        <i class="icon-random"></i> {{ 'how_to_contribute'|trans({}, 'route_homepage') }}
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('wiki_homepage') }}" class="btn btn-primary" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'page#index', 'wiki']);">
-                        <i class="icon-plus"></i> {{ 'know_more'|trans({}, 'route_homepage') }}
-                    </a>
-                </li>
-            </ul>
+    </div>
 
-            <br><br>
-
-            <i class="icon-quote-left icon-4x pull-left icon-muted"></i>
-            <p style="">
+    <div class="row">
+        <div class="co-md-12">
+            <p style="font-size: 22px; text-align: center;">
                 {% if 'it' == app.request.locale %}
-                    L'obiettivo di SymfonyBricks è diventare una piattaforma social dove gli sviluppatori possano condividere la loro esperienza sul lavorare con Symfony.
-                    <br />
-                    Il codice sorgente di <a href="{{ url('homepage') }}">symfonybricks.com</a> è interamente open source.
+                    Costruito dalla comunità Symfony, per la comunità.
                 {% elseif 'es' == app.request.locale %}
-                    El propósito de SymfonyBricks es convertirse en una plataforma social donde los desarrolladores pueden compartir sus experiencias sobre el trabajo con Symfony.
-                    <br />
-                    El código fuente de <a href="{{ url('homepage') }}">symfonybricks.com </ a> es completamente de código abierto.
+                    Construido por la comunidad Symfony, para la comunidad.
                 {% else %}
-                    The purpose of SymfonyBricks is to become a social platform where developers can share their experiences about working with Symfony.
-                    <br>
-                    The source code of <a href="{{ url('homepage') }}">symfonybricks.com</a> is fully open source.
+                    Built by the Symfony community, for the community.
                 {% endif %}
             </p>
         </div>
     </div>
-    
+
     <hr>
     
     <div class="row" style="text-align: justify;">
-        <div class="span12">
+        <div class="col-md-12">
             <ul class="bricks-list">
                 {% for brick in bricks %}
                     <li>
                         <a href="{{ path('brick_show', {slug: brick.slug}) }}" class="title">
-                            <i class="icon-file"></i> {{ brick.title }}
+                            <span class="glyphicon glyphicon-file"></span> {{ brick.title }}
                         </a>
                         <p class="brick-info">
-                            <i class="icon-user"></i> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
+                            <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
                             |
-                            <i class="icon-calendar"></i> {{ 'brick.last_update'|trans }}: {{ brick.updatedAt|date('d M Y') }}
+                            <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans }}: {{ brick.updatedAt|date('d M Y') }}
                             |
                             {{ macrosBrick.toggleUserStarsBrick(brick) }}
                             {% if brick.brickHasTags|length > 0 %}
                                 |
-                                <i class="icon-tag"></i> {{ brick_formatted_tags(brick)|raw }}
+                                <span class="glyphicon glyphicon-tag"></span> {{ brick_formatted_tags(brick)|raw }}
                             {% endif %}
                         </p>
                     </li>
@@ -109,7 +104,7 @@
     <hr>
     
     <div class="row" style="text-align: justify;">
-        <div class="span5">
+        <div class="col-md-5">
             <h2>
                 {% if 'it' == app.request.locale %}
                     Open source
@@ -145,7 +140,7 @@
                 Everyone is invited to collaborate: you can give a hand in many, many ways. We are open source lovers, like all the people contributing to Symfony. And we help each other ;)
             {% endif %}
         </div>
-        <div class="span5 offset2">
+        <div class="col-md-5 col-md-offset-2">
             <h2>
                 {% if 'it' == app.request.locale %}
                     Per la comunità
@@ -177,7 +172,7 @@
     </div>
     
     <div class="row">
-        <div class="span12">
+        <div class="col-md-12">
             <h3>
                 {% if 'it' == app.request.locale %}
                     Partecipa
@@ -198,7 +193,7 @@
     </div>
     <br><br>
     <div class="row">
-        <div class="span6" style="text-align: right;">
+        <div class="col-md-6 col-xs-6" style="text-align: right;">
             <p class="text-italic text-small">
                 {% if 'it' == app.request.locale %}
                     Segui SymfonyBricks su Twitter
@@ -215,7 +210,7 @@
                 Follow @SymfonyBricks
             </a>
         </div>
-        <div class="span6">
+        <div class="col-md-6 col-xs-6">
             <p class="text-italic text-small">
                 {% if 'it' == app.request.locale %}
                     Condividi il link
@@ -237,7 +232,7 @@
     </div>
     <br><br><br>
     <div class="row">
-        <div class="span12">
+        <div class="col-md-12">
             {{ 'contribute_next_step'|trans({'%href%': path('contribute')}, 'route_homepage')|raw }}
         </div>
     </div>
