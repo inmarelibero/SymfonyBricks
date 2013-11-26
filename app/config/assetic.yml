@@ -18,13 +18,20 @@ assetic:
         lesses:
             inputs:
                 # BricksSiteBundle
-                - %kernel.root_dir%/../web/bundles/brickssite/less/*.less
-                - %kernel.root_dir%/../web/bundles/brickswiki/less/*.less
-                - %kernel.root_dir%/../web/bundles/bricksuser/less/*.less
-                - %kernel.root_dir%/../web/bundles/bricksmessage/less/*.less
+                - bundles/brickssite/less/layout.less
+                - bundles/brickssite/less/controller-default.less
+                - bundles/brickssite/less/controller-brick.less
+                - bundles/brickssite/less/syntax-highlight.less
+                - bundles/brickssite/less/controller-user_profile.less
+                - bundles/brickssite/less/route-exception.less
+
+                - bundles/brickssite/less/*.less
+                - bundles/brickswiki/less/*.less
+                - bundles/bricksuser/less/*.less
+                - bundles/bricksmessage/less/*.less
 
                 # responsive
-                - %kernel.root_dir%/../web/bundles/brickssite/less/responsive.less
+                - bundles/brickssite/less/responsive.less
 
             filters: lessphp
         stylesheets:
