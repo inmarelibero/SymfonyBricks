@@ -33,10 +33,10 @@ class User extends BaseUser implements ParticipantInterface
     private $githubId;
 
     /**
-     * @ORM\Column(name="github_token", type="string", length=255, nullable=true)
+     * @ORM\Column(name="github_access_token", type="string", length=255, nullable=true)
      * @var string
      */
-    private $githubToken;
+    private $githubAccessToken;
 
     /**
      * @var boolean $emailpolicy_send_on_new_message
@@ -150,149 +150,15 @@ class User extends BaseUser implements ParticipantInterface
     /**************************************************************************************************
      *	getters and setters
      **************************************************************************************************/
+
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set emailpolicy_send_on_new_message
-     *
-     * @param boolean $emailpolicySendOnNewMessage
-     * @return User
-     */
-    public function setEmailpolicySendOnNewMessage($emailpolicySendOnNewMessage)
-    {
-        $this->emailpolicy_send_on_new_message = $emailpolicySendOnNewMessage;
-
-        return $this;
-    }
-
-    /**
-     * Get emailpolicy_send_on_new_message
-     *
-     * @return boolean
-     */
-    public function getEmailpolicySendOnNewMessage()
-    {
-        return $this->emailpolicy_send_on_new_message;
-    }
-
-    /**
-     * Set created_at
-     *
-     * @param \DateTime $createdAt
-     * @return User
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->created_at = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get created_at
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->created_at;
-    }
-
-    /**
-     * Set updated_at
-     *
-     * @param \DateTime $updatedAt
-     * @return User
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updated_at = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updated_at
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updated_at;
-    }
-
-    /**
-     * Add bricks
-     *
-     * @param \Bricks\SiteBundle\Entity\Brick $bricks
-     * @return User
-     */
-    public function addBrick(\Bricks\SiteBundle\Entity\Brick $bricks)
-    {
-        $this->bricks[] = $bricks;
-
-        return $this;
-    }
-
-    /**
-     * Remove bricks
-     *
-     * @param \Bricks\SiteBundle\Entity\Brick $bricks
-     */
-    public function removeBrick(\Bricks\SiteBundle\Entity\Brick $bricks)
-    {
-        $this->bricks->removeElement($bricks);
-    }
-
-    /**
-     * Get bricks
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getBricks()
-    {
-        return $this->bricks;
-    }
-
-    /**
-     * Add userStarsBricks
-     *
-     * @param \Bricks\SiteBundle\Entity\UserStarsBrick $userStarsBricks
-     * @return User
-     */
-    public function addUserStarsBrick(\Bricks\SiteBundle\Entity\UserStarsBrick $userStarsBricks)
-    {
-        $this->userStarsBricks[] = $userStarsBricks;
-
-        return $this;
-    }
-
-    /**
-     * Remove userStarsBricks
-     *
-     * @param \Bricks\SiteBundle\Entity\UserStarsBrick $userStarsBricks
-     */
-    public function removeUserStarsBrick(\Bricks\SiteBundle\Entity\UserStarsBrick $userStarsBricks)
-    {
-        $this->userStarsBricks->removeElement($userStarsBricks);
-    }
-
-    /**
-     * Get userStarsBricks
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUserStarsBricks()
-    {
-        return $this->userStarsBricks;
     }
 
     /**
@@ -304,14 +170,14 @@ class User extends BaseUser implements ParticipantInterface
     public function setGithubId($githubId)
     {
         $this->githubId = $githubId;
-
+    
         return $this;
     }
 
     /**
      * Get githubId
      *
-     * @return string
+     * @return string 
      */
     public function getGithubId()
     {
@@ -319,26 +185,49 @@ class User extends BaseUser implements ParticipantInterface
     }
 
     /**
-     * Set githubToken
+     * Set githubAccessToken
      *
-     * @param string $githubToken
+     * @param string $githubAccessToken
      * @return User
      */
-    public function setGithubToken($githubToken)
+    public function setGithubAccessToken($githubAccessToken)
     {
-        $this->githubToken = $githubToken;
-
+        $this->githubAccessToken = $githubAccessToken;
+    
         return $this;
     }
 
     /**
-     * Get githubToken
+     * Get githubAccessToken
      *
-     * @return string
+     * @return string 
      */
-    public function getGithubToken()
+    public function getGithubAccessToken()
     {
-        return $this->githubToken;
+        return $this->githubAccessToken;
+    }
+
+    /**
+     * Set emailpolicy_send_on_new_message
+     *
+     * @param boolean $emailpolicySendOnNewMessage
+     * @return User
+     */
+    public function setEmailpolicySendOnNewMessage($emailpolicySendOnNewMessage)
+    {
+        $this->emailpolicy_send_on_new_message = $emailpolicySendOnNewMessage;
+    
+        return $this;
+    }
+
+    /**
+     * Get emailpolicy_send_on_new_message
+     *
+     * @return boolean 
+     */
+    public function getEmailpolicySendOnNewMessage()
+    {
+        return $this->emailpolicy_send_on_new_message;
     }
 
     /**
@@ -362,5 +251,117 @@ class User extends BaseUser implements ParticipantInterface
     public function getProfileImageName()
     {
         return $this->profileImageName;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param \DateTime $createdAt
+     * @return User
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param \DateTime $updatedAt
+     * @return User
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Add bricks
+     *
+     * @param \Bricks\SiteBundle\Entity\Brick $bricks
+     * @return User
+     */
+    public function addBrick(\Bricks\SiteBundle\Entity\Brick $bricks)
+    {
+        $this->bricks[] = $bricks;
+    
+        return $this;
+    }
+
+    /**
+     * Remove bricks
+     *
+     * @param \Bricks\SiteBundle\Entity\Brick $bricks
+     */
+    public function removeBrick(\Bricks\SiteBundle\Entity\Brick $bricks)
+    {
+        $this->bricks->removeElement($bricks);
+    }
+
+    /**
+     * Get bricks
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBricks()
+    {
+        return $this->bricks;
+    }
+
+    /**
+     * Add userStarsBricks
+     *
+     * @param \Bricks\SiteBundle\Entity\UserStarsBrick $userStarsBricks
+     * @return User
+     */
+    public function addUserStarsBrick(\Bricks\SiteBundle\Entity\UserStarsBrick $userStarsBricks)
+    {
+        $this->userStarsBricks[] = $userStarsBricks;
+    
+        return $this;
+    }
+
+    /**
+     * Remove userStarsBricks
+     *
+     * @param \Bricks\SiteBundle\Entity\UserStarsBrick $userStarsBricks
+     */
+    public function removeUserStarsBrick(\Bricks\SiteBundle\Entity\UserStarsBrick $userStarsBricks)
+    {
+        $this->userStarsBricks->removeElement($userStarsBricks);
+    }
+
+    /**
+     * Get userStarsBricks
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUserStarsBricks()
+    {
+        return $this->userStarsBricks;
     }
 }

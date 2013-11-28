@@ -1,0 +1,153 @@
+<?php
+namespace Bricks\UserBundle\Entity;
+
+use FOS\UserBundle\Entity\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use FOS\MessageBundle\Model\ParticipantInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+use Bricks\SiteBundle\Entity\Brick;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fos_user")
+ * @Vich\Uploadable
+ */
+class User extends BaseUser implements ParticipantInterface
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(name="github_id", type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $githubId;
+
+    /**
+     * @ORM\Column(name="github_access_token", type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $githubAccessToken;
+
+    /**
+     * @var boolean $emailpolicy_send_on_new_message
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $emailpolicy_send_on_new_message = true;
+
+    /**
+     * @Assert\File(
+     *     maxSize="1M",
+     *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg", "image/gif"}
+     * )
+     * @Vich\UploadableField(mapping="user_profile_image", fileNameProperty="profileImageName")
+     *
+     * @var File $profileImage
+     */
+    public $profileImage;
+
+    /**
+     * @ORM\Column(type="string", length=255, name="profile_image_name", nullable=true)
+     *
+     * @var string $profileImageName
+     */
+    protected $profileImageName;
+
+    /**
+     * @var datetime $created_at
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
+
+    /**
+     * @var datetime $updated_at
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Bricks\SiteBundle\Entity\Brick", mappedBy="user", cascade={"persist"})
+     * @ORM\OrderBy({"created_at" = "ASC"})
+     */
+    private $bricks;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Bricks\SiteBundle\Entity\UserStarsBrick", mappedBy="user", cascade={"persist"})
+     */
+    private $userStarsBricks;
+
+    /**************************************************************************************************
+     *	custom functions
+     **************************************************************************************************/
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
+
+    /**
+     * return if a user marked a $brick as "starred".
+     *
+     * marking a brick as "starred" is like putting it in the "favorites"
+     *
+     * @param Brick $brick
+     * @return boolean
+     */
+    public function isStarringBrick(Brick $brick)
+    {
+        foreach ($this->getUserStarsBricks() as $usb) {
+            if ($usb->getBrick() && $usb->getBrick()->getId() === $brick->getId()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * return the starred bricks for a user
+     *
+     * @return multitype:NULL
+     */
+    public function getStarredBricks()
+    {
+        $entities = array();
+
+        foreach ($this->getUserStarsBricks() as $usb) {
+            $entities[] = $usb->getBrick();
+        }
+
+        return $entities;
+    }
+
+    /**
+     * VichUploaderBundle Fix
+     * Dirty, but https://github.com/dustin10/VichUploaderBundle/issues/8 is still an open problem
+     */
+    public function setProfileImage($file)
+    {
+        $this->profileImage = $file;
+
+        if ($file instanceof UploadedFile) {
+            $this->setUpdatedAt(new \DateTime());
+        }
+    }
+
+    /**************************************************************************************************
+     *	getters and setters
+     **************************************************************************************************/
+}

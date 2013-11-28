@@ -19,6 +19,11 @@ user_navbar:
     message: Messaggi
     profile: PROFILO
 
+user:
+    oauth:
+        account_associated: "In questo momento hai un account %oauth_provider% connesso correttamente. Clicca <a href=\"%url%\">qui</a> per sostituirlo con un altro."
+        account_not_associated: "Clicca <a href=\"%url%\">qui</a> per connettere il tuo account %oauth_provider% a quello di SymfonyBricks."
+
 # Bricks
 # bricks related interfaces
 brick:

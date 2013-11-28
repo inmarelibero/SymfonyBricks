@@ -57,7 +57,14 @@ security:
     forgot_password: forgot password?
     login:
         page_title: Sign in
-        password: "Password:"
+        password: "Password"
         remember_me: Remember me
         submit: Sign in
-        username: "Username:"
+        username: "Username"
+        login_with_credentials_head: "Enter the username and passwords you chose during your registration to sign in."
+        login_with_oauth:
+            head: "Use one of the following OAuth providers to sign in with your account."
+            attention: ATTENTION!
+            attention_text: If you already registered to SymfonyBricks, you should sign in with your username and password, and then associate other accounts provided by OAuth authentication.<br>If you already did that association, you can ignore this message and login through OAuth providers.
+    oauth_provider:
+        github: Enter with Github

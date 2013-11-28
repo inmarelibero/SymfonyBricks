@@ -50,6 +50,9 @@ class AppKernel extends Kernel
             // EkoFeedBundle
             new Eko\FeedBundle\EkoFeedBundle(),
 
+            // HWIOAuthBundle
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+
             // Bricks bundles
             new Bricks\SiteBundle\BricksSiteBundle(),
             new Bricks\WikiBundle\BricksWikiBundle(),
@@ -57,6 +60,7 @@ class AppKernel extends Kernel
             new Bricks\MessageBundle\BricksMessageBundle(),
             new Bricks\RedirectBundle\BricksRedirectBundle(),
             new Bricks\RSSBundle\BricksRSSBundle(),
+            new Bricks\HWIOAuthBundle\BricksHWIOAuthBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

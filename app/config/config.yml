@@ -1,8 +1,9 @@
 imports:
     - { resource: parameters.yml }
-    - { resource: assetic.yml    }
-    - { resource: locales.yml   }
-    - { resource: security.yml   }
+    - { resource: assetic.yml }
+    - { resource: locales.yml }
+    - { resource: security.yml }
+    - { resource: hwi_oauth.yml }
 
 parameters:
     locale:   en #default locale

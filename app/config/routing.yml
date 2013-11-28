@@ -1,3 +1,8 @@
+bricks_hwio_auth:
+    resource: "@BricksHWIOAuthBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 # BricksRedirectBundle controllers are loaded before any other
 bricks_redirect:
     resource: "@BricksRedirectBundle/Controller/"
@@ -112,6 +117,24 @@ fos_message:
 PrestaSitemapBundle:
     resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
     prefix:   /
+
+# HWIOAuthBundle
+hwi_oauth_security:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix: /login
+
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix: /connect
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+
+github_login:
+    pattern: /login/check-github
+sensio_connect_login:
+    pattern: /login/check-sensio-connect
 
 # AvalancheImagineBundle
 _imagine:

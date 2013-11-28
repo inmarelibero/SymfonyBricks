@@ -31,7 +31,8 @@
         "pk/markdownify-bundle": "2.1.*",
         "vich/uploader-bundle": "dev-master",
         "avalanche123/imagine-bundle": "v2.1",
-        "eko/feedbundle": "1.0.*@dev"
+        "eko/feedbundle": "1.0.*@dev",
+        "hwi/oauth-bundle": "0.3.*@dev"
     },
     "scripts": {
         "post-install-cmd": [

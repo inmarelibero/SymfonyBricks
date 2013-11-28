@@ -1,9 +1,74 @@
 /******************************************************************************************
 rules for FOSUserBundle templates
 ******************************************************************************************/
-form.security-form {
-    .errors {
-        color:          red;
-        margin-bottom:  20px;
+body.route-login, body.route-fos_user_security_login {
+
+    .head {
+        text-align: center;
+    }
+
+    .head-text {
+        margin-top: 40px;
+        margin-bottom: 30px;
+    }
+
+    form.security-form {
+        .errors {
+            color:          red;
+            margin-bottom:  20px;
+        }
+        label {
+            font-family:    'helveticaneuebold';
+            &.password {
+                a.forgot-password {
+                    font-size:  12px;
+                }
+            }
+        }
+    }
+
+    .oauth-connectors {
+        ul {
+            margin-top: 20px;
+
+            li {
+                overflow: hidden;
+                margin-bottom:  10px;
+
+                a {
+                    float: left;
+                    width:  230px;
+                    color:  #FFF;
+
+                    background: #e94132;
+                    padding: 5px;
+                    border-radius: 4px;
+                    font-size: 13px;
+                    .glyphicon {
+                        float:  right;
+                        top: 3px;
+                        font-size: 30px;
+                    }
+                    img {
+                        max-height: 30px;
+                        max-width: 180px;
+                        margin-bottom: 4px;
+                    }
+
+                    &:hover {
+                        opacity: 0.9;
+                    }
+                }
+            }
+        }
+
+        p.attention {
+            margin-top: 60px;
+            font-size:  13px;
+            span {
+                font-size:  16px;
+                color: red;
+            }
+        }
     }
 }

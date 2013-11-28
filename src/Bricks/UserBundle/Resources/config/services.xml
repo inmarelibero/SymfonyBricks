@@ -17,6 +17,13 @@
             <argument>%fos_user.model.user.class%</argument>
         </service>
 
+        <service id="bricks.user_provider" class="Bricks\UserBundle\Security\Core\User\FOSUBUserProvider">
+            <argument type="service" id="fos_user.user_manager" />
+            <argument type="collection">
+                <argument key="github">githubId</argument>
+            </argument>
+        </service>
+
     </services>
 
 </container>
