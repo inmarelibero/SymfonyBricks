@@ -12,6 +12,7 @@ hwi_oauth:
         properties:
             # these properties will be used/redefined later in the custom FOSUBUserProvider service.
             github: githubId
+            twitter: twitterId
 
     resource_owners:
         github:
@@ -19,3 +20,8 @@ hwi_oauth:
             client_id:      %oauth_github_client_id%
             client_secret:  %oauth_github_client_secret%
             scope:          "user:email"
+        twitter:
+            type:           twitter
+            client_id:      %oauth_twitter_client_id%
+            client_secret:  %oauth_twitter_client_secret%
+            #scope:          "user:email"

@@ -67,4 +67,4 @@ security:
             attention: ATENCIÓN!
             attention_text: Si ya te has registrado en SymfonyBricks, deberías iniciar sesión con tu nombre de usuario y contraseña, y luego asociar otras cuentas proporcionadas por OAuth.<br>Si ya hiciste esa asociación, puedes ignorar este mensaje y acceder a través de OAuth.
     oauth_provider:
-        github: Entra con Github
+        enter_with: Entra con %provider%

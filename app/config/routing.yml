@@ -133,8 +133,8 @@ hwi_oauth_redirect:
 
 github_login:
     pattern: /login/check-github
-sensio_connect_login:
-    pattern: /login/check-sensio-connect
+twitter_login:
+    pattern: /login/check-twitter
 
 # AvalancheImagineBundle
 _imagine:

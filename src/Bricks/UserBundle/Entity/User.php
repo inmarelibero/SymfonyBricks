@@ -39,6 +39,18 @@ class User extends BaseUser implements ParticipantInterface
     private $githubAccessToken;
 
     /**
+     * @ORM\Column(name="twitter_id", type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $twitterId;
+
+    /**
+     * @ORM\Column(name="twitter_access_token", type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $twitterAccessToken;
+
+    /**
      * @var boolean $emailpolicy_send_on_new_message
      *
      * @ORM\Column(type="boolean", nullable=true)
@@ -363,5 +375,51 @@ class User extends BaseUser implements ParticipantInterface
     public function getUserStarsBricks()
     {
         return $this->userStarsBricks;
+    }
+
+    /**
+     * Set twitterId
+     *
+     * @param string $twitterId
+     * @return User
+     */
+    public function setTwitterId($twitterId)
+    {
+        $this->twitterId = $twitterId;
+    
+        return $this;
+    }
+
+    /**
+     * Get twitterId
+     *
+     * @return string 
+     */
+    public function getTwitterId()
+    {
+        return $this->twitterId;
+    }
+
+    /**
+     * Set twitterAccessToken
+     *
+     * @param string $twitterAccessToken
+     * @return User
+     */
+    public function setTwitterAccessToken($twitterAccessToken)
+    {
+        $this->twitterAccessToken = $twitterAccessToken;
+    
+        return $this;
+    }
+
+    /**
+     * Get twitterAccessToken
+     *
+     * @return string 
+     */
+    public function getTwitterAccessToken()
+    {
+        return $this->twitterAccessToken;
     }
 }

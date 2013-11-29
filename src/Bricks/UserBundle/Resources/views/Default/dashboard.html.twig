@@ -13,11 +13,24 @@
     <div class="row">
         <div class="col-md-12">
 
-            {% if app.user.githubId  %}
-                {{ 'user.oauth.account_associated'|trans({'%oauth_provider%': 'Github', '%url%': path('hwi_oauth_service_redirect', {'service': 'github' }) }, 'UserBundle')|raw }}
-            {% else %}
-                {{ 'user.oauth.account_not_associated'|trans({'%oauth_provider%': 'Github', '%url%': path('hwi_oauth_service_redirect', {'service': 'github' }) }, 'UserBundle')|raw }}
-            {% endif %}
+            <ul>
+                <li>
+                    {% if app.user.githubId  %}
+                        {{ 'user.oauth.account_associated'|trans({'%oauth_provider%': 'Github', '%url%': path('hwi_oauth_service_redirect', {'service': 'github' }) }, 'UserBundle')|raw }}
+                    {% else %}
+                        {{ 'user.oauth.account_not_associated'|trans({'%oauth_provider%': 'Github', '%url%': path('hwi_oauth_service_redirect', {'service': 'github' }) }, 'UserBundle')|raw }}
+                    {% endif %}
+                </li>
+                {#
+                <li>
+                    {% if app.user.twitterId  %}
+                        {{ 'user.oauth.account_associated'|trans({'%oauth_provider%': 'Twitter', '%url%': path('hwi_oauth_service_redirect', {'service': 'twitter' }) }, 'UserBundle')|raw }}
+                    {% else %}
+                        {{ 'user.oauth.account_not_associated'|trans({'%oauth_provider%': 'Twitter', '%url%': path('hwi_oauth_service_redirect', {'service': 'twitter' }) }, 'UserBundle')|raw }}
+                    {% endif %}
+                </li>
+                #}
+            </ul>
 
         </div>
     </div>

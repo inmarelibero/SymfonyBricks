@@ -47,6 +47,10 @@ class FOSUBUserProvider extends BaseClass
          * eg: $user = $this->userManager->findUserBy(array('githubId' => '375752'));
          */
         try {
+            if (in_array($response->getResourceOwner()->getName(), array('twitter', 'Twitter'))) {
+                die(var_dump(array($this->getProperty($response) => $response->getUsername())));
+            }
+
             //if user exists - go with the HWIOAuth way
             $user = parent::loadUserByOAuthUserResponse($response);
 

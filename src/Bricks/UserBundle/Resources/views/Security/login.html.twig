@@ -64,9 +64,20 @@
 
                         <img src="{{ asset('img/GitHub_Logo.png') }}">
                         <br>
-                        {{ 'security.oauth_provider.github'|trans({}, 'FOSUserBundle') }}
+                        {{ 'security.oauth_provider.enter_with'|trans({'%provider%': 'github'}, 'FOSUserBundle') }}
                     </a>
                 </li>
+                {#
+                <li class="twitter">
+                    <a href="{{ path('hwi_oauth_service_redirect', {'service': 'twitter' }) }}">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+
+                        <img src="{{ asset('img/Twitter_logo_white.png') }}">
+                        <br>
+                        {{ 'security.oauth_provider.enter_with'|trans({'%provider%': 'twitter'}, 'FOSUserBundle') }}
+                    </a>
+                </li>
+                #}
                 {#
                 <li class="sensio-connect">
                     <a href="{{ path('hwi_oauth_service_redirect', {'service': 'sensio_connect' }) }}">
