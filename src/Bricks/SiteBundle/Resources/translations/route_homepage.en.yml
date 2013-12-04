@@ -3,9 +3,11 @@
 #                                                                                                                  #
 # route name: homepage                                                                                             #
 ####################################################################################################################
+bricks:
+    head: "<strong>SymfonyBricks</strong> now collects %total% guides (named \"bricks\").<br>Here are the most recent ones:"
 contribute_next_step: 'The next step is to have a look at <a href="%href%">the section "Contribute"</a> for more detailed informations.'
 how_to_contribute: contribute
-know_more: know more
+know_more: tell me more
 relevant_links: Relevant links
 sign_up: |
     SIGN UP

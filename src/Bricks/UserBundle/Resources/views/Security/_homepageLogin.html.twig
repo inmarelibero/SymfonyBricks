@@ -1,0 +1,43 @@
+<div id="form-login-wrapper">
+
+    <form class="security-form form-horizontal" action="{{ path("fos_user_security_check") }}" method="post" role="form">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">
+                    {{ 'security.login.username'|trans({}, 'FOSUserBundle') }}
+            </label>
+            <div class="col-md-8">
+                <strong>
+                    <input id="username" class="form-control" type="text" name="_username" required="required" />
+                </strong>
+            </div>
+        </div>
+
+        <div class="form-group password">
+            <label class="col-md-4 control-label">
+                    {{ 'security.login.password'|trans({}, 'FOSUserBundle') }}
+            </label>
+            <div class="col-md-8">
+                <input id="password" class="form-control" type="password" name="_password" required="required" />
+                <a id="forgot-password" href="{{ path('fos_user_resetting_request') }}">({{ 'security.forgot_password'|trans({}, 'FOSUserBundle') }})</a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-3 col-md-offset-4">
+                <button type="submit" class="btn btn-primary">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
+            </div>
+            <div class="col-md-5">
+                <div class="checkbox pull-right">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+                </div>
+            </div>
+        </div>
+
+        {% if targetPath is defined and targetPath != null %}
+            <input type="hidden" name="_target_path" value="{{ targetPath }}" />
+        {% endif %}
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    </form>
+</div>

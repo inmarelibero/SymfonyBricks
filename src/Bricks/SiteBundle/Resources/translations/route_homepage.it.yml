@@ -3,6 +3,8 @@
 #                                                                                                                  #
 # route name: homepage                                                                                             #
 ####################################################################################################################
+bricks:
+    head: "<strong>SymfonyBricks</strong> raccoglie %total% giude (demoninate \"bricks\").<br>Queste sono le più recenti:"
 contribute_next_step: 'Il prossimo passo è visitare <a href="%href%">la sezione "Contribuisci"</a> per avere più informazioni.'
 how_to_contribute: contribuisci
 know_more: scopri di più

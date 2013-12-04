@@ -6,98 +6,108 @@
 
     <div class="row">
         <div class="col-md-8">
-            <img id="index-logo" src="{{ asset('img/homepage-logo-cropped.png') }}" alt="SymfonyBricks" />
+            <div class="bricks-wrapper">
+                <p class="head">
+                    {{ 'bricks.head'|trans({'%total%': bricks|length}, 'route_homepage')|raw }}
+                </p>
+
+                <ul class="bricks-list">
+                    {% for brick in bricks %}
+                        <li>
+                            <a href="{{ path('brick_show', {slug: brick.slug}) }}" class="title">
+                                <span class="glyphicon glyphicon-file"></span> {{ brick.title }}
+                            </a>
+                            <p class="brick-info">
+                                <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
+                                |
+                                <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans }}: {{ brick.updatedAt|date('d M Y') }}
+                                |
+                                {{ macrosBrick.toggleUserStarsBrick(brick) }}
+                                {% if brick.brickHasTags|length > 0 %}
+                                    |
+                                    <span class="glyphicon glyphicon-tag"></span> {{ brick_formatted_tags(brick)|raw }}
+                                {% endif %}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
         <div class="col-md-4 right-col">
-            <a id="btn-signup" class="btn btn-success col-md-12" href="{{ path('fos_user_registration_register') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'page#index', 'registration']);">
-                <span class="glyphicon glyphicon-user"></span> {{ 'sign_up'|trans({}, 'route_homepage')|raw }}
-            </a>
 
-            <a href="{{ path('contribute') }}" class="btn btn-primary col-md-5" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'page#index', 'contribute']);">
-                <span class="glyphicon glyphicon-random"></span> {{ 'how_to_contribute'|trans({}, 'route_homepage') }}
-            </a>
-            <a href="{{ path('wiki_homepage') }}" class="btn btn-primary col-md-5 col-md-offset-2" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'page#index', 'wiki']);">
-                <span class="glyphicon glyphicon-plus"></span> {{ 'know_more'|trans({}, 'route_homepage') }}
-            </a>
-
+            {{ render(controller('BricksUserBundle:Security:_homepageLogin')) }}
+            <hr>
 
             <p style="">
                 {% if 'it' == app.request.locale %}
                     SymfonyBricks è una piattaforma social dove gli sviluppatori possano condividere la loro esperienza sul lavorare con Symfony.
-                    <br />
-                    Il codice sorgente è interamente disponibile su <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">github</a>.
                 {% elseif 'es' == app.request.locale %}
                     SymfonyBricks es una plataforma social donde los desarrolladores pueden compartir sus experiencias sobre el trabajo con Symfony.
-                    <br />
-                    El código fuente está disponible en <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">github</a>.
                 {% else %}
-                    SymfonyBricks is a social platform where developers can share their experiences about working with Symfony.
-                    <br>
-                    The source code is fully open on <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">github</a>.
+                    <strong>SymfonyBricks</strong> is a social platform where developers can share their experiences about working with Symfony (<a href="{{ path('wiki_homepage') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'page#index', 'wiki']);">{{ 'know_more'|trans({}, 'route_homepage') }}</a>).
                 {% endif %}
             </p>
 
-            <p>
-                {% if 'it' == app.request.locale %}
-                    Hai creato qualcosa di nuovo o risolto un problema relativo ad progetto Symfony?
-                    <br />
-                    Condividi qui le tue idee e la tua eperienza!
-                {% elseif 'es' == app.request.locale %}
-                    Creaste algo nuevo o resolviste un problema relacionado con Symfony?
-                    <br />
-                    ¡Comparte aquí tus ideas y experiencia!
-                {% else %}
-                    Did you create something new or resolved a problem related to a Symfony project?
-                    <br />
-                    Share here your ideas and experience!
-                {% endif %}
-            </p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="co-md-12">
-            <p style="font-size: 22px; text-align: center;">
+            <p style="font-size: 22px;">
                 {% if 'it' == app.request.locale %}
                     Costruito dalla comunità Symfony, per la comunità.
                 {% elseif 'es' == app.request.locale %}
                     Construido por la comunidad Symfony, para la comunidad.
                 {% else %}
-                    Built by the Symfony community, for the community.
+                    Built by the Symfony community,<br>for the community.
                 {% endif %}
             </p>
+
+            <img id="index-logo" src="{{ asset('img/homepage-logo-cropped.png') }}" />
+
+            <p class="text-idea">
+                {% if 'it' == app.request.locale %}
+                    Hai creato qualcosa di nuovo o risolto un problema relativo ad progetto Symfony? Condividi qui le tue idee e la tua eperienza!
+                {% elseif 'es' == app.request.locale %}
+                    Creaste algo nuevo o resolviste un problema relacionado con Symfony? ¡Comparte aquí tus ideas y experiencia!
+                {% else %}
+                    Did you solve a problem on a Symfony project? Share here your experience! And find solutions provided by other developers like you.
+                {% endif %}
+            </p>
+
+            <hr>
+
+            <div id="latest-posts-on-symfonybricks-blog">
+                {% if 'it' == app.request.locale %}
+                    Ultimi post sul blog di <a href="http://blog.symfonybricks.com" target="_blank">SymfonyBricks</a>:
+                {% elseif 'es' == app.request.locale %}
+                    Últimas entradas en el blog de <a href="http://blog.symfonybricks.com" target="_blank">SymfonyBricks</a>:
+                {% else %}
+                    Latest posts on <a href="http://blog.symfonybricks.com" target="_blank">SymfonyBricks' Blog</a>:
+                {% endif %}
+
+                <div id="posts">
+                    <img src="{{ asset('img/ajax_loader.gif') }}" />
+                </div>
+            </div>
+            <script>
+                $(function() {
+                    $.ajax({
+                        url: "{{ path('_latestsPostsOnSymfonybricksBlog') }}",
+                        method: "GET",
+                        success: function(data) {
+                            $('#latest-posts-on-symfonybricks-blog #posts').html(data);
+                        }
+                    });
+                })
+            </script>
+
+            {#
+            <a id="btn-signup" class="btn btn-success col-md-12" href="{{ path('fos_user_registration_register') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'page#index', 'registration']);">
+                <span class="glyphicon glyphicon-user"></span> {{ 'sign_up'|trans({}, 'route_homepage')|raw }}
+            </a>
+            #}
+
         </div>
     </div>
 
     <hr>
-    
-    <div class="row" style="text-align: justify;">
-        <div class="col-md-12">
-            <ul class="bricks-list">
-                {% for brick in bricks %}
-                    <li>
-                        <a href="{{ path('brick_show', {slug: brick.slug}) }}" class="title">
-                            <span class="glyphicon glyphicon-file"></span> {{ brick.title }}
-                        </a>
-                        <p class="brick-info">
-                            <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
-                            |
-                            <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans }}: {{ brick.updatedAt|date('d M Y') }}
-                            |
-                            {{ macrosBrick.toggleUserStarsBrick(brick) }}
-                            {% if brick.brickHasTags|length > 0 %}
-                                |
-                                <span class="glyphicon glyphicon-tag"></span> {{ brick_formatted_tags(brick)|raw }}
-                            {% endif %}
-                        </p>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-    
-    <hr>
-    
+
     <div class="row" style="text-align: justify;">
         <div class="col-md-5">
             <h2>

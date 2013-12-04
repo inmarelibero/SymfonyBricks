@@ -1,0 +1,9 @@
+<ul>
+    {% for feed in feeds if feeds.key < 8 %}
+        <li>
+            <a href="{{ feed.link }}" target="_blank">
+                {{ feed.title }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>

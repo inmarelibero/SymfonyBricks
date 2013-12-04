@@ -3,6 +3,8 @@
 #                                                                                                                  #
 # route name: homepage                                                                                             #
 ####################################################################################################################
+bricks:
+    head: "<strong>SymfonyBricks</strong> recoge %total% guías (named \"bricks\").<br>Estas son las más recientes:"
 contribute_next_step: 'El paso siguiente es visitar <a href="%href%">la sección "Contribuir"</a> para obtenet mas informaciones.'
 how_to_contribute: contribuir
 know_more: descubrir más
