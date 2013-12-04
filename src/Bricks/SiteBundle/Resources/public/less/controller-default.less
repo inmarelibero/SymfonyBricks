@@ -11,10 +11,6 @@ rules for all the templates loaded through Bricks\SiteBundle\DefaultController
 */
 body.route-index_not_localized , body.route-homepage {
 
-    #index-logo {
-        max-width:  100%;
-        overflow:   hidden;
-    }
 
     .right-col {
         #btn-signup {
@@ -25,27 +21,81 @@ body.route-index_not_localized , body.route-homepage {
 
             .text-small { font-weight: normal; }
         }
-        p {
-            float:  left;
-            clear:  left;
-            margin-top: 10px;
+        p.text-idea {
+        }
+
+        hr {
+            border-top: 1px solid #CCC;
+            width:  100%;
+            //margin: 0 auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        #form-login-wrapper {
+            form {
+                label {
+                    padding-top: 4px;
+                    padding-right: 0px;
+                    text-align: right;
+                }
+                a#forgot-password {
+                    font-size: 11px;
+                }
+                .form-group.password {
+                }
+                .checkbox {
+                    padding-top:    0px;
+                    font-size:      11px;
+                    padding-top:    7px;
+                }
+            }
+        }
+        #index-logo {
+            max-width:  100%;
+            overflow:   hidden;
+            margin-bottom:  15px;
+        }
+        #latest-posts-on-symfonybricks-blog {
+            img {
+                height: 20px;
+            }
+            #posts {
+                margin-top: 15px;
+                margin-left: 20px;
+                ul {
+                    li {
+                        font-size: 12px;
+                        padding-bottom: 10px;
+                    }
+                }
+            }
         }
     }
 
-    .bricks-list {
-        a.title {
-            font-size: 18px;
-            i { color: rgb(107, 107, 107); }
+    div.bricks-wrapper {
+        .head {
+            font-size:  18px;
+            margin-bottom:  20px;
         }
-        li {
-            margin-bottom:  15px;
-            p {
-                font-size:  12px;
+        ul.bricks-list {
+            a.title {
+                font-size: 18px;
+                i { color: rgb(107, 107, 107); }
             }
-            .brick-info {
-                margin-top: 3px;
-                padding-left: 25px;
-                &, a, p { color: rgb(107, 107, 107); }
+            li {
+                border-top: 1px solid #E2E2E2;
+                padding:  10px 0px 10px 10px;
+
+
+                p {
+                    font-size:  12px;
+                }
+                .brick-info {
+                    margin-top: 3px;
+                    padding-left: 25px;
+                    &, a, p { color: rgb(107, 107, 107); }
+                }
             }
         }
     }

@@ -5,6 +5,7 @@ namespace Bricks\SiteBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 use Symfony\Component\Finder\Finder;
 
@@ -63,5 +64,24 @@ class DefaultController extends Controller
     public function developersAction()
     {
         return array();
+    }
+
+
+    /**
+     * @Route("/_latest-posts-on-symfonybricks-blog", name="_latestsPostsOnSymfonybricksBlog")
+     * @Template()
+     */
+    public function _latestsPostsOnSymfonybricksBlogAction()
+    {
+        if (!$this->getRequest()->isXmlHttpRequest()) {
+            throw new HttpException(500);
+        }
+
+        $reader = $this->get('eko_feed.feed.reader');
+        $feeds = $reader->load('http://blog.symfonybricks.com/feed/')->get();
+
+        return array(
+            'feeds' => $feeds
+        );
     }
 }
