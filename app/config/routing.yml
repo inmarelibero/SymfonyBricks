@@ -130,6 +130,8 @@ github_login:
     pattern: /login/check-github
 twitter_login:
     pattern: /login/check-twitter
+sensiolabsconnect_login:
+    pattern: /login/check-sensiolabsconnect
 
 # AvalancheImagineBundle
 _imagine:

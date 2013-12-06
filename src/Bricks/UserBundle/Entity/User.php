@@ -30,32 +30,44 @@ class User extends BaseUser implements ParticipantInterface
      * @ORM\Column(name="github_id", type="string", length=255, nullable=true)
      * @var string
      */
-    private $githubId;
+    protected $githubId;
 
     /**
      * @ORM\Column(name="github_access_token", type="string", length=255, nullable=true)
      * @var string
      */
-    private $githubAccessToken;
+    protected $githubAccessToken;
 
     /**
      * @ORM\Column(name="twitter_id", type="string", length=255, nullable=true)
      * @var string
      */
-    private $twitterId;
+    protected $twitterId;
 
     /**
      * @ORM\Column(name="twitter_access_token", type="string", length=255, nullable=true)
      * @var string
      */
-    private $twitterAccessToken;
+    protected $twitterAccessToken;
+
+    /**
+     * @ORM\Column(name="sensiolabsconnect_id", type="string", length=255, nullable=true)
+     * @var string
+     */
+    protected $sensiolabsconnectId;
+
+    /**
+     * @ORM\Column(name="sensiolabsconnect_access_token", type="string", length=255, nullable=true)
+     * @var string
+     */
+    protected $sensiolabsconnectAccessToken;
 
     /**
      * @var boolean $emailpolicy_send_on_new_message
      *
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $emailpolicy_send_on_new_message = true;
+    protected $emailpolicy_send_on_new_message = true;
 
     /**
      * @Assert\File(
@@ -81,7 +93,7 @@ class User extends BaseUser implements ParticipantInterface
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @var datetime $updated_at
@@ -89,18 +101,18 @@ class User extends BaseUser implements ParticipantInterface
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * @ORM\OneToMany(targetEntity="Bricks\SiteBundle\Entity\Brick", mappedBy="user", cascade={"persist"})
      * @ORM\OrderBy({"created_at" = "ASC"})
      */
-    private $bricks;
+    protected $bricks;
 
     /**
      * @ORM\OneToMany(targetEntity="Bricks\SiteBundle\Entity\UserStarsBrick", mappedBy="user", cascade={"persist"})
      */
-    private $userStarsBricks;
+    protected $userStarsBricks;
 
     /**************************************************************************************************
      *	custom functions
@@ -217,6 +229,98 @@ class User extends BaseUser implements ParticipantInterface
     public function getGithubAccessToken()
     {
         return $this->githubAccessToken;
+    }
+
+    /**
+     * Set twitterId
+     *
+     * @param string $twitterId
+     * @return User
+     */
+    public function setTwitterId($twitterId)
+    {
+        $this->twitterId = $twitterId;
+    
+        return $this;
+    }
+
+    /**
+     * Get twitterId
+     *
+     * @return string 
+     */
+    public function getTwitterId()
+    {
+        return $this->twitterId;
+    }
+
+    /**
+     * Set twitterAccessToken
+     *
+     * @param string $twitterAccessToken
+     * @return User
+     */
+    public function setTwitterAccessToken($twitterAccessToken)
+    {
+        $this->twitterAccessToken = $twitterAccessToken;
+    
+        return $this;
+    }
+
+    /**
+     * Get twitterAccessToken
+     *
+     * @return string 
+     */
+    public function getTwitterAccessToken()
+    {
+        return $this->twitterAccessToken;
+    }
+
+    /**
+     * Set sensiolabsconnectId
+     *
+     * @param string $sensiolabsconnectId
+     * @return User
+     */
+    public function setSensiolabsconnectId($sensiolabsconnectId)
+    {
+        $this->sensiolabsconnectId = $sensiolabsconnectId;
+    
+        return $this;
+    }
+
+    /**
+     * Get sensiolabsconnectId
+     *
+     * @return string 
+     */
+    public function getSensiolabsconnectId()
+    {
+        return $this->sensiolabsconnectId;
+    }
+
+    /**
+     * Set sensiolabsconnectAccessToken
+     *
+     * @param string $sensiolabsconnectAccessToken
+     * @return User
+     */
+    public function setSensiolabsconnectAccessToken($sensiolabsconnectAccessToken)
+    {
+        $this->sensiolabsconnectAccessToken = $sensiolabsconnectAccessToken;
+    
+        return $this;
+    }
+
+    /**
+     * Get sensiolabsconnectAccessToken
+     *
+     * @return string 
+     */
+    public function getSensiolabsconnectAccessToken()
+    {
+        return $this->sensiolabsconnectAccessToken;
     }
 
     /**
@@ -375,51 +479,5 @@ class User extends BaseUser implements ParticipantInterface
     public function getUserStarsBricks()
     {
         return $this->userStarsBricks;
-    }
-
-    /**
-     * Set twitterId
-     *
-     * @param string $twitterId
-     * @return User
-     */
-    public function setTwitterId($twitterId)
-    {
-        $this->twitterId = $twitterId;
-    
-        return $this;
-    }
-
-    /**
-     * Get twitterId
-     *
-     * @return string 
-     */
-    public function getTwitterId()
-    {
-        return $this->twitterId;
-    }
-
-    /**
-     * Set twitterAccessToken
-     *
-     * @param string $twitterAccessToken
-     * @return User
-     */
-    public function setTwitterAccessToken($twitterAccessToken)
-    {
-        $this->twitterAccessToken = $twitterAccessToken;
-    
-        return $this;
-    }
-
-    /**
-     * Get twitterAccessToken
-     *
-     * @return string 
-     */
-    public function getTwitterAccessToken()
-    {
-        return $this->twitterAccessToken;
     }
 }

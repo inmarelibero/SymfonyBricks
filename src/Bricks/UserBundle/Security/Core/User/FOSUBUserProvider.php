@@ -3,6 +3,7 @@ namespace Bricks\UserBundle\Security\Core\User;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
+use HWI\Bundle\OAuthBundle\Security\Core\Exception\AccountNotLinkedException;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
 
 class FOSUBUserProvider extends BaseClass
@@ -44,13 +45,9 @@ class FOSUBUserProvider extends BaseClass
         /*
          * Load user by connector field
          *
-         * eg: $user = $this->userManager->findUserBy(array('githubId' => '375752'));
+         * eg: $user = $this->userManager->findUserBy(array('githubId' => '375734252'));
          */
         try {
-            if (in_array($response->getResourceOwner()->getName(), array('twitter', 'Twitter'))) {
-                die(var_dump(array($this->getProperty($response) => $response->getUsername())));
-            }
-
             //if user exists - go with the HWIOAuth way
             $user = parent::loadUserByOAuthUserResponse($response);
 
@@ -62,7 +59,7 @@ class FOSUBUserProvider extends BaseClass
 
             return $user;
 
-        } catch (\Exception $e) {
+        } catch (AccountNotLinkedException $e) {
             /*
              * User is registrating
              */
@@ -119,5 +116,4 @@ class FOSUBUserProvider extends BaseClass
 
         throw new \Exception("User could not be neither retrieved nor created.");
     }
-
 }

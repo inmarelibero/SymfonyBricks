@@ -13,6 +13,7 @@ hwi_oauth:
             # these properties will be used/redefined later in the custom FOSUBUserProvider service.
             github: githubId
             twitter: twitterId
+            sensiolabsconnect: sensiolabsconnectIds
 
     resource_owners:
         github:
@@ -25,3 +26,8 @@ hwi_oauth:
             client_id:      %oauth_twitter_client_id%
             client_secret:  %oauth_twitter_client_secret%
             #scope:          "user:email"
+        sensiolabsconnect:
+            type:           sensio_connect
+            client_id:      %oauth_sensiolabsconnect_client_id%
+            client_secret:  %oauth_sensiolabsconnect_client_secret%
+            scope:          "SCOPE_EMAIL"

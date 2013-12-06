@@ -64,31 +64,27 @@
 
                         <img src="{{ asset('img/GitHub_Logo.png') }}">
                         <br>
-                        {{ 'security.oauth_provider.enter_with'|trans({'%provider%': 'github'}, 'FOSUserBundle') }}
+                        {{ 'security.oauth_provider.enter_with'|trans({'%provider%': 'Github'}, 'FOSUserBundle') }}
                     </a>
                 </li>
-                {#
                 <li class="twitter">
                     <a href="{{ path('hwi_oauth_service_redirect', {'service': 'twitter' }) }}">
                         <span class="glyphicon glyphicon-chevron-right"></span>
 
                         <img src="{{ asset('img/Twitter_logo_white.png') }}">
                         <br>
-                        {{ 'security.oauth_provider.enter_with'|trans({'%provider%': 'twitter'}, 'FOSUserBundle') }}
+                        {{ 'security.oauth_provider.enter_with'|trans({'%provider%': 'Twitter'}, 'FOSUserBundle') }}
                     </a>
                 </li>
-                #}
-                {#
                 <li class="sensio-connect">
-                    <a href="{{ path('hwi_oauth_service_redirect', {'service': 'sensio_connect' }) }}">
+                    <a href="{{ path('hwi_oauth_service_redirect', {'service': 'sensiolabsconnect' }) }}">
                         <span class="glyphicon glyphicon-chevron-right"></span>
 
                         <img src="{{ asset('img/SensioConnect_logo.png') }}">
                         <br>
-                        {{ 'security.oauth_provider.sensio_connect'|trans({}, 'FOSUserBundle') }}
+                        {{ 'security.oauth_provider.enter_with'|trans({'%provider%': 'SensioLabsConnect'}, 'FOSUserBundle') }}
                     </a>
                 </li>
-                #}
             </ul>
             <p class="attention">
                 <span>

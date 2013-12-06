@@ -18,8 +18,9 @@ security:
 
             oauth:
                 resource_owners:
-                    github:   "/login/check-github"
-                    twitter:  "/login/check-twitter"
+                    github:             "/login/check-github"
+                    twitter:            "/login/check-twitter"
+                    sensiolabsconnect:  "/login/check-sensiolabsconnect"
                 login_path:   /login
                 failure_path: /login
 
