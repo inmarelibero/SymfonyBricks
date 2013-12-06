@@ -11,18 +11,40 @@ rules for all the templates loaded through Bricks\SiteBundle\DefaultController
 */
 body.route-index_not_localized , body.route-homepage {
 
+    .head {
+        #index-logo {
+            max-width:  100%;
+            overflow:   hidden;
+            margin-bottom:  15px;
+        }
+        .payoff {
+            p {
+                overflow: hidden;
+                margin-bottom:  0px;
+                font-size:  20px;
+
+                strong {
+                    font-size: 30px;
+                }
+
+                &.first {
+                    margin-top:  -16px;
+                }
+                &.second {
+                    margin-top:  13px;
+                    font-size:  16px;
+                }
+
+                a {
+                    float:  left;
+                    font-size: 13px;
+                    margin-top: -1px;
+                }
+            }
+        }
+    }
 
     .right-col {
-        #btn-signup {
-            padding:    10px;
-            font-size:  20px;
-            text-align: left;
-            margin-bottom: 10px;
-
-            .text-small { font-weight: normal; }
-        }
-        p.text-idea {
-        }
 
         hr {
             border-top: 1px solid #CCC;
@@ -33,28 +55,66 @@ body.route-index_not_localized , body.route-homepage {
         }
 
         #form-login-wrapper {
+            background: #E7E6E6;
+            padding:    10px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+
             form {
                 label {
-                    padding-top: 4px;
-                    padding-right: 0px;
-                    text-align: right;
+                    font-size:  13px;
+                    margin: 0px;
                 }
                 a#forgot-password {
                     font-size: 11px;
                 }
-                .form-group.password {
+                .form-group {
+                    margin-bottom:  0px;
                 }
-                .checkbox {
-                    padding-top:    0px;
-                    font-size:      11px;
-                    padding-top:    7px;
+                .actions {
+                    margin-top: 8px;
+
+                    .checkbox {
+                        padding-top:    0px;
+                        font-size:      11px;
+                        margin-top:     9px;
+
+                        input[type="checkbox"] {
+                            margin-top: 2px;
+                            margin-left: -14px;
+                        }
+                    }
                 }
             }
-        }
-        #index-logo {
-            max-width:  100%;
-            overflow:   hidden;
-            margin-bottom:  15px;
+            ul#oauth-connectors {
+                li {
+                    background: #e94132;
+                    border-radius: 4px;
+                    margin-top: 5px;
+
+                    &:first-child { margin-top: 0px; }
+                    a {
+                        padding: 10px;
+                        font-size: 12px;
+                        color:  #FFF;
+                        display: block;
+
+                        &:hover {
+                            opacity: 0.9;
+                        }
+
+                        .glyphicon {
+                            float: right;
+                            margin-top: 3px;
+                            font-size: 28px;
+                        }
+                        img {
+                            max-height: 20px;
+                            margin-bottom: 3px;
+                        }
+                    }
+                }
+            }
         }
         #latest-posts-on-symfonybricks-blog {
             img {
@@ -63,6 +123,7 @@ body.route-index_not_localized , body.route-homepage {
             #posts {
                 margin-top: 15px;
                 margin-left: 20px;
+
                 ul {
                     li {
                         font-size: 12px;
@@ -84,9 +145,8 @@ body.route-index_not_localized , body.route-homepage {
                 i { color: rgb(107, 107, 107); }
             }
             li {
-                border-top: 1px solid #E2E2E2;
+                //border-top: 1px solid #E2E2E2;
                 padding:  10px 0px 10px 10px;
-
 
                 p {
                     font-size:  12px;
