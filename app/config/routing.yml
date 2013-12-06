@@ -1,8 +1,3 @@
-bricks_hwio_auth:
-    resource: "@BricksHWIOAuthBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 # BricksRedirectBundle controllers are loaded before any other
 bricks_redirect:
     resource: "@BricksRedirectBundle/Controller/"
