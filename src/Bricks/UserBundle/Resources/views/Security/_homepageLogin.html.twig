@@ -1,43 +1,62 @@
-<div id="form-login-wrapper">
+<form class="security-form form" action="{{ path("fos_user_security_check") }}" method="post" role="form">
 
-    <form class="security-form form-horizontal" action="{{ path("fos_user_security_check") }}" method="post" role="form">
+    <div class="form-group">
+        <label class="control-label">
+                {{ 'security.login.username'|trans({}, 'FOSUserBundle') }}
+        </label>
+        <input id="username" class="form-control" type="text" name="_username" required="required" />
+    </div>
 
-        <div class="form-group">
-            <label class="col-md-4 control-label">
-                    {{ 'security.login.username'|trans({}, 'FOSUserBundle') }}
-            </label>
-            <div class="col-md-8">
-                <strong>
-                    <input id="username" class="form-control" type="text" name="_username" required="required" />
-                </strong>
-            </div>
+    <div class="form-group password">
+        <label class="control-label">
+            {{ 'security.login.password'|trans({}, 'FOSUserBundle') }}
+            <a id="forgot-password" href="{{ path('fos_user_resetting_request') }}">({{ 'security.forgot_password'|trans({}, 'FOSUserBundle') }})</a>
+        </label>
+        <input id="password" class="form-control" type="password" name="_password" required="required" />
+    </div>
+
+    <div class="actions">
+        <div class="checkbox pull-right">
+            <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
         </div>
+        <button type="submit" class="btn btn-primary">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
+    </div>
 
-        <div class="form-group password">
-            <label class="col-md-4 control-label">
-                    {{ 'security.login.password'|trans({}, 'FOSUserBundle') }}
-            </label>
-            <div class="col-md-8">
-                <input id="password" class="form-control" type="password" name="_password" required="required" />
-                <a id="forgot-password" href="{{ path('fos_user_resetting_request') }}">({{ 'security.forgot_password'|trans({}, 'FOSUserBundle') }})</a>
-            </div>
-        </div>
+    {% if targetPath is defined and targetPath != null %}
+        <input type="hidden" name="_target_path" value="{{ targetPath }}" />
+    {% endif %}
 
-        <div class="form-group">
-            <div class="col-md-3 col-md-offset-4">
-                <button type="submit" class="btn btn-primary">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
-            </div>
-            <div class="col-md-5">
-                <div class="checkbox pull-right">
-                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
-                </div>
-            </div>
-        </div>
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+</form>
 
-        {% if targetPath is defined and targetPath != null %}
-            <input type="hidden" name="_target_path" value="{{ targetPath }}" />
-        {% endif %}
+<hr>
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-    </form>
-</div>
+<ul id="oauth-connectors">
+    <li class="github">
+        <a href="{{ path('hwi_oauth_service_redirect', {'service': 'github' }) }}">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+
+            <img src="{{ asset('img/GitHub_Logo.png') }}">
+            <br>
+            {{ 'security.oauth_provider.enter_with'|trans({'%provider%': 'Github'}, 'FOSUserBundle') }}
+        </a>
+    </li>
+    <li class="twitter">
+        <a href="{{ path('hwi_oauth_service_redirect', {'service': 'twitter' }) }}">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+
+            <img src="{{ asset('img/Twitter_logo_white.png') }}">
+            <br>
+            {{ 'security.oauth_provider.enter_with'|trans({'%provider%': 'Twitter'}, 'FOSUserBundle') }}
+        </a>
+    </li>
+    <li class="sensio-connect">
+        <a href="{{ path('hwi_oauth_service_redirect', {'service': 'sensiolabsconnect' }) }}">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+
+            <img src="{{ asset('img/SensioConnect_logo.png') }}">
+            <br>
+            {{ 'security.oauth_provider.enter_with'|trans({'%provider%': 'SensioLabsConnect'}, 'FOSUserBundle') }}
+        </a>
+    </li>
+</ul>

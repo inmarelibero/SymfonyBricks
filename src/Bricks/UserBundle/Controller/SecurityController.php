@@ -32,7 +32,8 @@ class SecurityController extends BaseController
 
         return array(
             'csrf_token' => $csrfToken,
-            'targetPath' => $targetPath
+            'targetPath' => $targetPath,
+            'targetPath' => $this->container->get('router')->generate('homepage', array(), true)
         );
     }
 

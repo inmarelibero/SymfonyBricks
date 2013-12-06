@@ -58,7 +58,7 @@ security:
     login:
         page_title: Login
         password: "Password"
-        remember_me: Mantienimi loggato
+        remember_me: Ricordami
         submit: Entra
         username: "Username"
         login_with_credentials_head: "Inserisci l'username e la password che hai scelto durante la tua registrazione per loggarti."
