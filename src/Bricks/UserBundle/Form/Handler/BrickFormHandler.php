@@ -8,7 +8,6 @@ use Symfony\Component\Form\FormFactory;
 
 use Bricks\SiteBundle\Entity\Brick;
 use Bricks\SiteBundle\Entity\Tag;
-use Bricks\UserBundle\Form\Type\BrickType;
 
 class BrickFormHandler
 {
@@ -18,7 +17,6 @@ class BrickFormHandler
     
     protected $originalBrickHasTags = array();
 
-    //public function __construct(FormInterface $form, Request $request, $em)
     public function __construct(FormFactory $form_factory, Request $request, $em)
     {
         $this->form_factory = $form_factory;
@@ -28,8 +26,6 @@ class BrickFormHandler
 
     public function process($form)
     {
-        //$form = $this->form_factory->create(new BrickType($this->em), $brick);
-        
         if ('POST' === $this->request->getMethod()) {
 
             $brick = $form->getData();
