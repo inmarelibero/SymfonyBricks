@@ -6,34 +6,36 @@
 {% block main %}
 
     <div class="user-profile-wrapper">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>
-                    <span class="glyphicon glyphicon-user"></span> {{ user.username }}
-                </h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        <span class="glyphicon glyphicon-user"></span> {{ user.username }}
+                    </h1>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-3">
-                <ul id="nav-userprofile" class="nav nav-list">
-                    <li class="nav-header">
-                        {{ 'nav-userprofile.user_profile'|trans({}, 'controller-userprofile') }}
-                    </li>
-                    <li class="">
-                        <a href="{{ path('userprofile_show', {username: user.username}) }}">
-                            Home
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="{{ path('userprofile_bricks_publihed', {username: user.username}) }}">
-                            {{ 'nav-userprofile.published_bricks'|trans({}, 'controller-userprofile') }}
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-9 content">
-                {% block user_profile_content %}{% endblock %}
+            <div class="row">
+                <div class="col-md-3">
+                    <ul id="nav-userprofile" class="nav nav-list">
+                        <li class="nav-header">
+                            {{ 'nav-userprofile.user_profile'|trans({}, 'controller-userprofile') }}
+                        </li>
+                        <li class="">
+                            <a href="{{ path('userprofile_show', {username: user.username}) }}">
+                                Home
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="{{ path('userprofile_bricks_publihed', {username: user.username}) }}">
+                                {{ 'nav-userprofile.published_bricks'|trans({}, 'controller-userprofile') }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-9 content">
+                    {% block user_profile_content %}{% endblock %}
+                </div>
             </div>
         </div>
     </div>

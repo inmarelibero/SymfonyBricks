@@ -4,253 +4,258 @@
 
 {% block main %}
 
-    <div class="row head">
-        <div class="col-md-3">
-            <img id="index-logo" src="{{ asset('img/homepage-logo-cropped.png') }}" />
-        </div>
-        <div class="col-md-9">
-            <div class="payoff">
-                <p class="first">
-                    {% if 'it' == app.request.locale %}
-                        <strong>SymfonyBricks</strong>
-                        <br>
-                        Una piattaforma sociale dove puoi condividere la tua esperienza con Symfony
-                    {% elseif 'es' == app.request.locale %}
-                        <strong>SymfonyBricks</strong>
-                        <br>
-                        Una plataforma social donde puedes compartir tu experiencia sobre Symfony
-                    {% else %}
-                        <strong>SymfonyBricks</strong>
-                        <br>
-                        A social platform where you can share your experience with Symfony
-                    {% endif %}
-                </p>
+    <div id="homepage-head-wrapper">
+        <div class="container">
+            <div class="row head">
+                <div class="col-md-3">
+                    <img id="index-logo" src="{{ asset('img/homepage-logo-cropped-white.png') }}" />
+                </div>
+                <div class="col-md-9">
+                    <div class="payoff">
+                        <p class="first">
+                            {% if 'it' == app.request.locale %}
+                                <strong>SymfonyBricks</strong>
+                                <br>
+                                Una piattaforma sociale dove puoi condividere la tua esperienza con Symfony
+                            {% elseif 'es' == app.request.locale %}
+                                <strong>SymfonyBricks</strong>
+                                <br>
+                                Una plataforma social donde puedes compartir tu experiencia sobre Symfony
+                            {% else %}
+                                A social platform where you can share your experience with Symfony
+                            {% endif %}
+                        </p>
 
-                <p class="second">
-                    {% if 'it' == app.request.locale %}
-                        Costruito dalla comunità Symfony, per la comunità
-                    {% elseif 'es' == app.request.locale %}
-                        Construido por la comunidad Symfony, para la comunidad
-                    {% else %}
-                        Built by Symfony community, for the community
-                    {% endif %}
-                </p>
+                        <p class="second">
+                            {% if 'it' == app.request.locale %}
+                                Costruito dalla comunità Symfony, per la comunità
+                            {% elseif 'es' == app.request.locale %}
+                                Construido por la comunidad Symfony, para la comunidad
+                            {% else %}
+                                Built by Symfony community, for the community
+                            {% endif %}
+                        </p>
 
-                {#
-                <p class="text-idea">
-                    {% if 'it' == app.request.locale %}
-                        Hai creato qualcosa di nuovo o risolto un problema relativo ad progetto Symfony? Condividi qui le tue idee e la tua eperienza!
-                    {% elseif 'es' == app.request.locale %}
-                        Creaste algo nuevo o resolviste un problema relacionado con Symfony? ¡Comparte aquí tus ideas y experiencia!
-                    {% else %}
-                        Did you solve a problem on a Symfony project? Share here your experience! And find solutions provided by other developers like you.
-                    {% endif %}
-                </p>
-                #}
+                        {#
+                        <p class="text-idea">
+                            {% if 'it' == app.request.locale %}
+                                Hai creato qualcosa di nuovo o risolto un problema relativo ad progetto Symfony? Condividi qui le tue idee e la tua eperienza!
+                            {% elseif 'es' == app.request.locale %}
+                                Creaste algo nuevo o resolviste un problema relacionado con Symfony? ¡Comparte aquí tus ideas y experiencia!
+                            {% else %}
+                                Did you solve a problem on a Symfony project? Share here your experience! And find solutions provided by other developers like you.
+                            {% endif %}
+                        </p>
+                        #}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <hr>
+    <div class="container">
 
-    <div class="row">
-        <div class="col-md-8">
-            <div class="bricks-wrapper">
-                <p class="head">
-                    {{ 'bricks.head'|trans({'%total%': bricks|length}, 'route_homepage')|raw }}
-                </p>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="bricks-wrapper">
+                    <p class="head">
+                        {{ 'bricks.head'|trans({'%total%': bricks|length}, 'route_homepage')|raw }}
+                    </p>
 
-                <ul class="bricks-list">
-                    {% for brick in bricks %}
-                        <li>
-                            <a href="{{ path('brick_show', {slug: brick.slug}) }}" class="title">
-                                <span class="glyphicon glyphicon-file"></span> {{ brick.title }}
-                            </a>
-                            <p class="brick-info">
-                                <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
-                                |
-                                <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans }}: {{ brick.updatedAt|date('d M Y') }}
-                                |
-                                {{ macrosBrick.toggleUserStarsBrick(brick) }}
-                                {% if brick.brickHasTags|length > 0 %}
+                    <ul class="bricks-list">
+                        {% for brick in bricks %}
+                            <li>
+                                <a href="{{ path('brick_show', {slug: brick.slug}) }}" class="title">
+                                    <span class="glyphicon glyphicon-file"></span> {{ brick.title }}
+                                </a>
+                                <p class="brick-info">
+                                    <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
                                     |
-                                    <span class="glyphicon glyphicon-tag"></span> {{ brick_formatted_tags(brick)|raw }}
-                                {% endif %}
-                            </p>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-4 right-col">
-
-            {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                <div id="form-login-wrapper">
-                    {{ render(controller('BricksUserBundle:Security:_homepageLogin')) }}
-                </div>
-            {% endif %}
-
-            <div id="latest-posts-on-symfonybricks-blog">
-                {% if 'it' == app.request.locale %}
-                    Ultimi post sul blog di <a href="http://blog.symfonybricks.com" target="_blank">SymfonyBricks</a>:
-                {% elseif 'es' == app.request.locale %}
-                    Últimas entradas en el blog de <a href="http://blog.symfonybricks.com" target="_blank">SymfonyBricks</a>:
-                {% else %}
-                    Latest posts on <a href="http://blog.symfonybricks.com" target="_blank">SymfonyBricks' Blog</a>:
-                {% endif %}
-
-                <div id="posts">
-                    <img src="{{ asset('img/ajax_loader.gif') }}" />
+                                    <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans }}: {{ brick.updatedAt|date('d M Y') }}
+                                    |
+                                    {{ macrosBrick.toggleUserStarsBrick(brick) }}
+                                    {% if brick.brickHasTags|length > 0 %}
+                                        |
+                                        <span class="glyphicon glyphicon-tag"></span> {{ brick_formatted_tags(brick)|raw }}
+                                    {% endif %}
+                                </p>
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
-            <script>
-                $(function() {
-                    $.ajax({
-                        url: "{{ path('_latestsPostsOnSymfonybricksBlog') }}",
-                        method: "GET",
-                        success: function(data) {
-                            $('#latest-posts-on-symfonybricks-blog #posts').html(data);
-                        }
-                    });
-                })
-            </script>
+            <div class="col-md-4 right-col">
+
+                {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <div id="form-login-wrapper">
+                        {{ render(controller('BricksUserBundle:Security:_homepageLogin')) }}
+                    </div>
+                {% endif %}
+
+                <div id="latest-posts-on-symfonybricks-blog">
+                    {% if 'it' == app.request.locale %}
+                        Ultimi post sul blog di <a href="http://blog.symfonybricks.com" target="_blank">SymfonyBricks</a>:
+                    {% elseif 'es' == app.request.locale %}
+                        Últimas entradas en el blog de <a href="http://blog.symfonybricks.com" target="_blank">SymfonyBricks</a>:
+                    {% else %}
+                        Latest posts on <a href="http://blog.symfonybricks.com" target="_blank">SymfonyBricks' Blog</a>:
+                    {% endif %}
+
+                    <div id="posts">
+                        <img src="{{ asset('img/ajax_loader.gif') }}" />
+                    </div>
+                </div>
+                <script>
+                    $(function() {
+                        $.ajax({
+                            url: "{{ path('_latestsPostsOnSymfonybricksBlog') }}",
+                            method: "GET",
+                            success: function(data) {
+                                $('#latest-posts-on-symfonybricks-blog #posts').html(data);
+                            }
+                        });
+                    })
+                </script>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row" style="text-align: justify;">
+            <div class="col-md-5">
+                <h2>
+                    {% if 'it' == app.request.locale %}
+                        Open source
+                    {% elseif 'es' == app.request.locale %}
+                        Código abierto
+                    {% else %}
+                        Open source
+                    {% endif %}
+                </h2>
+                {% if 'it' == app.request.locale %}
+                    Il codice sorgente del sito web che stai visitando è interamente disponibile su github: pronto per essere esaminato e migliorato.
+                {% elseif 'es' == app.request.locale %}
+                    El código fuente de la página web que estás visitando es totalmente disponible en github: listo para ser examinado y mejorado.
+                {% else %}
+                    The source code of the web site you are visiting is fully available on github: ready to be examined, forked, and improved.
+                {% endif %}
+                <br>
+                <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">
+                    {% if 'it' == app.request.locale %}
+                        Accedi al repository github.
+                    {% elseif 'es' == app.request.locale %}
+                        Visita el repositorio github.
+                    {% else %}
+                        Check out the github repository.
+                    {% endif %}
+                </a>
+                <br><br>
+                {% if 'it' == app.request.locale %}
+                    Chiunque è invitato a collaborare: puoi dare una mano in molto modi. Siamo fan dell'open source, come tutte le persone che contribuiscono a Symfony. E ci aiutiamo ;)
+                {% elseif 'es' == app.request.locale %}
+                    Todo el mundo está invitado a colaborar: puedes ayudar de muchas maneras. Somos fans del código abierto, como todas las personas que contribuyen a Symfony. Y nos ayudamos ;)
+                {% else %}
+                    Everyone is invited to collaborate: you can give a hand in many, many ways. We are open source lovers, like all the people contributing to Symfony. And we help each other ;)
+                {% endif %}
+            </div>
+            <div class="col-md-5 col-md-offset-2">
+                <h2>
+                    {% if 'it' == app.request.locale %}
+                        Per la comunità
+                    {% elseif 'es' == app.request.locale %}
+                        Para la comunidad
+                    {% else %}
+                        For the community
+                    {% endif %}
+                </h2>
+
+                {% if 'it' == app.request.locale %}
+                    L'obiettivo è diventare un repository omogeneo di frammenti di codice, ricette e guide (e altro che non riusciamo nemmeno ad immaginare ora) riguardanti Symfony e argomenti correlati.
+                {% elseif 'es' == app.request.locale %}
+                    El objetivo es convertirse en un repositorio homogéneo de fragmentos de código, recetas y guías (y más cosas que no podemos ni siquiera imaginar ahora) sobre Symfony y temas relacionados.
+                {% else %}
+                    The purpose is to become an homogeneous repository of code snippets, recipes and guides (and other we cannot even imagine now) about Symfony and topics related to it.
+                {% endif %}
+
+                <br><br>
+
+                {% if 'it' == app.request.locale %}
+                    I contenuti di questo sito sono inviati da te: in base alle tue possibilità potrai condividere una nuova guida, contribuire alla sua traduzione, migliorarla, correggere errori, o semplicemente esprimere un giudizio sulla sua utilità.
+                {% elseif 'es' == app.request.locale %}
+                   Los contenidos de esta plataforma estàn creados por ti: de acuerdo con tu capacidad, podrás compartir una nueva guía, contribuyr a su traducción, mejorarla, corregir errores, o simplemente expresar una opinión sobre su utilidad.
+                {% else %}
+                    Contents will be submitted by you: depending on your possibilities you will post a new recipe, contribute to its translation, improve them, correct errors, or just express a judgement about its utility.
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>
+                    {% if 'it' == app.request.locale %}
+                        Partecipa
+                    {% elseif 'es' == app.request.locale %}
+                        Participa
+                    {% else %}
+                        Get involved
+                    {% endif %}
+                </h3>
+                {% if 'it' == app.request.locale %}
+                    La prima cosa che puoi fare è mantenerti aggiornato attraverso Twitter e spargere la voce su SymfonyBricks.
+                {% elseif 'es' == app.request.locale %}
+                    Lo primero que puedes hacer es mantenerte al día a través de Twitter y difundir la palabra acerca de SymfonyBricks.
+                {% else %}
+                    The first important thing you can do is to use Twitter to stay tuned with the latest updates and to spread the word about SymfonyBricks.
+                {% endif %}
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-md-6 col-xs-6" style="text-align: right;">
+                <p class="text-italic text-small">
+                    {% if 'it' == app.request.locale %}
+                        Segui SymfonyBricks su Twitter
+                    {% elseif 'es' == app.request.locale %}
+                        Sigue SymfonyBricks en Twitter
+                    {% else %}
+                        Follow SymfonyBricks on Twitter
+                    {% endif %}
+                </p>
+                <a  class="socialite twitter-follow"
+                    href="https://twitter.com/SymfonyBricks"
+                    data-show-count="false"
+                >
+                    Follow @SymfonyBricks
+                </a>
+            </div>
+            <div class="col-md-6 col-xs-6">
+                <p class="text-italic text-small">
+                    {% if 'it' == app.request.locale %}
+                        Condividi il link
+                    {% elseif 'es' == app.request.locale %}
+                        Comparte el enlace
+                    {% else %}
+                        Share the link
+                    {% endif %}
+                    <a href="http://symfonybricks.com">symfonybricks.com</a>
+                </p>
+                <a  class="socialite twitter-share"
+                    href="http://twitter.com/share"
+                    data-url="http://symfonybricks.com/"
+                    data-via="SymfonyBricks"
+                >
+                    Twitter
+                </a>
+            </div>
+        </div>
+
+        <br><br><br>
+
+        <div class="row">
+            <div class="col-md-12">
+                {{ 'contribute_next_step'|trans({'%href%': path('contribute')}, 'route_homepage')|raw }}
+            </div>
         </div>
     </div>
 
-    <hr>
-
-    <div class="row" style="text-align: justify;">
-        <div class="col-md-5">
-            <h2>
-                {% if 'it' == app.request.locale %}
-                    Open source
-                {% elseif 'es' == app.request.locale %}
-                    Código abierto
-                {% else %}
-                    Open source
-                {% endif %}
-            </h2>
-            {% if 'it' == app.request.locale %}
-                Il codice sorgente del sito web che stai visitando è interamente disponibile su github: pronto per essere esaminato e migliorato.
-            {% elseif 'es' == app.request.locale %}
-                El código fuente de la página web que estás visitando es totalmente disponible en github: listo para ser examinado y mejorado.
-            {% else %}
-                The source code of the web site you are visiting is fully available on github: ready to be examined, forked, and improved.
-            {% endif %}
-            <br>
-            <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">
-                {% if 'it' == app.request.locale %}
-                    Accedi al repository github.
-                {% elseif 'es' == app.request.locale %}
-                    Visita el repositorio github.
-                {% else %}
-                    Check out the github repository.
-                {% endif %}
-            </a>
-            <br><br>
-            {% if 'it' == app.request.locale %}
-                Chiunque è invitato a collaborare: puoi dare una mano in molto modi. Siamo fan dell'open source, come tutte le persone che contribuiscono a Symfony. E ci aiutiamo ;)
-            {% elseif 'es' == app.request.locale %}
-                Todo el mundo está invitado a colaborar: puedes ayudar de muchas maneras. Somos fans del código abierto, como todas las personas que contribuyen a Symfony. Y nos ayudamos ;)
-            {% else %}
-                Everyone is invited to collaborate: you can give a hand in many, many ways. We are open source lovers, like all the people contributing to Symfony. And we help each other ;)
-            {% endif %}
-        </div>
-        <div class="col-md-5 col-md-offset-2">
-            <h2>
-                {% if 'it' == app.request.locale %}
-                    Per la comunità
-                {% elseif 'es' == app.request.locale %}
-                    Para la comunidad
-                {% else %}
-                    For the community
-                {% endif %}
-            </h2>
-
-            {% if 'it' == app.request.locale %}
-                L'obiettivo è diventare un repository omogeneo di frammenti di codice, ricette e guide (e altro che non riusciamo nemmeno ad immaginare ora) riguardanti Symfony e argomenti correlati.
-            {% elseif 'es' == app.request.locale %}
-                El objetivo es convertirse en un repositorio homogéneo de fragmentos de código, recetas y guías (y más cosas que no podemos ni siquiera imaginar ahora) sobre Symfony y temas relacionados.
-            {% else %}
-                The purpose is to become an homogeneous repository of code snippets, recipes and guides (and other we cannot even imagine now) about Symfony and topics related to it.
-            {% endif %}
-
-            <br><br>
-
-            {% if 'it' == app.request.locale %}
-                I contenuti di questo sito sono inviati da te: in base alle tue possibilità potrai condividere una nuova guida, contribuire alla sua traduzione, migliorarla, correggere errori, o semplicemente esprimere un giudizio sulla sua utilità.
-            {% elseif 'es' == app.request.locale %}
-               Los contenidos de esta plataforma estàn creados por ti: de acuerdo con tu capacidad, podrás compartir una nueva guía, contribuyr a su traducción, mejorarla, corregir errores, o simplemente expresar una opinión sobre su utilidad.
-            {% else %}
-                Contents will be submitted by you: depending on your possibilities you will post a new recipe, contribute to its translation, improve them, correct errors, or just express a judgement about its utility.
-            {% endif %}
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-12">
-            <h3>
-                {% if 'it' == app.request.locale %}
-                    Partecipa
-                {% elseif 'es' == app.request.locale %}
-                    Participa
-                {% else %}
-                    Get involved
-                {% endif %}
-            </h3>
-            {% if 'it' == app.request.locale %}
-                La prima cosa che puoi fare è mantenerti aggiornato attraverso Twitter e spargere la voce su SymfonyBricks.
-            {% elseif 'es' == app.request.locale %}
-                Lo primero que puedes hacer es mantenerte al día a través de Twitter y difundir la palabra acerca de SymfonyBricks.
-            {% else %}
-                The first important thing you can do is to use Twitter to stay tuned with the latest updates and to spread the word about SymfonyBricks.
-            {% endif %}
-        </div>
-    </div>
-    <br><br>
-    <div class="row">
-        <div class="col-md-6 col-xs-6" style="text-align: right;">
-            <p class="text-italic text-small">
-                {% if 'it' == app.request.locale %}
-                    Segui SymfonyBricks su Twitter
-                {% elseif 'es' == app.request.locale %}
-                    Sigue SymfonyBricks en Twitter
-                {% else %}
-                    Follow SymfonyBricks on Twitter
-                {% endif %}
-            </p>
-            <a  class="socialite twitter-follow"
-                href="https://twitter.com/SymfonyBricks"
-                data-show-count="false"
-            >
-                Follow @SymfonyBricks
-            </a>
-        </div>
-        <div class="col-md-6 col-xs-6">
-            <p class="text-italic text-small">
-                {% if 'it' == app.request.locale %}
-                    Condividi il link
-                {% elseif 'es' == app.request.locale %}
-                    Comparte el enlace
-                {% else %}
-                    Share the link
-                {% endif %}
-                <a href="http://symfonybricks.com">symfonybricks.com</a>
-            </p>
-            <a  class="socialite twitter-share"
-                href="http://twitter.com/share"
-                data-url="http://symfonybricks.com/"
-                data-via="SymfonyBricks"
-            >
-                Twitter
-            </a>
-        </div>
-    </div>
-    <br><br><br>
-    <div class="row">
-        <div class="col-md-12">
-            {{ 'contribute_next_step'|trans({'%href%': path('contribute')}, 'route_homepage')|raw }}
-        </div>
-    </div>
-    
 {% endblock %}

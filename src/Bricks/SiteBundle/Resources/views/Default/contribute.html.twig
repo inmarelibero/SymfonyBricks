@@ -12,185 +12,187 @@
 
 {% block main %}
 
-    <div class="row">
-        <div class="col-md-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
 
-            <h1>
-                {% if 'it' == app.request.locale %}
-                    Contribuisci a SymfonyBricks
-                {% elseif 'es' == app.request.locale %}
-                    Contribuye a SymfonyBricks
-                {% else %}
-                    Contribute to SymfonyBricks
-                {% endif %}
-            </h1>
+                <h1>
+                    {% if 'it' == app.request.locale %}
+                        Contribuisci a SymfonyBricks
+                    {% elseif 'es' == app.request.locale %}
+                        Contribuye a SymfonyBricks
+                    {% else %}
+                        Contribute to SymfonyBricks
+                    {% endif %}
+                </h1>
 
-            <p>
-                {% if 'it' == app.request.locale %}
-                    ...e così vuoi partecipare? Bene! In questa sezione troverai un modo per aiutare.
-                {% elseif 'es' == app.request.locale %}
-                    ...así que quieres participar? Bien! En esta sección encontrarás la manera de ayudar.
-                {% else %}
-                    ...so you want to be involved, uh? Great! In this section you will find a way to help.
-                {% endif %}
-            </p>
-            <br><br>
+                <p>
+                    {% if 'it' == app.request.locale %}
+                        ...e così vuoi partecipare? Bene! In questa sezione troverai un modo per aiutare.
+                    {% elseif 'es' == app.request.locale %}
+                        ...así que quieres participar? Bien! En esta sección encontrarás la manera de ayudar.
+                    {% else %}
+                        ...so you want to be involved, uh? Great! In this section you will find a way to help.
+                    {% endif %}
+                </p>
+                <br><br>
 
-            <h3>
-                {% if 'it' == app.request.locale %}
-                    Leggi la documentazione
-                {% elseif 'es' == app.request.locale %}
-                    Lee la documentación
-                {% else %}
-                    Read the doc
-                {% endif %}
-            </h3>
-            <p>
-                {% if 'it' == app.request.locale %}
-                    Prima di tutto, per comprendere meglio l'obiettivo di <a href="http://symfonybricks.com">SymfonyBricks</a>, potresti dare un'occhiata ad un po' di documentazione:
-                {% elseif 'es' == app.request.locale %}
-                    En primer lugar, para entender mejor el objetivo de <a href="http://symfonybricks.com">SymfonyBricks</a>, puedes echar un vistazo a la documentación:
-                {% else %}
-                    First of all, to better understand the purpose of <a href="http://symfonybricks.com">SymfonyBricks</a>, you could have a look at some docs:
-                {% endif %}
-                <dl>
-                    <dt>
-                        <a href="https://github.com/inmarelibero/SymfonyBricks/blob/master/README.md" target="_new">
+                <h3>
+                    {% if 'it' == app.request.locale %}
+                        Leggi la documentazione
+                    {% elseif 'es' == app.request.locale %}
+                        Lee la documentación
+                    {% else %}
+                        Read the doc
+                    {% endif %}
+                </h3>
+                <p>
+                    {% if 'it' == app.request.locale %}
+                        Prima di tutto, per comprendere meglio l'obiettivo di <a href="http://symfonybricks.com">SymfonyBricks</a>, potresti dare un'occhiata ad un po' di documentazione:
+                    {% elseif 'es' == app.request.locale %}
+                        En primer lugar, para entender mejor el objetivo de <a href="http://symfonybricks.com">SymfonyBricks</a>, puedes echar un vistazo a la documentación:
+                    {% else %}
+                        First of all, to better understand the purpose of <a href="http://symfonybricks.com">SymfonyBricks</a>, you could have a look at some docs:
+                    {% endif %}
+                    <dl>
+                        <dt>
+                            <a href="https://github.com/inmarelibero/SymfonyBricks/blob/master/README.md" target="_new">
+                                {% if 'it' == app.request.locale %}
+                                    README.md su github
+                                {% elseif 'es' == app.request.locale %}
+                                    README.md en github
+                                {% else %}
+                                    README.md on github
+                                {% endif %}
+                            </a>
+                        </dt>
+                        <dd>
                             {% if 'it' == app.request.locale %}
-                                README.md su github
+                                un buon punto di partenza
                             {% elseif 'es' == app.request.locale %}
-                                README.md en github
+                                un buen punto de partida
                             {% else %}
-                                README.md on github
+                                a good starting point
                             {% endif %}
-                        </a>
-                    </dt>
-                    <dd>
-                        {% if 'it' == app.request.locale %}
-                            un buon punto di partenza
-                        {% elseif 'es' == app.request.locale %}
-                            un buen punto de partida
-                        {% else %}
-                            a good starting point
-                        {% endif %}
-                    </dd>
-                    <br>
-                    <dt>
-                        <a href="https://github.com/inmarelibero/SymfonyBricks/blob/master/doc/index.md" target="_new">
+                        </dd>
+                        <br>
+                        <dt>
+                            <a href="https://github.com/inmarelibero/SymfonyBricks/blob/master/doc/index.md" target="_new">
+                                {% if 'it' == app.request.locale %}
+                                    Indice della documentazione
+                                {% elseif 'es' == app.request.locale %}
+                                    Índice de la documentación
+                                {% else %}
+                                    Documentation index
+                                {% endif %}
+                            </a>
+                        </dt>
+                        <dd>
                             {% if 'it' == app.request.locale %}
-                                Indice della documentazione
+                                doc/index.md su github
                             {% elseif 'es' == app.request.locale %}
-                                Índice de la documentación
+                                doc/index.md en github
                             {% else %}
-                                Documentation index
+                                doc/index.md on github
                             {% endif %}
-                        </a>
-                    </dt>
-                    <dd>
-                        {% if 'it' == app.request.locale %}
-                            doc/index.md su github
-                        {% elseif 'es' == app.request.locale %}
-                            doc/index.md en github
-                        {% else %}
-                            doc/index.md on github
-                        {% endif %}
-                    </dd>
-                    <br>
-                    <dt>
-                        <a href="https://github.com/inmarelibero/SymfonyBricks/blob/master/doc/manifest.md" target="_new">
+                        </dd>
+                        <br>
+                        <dt>
+                            <a href="https://github.com/inmarelibero/SymfonyBricks/blob/master/doc/manifest.md" target="_new">
+                                {% if 'it' == app.request.locale %}
+                                    Manifesto
+                                {% elseif 'es' == app.request.locale %}
+                                    Manifiesto
+                                {% else %}
+                                    Manifest
+                                {% endif %}
+                            </a>
+                        </dt>
+                        <dd>
                             {% if 'it' == app.request.locale %}
-                                Manifesto
+                                manifesto sull'obiettivo di SymfonyBricks
                             {% elseif 'es' == app.request.locale %}
-                                Manifiesto
+                                manifiesto acerca del objectivo de SymfonyBricks
                             {% else %}
-                                Manifest
+                                manifest on SymfonyBricks purpose
                             {% endif %}
-                        </a>
-                    </dt>
-                    <dd>
-                        {% if 'it' == app.request.locale %}
-                            manifesto sull'obiettivo di SymfonyBricks
-                        {% elseif 'es' == app.request.locale %}
-                            manifiesto acerca del objectivo de SymfonyBricks
-                        {% else %}
-                            manifest on SymfonyBricks purpose
-                        {% endif %}
-                    </dd>
-                    <br>
-                    <dt>
-                        <a href="https://github.com/inmarelibero/SymfonyBricks/wiki/Get-a-working-local-copy:-instructions" target="_new">
+                        </dd>
+                        <br>
+                        <dt>
+                            <a href="https://github.com/inmarelibero/SymfonyBricks/wiki/Get-a-working-local-copy:-instructions" target="_new">
+                                {% if 'it' == app.request.locale %}
+                                    Come installare in locale una copia di symfonybricks.com
+                                {% elseif 'es' == app.request.locale %}
+                                    Cómo instalar una copia local de symfonybricks.com
+                                {% else %}
+                                    How to get a working local copy of symfonybricks.com
+                                {% endif %}
+                            </a>
+                        </dt>
+                        <dd>
                             {% if 'it' == app.request.locale %}
-                                Come installare in locale una copia di symfonybricks.com
+                                pagina del wiki su github su come ottenere una copia di symfonybricks.com sulla tua macchina locale
                             {% elseif 'es' == app.request.locale %}
-                                Cómo instalar una copia local de symfonybricks.com
+                                página wiki en github sobre cómo obtener una copia de symfonybricks.com en tu ordenador local
                             {% else %}
-                                How to get a working local copy of symfonybricks.com
+                                wiki page on github on how to get a copy of symfonybricks.com to develop on a local machine
                             {% endif %}
-                        </a>
-                    </dt>
-                    <dd>
-                        {% if 'it' == app.request.locale %}
-                            pagina del wiki su github su come ottenere una copia di symfonybricks.com sulla tua macchina locale
-                        {% elseif 'es' == app.request.locale %}
-                            página wiki en github sobre cómo obtener una copia de symfonybricks.com en tu ordenador local
-                        {% else %}
-                            wiki page on github on how to get a copy of symfonybricks.com to develop on a local machine
-                        {% endif %}
-                    </dd>
-                </dl>
-            </p>
+                        </dd>
+                    </dl>
+                </p>
 
-            <br>
+                <br>
 
-            <h3>
-                {% if 'it' == app.request.locale %}
-                    Contribuisci al repository github
-                {% elseif 'es' == app.request.locale %}
-                    Contribuye al repositorio github
-                {% else %}
-                    Contribute on the github repository
-                {% endif %}
-            </h3>
-            <p>
-                {% if 'it' == app.request.locale %}
-                    Il repository github è <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">inmarelibero/SymfonyBricks</a>.
-                {% elseif 'es' == app.request.locale %}
-                    El repositorio github es <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">inmarelibero/SymfonyBricks</a>.
-                {% else %}
-                    The repository on github is <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">inmarelibero/SymfonyBricks</a>.
-                {% endif %}
-            </p>
-            <br>
-            <p>
-                {% if 'it' == app.request.locale %}
-                    Queste sono le issues attualmente aperte su github: puoi iniziare dal leggerle e dal commentarne alcune.
-                {% elseif 'es' == app.request.locale %}
-                    Estas son las issues que están actualmente abiertas en github: puedes empezar con leer y comentar algunas de ellas.
-                {% else %}
-                    These are the currently open issues on github: you can start by reading and commenting some of them
-                {% endif %}
-            </p>
+                <h3>
+                    {% if 'it' == app.request.locale %}
+                        Contribuisci al repository github
+                    {% elseif 'es' == app.request.locale %}
+                        Contribuye al repositorio github
+                    {% else %}
+                        Contribute on the github repository
+                    {% endif %}
+                </h3>
+                <p>
+                    {% if 'it' == app.request.locale %}
+                        Il repository github è <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">inmarelibero/SymfonyBricks</a>.
+                    {% elseif 'es' == app.request.locale %}
+                        El repositorio github es <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">inmarelibero/SymfonyBricks</a>.
+                    {% else %}
+                        The repository on github is <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">inmarelibero/SymfonyBricks</a>.
+                    {% endif %}
+                </p>
+                <br>
+                <p>
+                    {% if 'it' == app.request.locale %}
+                        Queste sono le issues attualmente aperte su github: puoi iniziare dal leggerle e dal commentarne alcune.
+                    {% elseif 'es' == app.request.locale %}
+                        Estas son las issues que están actualmente abiertas en github: puedes empezar con leer y comentar algunas de ellas.
+                    {% else %}
+                        These are the currently open issues on github: you can start by reading and commenting some of them
+                    {% endif %}
+                </p>
 
-            <ul id="github-issues">
-                {% if 'it' == app.request.locale %}
-                    caricamento delle issues github...
-                {% elseif 'es' == app.request.locale %}
-                    carga de las issues github...
-                {% else %}
-                    loading github issue...
-                {% endif %}
-            </ul>
+                <ul id="github-issues">
+                    {% if 'it' == app.request.locale %}
+                        caricamento delle issues github...
+                    {% elseif 'es' == app.request.locale %}
+                        carga de las issues github...
+                    {% else %}
+                        loading github issue...
+                    {% endif %}
+                </ul>
 
-            <p>
-                {% if 'it' == app.request.locale %}
-                    Hai un'idea riguardo SymfonyBricks? <a href="https://github.com/inmarelibero/SymfonyBricks/issues" target="_new">Apri una issue su github.</a>
-                {% elseif 'es' == app.request.locale %}
-                    Tienes una idea acerca de SymfonyBricks? <a href="https://github.com/inmarelibero/SymfonyBricks/issues" target="_new">Abre una issue su github.</a>
-                {% else %}
-                    Any idea about SymfonyBricks? <a href="https://github.com/inmarelibero/SymfonyBricks/issues" target="_new">Open an issue on github.</a>
-                {% endif %}
-            </p>
+                <p>
+                    {% if 'it' == app.request.locale %}
+                        Hai un'idea riguardo SymfonyBricks? <a href="https://github.com/inmarelibero/SymfonyBricks/issues" target="_new">Apri una issue su github.</a>
+                    {% elseif 'es' == app.request.locale %}
+                        Tienes una idea acerca de SymfonyBricks? <a href="https://github.com/inmarelibero/SymfonyBricks/issues" target="_new">Abre una issue su github.</a>
+                    {% else %}
+                        Any idea about SymfonyBricks? <a href="https://github.com/inmarelibero/SymfonyBricks/issues" target="_new">Open an issue on github.</a>
+                    {% endif %}
+                </p>
 
+            </div>
         </div>
     </div>
 

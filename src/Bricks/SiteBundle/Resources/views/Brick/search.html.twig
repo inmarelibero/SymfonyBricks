@@ -14,51 +14,53 @@
 
 {% block main %}
 
-    <div class="row">
-        <div class="col-md-12">
-        
-            <h1>{{ 'brick.search.page_title'|trans }}</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
 
-            <form id="form-search" class="well form-inline" action="{{ path('brick_search') }}" role="form">
+                <h1>{{ 'brick.search.page_title'|trans }}</h1>
 
-                <div class="form-group group-title">
-                    <label>{{ 'brick.search.form.q'|trans }}</label>
-                    <input name="q" class="form-control" type="text" value="{{ app.request.get('q') }}">
-                </div>
-                
-                <div class="form-group group-tag">
-                    <label>Tag</label>
-                    <input name="tag" class="form-control" size="16" type="text" value="{{ app.request.get('tag') }}">
-                </div>
-                
-                <div class="form-group group-btn">
-                    <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></span> {{ 'brick.search.form.button_submit'|trans }}</button>
-                </div>
-            </form>
-            
-            {% if entities|length > 0 %}
-                <ul class="bricks-list">
-                    {% for brick in entities %}
-                        <li>
-                            <a href="{{ path('brick_show', {slug: brick.slug}) }}">
-                                {{ brick.title }}
-                            </a>
-                            <p class="brick-info">
-                                <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
-                                |
-                                <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans }}: {{ brick.updatedAt|date('d M Y') }}
-                                |
-                                {{ macrosBrick.toggleUserStarsBrick(brick) }}
-                                |
-                                <span class="glyphicon glyphicon-tag"></span> {{ brick_formatted_tags(brick)|raw }}
-                            </p>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                {{ 'brick.search.no_results'|trans }}
-            {% endif %}
-        
+                <form id="form-search" class="well form-inline" action="{{ path('brick_search') }}" role="form">
+
+                    <div class="form-group group-title">
+                        <label>{{ 'brick.search.form.q'|trans }}</label>
+                        <input name="q" class="form-control" type="text" value="{{ app.request.get('q') }}">
+                    </div>
+
+                    <div class="form-group group-tag">
+                        <label>Tag</label>
+                        <input name="tag" class="form-control" size="16" type="text" value="{{ app.request.get('tag') }}">
+                    </div>
+
+                    <div class="form-group group-btn">
+                        <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></span> {{ 'brick.search.form.button_submit'|trans }}</button>
+                    </div>
+                </form>
+
+                {% if entities|length > 0 %}
+                    <ul class="bricks-list">
+                        {% for brick in entities %}
+                            <li>
+                                <a href="{{ path('brick_show', {slug: brick.slug}) }}">
+                                    {{ brick.title }}
+                                </a>
+                                <p class="brick-info">
+                                    <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
+                                    |
+                                    <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans }}: {{ brick.updatedAt|date('d M Y') }}
+                                    |
+                                    {{ macrosBrick.toggleUserStarsBrick(brick) }}
+                                    |
+                                    <span class="glyphicon glyphicon-tag"></span> {{ brick_formatted_tags(brick)|raw }}
+                                </p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    {{ 'brick.search.no_results'|trans }}
+                {% endif %}
+
+            </div>
         </div>
     </div>
     

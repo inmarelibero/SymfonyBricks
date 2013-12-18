@@ -79,7 +79,7 @@
                         </form>
 
                         <ul class="nav navbar-nav">
-                            <li {#class="active"#}>
+                            <li>
                                 <a href="http://blog.symfonybricks.com" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'blog']);">
                                     blog
                                 </a>
@@ -215,28 +215,29 @@
 
             <section id="main">
             
-                <div class="container">
+                {% set flash_messages = app.session.flashbag.all %}
 
-                    {% set flash_messages = app.session.flashbag.all %}
-
-                    {% if flash_messages|length > 0 %}
-                        <div class="row">
-                            <div class="col-md-12">
-                                {% for type, messages in flash_messages %}
-                                    <div class="alert alert-{{ type }}">
-                                        <a class="close" data-dismiss="alert">×</a>
-                                        {% for message in messages %}
-                                            {{ message|trans({}, 'alert') }}
-                                        {% endfor %}
-                                    </div>
-                                {% endfor %}
+                {% if flash_messages|length > 0 %}
+                    <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {% for type, messages in flash_messages %}
+                                        <div class="alert alert-{{ type }}">
+                                            <a class="close" data-dismiss="alert">×</a>
+                                            {% for message in messages %}
+                                                {{ message|trans({}, 'alert') }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
                             </div>
-                        </div>
-                        
-                    {% endif %}
-            
-                    {% block main %}{% endblock %}
-                </div>
+                    </div>
+
+                {% endif %}
+
+                {# main bock #}
+                {% block main %}{% endblock %}
+
             </section>
             <div class="push-footer"></div>
         </div>
@@ -245,18 +246,47 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-xs-6">
-                        <ul>
-                            <li><a href="{{ path('homepage') }}" target="_new">SymfonyBricks.com</a></li>
-                            <li><a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">SymfonyBricks github repository</a></li>
+                        <ul class="links">
+                            <li>
+                                <a href="{{ path('homepage') }}">Homepage</a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">Github repository</a>
+                            </li>
+                            <li>
+                                <a href="http://blog.symfonybricks.com" target="_new">
+                                    Blog
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('wiki_homepage') }}">
+                                    {{ 'main_navbar.wiki'|trans|capitalize }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('contribute') }}">
+                                    {{ 'main_navbar.contribute'|trans|capitalize }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('developers') }}">
+                                    {{ 'main_navbar.developers'|trans|capitalize }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
-                    <div class="col-md-4 hidden-sm hidden-xs" style="text-align: center">
+                    <div class="col-md-4 hidden-sm hidden-xs col-center">
+
+                        <a href="{{ path('homepage') }}">SymfonyBricks</a>
+
+                        <br><br>
+
                         {% if 'it' == app.request.locale %}
-                            online da: Lun 1 Ott 2012, 23:15:23 CEST
+                            online da: Lun 1 Ott 2012, 23:15:23
                         {% elseif 'es' == app.request.locale %}
-                            en línea desde: Lun 1 Oct 2012, 23:15:23 CEST
+                            en línea desde: Lun 1 Oct 2012, 23:15:23
                         {% else %}
-                            online since: Mon 1 Oct 2012, 23:15:23 CEST
+                            online since: Mon 1 Oct 2012, 23:15:23
                         {% endif %}
                     </div>
                     <div class="col-md-4 col-xs-6" style="text-align: right">

@@ -10,17 +10,25 @@
 {% block main %}
 
     <div class="route-exception-wrapper">
-        <h1>Whoops, looks like something went wrong.</h1>
 
-        <br><br><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
 
-        <h3>
-            Page returned: <span>Error {{ exception.statusCode }}</span>
-        </h3>
+                    <h1>Whoops, looks like something went wrong.</h1>
 
-        <p>
-            The resource you were looking for has not been found.
-        </p>
+                    <br><br><br>
+
+                    <h3>
+                        Page returned: <span>Error {{ exception.statusCode }}</span>
+                    </h3>
+
+                    <p>
+                        The resource you were looking for has not been found.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 
 {% endblock %}

@@ -1,3 +1,6 @@
+/* import assets */
+@import "variables.less";
+
 /******************************************************************************************
 CONTROLLER-DEFAULT.LESS
 
@@ -11,34 +14,43 @@ rules for all the templates loaded through Bricks\SiteBundle\DefaultController
 */
 body.route-index_not_localized , body.route-homepage {
 
-    .head {
-        #index-logo {
-            max-width:  100%;
-            overflow:   hidden;
-            margin-bottom:  15px;
-        }
-        .payoff {
-            p {
-                overflow: hidden;
-                margin-bottom:  0px;
-                font-size:  20px;
+    #homepage-head-wrapper {
+        padding:        20px 0px;
+        margin-bottom:  20px;
+        background:     @sb_green_medium;
+        color:          #FFF;
 
-                strong {
-                    font-size: 30px;
-                }
+        .head {
+            #index-logo {
+                max-width:  100%;
+                overflow:   hidden;
+            }
+            .payoff {
+                p {
+                    overflow: hidden;
+                    margin-bottom:  0px;
+                    font-size:  20px;
 
-                &.first {
-                    margin-top:  -16px;
-                }
-                &.second {
-                    margin-top:  13px;
-                    font-size:  16px;
-                }
+                    /*
+                    strong {
+                        font-size: 30px;
+                    }
+                    */
 
-                a {
-                    float:  left;
-                    font-size: 13px;
-                    margin-top: -1px;
+                    &.first {
+                        margin-top:  -6px;
+                        font-size:  23px;
+                    }
+                    &.second {
+                        margin-top:  13px;
+                        font-size:  16px;
+                    }
+
+                    a {
+                        float:  left;
+                        font-size: 13px;
+                        margin-top: -1px;
+                    }
                 }
             }
         }

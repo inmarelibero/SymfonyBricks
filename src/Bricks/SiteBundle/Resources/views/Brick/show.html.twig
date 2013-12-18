@@ -27,122 +27,126 @@
 
 {% block main %}
 
-    <div itemscope itemtype ="http://schema.org/CreativeWork">
+    <div class="container">
 
-        <div id="affix-info" class="hidden-sm hidden-xs">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="content">
-                            <div class="btn-group" id="brick-chapters">
-                                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <span class="glyphicon glyphicon-bookmark"></span> {{ 'index'|trans({}, 'route_brick_show')|capitalize }}
-                                    <span class="caret"></span>
-                                </a>
-                                <ul id="chapters-index" class="dropdown-menu" role="menu"></ul>
-                            </div>
+        <div itemscope itemtype ="http://schema.org/CreativeWork">
 
-                            <a href="javascript:void(0);" onclick="$('html, body').animate({scrollTop:0}, 200);" id="scroll-to-top">
-                                {{ 'scroll_to_top'|trans({}, 'route_brick_show') }} <span class="glyphicon glyphicon-chevron-up"></span>
-                            </a>
-                            <div id="social-share" class="social-buttons">
-                                <a  class="socialite twitter-share"
-                                    href="http://twitter.com/share"
-                                    data-url="{{ app.request.uri }}"
-                                    data-text="{{ brick.title }}"
-                                    data-via="SymfonyBricks"
-                                >
-                                    Twitter
+            <div id="affix-info" class="hidden-sm hidden-xs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="content">
+                                <div class="btn-group" id="brick-chapters">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <span class="glyphicon glyphicon-bookmark"></span> {{ 'index'|trans({}, 'route_brick_show')|capitalize }}
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul id="chapters-index" class="dropdown-menu" role="menu"></ul>
+                                </div>
+
+                                <a href="javascript:void(0);" onclick="$('html, body').animate({scrollTop:0}, 200);" id="scroll-to-top">
+                                    {{ 'scroll_to_top'|trans({}, 'route_brick_show') }} <span class="glyphicon glyphicon-chevron-up"></span>
                                 </a>
-                                <a  class="socialite googleplus-one"
-                                    data-size="medium"
-                                    data-url="{{ app.request.uri }}"
-                                >
-                                    Google+
-                                </a>
+                                <div id="social-share" class="social-buttons">
+                                    <a  class="socialite twitter-share"
+                                        href="http://twitter.com/share"
+                                        data-url="{{ app.request.uri }}"
+                                        data-text="{{ brick.title }}"
+                                        data-via="SymfonyBricks"
+                                    >
+                                        Twitter
+                                    </a>
+                                    <a  class="socialite googleplus-one"
+                                        data-size="medium"
+                                        data-url="{{ app.request.uri }}"
+                                    >
+                                        Google+
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-9" id="brick">
-                <h1 class="title" itemprop="headline">
-                    {{ brick.title }}
-                </h1>
+            <div class="row">
+                <div class="col-md-9" id="brick">
+                    <h1 class="title" itemprop="headline">
+                        {{ brick.title }}
+                    </h1>
 
-                <div class="description" itemprop="description">
-                    {{ brick.description|nl2br }}
+                    <div class="description" itemprop="description">
+                        {{ brick.description|nl2br }}
+                    </div>
+
+                    <div class="content" itemprop="text">
+                        {{ brick.content|markdown }}
+                    </div>
+
+                    <hr>
+
+                    {{ knp_disqus_render('symfonybricks', {'identifier': '/brick-'~brick.id, 'limit': 10}) }}
                 </div>
+                <div class="col-md-3">
+                    <div id="info">
+                        <table>
+                            <tr itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                <th>
+                                    <span class="glyphicon glyphicon-user"></span>
+                                </th>
+                                <td>
+                                    <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}" itemprop="url">
+                                        <span itemprop="name">{{ brick.user }}</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </th>
+                                <td>
+                                    {{ 'brick.last_update'|trans }}
+                                    <br>
+                                    <time itemprop="dateModified" datetime="{{ brick.updatedAt|date('Y-m-d') }}">
+                                        {{ brick.updatedAt|date('d M Y') }}
+                                    </time>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="glyphicon glyphicon-flag"></span>
+                                </th>
+                                <td>
+                                    {{- 'brick.license'|trans -}}
+                                    <br>
+                                    {{- (brick.brickLicense) ? macrosBrickLicense.brickLicenseModal(brick) : '-' -}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="glyphicon glyphicon-tag"></span>
+                                </th>
+                                <td>
+                                    {{ brick_formatted_tags(brick)|raw }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="2">
+                                    {{ macrosBrick.toggleUserStarsBrick(brick) }}
+                                </th>
+                            </tr>
 
-                <div class="content" itemprop="text">
-                    {{ brick.content|markdown }}
-                </div>
+                        </table>
 
-                <hr>
-
-                {{ knp_disqus_render('symfonybricks', {'identifier': '/brick-'~brick.id, 'limit': 10}) }}
-            </div>
-            <div class="col-md-3">
-                <div id="info">
-                    <table>
-                        <tr itemprop="author" itemscope itemtype="http://schema.org/Person">
-                            <th>
-                                <span class="glyphicon glyphicon-user"></span>
-                            </th>
-                            <td>
-                                <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}" itemprop="url">
-                                    <span itemprop="name">{{ brick.user }}</span>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </th>
-                            <td>
-                                {{ 'brick.last_update'|trans }}
-                                <br>
-                                <time itemprop="dateModified" datetime="{{ brick.updatedAt|date('Y-m-d') }}">
-                                    {{ brick.updatedAt|date('d M Y') }}
-                                </time>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <span class="glyphicon glyphicon-flag"></span>
-                            </th>
-                            <td>
-                                {{- 'brick.license'|trans -}}
-                                <br>
-                                {{- (brick.brickLicense) ? macrosBrickLicense.brickLicenseModal(brick) : '-' -}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <span class="glyphicon glyphicon-tag"></span>
-                            </th>
-                            <td>
-                                {{ brick_formatted_tags(brick)|raw }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th colspan="2">
-                                {{ macrosBrick.toggleUserStarsBrick(brick) }}
-                            </th>
-                        </tr>
-
-                    </table>
-
-                    <div class="message-actions">
-                        {% render(controller('BricksMessageBundle:ButtonModalMessage:_buttonModalMessageToUser', {brick: brick})) %}
-                        <br>
-                        {% render(controller('BricksMessageBundle:ButtonModalMessage:_buttonModalMessageClaimBrick', {brick: brick})) %}
+                        <div class="message-actions">
+                            {% render(controller('BricksMessageBundle:ButtonModalMessage:_buttonModalMessageToUser', {brick: brick})) %}
+                            <br>
+                            {% render(controller('BricksMessageBundle:ButtonModalMessage:_buttonModalMessageClaimBrick', {brick: brick})) %}
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
     </div>

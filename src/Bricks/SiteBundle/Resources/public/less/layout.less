@@ -1,5 +1,6 @@
-/* import bootstrap assets */
-//@import "../../../../../../web/assets/bootstrap-3.0.0/less/mixins.less";
+/* import assets */
+@import "../../../../../../web/assets/bootstrap-3.0.0/less/mixins.less";
+@import "variables.less";
 
 /******************************************************************************************
 FONTS
@@ -34,6 +35,7 @@ FONTS
     font-weight: normal;
     font-style: normal;
 }
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
 /******************************************************************************************
 GENERAL STYLES
@@ -41,11 +43,11 @@ GENERAL STYLES
 general rules for common html tags
 ******************************************************************************************/
 a {
-    color: #E94132;
+    color: @sb_green_medium;
     font-weight:    bold;
 
     &:hover {
-        color: #E94132;
+        color: @sb_green_light;
         text-decoration: none;
     }
 }
@@ -87,28 +89,14 @@ ul, li {
 HTML LAYOUT
 ******************************************************************************************/
 body {
-    font-family: 'helveticaneuelight', Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', 'helveticaneuelight', Helvetica, Arial, sans-serif;
     padding: 0px;
     margin: 0px;
     //background: url('/img/debut_light/debut_light.png');
-    background: #F7F7F7;
-    
+    //background: #F7F7F7;
+    background: #FFFFFF;
+
     &, p { font-size:  16px; }
-
-    header {
-        .navbar {
-            border-radius:  0px;
-
-            a { font-weight: normal; }
-
-            .nav {
-                li > a {
-                    padding-left:   8px;
-                    padding-right:  8px;
-                }
-            }
-        }
-    }
 
     #main {
         padding-top: 20px;
@@ -118,11 +106,89 @@ body {
     footer {
         border-top:     1px solid #CCC;
         padding-top:    10px;
-        background:     #FAFAFA;
-        
+        //background:     @sb_green_light;
+        #gradient > .vertical-three-colors(@sb_green_medium, @sb_green_medium, 10%, @sb_green_dark_light);
         font-size:  11px;
-        
-        //#gradient > .vertical(#EBEBEB, #C4C4C4);
+        color:  #FFF;
+
+        a {
+            color:  #FFF;
+
+            &:hover { color: #222; }
+        }
+        .col-center {
+            text-align: center;
+
+            a {
+                font-family: helveticaneuebold;
+                font-size: 30px;
+                line-height: 30px;
+            }
+        }
+    }
+}
+
+/******************************************************************************************
+MAIN NAVBAR
+******************************************************************************************/
+body {
+    header {
+        #main-navbar.navbar {
+            border: 0px none;
+            border-radius:  0px;
+            margin-bottom:  0px;
+
+            #gradient > .vertical-three-colors(@sb_green_medium, @sb_green_medium, 10%, @sb_green_dark_light);
+
+            a { font-weight: normal; }
+
+            a#brand {
+                color: #FFF;
+            }
+
+            ul.nav {
+                li {
+                    a {
+                        padding-left:   8px;
+                        padding-right:  8px;
+
+                        color: #FFF;
+                    }
+
+                    &.open {
+                        a {
+                            color:  @sb_green_medium;
+                        }
+                        .caret {
+                            border-top-color: @sb_green_medium;
+                            border-bottom-color: @sb_green_medium;
+                        }
+                    }
+                }
+
+                .caret {
+                    border-top-color: #FFF;
+                    border-bottom-color: #FFF;
+                }
+
+                li#locale-selector {
+                    & > a { margin-top: 2px; }
+
+                    ul.dropdown-menu {
+                        min-width: 80px;
+                        text-align: center;
+                    }
+                }
+
+                &.navbar-right {
+                    li {
+                        a {
+                            padding:    11px 8px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -132,7 +198,7 @@ FIXED FOOTER
 footer fixed to bottom as explained here:
 http://ryanfait.com/resources/footer-stick-to-bottom-of-page/
 ******************************************************************************************/
-@footerHeight:  80px;
+@footerHeight:  115px;
 
 * {
     margin: 0;
@@ -148,7 +214,6 @@ html, body {
 }
 .footer, .push-footer {
     height: @footerHeight;
-    padding-top:    20px;
 }
 
 /******************************************************************************************
@@ -162,18 +227,6 @@ useful classes for custom styles
 img.user_profile_image {
     border: 1px solid #CCC;
     border-radius: 3px;
-}
-/******************************************************************************************
-MAIN NAVBAR
-******************************************************************************************/
-#main-navbar {
-    li#locale-selector {
-        & > a { margin-top: 2px; }
-        ul.dropdown-menu {
-            min-width: 80px;
-            text-align: center;
-        }
-    }
 }
 
 /******************************************************************************************

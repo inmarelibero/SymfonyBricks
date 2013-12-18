@@ -14,34 +14,36 @@
 
     <div id="brick-not-published-wrapper">
 
-        <div class="row">
-            <div class="span12">
-            
-                <h1>
-                    {% if 'it' == app.request.locale %}
-                        Contenuto non disponibile
-                    {% elseif 'es' == app.request.locale %}
-                        Contenido no disponible
-                    {% else %}
-                        Content not available
-                    {% endif %}
-                </h1>
-                
-                <br><br>
-                
-                <p>
-                    {% if 'it' == app.request.locale %}
-                        Il contenuto al quale stai cercando di accedere esiste, ma è attualmente non pubblicato.
-                    {% elseif 'es' == app.request.locale %}
-                        El contenido al que estás intentando acceder existe, pero no está publicado actualmente.
-                    {% else %}
-                        The content you are trying to access exists, but it is currently not published.
-                    {% endif %}
-                </p>
-                
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+
+                    <h1>
+                        {% if 'it' == app.request.locale %}
+                            Contenuto non disponibile
+                        {% elseif 'es' == app.request.locale %}
+                            Contenido no disponible
+                        {% else %}
+                            Content not available
+                        {% endif %}
+                    </h1>
+
+                    <br><br>
+
+                    <p>
+                        {% if 'it' == app.request.locale %}
+                            Il contenuto al quale stai cercando di accedere esiste, ma è attualmente non pubblicato.
+                        {% elseif 'es' == app.request.locale %}
+                            El contenido al que estás intentando acceder existe, pero no está publicado actualmente.
+                        {% else %}
+                            The content you are trying to access exists, but it is currently not published.
+                        {% endif %}
+                    </p>
+
+                </div>
             </div>
         </div>
-        
+
     </div>
-    
+
 {% endblock %}

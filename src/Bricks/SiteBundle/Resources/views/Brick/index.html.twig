@@ -12,24 +12,26 @@
 
 {% block main %}
 
-    <div class="row">
-        <div class="span12">
-            <h2>Bricks</h2>
-            
-            <ul class="bricks-list">
-                {% for brick in bricks %}
-                    <li>
-                        <a href="{{ path('brick_show', {slug: brick.slug}) }}">
-                            {{ brick.title }}
-                        </a>
-                        <p>
-                            <span class="glyphicon glyphicon-user"></span> {{ brick.user }}
-                            |
-                            <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans }}: {{ brick.updatedAt|date('d/m/Y') }}
-                        </p>
-                    </li>
-                {% endfor %}
-            </ul>
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <h2>Bricks</h2>
+
+                <ul class="bricks-list">
+                    {% for brick in bricks %}
+                        <li>
+                            <a href="{{ path('brick_show', {slug: brick.slug}) }}">
+                                {{ brick.title }}
+                            </a>
+                            <p>
+                                <span class="glyphicon glyphicon-user"></span> {{ brick.user }}
+                                |
+                                <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans }}: {{ brick.updatedAt|date('d/m/Y') }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
         

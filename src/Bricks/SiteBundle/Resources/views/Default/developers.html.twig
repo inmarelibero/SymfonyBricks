@@ -12,150 +12,152 @@
 
 {% block main %}
 
-    <div class="row">
-        <div class="col-md-12">
-            <h1>
-                {% if 'it' == app.request.locale %}
-                    Sviluppatori
-                {% elseif 'es' == app.request.locale %}
-                    Desarrolladores
-                {% else %}
-                    Developers
-                {% endif %}
-            </h1>
-            <p>
-                {% if 'it' == app.request.locale %}
-                    Questa pagina illustra chi gestisce e sviluppa SymfonyBricks.
-                {% elseif 'es' == app.request.locale %}
-                    Esta página muestra quién gestiona y desarrolla SymfonyBricks.
-                {% else %}
-                    This page illustrate who manages and develops SymfonyBricks.
-                {% endif %}
-            </p>
-        </div>
-    </div>
-    
-    <br><br>
-    
-    <div class="row">
-        <div class="col-md-12">
-            <h3>
-                {% if 'it' == app.request.locale %}
-                    Sviluppatori principali
-                {% elseif 'es' == app.request.locale %}
-                    Desarrolladores principales
-                {% else %}
-                    Main developers
-                {% endif %}
-            </h3>
-        </div>
-    </div>
-    
-    <div class="row main-developers">
-        <div class="col-md-12">
-            <div class="name">
-                Emanuele Gaspari Castelletti
-            </div>
-            <div class="row">
-                <div class="col-md-1">
-                    <img src="http://www.gravatar.com/avatar/d02f7988d633a63ec4f1f1f936e46178">
-                </div>                
-                <div class="col-md-3">
-                    <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new" class="btn btn-mini">
-                        github page
-                    </a>
-                    <br>
-                    <a  class="socialite twitter-follow"
-                        href="https://twitter.com/inmarelibero"
-                        data-show-count="false"
-                    >
-                        @inmarelibero
-                    </a>
-                </div>
-                <div class="col-md-8">
-                    <i>
-                        {% if 'it' == app.request.locale %}
-                            "viluppatore Php/Symfony italiano e fan dell'open-source."
-                        {% elseif 'es' == app.request.locale %}
-                            "Desarrollador Php/Symfony italiano y open-source fan."
-                        {% else %}
-                            "Italian Php/Symfony developer and open-source fan."
-                        {% endif %}
-                    </i>
-                    <br><br>
-                    <b>
-                        {% if 'it' == app.request.locale %}
-                            Ruolo in SymfonyBricks:
-                        {% elseif 'es' == app.request.locale %}
-                            Rol en SymfonyBricks:
-                        {% else %}
-                            Role in SymfonyBricks:
-                        {% endif %}
-                    </b>
-                    <ul>
-                        <li>
-                            {% if 'it' == app.request.locale %}
-                                Ideatore e sviluppatore principale
-                            {% elseif 'es' == app.request.locale %}
-                                Ideator y desarrollador principal
-                            {% else %}
-                                Ideator and main developer
-                            {% endif %}
-                        </li>
-                        <li>
-                            {% if 'it' == app.request.locale %}
-                                Compratore e manutentore dell'hosting
-                            {% elseif 'es' == app.request.locale %}
-                                Comprador y mantenedor del hosting
-                            {% else %}
-                                Hosting buyer and mantainer
-                            {% endif %}
-                        </li>
-                    </ul>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>
+                    {% if 'it' == app.request.locale %}
+                        Sviluppatori
+                    {% elseif 'es' == app.request.locale %}
+                        Desarrolladores
+                    {% else %}
+                        Developers
+                    {% endif %}
+                </h1>
+                <p>
+                    {% if 'it' == app.request.locale %}
+                        Questa pagina illustra chi gestisce e sviluppa SymfonyBricks.
+                    {% elseif 'es' == app.request.locale %}
+                        Esta página muestra quién gestiona y desarrolla SymfonyBricks.
+                    {% else %}
+                        This page illustrate who manages and develops SymfonyBricks.
+                    {% endif %}
+                </p>
             </div>
         </div>
-    </div>
-    
-    <br><br>
-    
-    <div class="row">
-        <div class="col-md-12">
-            <h3>
-                {% if 'it' == app.request.locale %}
-                    Contributori Github
-                {% elseif 'es' == app.request.locale %}
-                    Colaboradores Github
-                {% else %}
-                    Github contributors
-                {% endif %}
-            </h3>
+
+        <br><br>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>
+                    {% if 'it' == app.request.locale %}
+                        Sviluppatori principali
+                    {% elseif 'es' == app.request.locale %}
+                        Desarrolladores principales
+                    {% else %}
+                        Main developers
+                    {% endif %}
+                </h3>
+            </div>
         </div>
-    </div>
-    
-    {%
-        set contributors = [
-            {
-                'username': 'yohang',
-                'info': '"PHP/Symfony developer, JS enthusiast"',
-                'gravatar_url': 'http://www.gravatar.com/avatar/36e04f5e8d7167c94c8ed78baff0cd4c?s',
-                'github_url': 'https://github.com/yohang',
-                'twitter_url': 'https://twitter.com/rouKs'
-            },
-            {
-                'username': 'pborreli',
-                'info': '"Symfony evangelist, impulsive typo fixer."',
-                'gravatar_url': 'http://www.gravatar.com/avatar/5c299a02c11ce797f20df385f560a16a?s',
-                'github_url': 'https://github.com/pborreli',
-                'twitter_url': 'https://twitter.com/pborreli'
-            }
-        ]
-    %}
-    
-    <div id="github-contrbutors">
-        {% for contributor in contributors %}
-            {{ _self.githubContributor(contributor) }}
-        {% endfor %}
+
+        <div class="row main-developers">
+            <div class="col-md-12">
+                <div class="name">
+                    Emanuele Gaspari Castelletti
+                </div>
+                <div class="row">
+                    <div class="col-md-1">
+                        <img src="http://www.gravatar.com/avatar/d02f7988d633a63ec4f1f1f936e46178">
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new" class="btn btn-mini">
+                            github page
+                        </a>
+                        <br>
+                        <a  class="socialite twitter-follow"
+                            href="https://twitter.com/inmarelibero"
+                            data-show-count="false"
+                        >
+                            @inmarelibero
+                        </a>
+                    </div>
+                    <div class="col-md-8">
+                        <i>
+                            {% if 'it' == app.request.locale %}
+                                "viluppatore Php/Symfony italiano e fan dell'open-source."
+                            {% elseif 'es' == app.request.locale %}
+                                "Desarrollador Php/Symfony italiano y open-source fan."
+                            {% else %}
+                                "Italian Php/Symfony developer and open-source fan."
+                            {% endif %}
+                        </i>
+                        <br><br>
+                        <b>
+                            {% if 'it' == app.request.locale %}
+                                Ruolo in SymfonyBricks:
+                            {% elseif 'es' == app.request.locale %}
+                                Rol en SymfonyBricks:
+                            {% else %}
+                                Role in SymfonyBricks:
+                            {% endif %}
+                        </b>
+                        <ul>
+                            <li>
+                                {% if 'it' == app.request.locale %}
+                                    Ideatore e sviluppatore principale
+                                {% elseif 'es' == app.request.locale %}
+                                    Ideator y desarrollador principal
+                                {% else %}
+                                    Ideator and main developer
+                                {% endif %}
+                            </li>
+                            <li>
+                                {% if 'it' == app.request.locale %}
+                                    Compratore e manutentore dell'hosting
+                                {% elseif 'es' == app.request.locale %}
+                                    Comprador y mantenedor del hosting
+                                {% else %}
+                                    Hosting buyer and mantainer
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>
+                    {% if 'it' == app.request.locale %}
+                        Contributori Github
+                    {% elseif 'es' == app.request.locale %}
+                        Colaboradores Github
+                    {% else %}
+                        Github contributors
+                    {% endif %}
+                </h3>
+            </div>
+        </div>
+
+        {%
+            set contributors = [
+                {
+                    'username': 'yohang',
+                    'info': '"PHP/Symfony developer, JS enthusiast"',
+                    'gravatar_url': 'http://www.gravatar.com/avatar/36e04f5e8d7167c94c8ed78baff0cd4c?s',
+                    'github_url': 'https://github.com/yohang',
+                    'twitter_url': 'https://twitter.com/rouKs'
+                },
+                {
+                    'username': 'pborreli',
+                    'info': '"Symfony evangelist, impulsive typo fixer."',
+                    'gravatar_url': 'http://www.gravatar.com/avatar/5c299a02c11ce797f20df385f560a16a?s',
+                    'github_url': 'https://github.com/pborreli',
+                    'twitter_url': 'https://twitter.com/pborreli'
+                }
+            ]
+        %}
+
+        <div id="github-contrbutors">
+            {% for contributor in contributors %}
+                {{ _self.githubContributor(contributor) }}
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}
