@@ -15,11 +15,13 @@
 
             <ul>
                 <li>
-                    {% if app.user.githubId  %}
-                        {{ 'user.oauth.account_associated'|trans({'%oauth_provider%': 'Github', '%url%': path('hwi_oauth_service_redirect', {'service': 'github' }) }, 'UserBundle')|raw }}
-                    {% else %}
-                        {{ 'user.oauth.account_not_associated'|trans({'%oauth_provider%': 'Github', '%url%': path('hwi_oauth_service_redirect', {'service': 'github' }) }, 'UserBundle')|raw }}
-                    {% endif %}
+                    {% autoescape 'html' %}
+                        {% if app.user.githubId  %}
+                            {{ 'user.oauth.account_associated'|trans({'%oauth_provider%': 'Github', '%url%': path('hwi_oauth_service_redirect', {'service': 'github' }) }, 'UserBundle')|raw }}
+                        {% else %}
+                            {{ 'user.oauth.account_not_associated'|trans({'%oauth_provider%': 'Github', '%url%': path('hwi_oauth_service_redirect', {'service': 'github' }) }, 'UserBundle')|raw }}
+                        {% endif %}
+                    {% endautoescape %}
                 </li>
                 {#
                 <li>
