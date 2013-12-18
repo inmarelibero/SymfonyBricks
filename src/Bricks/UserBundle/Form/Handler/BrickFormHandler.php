@@ -7,7 +7,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormFactory;
 
 use Bricks\SiteBundle\Entity\Brick;
-use Bricks\SiteBundle\Entity\Tag;
 
 class BrickFormHandler
 {
