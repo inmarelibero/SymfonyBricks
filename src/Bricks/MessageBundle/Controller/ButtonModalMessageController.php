@@ -68,8 +68,6 @@ class ButtonModalMessageController extends Controller
          */
         $sender = $this->container->get('security.context')->getToken()->getUser();
         if (!$sender) {
-            //$json = array('error' => 'It was impossible to set a sender');
-            //return new Response(json_encode($json), 400, array('Content-Type'=>'application/json'));
             return new AccessDeniedException();
         }
 
