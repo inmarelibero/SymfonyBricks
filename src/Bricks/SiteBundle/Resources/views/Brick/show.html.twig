@@ -125,7 +125,9 @@
                                 <span class="glyphicon glyphicon-tag"></span>
                             </th>
                             <td>
-                                {{ brick_formatted_tags(brick)|raw }}
+                                {% autoescape 'html' %}
+                                    {{ brick_formatted_tags(brick)|raw }}
+                                {% endautoescape %}
                             </td>
                         </tr>
                         <tr>
