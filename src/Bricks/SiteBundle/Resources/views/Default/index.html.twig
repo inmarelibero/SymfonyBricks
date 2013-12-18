@@ -57,7 +57,9 @@
         <div class="col-md-8">
             <div class="bricks-wrapper">
                 <p class="head">
-                    {{ 'bricks.head'|trans({'%total%': bricks|length}, 'route_homepage')|raw }}
+                    {% autoescape 'html' %}
+                        {{ 'bricks.head'|trans({'%total%': bricks|length}, 'route_homepage')|raw }}
+                    {% endautoescape %}
                 </p>
 
                 <ul class="bricks-list">
@@ -74,7 +76,7 @@
                                 {{ macrosBrick.toggleUserStarsBrick(brick) }}
                                 {% if brick.brickHasTags|length > 0 %}
                                     |
-                                    <span class="glyphicon glyphicon-tag"></span> {{ brick_formatted_tags(brick)|raw }}
+                                    <span class="glyphicon glyphicon-tag"></span> {% autoescape 'html' %}{{ brick_formatted_tags(brick)|raw }}{% endautoescape %}
                                 {% endif %}
                             </p>
                         </li>
@@ -249,7 +251,9 @@
     <br><br><br>
     <div class="row">
         <div class="col-md-12">
-            {{ 'contribute_next_step'|trans({'%href%': path('contribute')}, 'route_homepage')|raw }}
+            {% autoescape 'html' %}
+                {{ 'contribute_next_step'|trans({'%href%': path('contribute')}, 'route_homepage')|raw }}
+            {% endautoescape %}
         </div>
     </div>
     
