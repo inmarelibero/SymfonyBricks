@@ -14,7 +14,9 @@
             <br><br>
     
             <p>
-                {{ 'resetting.subtitle'|trans({}, 'FOSUserBundle')|raw }}
+                {% autoescape 'html' %}
+                    {{ 'resetting.subtitle'|trans({}, 'FOSUserBundle')|raw }}
+                {% endautoescape %}
             </p>
             
             <br><br>
