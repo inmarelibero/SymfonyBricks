@@ -4,12 +4,12 @@
 <div id="modal-brick-from-url" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal-brick-from-url-label" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="modal-brick-from-url-label">{{ 'brick.fetch_url.title'|trans|raw }}</h3>
+        <h3 id="modal-brick-from-url-label">{% autoescape 'html' %}{{ 'brick.fetch_url.title'|trans|raw }}{% endautoescape %}</h3>
     </div>
     <div class="modal-body">
 
         <div id="url-wrapper">
-            <p id="help">{{ 'brick.fetch_url.help'|trans|raw }}</p>
+            <p id="help">{% autoescape 'html' %}{{ 'brick.fetch_url.help'|trans|raw }}{% endautoescape %}</p>
             <p class="error">{{ 'brick.fetch_url.error'|trans }}</p>
             <input type="text" name="url" id="import_url" value="vvv.tobiassjosten.net/symfony/trim-and-remove-twig-whitespace/"/>
         </div>
