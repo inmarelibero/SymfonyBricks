@@ -7,7 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 
-use Bricks\SiteBundle\Entity\Brick;
 use Bricks\SiteBundle\Entity\UserStarsBrick;
 
 /**
@@ -100,10 +99,10 @@ class BrickController extends Controller
             $em->flush();
             
             $jsonResponse = array('action' => 'unstarred');
-            
+
         } else {
             $userStarsBrick = new UserStarsBrick();
-            
+
             $userStarsBrick->setUser($user);
             $userStarsBrick->setBrick($entity);
             
