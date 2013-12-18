@@ -50,7 +50,7 @@
                                 |
                                 {{ macrosBrick.toggleUserStarsBrick(brick) }}
                                 |
-                                <span class="glyphicon glyphicon-tag"></span> {{ brick_formatted_tags(brick)|raw }}
+                                <span class="glyphicon glyphicon-tag"></span> {% autoescape 'html' %}{{ brick_formatted_tags(brick)|raw }}{% endautoescape %}
                             </p>
                         </li>
                     {% endfor %}
