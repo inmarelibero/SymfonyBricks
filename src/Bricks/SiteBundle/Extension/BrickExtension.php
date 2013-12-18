@@ -2,7 +2,6 @@
 namespace Bricks\siteBundle\Extension;
 
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
-use Symfony\Component\DomCrawler\Crawler;
 use Bricks\SiteBundle\Entity\Brick;
 
 /**
