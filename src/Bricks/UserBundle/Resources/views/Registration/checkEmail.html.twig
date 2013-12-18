@@ -16,7 +16,9 @@
             <br><br>
             
             <h3>
-                {{ 'registration.checkEmail.congrats'|trans({}, 'FOSUserBundle') }}
+                {% autoescape 'html' %}
+                    {{ 'registration.checkEmail.congrats'|trans({}, 'FOSUserBundle') }}
+                {% endautoescape %}
             </h3>
             
         </div>
