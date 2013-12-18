@@ -51,8 +51,6 @@ class BrickController extends Controller
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
         
-        $em = $this->getDoctrine()->getManager();
-
         $entities = $user->getStarredBricks();
 
         return array(
