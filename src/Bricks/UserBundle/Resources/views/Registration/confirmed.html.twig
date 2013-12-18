@@ -10,7 +10,9 @@
             <br><br>
             
             <p>
-                {{ 'registration.confirmed.message'|trans({'%username%': user.username}, 'FOSUserBundle')|raw }}
+                {% autoescape 'html' %}
+                    {{ 'registration.confirmed.message'|trans({'%username%': user.username}, 'FOSUserBundle')|raw }}
+                {% endautoescape %}
             </p>
             
         </div>
