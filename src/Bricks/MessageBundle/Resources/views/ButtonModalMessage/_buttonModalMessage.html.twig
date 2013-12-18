@@ -96,7 +96,9 @@
 {% else %}
 
     <a href="#modal-login" id="button-{{ form_id }}" data-toggle="modal">
-        {{ call_to_action_value|raw }}
+        {% autoescape 'html' %}
+            {{ call_to_action_value|raw }}
+        {% endautoescape %}
     </a>
 
 {% endif %}
