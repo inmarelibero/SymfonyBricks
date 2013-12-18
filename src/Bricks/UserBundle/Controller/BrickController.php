@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 use Bricks\SiteBundle\Entity\Brick;
 use Bricks\UserBundle\Form\Type\BrickType;
 
@@ -267,7 +268,7 @@ class BrickController extends Controller
      * @param unknown_type $brick
      * @throws AccessDeniedException
      */
-    private function checkUserCanEditBrick($brick)
+    private function checkUserCanEditBrick(Brick $brick)
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
         
