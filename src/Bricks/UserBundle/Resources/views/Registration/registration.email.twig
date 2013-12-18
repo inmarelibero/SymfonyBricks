@@ -1,7 +1,7 @@
 {% block subject %}{{ 'registration.email.subject'|trans({}, 'FOSUserBundle') }}{% endblock %}
 
 {% block body_text %}
-    {% autoescape false %}
+    {% autoescape 'html' %}
         {{ 'registration.email.message'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl, '%loginUrl%': url('login')}, 'FOSUserBundle') }}
     {% endautoescape %}
 {% endblock %}
