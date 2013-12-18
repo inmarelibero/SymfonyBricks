@@ -1,9 +1,7 @@
 <?php
 namespace Bricks\UserBundle\Form\Handler;
 
-//use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormFactory;
 
 use Bricks\SiteBundle\Entity\Brick;
