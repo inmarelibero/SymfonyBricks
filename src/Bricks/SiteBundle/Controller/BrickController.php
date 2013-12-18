@@ -8,7 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 
 use Bricks\SiteBundle\Entity\Brick;
-use Bricks\UserBundle\Form\Type\BrickType;
 use Bricks\SiteBundle\Entity\UserStarsBrick;
 
 /**
