@@ -50,7 +50,7 @@ class BrickFormHandler
         $this->em->flush();
     }
     
-    protected function manageTags($brick) {
+    protected function manageTags(Brick $brick) {
         
         // BrickHasTag array related to $brick
         $brickHasTags = $brick->getBrickHasTags();
