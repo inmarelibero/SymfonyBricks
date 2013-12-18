@@ -10,12 +10,10 @@ use Bricks\SiteBundle\Entity\Brick;
 class BrickExtension extends \Twig_Extension
 {
     private $router;
-    private $tiwg;
-   
-    public function __construct(Router $router, $twig)
+
+    public function __construct(Router $router)
     {
         $this->router = $router;
-        $this->twig = $twig;
     }
     
     public function getFunctions()
