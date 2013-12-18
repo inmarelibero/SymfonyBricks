@@ -91,7 +91,9 @@
                     {{ 'security.login.login_with_oauth.attention'|trans({}, 'FOSUserBundle') }}
                 </span>
                 <br>
-                {{ 'security.login.login_with_oauth.attention_text'|trans({}, 'FOSUserBundle')|raw }}
+                {% autoescape 'html' %}
+                    {{ 'security.login.login_with_oauth.attention_text'|trans({}, 'FOSUserBundle')|raw }}
+                {% endautoescape %}
             </p>
         </div>
     </div>
