@@ -24,7 +24,6 @@ web/js/*
 web/css/*
 vendor/*
 build/*
-composer.phar
 
 # Configuration files
 app/config/parameters.yml
