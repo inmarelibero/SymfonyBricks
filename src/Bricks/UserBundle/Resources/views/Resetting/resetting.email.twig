@@ -1,7 +1,6 @@
 {% block subject %}SymfonyBricks: Registration{% endblock %}
 
 {% block body_text %}
-{% autoescape false %}
 Hello {{ user.username }}, you requested to reset your password.
 
 To change your password simply visit this link: {{ confirmationUrl }}
@@ -13,7 +12,6 @@ the SymfonyBricks Team.
 
 Greetings,
 the Acme team
-{% endautoescape %}
 {% endblock %}
 
 {% block body_html %}

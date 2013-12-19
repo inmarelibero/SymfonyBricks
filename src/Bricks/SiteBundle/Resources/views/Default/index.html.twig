@@ -65,20 +65,29 @@
                     <ul class="bricks-list">
                         {% for brick in bricks %}
                             <li>
-                                <a href="{{ path('brick_show', {slug: brick.slug}) }}" class="title">
-                                    <span class="glyphicon glyphicon-file"></span> {{ brick.title }}
-                                </a>
-                                <p class="brick-info">
-                                    <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
-                                    |
-                                    <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans }}: {{ brick.updatedAt|date('d M Y') }}
-                                    |
-                                    {{ macrosBrick.toggleUserStarsBrick(brick) }}
-                                    {% if brick.brickHasTags|length > 0 %}
-                                        |
-                                        <span class="glyphicon glyphicon-tag"></span> {{ brick_formatted_tags(brick)|raw }}
-                                    {% endif %}
-                                </p>
+                                <div class="media">
+                                    <a class="pull-left" href="{{ path('brick_show', {slug: brick.slug}) }}">
+                                        <span class="glyphicon glyphicon-file"></span>
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="{{ path('brick_show', {slug: brick.slug}) }}" class="title">
+                                            {{ brick.title }}
+                                        </a>
+                                        <br>
+                                        <p class="brick-info">
+
+                                            <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
+                                            &nbsp;
+                                            <span class="glyphicon glyphicon-calendar"></span> {{ brick.updatedAt|date('d M Y') }}
+                                            &nbsp;
+                                            {{ macrosBrick.toggleUserStarsBrick(brick) }}
+                                            &nbsp;
+                                            {% if brick.brickHasTags|length > 0 %}
+                                                {{ brick_formatted_tags(brick, '&nbsp;')|raw }}
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </div>
                             </li>
                         {% endfor %}
                     </ul>

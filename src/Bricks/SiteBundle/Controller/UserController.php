@@ -2,12 +2,8 @@
 
 namespace Bricks\SiteBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -21,7 +17,6 @@ class UserController extends Controller
      * Lists usernames for javascript autocompletion
      *
      * @Route("/ajax-autocomplete-users", name="ajax_autocomplete_users", options={"expose"=true})
-     * @Template()
      */
     public function indexAction()
     {

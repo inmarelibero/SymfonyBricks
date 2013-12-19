@@ -2,7 +2,6 @@
 namespace Bricks\siteBundle\Extension;
 
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
-use Symfony\Component\DomCrawler\Crawler;
 use Bricks\SiteBundle\Entity\Brick;
 
 /**
@@ -11,12 +10,10 @@ use Bricks\SiteBundle\Entity\Brick;
 class BrickExtension extends \Twig_Extension
 {
     private $router;
-    private $tiwg;
-   
-    public function __construct(Router $router, $twig)
+
+    public function __construct(Router $router)
     {
         $this->router = $router;
-        $this->twig = $twig;
     }
     
     public function getFunctions()
@@ -33,7 +30,7 @@ class BrickExtension extends \Twig_Extension
      * @param string $separator string to separate tag titles
      * @return string
      */
-    public function brickFormattedTags(Brick $brick, $separator = ',')
+    public function brickFormattedTags(Brick $brick, $separator = '&nbsp;', $printIcons = true)
     {
         $output = '';
         
@@ -44,15 +41,24 @@ class BrickExtension extends \Twig_Extension
             $tag = $bht->getTag();
             
             if ($tag) {
+
+                if ($printIcons) {
+                    $iconStr = '<span class="glyphicon glyphicon-tag"></span>';
+                } else {
+                    $iconStr = '';
+                }
+
                 // add tag title
                 $output .= <<<EOD
-<a href="{$this->router->generate('brick_search', array('tag' => $tag->getSlug()))}">{$tag->getTitle()}</a>
+<a href="{$this->router->generate('brick_search', array('tag' => $tag->getSlug()))}">
+    {$iconStr} {$tag->getTitle()}
+</a>
 EOD;
                 
                 // if not last iteration
                 if ($k < $brickHasTagsLength-1) {
                     // add separator
-                    $output .= $separator.' ';
+                    $output .= $separator;
                 }
             }
         }

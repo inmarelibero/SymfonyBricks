@@ -22,11 +22,13 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h3 class="modal-title">
-                        <span class="glyphicon glyphicon-question-sign"></span> {{ title|raw }}
+                        <span class="glyphicon glyphicon-question-sign"></span> {% autoescape 'html' %}{{ title|raw }}{% endautoescape %}
                     </h3>
                 </div>
                 <div class="modal-body">
-                    {{ body|raw }}
+                    {% autoescape 'html' %}
+                        {{ body|raw }}
+                    {% endautoescape %}
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-primary" data-dismiss="modal" >Close</a>

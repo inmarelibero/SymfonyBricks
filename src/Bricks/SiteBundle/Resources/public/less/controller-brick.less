@@ -3,6 +3,8 @@ CONTROLLER-BRICK.LESS
 
 rules for all the templates loaded through Bricks\SiteBundle\BrickController
 ******************************************************************************************/
+/* import assets */
+@import "variables.less";
 
 /* import bootstrap assets */
 @import "../../../../../../web/assets/bootstrap-3.0.0/less/mixins.less";
@@ -14,39 +16,63 @@ rules for all the templates loaded through Bricks\SiteBundle\BrickController
 */
 body.route-brick_show {
 
+    #brick-head {
+        h1 {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+    }
+
+    #info {
+        margin-bottom: 40px;
+        &, a { font-size: 12px; }
+        #tags {
+
+        }
+        #star {
+            text-align: right;
+        }
+    }
+
     #brick {
-        .title { font-family: 'FrutigerRoman'; }
         .description {
             font-size: 14px;
             padding-bottom: 20px;
         }
     }
-    
-    #info {
+
+    #footer-info {
+        margin: 30px 0px;
         padding: 10px;
         border: 1px solid #CCC;
         border-radius: 4px;
-        background: rgb(247, 247, 247);
+        background: @sb_green_medium;
 
-        &, a { font-size:  14px; font-weight: normal; }
+        &, a {
+            font-size:  16px;
+            font-weight: normal;
+            color:  #FFF;
+        }
+        .glyphicon {
+            color: #333;
+        }
+        a:hover {
+            color: @sb_green_dark_light;
+        }
 
         table {
-            margin-bottom:  20px;
             tr {
                 th, td {
                     padding: 3px 5px 3px 0px;
 
                     span, p, a {
-                        font-size: 14px;
-                        font-weight: normal;
                         margin-bottom: 0px;
                     }
                 }
             }
         }
 
-        .message-actions { margin-top:  30px;
-        }
+        .message-actions { margin-top:  30px; }
     }
 
     #affix-info {
@@ -90,7 +116,7 @@ body.route-brick_show {
 
     #brick {
         .content {
-            h1, h2, h3, h4, h5, h6 { font-family: 'FrutigerRoman'; }
+            h1, h2, h3, h4, h5, h6 { font-family: 'open_sansbold'; }
 
             h1 {
                 font-size:  20px;
@@ -130,21 +156,30 @@ body.route-brick_search {
             vertical-align: bottom;
         }
     }
-    /*
-        .box {
-            float:  left;
-            margin-right:   10px;
-            
-            &.buttons { float: right; }
-        }
-    }
-    */
-    
+
     ul.bricks-list {
-        p.brick-info { padding-left: 20px; }
         li {
+            padding:  10px 0px 10px 10px;
             margin-bottom:  10px;
             border-bottom:  1px solid #CCC;
+
+            span.glyphicon {
+                font-size: 18px;
+                padding-top: 5px
+            }
+
+            a.title {
+                font-size: 24px;
+                color: #555;
+                &:hover { color: @sb_green_medium; }
+
+                i { color: rgb(107, 107, 107); }
+            }
+            p.brick-info {
+                margin-top: 3px;
+
+                &, a, p, span { font-size: 12px; color: rgb(107, 107, 107); }
+            }
         }
     }
 }

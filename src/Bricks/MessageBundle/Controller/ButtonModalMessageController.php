@@ -2,14 +2,12 @@
 
 namespace Bricks\MessageBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use JMS\SecurityExtraBundle\Annotation\Secure;
 
 use Bricks\SiteBundle\Entity\Brick;
 
@@ -70,8 +68,6 @@ class ButtonModalMessageController extends Controller
          */
         $sender = $this->container->get('security.context')->getToken()->getUser();
         if (!$sender) {
-            //$json = array('error' => 'It was impossible to set a sender');
-            //return new Response(json_encode($json), 400, array('Content-Type'=>'application/json'));
             return new AccessDeniedException();
         }
 

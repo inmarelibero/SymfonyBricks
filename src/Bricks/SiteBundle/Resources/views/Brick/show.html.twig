@@ -31,6 +31,25 @@
 
         <div itemscope itemtype ="http://schema.org/CreativeWork">
 
+            <div class="row">
+                <div class="col-md-12" id="brick-head">
+                    <h1>
+                        <strong>{{ brick.title }}</strong>
+                    </h1>
+                </div>
+            </div>
+
+            <div class="row" id="info">
+                <div class="col-md-10" id="tags">
+                    {% autoescape 'html' %}
+                        {{ brick_formatted_tags(brick)|raw }}
+                    {% endautoescape %}
+                </div>
+                <div class="col-md-2" id="star">
+                    {{ macrosBrick.toggleUserStarsBrick(brick) }}
+                </div>
+            </div>
+
             <div id="affix-info" class="hidden-sm hidden-xs">
                 <div class="container">
                     <div class="row">
@@ -70,11 +89,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-9" id="brick">
-                    <h1 class="title" itemprop="headline">
-                        {{ brick.title }}
-                    </h1>
-
+                <div class="col-md-12" id="brick">
                     <div class="description" itemprop="description">
                         {{ brick.description|nl2br }}
                     </div>
@@ -83,12 +98,12 @@
                         {{ brick.content|markdown }}
                     </div>
 
-                    <hr>
-
-                    {{ knp_disqus_render('symfonybricks', {'identifier': '/brick-'~brick.id, 'limit': 10}) }}
                 </div>
-                <div class="col-md-3">
-                    <div id="info">
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="footer-info">
                         <table>
                             <tr itemprop="author" itemscope itemtype="http://schema.org/Person">
                                 <th>
@@ -105,8 +120,7 @@
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </th>
                                 <td>
-                                    {{ 'brick.last_update'|trans }}
-                                    <br>
+                                    {{ 'brick.last_update'|trans }}:
                                     <time itemprop="dateModified" datetime="{{ brick.updatedAt|date('Y-m-d') }}">
                                         {{ brick.updatedAt|date('d M Y') }}
                                     </time>
@@ -117,8 +131,7 @@
                                     <span class="glyphicon glyphicon-flag"></span>
                                 </th>
                                 <td>
-                                    {{- 'brick.license'|trans -}}
-                                    <br>
+                                    {{- 'brick.license'|trans -}}:
                                     {{- (brick.brickLicense) ? macrosBrickLicense.brickLicenseModal(brick) : '-' -}}
                                 </td>
                             </tr>
@@ -127,7 +140,9 @@
                                     <span class="glyphicon glyphicon-tag"></span>
                                 </th>
                                 <td>
-                                    {{ brick_formatted_tags(brick)|raw }}
+                                    {% autoescape 'html' %}
+                                        {{ brick_formatted_tags(brick, ', ', false)|raw }}
+                                    {% endautoescape %}
                                 </td>
                             </tr>
                             <tr>
@@ -147,6 +162,11 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-12">
+                    {{ knp_disqus_render('symfonybricks', {'identifier': '/brick-'~brick.id, 'limit': 10}) }}
+                </div>
+            </div>
         </div>
 
     </div>

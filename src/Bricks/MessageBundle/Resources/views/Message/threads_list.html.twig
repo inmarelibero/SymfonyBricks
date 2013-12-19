@@ -21,7 +21,9 @@
                         {% if thread.brick %}
                             {% set brick = thread.brick %}
                             <p class="info">
-                                {{ 'fos_message_bundle.related_to_brick'|trans({'%link%': '<a href="'~path('brick_show', {slug: brick.slug})~'" target="_blank">"'~brick.title|truncate(30)~'"</a>'}, 'FOSMessageBundle')|raw }}
+                                {% autoescape 'html' %}
+                                    {{ 'fos_message_bundle.related_to_brick'|trans({'%link%': '<a href="'~path('brick_show', {slug: brick.slug})~'" target="_blank">"'~brick.title|truncate(30)~'"</a>'}, 'FOSMessageBundle')|raw }}
+                                {% endautoescape %}
                             </p>
                         {% endif %}
                     </td>

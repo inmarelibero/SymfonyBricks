@@ -2,20 +2,12 @@
 
 namespace Bricks\SiteBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
-use JMS\SecurityExtraBundle\Annotation\Secure;
-use Symfony\Component\DomCrawler\Crawler;
 
-use Bricks\SiteBundle\Entity\Brick;
-use Bricks\UserBundle\Form\Type\BrickType;
 use Bricks\SiteBundle\Entity\UserStarsBrick;
-use Bricks\UserBundle\Form\Type\UserMessageType;
 
 /**
  * Brick controller.
@@ -107,10 +99,10 @@ class BrickController extends Controller
             $em->flush();
             
             $jsonResponse = array('action' => 'unstarred');
-            
+
         } else {
             $userStarsBrick = new UserStarsBrick();
-            
+
             $userStarsBrick->setUser($user);
             $userStarsBrick->setBrick($entity);
             

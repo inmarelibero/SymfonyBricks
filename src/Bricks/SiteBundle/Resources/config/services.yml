@@ -3,7 +3,7 @@ services:
     # Brick Twig extenxion
     bricks.twig.brick_extension:
         class: Bricks\SiteBundle\Extension\BrickExtension
-        arguments: [@router, @twig]
+        arguments: [@router]
         tags:
            - { name: twig.extension }
 

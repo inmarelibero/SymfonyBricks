@@ -2,7 +2,6 @@
 namespace Bricks\MessageBundle\Listener;
 
 use FOS\MessageBundle\Event\MessageEvent;
-use Bricks\UserBundle\Service\EmailSenderManager;
 
 /**
  * Listener for events  of FOS\MessageBundle\Event\MessageEvent class

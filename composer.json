@@ -27,7 +27,7 @@
         "friendsofsymfony/jsrouting-bundle": "~1.1",
         "knplabs/knp-disqus-bundle": "dev-master",
         "friendsofsymfony/message-bundle": "dev-master",
-        "presta/sitemap-bundle": "dev-master",
+        "presta/sitemap-bundle": "1.2.*",
         "pk/markdownify-bundle": "2.1.*",
         "vich/uploader-bundle": "dev-master",
         "avalanche123/imagine-bundle": "v2.1",
