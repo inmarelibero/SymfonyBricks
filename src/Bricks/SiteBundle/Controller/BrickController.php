@@ -113,16 +113,7 @@ class BrickController extends Controller
             
             $jsonResponse = array('action' => 'starred');
         }
-        
-        
-        /*
-        if ($entity->getPublished()) {
-            $this->get('session')->getFlashBag()->add('success', 'alert.brick.togglePublished.published');
-        } else {
-            $this->get('session')->getFlashBag()->add('information', 'alert.brick.togglePublished.unpublished');
-        }
-        */
-        
+
         return new Response(json_encode($jsonResponse), 200, array('Content-Type'=>'application/json'));
     }
 
