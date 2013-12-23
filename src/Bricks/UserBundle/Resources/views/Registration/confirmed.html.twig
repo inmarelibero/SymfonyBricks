@@ -2,19 +2,21 @@
 
 {% block main %}
 
-    <div class="row">
-        <div class="col-md-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
 
-            <h1>{{ 'registration.confirmed.page_title'|trans({}, 'FOSUserBundle') }}</h1>
-        
-            <br><br>
-            
-            <p>
-                {% autoescape 'html' %}
-                    {{ 'registration.confirmed.message'|trans({'%username%': user.username}, 'FOSUserBundle')|raw }}
-                {% endautoescape %}
-            </p>
-            
+                <h1>{{ 'registration.confirmed.page_title'|trans({}, 'FOSUserBundle') }}</h1>
+
+                <br><br>
+
+                <p>
+                    {% autoescape 'html' %}
+                        {{ 'registration.confirmed.message'|trans({'%username%': user.username}, 'FOSUserBundle')|raw }}
+                    {% endautoescape %}
+                </p>
+
+            </div>
         </div>
     </div>
     

@@ -2,26 +2,28 @@
 
 {% block main %}
 
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-        
-            <h1>Reset password</h1>
-            
-            <br><br>
-            
-            <p>
-                Choose your new password
-            </p>
-            
-            <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
 
-            <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset security-form">
-                {{ form_widget(form) }}
-                <div>
-                    <input type="submit" value="{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}" class="btn"/>
-                </div>
-            </form>
-            
+                <h1>Reset password</h1>
+
+                <br><br>
+
+                <p>
+                    Choose your new password
+                </p>
+
+                <br><br>
+
+                <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset security-form">
+                    {{ form_widget(form) }}
+                    <div>
+                        <input type="submit" value="{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}" class="btn"/>
+                    </div>
+                </form>
+
+            </div>
         </div>
     </div>
     

@@ -3,6 +3,8 @@ CONTROLLER-BRICK.LESS
 
 rules for all the templates loaded through Bricks\UserBundle\BrickController
 ******************************************************************************************/
+/* import assets */
+@import "../../../../SiteBundle/Resources/public/less/variables.less";
 
 /* import bootstrap assets */
 //@import "../../../../../../web/assets/bootstrap-3.0.0/less/variables.less";
@@ -127,33 +129,22 @@ body.route-user_brick_new, body.route-user_brick_create, body.route-user_brick_e
             .tags-input {
                 width:  200px;
                 margin: 0;
-                padding:   0px !important;
+                padding:   7px !important;
+                border-radius: 3px;
+
                 font-size:  12px !important;
             }
-            #tags {
-                padding:    0;
-                overflow:   hidden;
-                min-height: 26px;
 
-                .tag {
-                    float:          left;
-                    padding:        3px 5px;
-                    margin:         1px;
-                    margin-bottom:  5px;
-                    margin-right:   5px;
-                    border:         1px solid #CCC;
-                    text-shadow:    none;
-                    border-radius:  5px;
+            .tm-tag {
+                padding:    5px 8px;
+                margin-right: 10px;
+                border-radius: 3px;
 
-                    .glyphicon {
-                        font-size:  12px;
-                        margin-left:    5px;
-                    }
-
-                    &, a {
-                        color: #333;
-                        font-weight: normal;
-                    }
+                background: @sb_green_medium;
+                color: #FFF;
+                a {
+                    margin-left: 20px;
+                    color: #ccc;
                 }
             }
         }
@@ -178,31 +169,10 @@ body.route-user_brick_new, body.route-user_brick_create, body.route-user_brick_e
                     color:  #888;
                     font-weight:    normal;
                     font-size:  12px;
-                    /*
-                    border: 1px solid #CCC;
-                    border-bottom:  0px;
-                    .border-radius(3px 3px 0px 0px);
-                    #gradient .vertical(#F8F8F8, #DEDEDE);
-
-                    text-align: left;
-                    font-weight:    normal;
-                    font-size:  12px;
-
-                    color:  #888;
-                    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
-                    border-bottom:  0px none;
-                    */
                 }
 
                 &.active {
                     a {
-                        /*
-                        color:  #333;
-                        background: white;
-                        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-                        border-color:   #B4B4B4;
-                        */
-
                         #gradient .vertical(#F8F8F8, #DEDEDE);
 
                         color:  #333;

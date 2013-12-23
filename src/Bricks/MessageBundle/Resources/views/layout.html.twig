@@ -2,30 +2,32 @@
 
 {% block main %}
 
-    <div class="row">
-        <div class="span12">
-        
-            <h1>{% trans from 'FOSMessageBundle' %}fos_message_bundle.messages_title{% endtrans %}</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
 
-            <div id="messages-bar">
+                <h1>{% trans from 'FOSMessageBundle' %}fos_message_bundle.messages_title{% endtrans %}</h1>
 
-                <a href="{{ url('fos_message_thread_new' )}}" class="btn btn-small btn-primary pull-right">
-                    <span class="glyphicon glyphicon-pencil"></span> {% trans from 'FOSMessageBundle' %}fos_message_bundle.send_new{% endtrans %}
-                </a>
+                <div id="messages-bar">
 
-                <div class="btn-group">
-                    <a href="{{ url('fos_message_inbox') }}" class="btn btn-small {{ (app.request.get('_route') == 'fos_message_inbox') ? 'btn-success':'' }}">
-                        <span class="glyphicon glyphicon-inbox"></span> {% trans from 'FOSMessageBundle' %}fos_message_bundle.inbox{% endtrans %}
+                    <a href="{{ url('fos_message_thread_new' )}}" class="btn btn-small btn-primary pull-right">
+                        <span class="glyphicon glyphicon-pencil"></span> {% trans from 'FOSMessageBundle' %}fos_message_bundle.send_new{% endtrans %}
                     </a>
-                    <a href="{{ url('fos_message_sent') }}" class="btn btn-small {{ (app.request.get('_route') == 'fos_message_sent') ? 'btn-success':'' }}">
-                        <span class="glyphicon glyphicon-envelope"></span> {% trans from 'FOSMessageBundle' %}fos_message_bundle.sent{% endtrans %}
-                    </a>
+
+                    <div class="btn-group">
+                        <a href="{{ url('fos_message_inbox') }}" class="btn btn-small {{ (app.request.get('_route') == 'fos_message_inbox') ? 'btn-success':'' }}">
+                            <span class="glyphicon glyphicon-inbox"></span> {% trans from 'FOSMessageBundle' %}fos_message_bundle.inbox{% endtrans %}
+                        </a>
+                        <a href="{{ url('fos_message_sent') }}" class="btn btn-small {{ (app.request.get('_route') == 'fos_message_sent') ? 'btn-success':'' }}">
+                            <span class="glyphicon glyphicon-envelope"></span> {% trans from 'FOSMessageBundle' %}fos_message_bundle.sent{% endtrans %}
+                        </a>
+                    </div>
                 </div>
+
+
+                {% block fos_message_content %}{% endblock %}
+
             </div>
-            
-            
-            {% block fos_message_content %}{% endblock %}
-            
         </div>
     </div>
         

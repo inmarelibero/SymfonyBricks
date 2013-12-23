@@ -2,25 +2,27 @@
 
 {% block main %}
 
-    <div class="row">
-        <div class="col-md-12">
-        
-            <h1>{{ 'registration.checkEmail.page_title'|trans({}, 'FOSUserBundle') }}</h1>
-            
-            <br><br>
-            
-            <p>
-                {{ 'registration.checkEmail.message'|trans({'%login_url%': url('fos_user_security_login')}, 'FOSUserBundle')|raw }}
-            </p>
-            
-            <br><br>
-            
-            <h3>
-                {% autoescape 'html' %}
-                    {{ 'registration.checkEmail.congrats'|trans({}, 'FOSUserBundle') }}
-                {% endautoescape %}
-            </h3>
-            
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1>{{ 'registration.checkEmail.page_title'|trans({}, 'FOSUserBundle') }}</h1>
+
+                <br><br>
+
+                <p>
+                    {{ 'registration.checkEmail.message'|trans({'%login_url%': url('fos_user_security_login')}, 'FOSUserBundle')|raw }}
+                </p>
+
+                <br><br>
+
+                <h3>
+                    {% autoescape 'html' %}
+                        {{ 'registration.checkEmail.congrats'|trans({}, 'FOSUserBundle') }}
+                    {% endautoescape %}
+                </h3>
+
+            </div>
         </div>
     </div>
     

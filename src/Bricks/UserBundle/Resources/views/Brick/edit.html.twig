@@ -4,166 +4,168 @@
 
 {% block main %}
 
-    <div class="row">
-        <div class="col-md-12">
-            <form action="{{ (entity.isNew) ? path('user_brick_create') : path('user_brick_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }} id="user-brick-edit" class="form" novalidate>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="{{ (entity.isNew) ? path('user_brick_create') : path('user_brick_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }} id="user-brick-edit" class="form" novalidate>
 
-                <p>
-                    <div class="pull-right">
-                    <button type="submit" class="btn btn-success">
-                        <span class="glyphicon glyphicon-ok"></span> {{ 'save'|trans|capitalize }}
-                    </button>
-                    <a href="{{ path('user_brick') }}" class="btn">
-                        <span class="glyphicon glyphicon-chevron-left"></span> {{ 'back_to_the_list'|trans|capitalize }}
-                    </a>
-                    </div>
-                    
-                    <h1>{{ (entity.isNew) ? 'brick.create_new_brick'|trans({}, 'UserBundle'): 'brick.edit_brick'|trans({}, 'UserBundle') }}</h1>
-                </p>
-                
-                <br>
-
-
-                {# BRICK TITLE #}
-                <div class="form-group {{ (form_errors(form.title))?'has-error':'' }}">
-                    <div class="control-label">
-                        <strong>
-                            {{ 'brick.title'|trans({}, 'UserBundle')|capitalize }}
-                        </strong>
-
-                        {# info modal #}
-                        {{ macrosInfo.bootstrapInfoModal('brick.help.title.title'|trans({}, 'UserBundle'), 'brick.help.title.body'|trans({}, 'UserBundle')) }}
-                    </div>
-                    <div class="controls">
-                        {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
-
-                        {% if form_errors(form.title) %}
-                            <div class="form-errors">
-                                {{ form_errors(form.title) }}
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-
-                {# BRICK LICENSE #}
-                <div class="form-group">
-                    <div class="control-label">
-                        <strong>
-                            {{ 'brick.license'|trans({}, 'UserBundle')|capitalize }}
-                        </strong>
-
-                        {# info modal #}
-                        {{ macrosInfo.bootstrapInfoModal('brick.help.license.title'|trans({}, 'UserBundle'), 'brick.help.license.body'|trans({}, 'UserBundle')) }}
-                    </div>
-                    <div class="controls">
-                        <div id="license-wrapper">
-                            {{ form_widget(form.brick_license, {'attr': {'class': 'form-control input-sm'}}) }}
-                        </div>
-                    </div>
-                </div>
-                
-                {# BRICK TAGS #}
-                <div class="form-group">
-                    <div class="control-label">
-                        <strong>
-                            {{ 'brick.tags'|trans({}, 'UserBundle')|capitalize }}
-                        </strong>
-
-                        {# info modal #}
-                        {{ macrosInfo.bootstrapInfoModal('brick.help.tags.title'|trans({}, 'UserBundle'), 'brick.help.tags.body'|trans({}, 'UserBundle')) }}
-                    </div>
-                    <div class="controls">
-                    
-                        <div id="tags-labels">
-                            <div id="tags"></div>
-
-                            <p class="help-text">
-                                {{ 'brick.brickHasTags.help_text'|trans({}, 'UserBundle') }}
-                            </p>
-
-                            <input id="input-add-tag" class="tags-input" type="text" />
-                        </div>
-                        
-                        {{ form_widget(form.brickHasTags) }}
-                    </div>
-                </div>
-                
-                {# BRICK DESCRIPTION #}
-                <div class="form-group">
-                    <div class="control-label">
-                        <strong>
-                            {{ 'brick.description'|trans({}, 'UserBundle')|capitalize }}
-                        </strong>
-
-                        {# info modal #}
-                        {{ macrosInfo.bootstrapInfoModal('brick.help.description.title'|trans({}, 'UserBundle'), 'brick.help.description.body'|trans({}, 'UserBundle')) }}
-                    </div>
-                    <div class="controls">
-                        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-                </div>
-                
-                {# BRICK CANONICAL URL #}
-                <div class="form-group">
-                    <div class="control-label">
-                        <strong>
-                            {{ 'brick.canonical_url'|trans({}, 'UserBundle')|capitalize }}
-                        </strong>
-
-                        {# info modal #}
-                        {{ macrosInfo.bootstrapInfoModal('brick.help.canonical_url.title'|trans({}, 'UserBundle'), 'brick.help.canonical_url.body'|trans({}, 'UserBundle')) }}
-                    </div>
-                    <div class="controls">
-                        {{ form_widget(form.canonical_url, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-                </div>
-
-                {# BRICK CONTENT #}
-                <div id="form-group-content" class="form-group">
-                    <div class="controls">
-                        <ul class="nav nav-tabs" id="content-tab">
-                            <li class="active">
-                                <a href="#content-code" data-toggle="tab">
-                                    <strong>
-                                        {{ 'brick.content'|trans({}, 'UserBundle')|capitalize }}
-                                    </strong>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#content-preview" data-toggle="tab">
-                                    <strong>
-                                        {{ 'brick.preview'|trans({}, 'UserBundle')|capitalize }}
-                                    </strong>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="content-code">
-                                {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
-                            </div>
-                            <div class="tab-pane" id="content-preview"></div>
-                        </div>
-                    </div>
-                </div>
-
-                {# actions #}
-                <div class="form-group">
-                    <div class="controls">
+                    <p>
+                        <div class="pull-right">
                         <button type="submit" class="btn btn-success">
                             <span class="glyphicon glyphicon-ok"></span> {{ 'save'|trans|capitalize }}
                         </button>
                         <a href="{{ path('user_brick') }}" class="btn">
                             <span class="glyphicon glyphicon-chevron-left"></span> {{ 'back_to_the_list'|trans|capitalize }}
                         </a>
+                        </div>
+
+                        <h1>{{ (entity.isNew) ? 'brick.create_new_brick'|trans({}, 'UserBundle'): 'brick.edit_brick'|trans({}, 'UserBundle') }}</h1>
+                    </p>
+
+                    <br>
+
+
+                    {# BRICK TITLE #}
+                    <div class="form-group {{ (form_errors(form.title))?'has-error':'' }}">
+                        <div class="control-label">
+                            <strong>
+                                {{ 'brick.title'|trans({}, 'UserBundle')|capitalize }}
+                            </strong>
+
+                            {# info modal #}
+                            {{ macrosInfo.bootstrapInfoModal('brick.help.title.title'|trans({}, 'UserBundle'), 'brick.help.title.body'|trans({}, 'UserBundle')) }}
+                        </div>
+                        <div class="controls">
+                            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+
+                            {% if form_errors(form.title) %}
+                                <div class="form-errors">
+                                    {{ form_errors(form.title) }}
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
-                
-                {{ form_rest(form) }}
-                
-            </form>
-            
+
+                    {# BRICK LICENSE #}
+                    <div class="form-group">
+                        <div class="control-label">
+                            <strong>
+                                {{ 'brick.license'|trans({}, 'UserBundle')|capitalize }}
+                            </strong>
+
+                            {# info modal #}
+                            {{ macrosInfo.bootstrapInfoModal('brick.help.license.title'|trans({}, 'UserBundle'), 'brick.help.license.body'|trans({}, 'UserBundle')) }}
+                        </div>
+                        <div class="controls">
+                            <div id="license-wrapper">
+                                {{ form_widget(form.brick_license, {'attr': {'class': 'form-control input-sm'}}) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    {# BRICK TAGS #}
+                    <div class="form-group">
+                        <div class="control-label">
+                            <strong>
+                                {{ 'brick.tags'|trans({}, 'UserBundle')|capitalize }}
+                            </strong>
+
+                            {# info modal #}
+                            {{ macrosInfo.bootstrapInfoModal('brick.help.tags.title'|trans({}, 'UserBundle'), 'brick.help.tags.body'|trans({}, 'UserBundle')) }}
+                        </div>
+                        <div class="controls">
+
+                            <div id="tags-labels">
+                                <p class="help-text">
+                                    {{ 'brick.brickHasTags.help_text'|trans({}, 'UserBundle') }}
+                                </p>
+                                <br>
+
+                                <input id="input-add-tag" class="tags-input" type="text" />
+                            </div>
+
+                            {{ form_widget(form.brickHasTags) }}
+                        </div>
+                    </div>
+
+                    {# BRICK DESCRIPTION #}
+                    <div class="form-group">
+                        <div class="control-label">
+                            <strong>
+                                {{ 'brick.description'|trans({}, 'UserBundle')|capitalize }}
+                            </strong>
+
+                            {# info modal #}
+                            {{ macrosInfo.bootstrapInfoModal('brick.help.description.title'|trans({}, 'UserBundle'), 'brick.help.description.body'|trans({}, 'UserBundle')) }}
+                        </div>
+                        <div class="controls">
+                            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    {# BRICK CANONICAL URL #}
+                    <div class="form-group">
+                        <div class="control-label">
+                            <strong>
+                                {{ 'brick.canonical_url'|trans({}, 'UserBundle')|capitalize }}
+                            </strong>
+
+                            {# info modal #}
+                            {{ macrosInfo.bootstrapInfoModal('brick.help.canonical_url.title'|trans({}, 'UserBundle'), 'brick.help.canonical_url.body'|trans({}, 'UserBundle')) }}
+                        </div>
+                        <div class="controls">
+                            {{ form_widget(form.canonical_url, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    {# BRICK CONTENT #}
+                    <div id="form-group-content" class="form-group">
+                        <div class="controls">
+                            <ul class="nav nav-tabs" id="content-tab">
+                                <li class="active">
+                                    <a href="#content-code" data-toggle="tab">
+                                        <strong>
+                                            {{ 'brick.content'|trans({}, 'UserBundle')|capitalize }}
+                                        </strong>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#content-preview" data-toggle="tab">
+                                        <strong>
+                                            {{ 'brick.preview'|trans({}, 'UserBundle')|capitalize }}
+                                        </strong>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="content-code">
+                                    {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="tab-pane" id="content-preview"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {# actions #}
+                    <div class="form-group">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-success">
+                                <span class="glyphicon glyphicon-ok"></span> {{ 'save'|trans|capitalize }}
+                            </button>
+                            <a href="{{ path('user_brick') }}" class="btn">
+                                <span class="glyphicon glyphicon-chevron-left"></span> {{ 'back_to_the_list'|trans|capitalize }}
+                            </a>
+                        </div>
+                    </div>
+
+                    {{ form_rest(form) }}
+
+                </form>
+
+            </div>
         </div>
     </div>
+
 
 {% endblock %}
 

@@ -2,67 +2,69 @@
 
 {% block main %}
 
-    <div class="row">
-        <div class="col-md-12">
-            <h1>
-                <span class="glyphicon glyphicon-home"></span> {{ 'user_navbar.dashboard'|trans({}, 'UserBundle')|capitalize }}
-            </h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>
+                    <span class="glyphicon glyphicon-home"></span> {{ 'user_navbar.dashboard'|trans({}, 'UserBundle')|capitalize }}
+                </h1>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
 
-            <ul>
-                <li>
-                    {% autoescape 'html' %}
-                        {% if app.user.githubId  %}
-                            {{ 'user.oauth.account_associated'|trans({'%oauth_provider%': 'Github', '%url%': path('hwi_oauth_service_redirect', {'service': 'github' }) }, 'UserBundle')|raw }}
+                <ul>
+                    <li>
+                        {% autoescape 'html' %}
+                            {% if app.user.githubId  %}
+                                {{ 'user.oauth.account_associated'|trans({'%oauth_provider%': 'Github', '%url%': path('hwi_oauth_service_redirect', {'service': 'github' }) }, 'UserBundle')|raw }}
+                            {% else %}
+                                {{ 'user.oauth.account_not_associated'|trans({'%oauth_provider%': 'Github', '%url%': path('hwi_oauth_service_redirect', {'service': 'github' }) }, 'UserBundle')|raw }}
+                            {% endif %}
+                        {% endautoescape %}
+                    </li>
+                    {#
+                    <li>
+                        {% if app.user.twitterId  %}
+                            {{ 'user.oauth.account_associated'|trans({'%oauth_provider%': 'Twitter', '%url%': path('hwi_oauth_service_redirect', {'service': 'twitter' }) }, 'UserBundle')|raw }}
                         {% else %}
-                            {{ 'user.oauth.account_not_associated'|trans({'%oauth_provider%': 'Github', '%url%': path('hwi_oauth_service_redirect', {'service': 'github' }) }, 'UserBundle')|raw }}
+                            {{ 'user.oauth.account_not_associated'|trans({'%oauth_provider%': 'Twitter', '%url%': path('hwi_oauth_service_redirect', {'service': 'twitter' }) }, 'UserBundle')|raw }}
                         {% endif %}
-                    {% endautoescape %}
-                </li>
-                {#
-                <li>
-                    {% if app.user.twitterId  %}
-                        {{ 'user.oauth.account_associated'|trans({'%oauth_provider%': 'Twitter', '%url%': path('hwi_oauth_service_redirect', {'service': 'twitter' }) }, 'UserBundle')|raw }}
-                    {% else %}
-                        {{ 'user.oauth.account_not_associated'|trans({'%oauth_provider%': 'Twitter', '%url%': path('hwi_oauth_service_redirect', {'service': 'twitter' }) }, 'UserBundle')|raw }}
-                    {% endif %}
-                </li>
-                #}
-            </ul>
+                    </li>
+                    #}
+                </ul>
 
-        </div>
-    </div>
-
-    <div id="actions-list">
-        <div class="row">
-            <div class="box col-md-4 col-md-offset-4">
-                <a href="{{ path('user_brick') }}">
-                    <span class="glyphicon glyphicon-book"></span>
-                    {{ 'user_navbar.bricks'|trans({}, 'UserBundle')|upper }} ({{ app.user.bricks|length }})
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="box col-md-4 col-md-offset-4">
-                <a href="{{ path('user_brick_starred') }}">
-                    <span class="glyphicon glyphicon-star"></span>
-                    {{ 'user_navbar.bricks_starred'|trans({}, 'UserBundle')|upper }} ({{ app.user.starredBricks|length }})
-                </a>
             </div>
         </div>
 
-        <br><br>
+        <div id="actions-list">
+            <div class="row">
+                <div class="box col-md-4 col-md-offset-4">
+                    <a href="{{ path('user_brick') }}">
+                        <span class="glyphicon glyphicon-book"></span>
+                        {{ 'user_navbar.bricks'|trans({}, 'UserBundle')|upper }} ({{ app.user.bricks|length }})
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="box col-md-4 col-md-offset-4">
+                    <a href="{{ path('user_brick_starred') }}">
+                        <span class="glyphicon glyphicon-star"></span>
+                        {{ 'user_navbar.bricks_starred'|trans({}, 'UserBundle')|upper }} ({{ app.user.starredBricks|length }})
+                    </a>
+                </div>
+            </div>
 
-        <div class="row">
-            <div class="box col-md-4 col-md-offset-4">
-                <a href="{{ path('user_brick_new') }}">
-                    <span class="glyphicon glyphicon-plus"></span>
-                    {{ 'user_navbar.create_brick'|trans({}, 'UserBundle')|upper }}
-                </a>
+            <br><br>
+
+            <div class="row">
+                <div class="box col-md-4 col-md-offset-4">
+                    <a href="{{ path('user_brick_new') }}">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        {{ 'user_navbar.create_brick'|trans({}, 'UserBundle')|upper }}
+                    </a>
+                </div>
             </div>
         </div>
     </div>

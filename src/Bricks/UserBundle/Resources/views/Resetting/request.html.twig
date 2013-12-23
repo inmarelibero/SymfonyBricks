@@ -7,32 +7,34 @@
 
 {% block main %}
 
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <h1>{{ 'resetting.title'|trans({}, 'FOSUserBundle') }}</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1>{{ 'resetting.title'|trans({}, 'FOSUserBundle') }}</h1>
 
-            <br><br>
-    
-            <p>
-                {% autoescape 'html' %}
-                    {{ 'resetting.subtitle'|trans({}, 'FOSUserBundle')|raw }}
-                {% endautoescape %}
-            </p>
-            
-            <br><br>
-            
-            <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request security-form">
-                <div>
-                    {% if invalid_username is defined %}
-                        <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
-                    {% endif %}
-                    <label for="username">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle')|raw }}</label>
-                    <input type="text" id="username" name="username" required="required" />
-                </div>
-                <div>
-                    <input type="submit" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-primary" />
-                </div>
-            </form>
+                <br><br>
+
+                <p>
+                    {% autoescape 'html' %}
+                        {{ 'resetting.subtitle'|trans({}, 'FOSUserBundle')|raw }}
+                    {% endautoescape %}
+                </p>
+
+                <br><br>
+
+                <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request security-form">
+                    <div>
+                        {% if invalid_username is defined %}
+                            <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
+                        {% endif %}
+                        <label for="username">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle')|raw }}</label>
+                        <input type="text" id="username" name="username" required="required" />
+                    </div>
+                    <div>
+                        <input type="submit" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     

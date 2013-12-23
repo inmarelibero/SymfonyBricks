@@ -2,75 +2,77 @@
 
 {% block main %}
 
-    <div class="row">
-        <div class="col-md-12">
-        
-            <a href="{{ path('user_brick_new') }}" class="btn btn-primary pull-right">
-                <span class="glyphicon glyphicon-plus"></span> {{ 'brick.create_new_brick'|trans({}, 'UserBundle') }}
-            </a>
-            
-            <h1>Bricks</h1>
-            
-            <table id="bricks-table" class="records_list table table-striped">
-                <thead>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-book"></span> {{ 'brick.title'|trans|capitalize }}
-                        </td>
-                        <td class="published">
-                            <span class="glyphicon glyphicon-bullhorn"></span> {{ 'brick.published'|trans|capitalize }}
-                        </td>
-                        <td class="license">
-                            <span class="glyphicon glyphicon-flag"></span> {{ 'brick.license'|trans|capitalize }}
-                        </td>
-                        <td class="last_update">
-                            <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans|capitalize }}
-                        </td>
-                        <td class="actions">
-                            <span class="glyphicon glyphicon-reorder"></span>
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for entity in entities %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <a href="{{ path('user_brick_new') }}" class="btn btn-primary pull-right">
+                    <span class="glyphicon glyphicon-plus"></span> {{ 'brick.create_new_brick'|trans({}, 'UserBundle') }}
+                </a>
+
+                <h1>Bricks</h1>
+
+                <table id="bricks-table" class="records_list table table-striped">
+                    <thead>
                         <tr>
                             <td>
-                                <a href="{{ path('user_brick_edit', { 'id': entity.id }) }}">{{ entity.title }}</a>
+                                <span class="glyphicon glyphicon-book"></span> {{ 'brick.title'|trans|capitalize }}
                             </td>
                             <td class="published">
-                                <a href="{{ path('user_brick_toggle_published', { 'id': entity.id }) }}">
-                                    {% if (entity.published) %}
-                                        <span class="glyphicon glyphicon-ok-circle"></span> <span class="visible-xs">{{ 'brick.published'|trans|capitalize }}</span>
-                                    {% else %}
-                                        <span class="glyphicon glyphicon-remove-circle"></span> <span class="visible-xs">{{ 'brick.not_published'|trans|capitalize }}</span>
-                                    {% endif %}
-                                </a>
+                                <span class="glyphicon glyphicon-bullhorn"></span> {{ 'brick.published'|trans|capitalize }}
                             </td>
                             <td class="license">
-                                <span class="visible-xs">{{ 'brick.license'|trans|capitalize }}:</span>
-                                {% if entity.brickLicense %}
-                                    {{ entity.brickLicense.titleShort }}
-                                {% else %}
-                                    {{ 'brick.no_license_applied'|trans }}
-                                {% endif %}
+                                <span class="glyphicon glyphicon-flag"></span> {{ 'brick.license'|trans|capitalize }}
                             </td>
                             <td class="last_update">
-                                <span class="visible-xs">{{ 'brick.last_update'|trans|capitalize }}:</span>
-
-                                {{ entity.updatedat|date('d M Y') }}
-                                <br class="hidden-xs">
-                                {{ entity.updatedat|date('H:i:s') }}
-
+                                <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans|capitalize }}
                             </td>
                             <td class="actions">
-                                <a href="{{ path('user_brick_edit', { 'id': entity.id }) }}" ><span class="glyphicon glyphicon-edit"></span></a>
-                                {% render(controller('BricksUserBundle:Brick:_deleteForm', {'id': entity.id})) %}
+                                <span class="glyphicon glyphicon-reorder"></span>
                             </td>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            
+                    </thead>
+                    <tbody>
+                        {% for entity in entities %}
+                            <tr>
+                                <td>
+                                    <a href="{{ path('user_brick_edit', { 'id': entity.id }) }}">{{ entity.title }}</a>
+                                </td>
+                                <td class="published">
+                                    <a href="{{ path('user_brick_toggle_published', { 'id': entity.id }) }}">
+                                        {% if (entity.published) %}
+                                            <span class="glyphicon glyphicon-ok-circle"></span> <span class="visible-xs">{{ 'brick.published'|trans|capitalize }}</span>
+                                        {% else %}
+                                            <span class="glyphicon glyphicon-remove-circle"></span> <span class="visible-xs">{{ 'brick.not_published'|trans|capitalize }}</span>
+                                        {% endif %}
+                                    </a>
+                                </td>
+                                <td class="license">
+                                    <span class="visible-xs">{{ 'brick.license'|trans|capitalize }}:</span>
+                                    {% if entity.brickLicense %}
+                                        {{ entity.brickLicense.titleShort }}
+                                    {% else %}
+                                        {{ 'brick.no_license_applied'|trans }}
+                                    {% endif %}
+                                </td>
+                                <td class="last_update">
+                                    <span class="visible-xs">{{ 'brick.last_update'|trans|capitalize }}:</span>
+
+                                    {{ entity.updatedat|date('d M Y') }}
+                                    <br class="hidden-xs">
+                                    {{ entity.updatedat|date('H:i:s') }}
+
+                                </td>
+                                <td class="actions">
+                                    <a href="{{ path('user_brick_edit', { 'id': entity.id }) }}" ><span class="glyphicon glyphicon-edit"></span></a>
+                                    {% render(controller('BricksUserBundle:Brick:_deleteForm', {'id': entity.id})) %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
         </div>
     </div>
 

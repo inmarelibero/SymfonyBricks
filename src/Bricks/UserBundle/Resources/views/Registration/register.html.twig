@@ -7,86 +7,88 @@
 
 {% block main %}
 
-    <div class="row">
-        <div class="col-md-9 col-md-offset-3">
-            <h1>{{ 'registration.title'|trans({}, 'FOSUserBundle') }}</h1>
-       </div>
-    </div>
-    
-    <br><br>
-    
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <form class="fos_user_registration_register security-form form-horizontal" action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" role="form" novalidate>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-md-offset-3">
+                <h1>{{ 'registration.title'|trans({}, 'FOSUserBundle') }}</h1>
+           </div>
+        </div>
 
-                <div class="form-group {{ (form_errors(form.email))?'has-error':'' }}">
-                    <label class="col-lg-3 control-label">
-                        {{ 'form.email'|trans({}, 'FOSUserBundle') }}
-                    </label>
-                    <div class="col-lg-9">
-                        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+        <br><br>
 
-                        {% if form_errors(form.email) %}
-                            <div class="help-block errors">
-                                {{ form_errors(form.email) }}
-                            </div>
-                        {% endif %}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <form class="fos_user_registration_register security-form form-horizontal" action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" role="form" novalidate>
+
+                    <div class="form-group {{ (form_errors(form.email))?'has-error':'' }}">
+                        <label class="col-lg-3 control-label">
+                            {{ 'form.email'|trans({}, 'FOSUserBundle') }}
+                        </label>
+                        <div class="col-lg-9">
+                            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+
+                            {% if form_errors(form.email) %}
+                                <div class="help-block errors">
+                                    {{ form_errors(form.email) }}
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group {{ (form_errors(form.username))?'has-error':'' }}">
-                    <label class="col-lg-3 control-label">
-                        {{ 'form.username'|trans({}, 'FOSUserBundle') }}
-                    </label>
-                    <div class="col-lg-9">
-                        {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                    <div class="form-group {{ (form_errors(form.username))?'has-error':'' }}">
+                        <label class="col-lg-3 control-label">
+                            {{ 'form.username'|trans({}, 'FOSUserBundle') }}
+                        </label>
+                        <div class="col-lg-9">
+                            {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
 
-                        {% if form_errors(form.username) %}
-                            <div class="help-block errors">
-                                {{ form_errors(form.username) }}
-                            </div>
-                        {% endif %}
+                            {% if form_errors(form.username) %}
+                                <div class="help-block errors">
+                                    {{ form_errors(form.username) }}
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group {{ (form_errors(form.plainPassword.first))?'has-error':'' }}">
-                    <label class="col-lg-3 control-label">
-                        {{ 'form.password'|trans({}, 'FOSUserBundle') }}
-                    </label>
-                    <div class="col-lg-9">
-                        {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                    <div class="form-group {{ (form_errors(form.plainPassword.first))?'has-error':'' }}">
+                        <label class="col-lg-3 control-label">
+                            {{ 'form.password'|trans({}, 'FOSUserBundle') }}
+                        </label>
+                        <div class="col-lg-9">
+                            {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
 
-                        {% if form_errors(form.plainPassword.first) %}
-                            <div class="help-block errors">
-                                {{ form_errors(form.plainPassword.first) }}
-                            </div>
-                        {% endif %}
+                            {% if form_errors(form.plainPassword.first) %}
+                                <div class="help-block errors">
+                                    {{ form_errors(form.plainPassword.first) }}
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group {{ (form_errors(form.plainPassword.first))?'has-error':'' }}">
-                    <label class="col-lg-3 control-label">
-                        {{ 'form.password_confirmation'|trans({}, 'FOSUserBundle') }}
-                    </label>
-                    <div class="col-lg-9">
-                        {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                    <div class="form-group {{ (form_errors(form.plainPassword.first))?'has-error':'' }}">
+                        <label class="col-lg-3 control-label">
+                            {{ 'form.password_confirmation'|trans({}, 'FOSUserBundle') }}
+                        </label>
+                        <div class="col-lg-9">
+                            {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                        </div>
                     </div>
-                </div>
 
 
-                <div class="form-group">
-                    <div class="col-lg-offset-3 col-lg-9">
-                        <button type="submit" class="btn btn-success">{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}</button>
+                    <div class="form-group">
+                        <div class="col-lg-offset-3 col-lg-9">
+                            <button type="submit" class="btn btn-success">{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}</button>
+                        </div>
                     </div>
-                </div>
 
-                {{ form_rest(form) }}
-                {#
-                <div>
-                    <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-primary" />
-                </div>
-                #}
-            </form>
+                    {{ form_rest(form) }}
+                    {#
+                    <div>
+                        <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-primary" />
+                    </div>
+                    #}
+                </form>
+            </div>
         </div>
     </div>
     

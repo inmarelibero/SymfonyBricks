@@ -4,30 +4,32 @@
 
 {% block main %}
 
-    <div class="row">
-        <div class="col-md-12">
-        
-            <h1><span class="glyphicon glyphicon-star"></span> {{ 'user_navbar.bricks_starred'|trans({}, 'UserBundle')|title }}</h1>
-            
-            <table class="records_list table table-striped">
-                <tbody>
-                    {% for entity in entities %}
-                        <tr>
-                            <td>
-                                <a href="{{ path('user_brick_edit', { 'id': entity.id }) }}">{{ entity.title }}</a>
-                                <br>
-                                <p class="brick-info">
-                                    <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': entity.user.username}) }}">{{ entity.user }}</a>
-                                    |
-                                    <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans }}: {{ entity.updatedAt|date('d/m/Y') }}
-                                    |
-                                    {{ macrosBrick.toggleUserStarsBrick(entity) }}
-                                </p>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1><span class="glyphicon glyphicon-star"></span> {{ 'user_navbar.bricks_starred'|trans({}, 'UserBundle')|title }}</h1>
+
+                <table class="records_list table table-striped">
+                    <tbody>
+                        {% for entity in entities %}
+                            <tr>
+                                <td>
+                                    <a href="{{ path('user_brick_edit', { 'id': entity.id }) }}">{{ entity.title }}</a>
+                                    <br>
+                                    <p class="brick-info">
+                                        <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': entity.user.username}) }}">{{ entity.user }}</a>
+                                        |
+                                        <span class="glyphicon glyphicon-calendar"></span> {{ 'brick.last_update'|trans }}: {{ entity.updatedAt|date('d/m/Y') }}
+                                        |
+                                        {{ macrosBrick.toggleUserStarsBrick(entity) }}
+                                    </p>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
