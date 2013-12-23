@@ -1,19 +1,5 @@
-# Eclipse project
-.buildpath
-.project
-.settings
-
-# Netbeans project files
-nbproject
-
-# PhpStorm project files
-.idea
-atlassian-ide-plugin.xml
-
-# Bootstrap
-app/bootstrap*
-
 # Symfony directories
+
 app/logs/*
 app/cache/*
 app/var/sessions/*
@@ -23,7 +9,9 @@ web/assetic/*
 web/js/*
 web/css/*
 vendor/*
-build/*
+
+# Bootstrap
+app/bootstrap*
 
 # Configuration files
 app/config/parameters.yml
