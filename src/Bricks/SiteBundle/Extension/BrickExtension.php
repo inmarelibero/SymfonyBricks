@@ -42,19 +42,12 @@ class BrickExtension extends \Twig_Extension
             
             if ($tag) {
 
-                if ($printIcons) {
-                    $iconStr = '<span class="glyphicon glyphicon-tag"></span>';
-                } else {
-                    $iconStr = '';
-                }
-
                 // add tag title
-                $output .= <<<EOD
-<a href="{$this->router->generate('brick_search', array('tag' => $tag->getSlug()))}">
-    {$iconStr} {$tag->getTitle()}
-</a>
-EOD;
-                
+                $output .= '<a href="' . $this->router->generate('brick_search', array('tag' => $tag->getSlug())) . '">';
+                $output .=      ($printIcons) ? '<span class="glyphicon glyphicon-tag"></span>' : '';
+                $output .=      htmlspecialchars($tag->getTitle(), ENT_QUOTES, 'UTF-8');
+                $output .= '</a>';
+
                 // if not last iteration
                 if ($k < $brickHasTagsLength-1) {
                     // add separator

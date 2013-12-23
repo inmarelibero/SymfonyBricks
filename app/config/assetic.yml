@@ -52,6 +52,12 @@ assetic:
                 - %kernel.root_dir%/../web/assets/bootstrap-3.0.0/dist/js/bootstrap.min.js
                 - %kernel.root_dir%/../web/assets/socialite/socialite.js
 
+                # http://welldonethings.com/tags/manager/v3
+                - %kernel.root_dir%/../web/assets/tagmanager-3.0.1/tagmanager.js
+
+                # http://sugarjs.com/
+                - %kernel.root_dir%/../web/assets/sugarjs-1.4.1/sugar.min.js
+
                 #https://github.com/ccampbell/rainbow
                 - %kernel.root_dir%/../web/assets/rainbow/js/rainbow.min.js
                 - %kernel.root_dir%/../web/assets/rainbow/js/language/generic.js

@@ -33,7 +33,7 @@ class TagsToIdsTransformer implements DataTransformerInterface
      * Transform a collection of Tag objects into a string
      *
      * @param  DoctrineCollection|null $collection
-     * @return string $output a string of Tag titles separated by "|"
+     * @return string $output a string of Tag titles separated by ","
      */
     public function transform($collection)
     {
@@ -46,7 +46,7 @@ class TagsToIdsTransformer implements DataTransformerInterface
         foreach ($collection as $k => $item) {
             // add separator
             if ($k != 0) {
-                $output .= '|';
+                $output .= ',';
             }
              // add tag title
             $output .= $item->getTag()->getTitle();
@@ -56,7 +56,7 @@ class TagsToIdsTransformer implements DataTransformerInterface
     }
 
     /**
-     * Transform a string (Tag ids separated by "|") to an array of BrickHasTag objects
+     * Transform a string (Tag ids separated by ",") to an array of BrickHasTag objects
      *
      * @param  string $tags
      * @return array|null
@@ -70,8 +70,8 @@ class TagsToIdsTransformer implements DataTransformerInterface
         // array of BrickHasTag objects
         $output = array();
         
-        // explode the $tags string; tag titles separated by "|"
-        $array = explode('|', $tags);
+        // explode the $tags string; tag titles separated by ","
+        $array = explode(',', $tags);
         
         // iterate on tag titles
         foreach ($array as $tagTitle) {

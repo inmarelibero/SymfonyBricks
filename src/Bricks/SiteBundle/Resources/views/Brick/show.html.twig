@@ -41,9 +41,7 @@
 
             <div class="row" id="info">
                 <div class="col-md-10" id="tags">
-                    {% autoescape 'html' %}
-                        {{ brick_formatted_tags(brick)|raw }}
-                    {% endautoescape %}
+                    {{ brick_formatted_tags(brick)|raw }}
                 </div>
                 <div class="col-md-2" id="star">
                     {{ macrosBrick.toggleUserStarsBrick(brick) }}
@@ -140,9 +138,7 @@
                                     <span class="glyphicon glyphicon-tag"></span>
                                 </th>
                                 <td>
-                                    {% autoescape 'html' %}
-                                        {{ brick_formatted_tags(brick, ', ', false)|raw }}
-                                    {% endautoescape %}
+                                    {{ brick_formatted_tags(brick, ', ', false)|raw }}
                                 </td>
                             </tr>
                             <tr>
