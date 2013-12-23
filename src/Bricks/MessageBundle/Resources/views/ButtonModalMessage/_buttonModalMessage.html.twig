@@ -17,9 +17,7 @@
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
     <a id="button-{{ form_id }}" data-toggle="modal" data-target="#modal-{{ form_id }}">
-        {% autoescape 'html' %}
-            {{ call_to_action_value|raw }}
-        {% endautoescape %}
+        {{ call_to_action_value|raw }}
     </a>
 
     <div id="modal-{{ form_id }}" class="modal fade button-modal-message-modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -96,9 +94,7 @@
 {% else %}
 
     <a href="#modal-login" id="button-{{ form_id }}" data-toggle="modal">
-        {% autoescape 'html' %}
-            {{ call_to_action_value|raw }}
-        {% endautoescape %}
+        {{ call_to_action_value|raw }}
     </a>
 
 {% endif %}
