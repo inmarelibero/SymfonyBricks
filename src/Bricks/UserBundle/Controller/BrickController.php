@@ -75,7 +75,6 @@ class BrickController extends Controller
 
             $c = html_entity_decode($c);
 
-            //ldd($c);
             $entity->setContent($c);
         }
 
