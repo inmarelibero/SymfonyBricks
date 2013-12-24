@@ -147,3 +147,7 @@ eko_feed:
             link:        'https://symfonybicks.com'
             encoding:    'utf-8'
             author:      'SymfonyBricks' # Only required for Atom feeds
+
+knp_markdown:
+    parser:
+        service: markdown.parser.max
