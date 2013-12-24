@@ -3,12 +3,6 @@ SYNTAX-HIGHLIGHT.LESS
 
 rules for highlighted code contents
 ******************************************************************************************/
-pre {
-    padding: 0px;
-    border: 0px none;
-    border-radius: 0px;
-}
-
 /* code inspired by: https://github.com/Blender3D/rainbow.linenumbers.js */
 table.rainbow {
     width:  100%;
@@ -16,29 +10,32 @@ table.rainbow {
     font-family: "Courier New", Courier, monospace;
     padding: 0;
 
-    border: 1px solid #CCC;
-    background-color: #ECECEC;
+    border: 2px solid #CCC;
+    //background-color: #ECECEC;
 
-    .rainbow-header { display: none; }
+    tr.rainbow-header { display: none; }
 
-    .rainbow-line {
+    tr.rainbow-line {
         &:hover {
             .rainbow-line-number, .rainbow-line-code { background-color: #DDD; }
         }
 
-        .rainbow-line-number {
-            width: 45px;
+        td.rainbow-line-number {
+            width: 32px;
             text-align: right;
             vertical-align: top;
 
-            background-color: #CCC;
+            background-color: #F1f1f1;
+            color: rgb(170, 170, 170);
 
-            padding-left: 0.4em;
-            padding-right: 0.4em;
+            padding: 0px 5px;
 
             &::before { content: attr(data-number); }
         }
 
-        .rainbow-line-code { padding-left: 1em; }
+        td.rainbow-line-code {
+            padding-left: 1em;
+            padding-right: 1em;
+        }
     }
 }
