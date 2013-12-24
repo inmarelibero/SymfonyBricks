@@ -29,7 +29,7 @@ user:
 brick:
     actions: azioni
     brickHasTags:
-        help_text: Per aggiungere un Tag, scrivilo nel riquadro qua sotto e premi "Invio"
+        help_text: Scrivi il tag qui e premi "Invio"
     canonical_url: Url Canonico
     confirm_deletion: "Questa operazione non può essere annullata. Continuare?"
     content: contenuto

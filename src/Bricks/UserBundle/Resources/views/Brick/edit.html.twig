@@ -5,9 +5,11 @@
 {% block main %}
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <form action="{{ (entity.isNew) ? path('user_brick_create') : path('user_brick_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }} id="user-brick-edit" class="form" novalidate>
+
+        <form action="{{ (entity.isNew) ? path('user_brick_create') : path('user_brick_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }} id="user-brick-edit" class="form" novalidate>
+
+            <div class="row">
+                <div class="col-md-12">
 
                     <p>
                         <div class="pull-right">
@@ -45,7 +47,33 @@
                             {% endif %}
                         </div>
                     </div>
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-md-6">
+                    {# BRICK TAGS #}
+                    <div class="form-group">
+                        <div class="control-label">
+                            <strong>
+                                {{ 'brick.tags'|trans({}, 'UserBundle')|capitalize }}
+                            </strong>
+
+                            {# info modal #}
+                            {{ macrosInfo.bootstrapInfoModal('brick.help.tags.title'|trans({}, 'UserBundle'), 'brick.help.tags.body'|trans({}, 'UserBundle')) }}
+                        </div>
+                        <div class="controls">
+
+                            <div id="tags-labels">
+                                <input id="input-add-tag" class="tags-input" type="text" placeholder="{{ 'brick.brickHasTags.help_text'|trans({}, 'UserBundle') }}" />
+                            </div>
+
+                            {{ form_widget(form.brickHasTags) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
                     {# BRICK LICENSE #}
                     <div class="form-group">
                         <div class="control-label">
@@ -63,30 +91,26 @@
                         </div>
                     </div>
 
-                    {# BRICK TAGS #}
+                    {# BRICK CANONICAL URL #}
                     <div class="form-group">
                         <div class="control-label">
                             <strong>
-                                {{ 'brick.tags'|trans({}, 'UserBundle')|capitalize }}
+                                {{ 'brick.canonical_url'|trans({}, 'UserBundle')|capitalize }}
                             </strong>
 
                             {# info modal #}
-                            {{ macrosInfo.bootstrapInfoModal('brick.help.tags.title'|trans({}, 'UserBundle'), 'brick.help.tags.body'|trans({}, 'UserBundle')) }}
+                            {{ macrosInfo.bootstrapInfoModal('brick.help.canonical_url.title'|trans({}, 'UserBundle'), 'brick.help.canonical_url.body'|trans({}, 'UserBundle')) }}
                         </div>
                         <div class="controls">
-
-                            <div id="tags-labels">
-                                <p class="help-text">
-                                    {{ 'brick.brickHasTags.help_text'|trans({}, 'UserBundle') }}
-                                </p>
-                                <br>
-
-                                <input id="input-add-tag" class="tags-input" type="text" />
-                            </div>
-
-                            {{ form_widget(form.brickHasTags) }}
+                            {{ form_widget(form.canonical_url, {'attr': {'class': 'form-control'}}) }}
                         </div>
                     </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
 
                     {# BRICK DESCRIPTION #}
                     <div class="form-group">
@@ -102,21 +126,12 @@
                             {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    {# BRICK CANONICAL URL #}
-                    <div class="form-group">
-                        <div class="control-label">
-                            <strong>
-                                {{ 'brick.canonical_url'|trans({}, 'UserBundle')|capitalize }}
-                            </strong>
 
-                            {# info modal #}
-                            {{ macrosInfo.bootstrapInfoModal('brick.help.canonical_url.title'|trans({}, 'UserBundle'), 'brick.help.canonical_url.body'|trans({}, 'UserBundle')) }}
-                        </div>
-                        <div class="controls">
-                            {{ form_widget(form.canonical_url, {'attr': {'class': 'form-control'}}) }}
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col-md-12">
 
                     {# BRICK CONTENT #}
                     <div id="form-group-content" class="form-group">
@@ -159,11 +174,10 @@
                     </div>
 
                     {{ form_rest(form) }}
-
-                </form>
-
+                </div>
             </div>
-        </div>
+
+        </form>
     </div>
 
 

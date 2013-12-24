@@ -71,14 +71,7 @@ body.route-user_brick_new, body.route-user_brick_create, body.route-user_brick_e
             float: none;
             width:  auto;
             display: inline-block;
-            padding:    3px 20px;
-            
-            border: 1px solid #CCC;
-            border-bottom:  0px none;
-            .border-top-radius(3px);
-            .border-bottom-radius(0px);
-
-            #gradient .vertical(#F8F8F8, #FFF);
+            padding:    3px 0px;
             
             text-align: left;
             font-weight:    normal;
@@ -103,13 +96,9 @@ body.route-user_brick_new, body.route-user_brick_create, body.route-user_brick_e
         }
 
         #license-wrapper {
-            background: #FFF;
-
-            border:     1px solid #CCC;
-            padding:    10px;
 
             select {
-                width:  auto;
+                width:  100%;
             }
         }
         
@@ -119,18 +108,17 @@ body.route-user_brick_new, body.route-user_brick_create, body.route-user_brick_e
             position: relative;
             height: inherit !important;
             background: #FFF;
+            overflow: hidden;
 
-            border:     1px solid #CCC;
-            padding:    10px;
-            
             .tag-data {
                 display:none;
             }
             .tags-input {
-                width:  200px;
-                margin: 0;
-                padding:   7px !important;
-                border-radius: 3px;
+                width:          240px;
+                margin:         0;
+                padding:        5px !important;
+                border-radius:  3px;
+                margin-bottom:  10px;
 
                 font-size:  12px !important;
             }
@@ -139,9 +127,13 @@ body.route-user_brick_new, body.route-user_brick_create, body.route-user_brick_e
                 padding:    5px 8px;
                 margin-right: 10px;
                 border-radius: 3px;
+                float: left;
+                margin-bottom: 10px;
 
+                font-size: 13px;
                 background: @sb_green_medium;
                 color: #FFF;
+
                 a {
                     margin-left: 20px;
                     color: #ccc;
@@ -151,6 +143,7 @@ body.route-user_brick_new, body.route-user_brick_create, body.route-user_brick_e
         
         ul#content-tab {
             margin-bottom:   0px;
+
             li {
                 margin-bottom:   0px;
 
@@ -189,13 +182,19 @@ body.route-user_brick_new, body.route-user_brick_create, body.route-user_brick_e
             }
 
             textarea#bricks_userbundle_bricktype_content {
-                height: 600px;
+                height: 800px;
                 border-top: 0px;
             }
             #content-preview {
                 padding:    4px 6px;
                 border: 1px solid #CCC;
                 border-top: 0px;
+
+                pre {
+                    padding: 0px;
+                    border: 0px none;
+                    background: transparent;
+                }
             }
         }
     }

@@ -29,7 +29,7 @@ user:
 brick:
     actions: actions
     brickHasTags:
-        help_text: To add a tag, write it in the box below and press "Enter"
+        help_text: Write the tag here and press "Enter"
     canonical_url: Canonical Url
     confirm_deletion: "This operation cannot be undone. Confirm the deletion?"
     content: content
