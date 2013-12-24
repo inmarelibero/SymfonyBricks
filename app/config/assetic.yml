@@ -38,7 +38,7 @@ assetic:
             inputs:
                 - %kernel.root_dir%/../web/assets/bootstrap-3.0.0/dist/css/bootstrap.min.css
                 - @lesses
-                - %kernel.root_dir%/../web/assets/rainbow/themes/github.css
+                - %kernel.root_dir%/../web/assets/rainbow-1.1.9/themes/github.css
             filters: [?yui_css, cssrewrite]
 
         javascripts_header:
@@ -59,12 +59,12 @@ assetic:
                 - %kernel.root_dir%/../web/assets/sugarjs-1.4.1/sugar.min.js
 
                 #https://github.com/ccampbell/rainbow
-                - %kernel.root_dir%/../web/assets/rainbow/js/rainbow.min.js
-                - %kernel.root_dir%/../web/assets/rainbow/js/language/generic.js
-                - %kernel.root_dir%/../web/assets/rainbow/js/language/php.js
-                - %kernel.root_dir%/../web/assets/rainbow/js/language/html.js
-                - %kernel.root_dir%/../web/assets/rainbow/js/language/javascript.js
-                - %kernel.root_dir%/../web/assets/rainbow.linenumbers.js-master/rainbow.linecount.js
+                - %kernel.root_dir%/../web/assets/rainbow-1.1.9/js/rainbow.min.js
+                - %kernel.root_dir%/../web/assets/rainbow-1.1.9/js/language/generic.js
+                - %kernel.root_dir%/../web/assets/rainbow-1.1.9/js/language/php.js
+                - %kernel.root_dir%/../web/assets/rainbow-1.1.9/js/language/html.js
+                - %kernel.root_dir%/../web/assets/rainbow-1.1.9/js/language/javascript.js
+                - %kernel.root_dir%/../web/assets/rainbow.linenumbers-master/js/rainbow.linenumbers.js
 
                 - %kernel.root_dir%/../web/bundles/brickssite/js/*.js
                 - %kernel.root_dir%/../web/bundles/brickssite/js/*/*.js

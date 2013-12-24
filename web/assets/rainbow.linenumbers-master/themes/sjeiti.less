@@ -1,0 +1,82 @@
+/**
+ * Sjeiti theme
+ *
+ * Theme for testing line numbering
+ *
+ * @author Ron Valstar <ron@sjeiti.com>
+ * @version 1.0
+ */
+@import url(~'http://fonts.googleapis.com/css?family=Inconsolata');
+@fontMono: Inconsolata, courier, monospace;
+@fontSize: 12px;
+@lineHeight: 15px;
+
+.cornerRounded(@radius: 2px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+	-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+}
+
+pre {
+    position: relative;
+	padding: @lineHeight;
+	background: #222;
+	z-index: -2;
+	.cornerRounded(5px);
+
+	margin-bottom: 20px;
+	font: 12px e('/') @lineHeight @fontMono;
+    code.rainbow {
+		display: block;
+		min-width: 100%;
+        position: static;
+		color: #fff;
+
+		word-wrap: break-word;
+		.line {
+			color: #666;
+			&:after {
+				border-bottom: 1px solid #333;
+				z-index: -1;
+			}
+		}
+		&.rb1 {
+			display: inline;
+		}
+		&.rb2 .line {
+			color: #999;
+			&:after { border-bottom: none; }
+		}
+		#rb2ln6,#rb2ln7,#rb2ln8 {
+			&:before { color: yellow; }
+			&:after {
+				height: 100%;
+				background-color: fade(yellow,10%);
+			}
+		}
+
+		#rb4ln1233 {
+			&:before { background-color: yellow; }
+			&:after {
+				height: 100%;
+				background-color: fade(yellow,10%);
+				border-bottom: 1px solid fade(yellow,50%);
+			}
+		}
+
+
+		.comment {		color: #FC2; }
+
+		.string, .comment.docstring { color: #9C6; }
+		.keyword, .selector { color: #89A; }
+		.inherited-class { font-style: italic; }
+
+		.entity { color: #A98; }
+		.function.name { color: #97B; }
+		.numeric { color: #38C; }
+		.property { color: #9A8; }
+		.operator {		color: #C83; }
+
+	}
+}
