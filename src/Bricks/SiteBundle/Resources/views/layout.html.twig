@@ -22,19 +22,16 @@
         
         {# canonical url #}
         <link rel="canonical" href="{% block canonical_url %}{{ app.request.uri }}{% endblock canonical_url %}"/>
-        
-        {# load header javascripts #}
-        {% javascripts '@javascripts_header' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
 
         {# load stylesheets #}
         {% stylesheets "@stylesheets" %}
             <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
         {% endstylesheets %}
 
-        {# FOSJsRoutingBundle generated routes by controller #}
-        <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+        {# load header javascripts #}
+        {% javascripts '@javascripts_header' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
 
         {# google analytics code #}
         <script type="text/javascript">
@@ -219,18 +216,18 @@
 
                 {% if flash_messages|length > 0 %}
                     <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    {% for type, messages in flash_messages %}
-                                        <div class="alert alert-{{ type }}">
-                                            <a class="close" data-dismiss="alert">×</a>
-                                            {% for message in messages %}
-                                                {{ message|trans({}, 'alert') }}
-                                            {% endfor %}
-                                        </div>
-                                    {% endfor %}
-                                </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                {% for type, messages in flash_messages %}
+                                    <div class="alert alert-{{ type }}">
+                                        <a class="close" data-dismiss="alert">×</a>
+                                        {% for message in messages %}
+                                            {{ message|trans({}, 'alert') }}
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
                             </div>
+                        </div>
                     </div>
 
                 {% endif %}
@@ -239,6 +236,7 @@
                 {% block main %}{% endblock %}
 
             </section>
+
             <div class="push-footer"></div>
         </div>
 
@@ -275,8 +273,8 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-4 hidden-sm hidden-xs col-center">
 
+                    <div class="col-md-4 hidden-sm hidden-xs col-center">
                         <a href="{{ path('homepage') }}">
                             <strong>SymfonyBricks</strong>
                         </a>
@@ -291,6 +289,7 @@
                             online since: Mon 1 Oct 2012, 23:15:23
                         {% endif %}
                     </div>
+
                     <div class="col-md-4 col-xs-6" style="text-align: right">
                         <a  class="socialite twitter-follow"
                             href="https://twitter.com/SymfonyBricks"
@@ -314,6 +313,9 @@
         {% javascripts '@javascripts_footer' %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
+
+        {# FOSJsRoutingBundle generated routes by controller #}
+        <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
         <script>
             $(function() {

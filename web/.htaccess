@@ -58,7 +58,7 @@ DirectoryIndex app.php
 </IfModule>
 
 # IMMAGINI: cache per 2 giorni
-<filesMatch "\.(ico|gif|jpg|png)$">
+<filesMatch "\.(ico|gif|jpg|jpeg|png)$">
   ExpiresActive On
   ExpiresDefault "access plus 2 days"
   Header append Cache-Control "public"
@@ -67,7 +67,7 @@ DirectoryIndex app.php
 # CSS: cache per 10 minuti
 <filesMatch "\.css$">
   ExpiresActive On
-  ExpiresDefault "access plus 10 minutes"
+  ExpiresDefault "access plus 2 hours"
   Header append Cache-Control "public"
 </filesMatch>
 
