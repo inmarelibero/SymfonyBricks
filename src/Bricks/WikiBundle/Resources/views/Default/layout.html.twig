@@ -15,37 +15,40 @@
 {% block main %}
 
     <div id="route-wiki-wrapper">
-        <div class="row header">
-            <div class="col-md-12">
-                <h1>Wiki</h1>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-3">
-
-                <div id="help-menu">
-                    <ul class="nav nav-list">
-                        <li>
-                            <a href="{{ path('wiki_symfonybricks') }}">
-                                <span class="glyphicon glyphicon-book"></span> SymfonyBrick.com
-                            </a>
-                        </li>
-
-                        <li class="nav-header">
-                            Dictionary
-                        </li>
-                        <li>
-                            <a href="{{ path('wiki_dictionary_brick') }}">
-                                <span class="glyphicon glyphicon-book"></span> Brick
-                            </a>
-                        </li>
-                    </ul>
+        <div class="container">
+            <div class="row header">
+                <div class="col-md-12">
+                    <h1>Wiki</h1>
                 </div>
-
             </div>
-            <div class="col-md-9 wiki-main">
-                {% block wiki_main '' %}
+
+            <div class="row">
+                <div class="col-md-3">
+
+                    <div id="help-menu">
+                        <ul class="nav nav-list">
+                            <li>
+                                <a href="{{ path('wiki_symfonybricks') }}">
+                                    <span class="glyphicon glyphicon-book"></span> SymfonyBrick.com
+                                </a>
+                            </li>
+
+                            <li class="nav-header">
+                                Dictionary
+                            </li>
+                            <li>
+                                <a href="{{ path('wiki_dictionary_brick') }}">
+                                    <span class="glyphicon glyphicon-book"></span> Brick
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-md-9 wiki-main">
+                    {% block wiki_main '' %}
+                </div>
             </div>
         </div>
     </div>
