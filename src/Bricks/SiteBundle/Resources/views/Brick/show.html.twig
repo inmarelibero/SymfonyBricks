@@ -40,10 +40,10 @@
             </div>
 
             <div class="row" id="info">
-                <div class="col-md-10" id="tags">
+                <div class="col-md-11" id="tags">
                     {{ brick_formatted_tags(brick)|raw }}
                 </div>
-                <div class="col-md-2" id="star">
+                <div class="col-md-1" id="star">
                     {{ macrosBrick.toggleUserStarsBrick(brick) }}
                 </div>
             </div>
@@ -158,6 +158,8 @@
                 </div>
             </div>
 
+            <hr>
+
             <div class="row">
                 <div class="col-md-12">
                     {{ knp_disqus_render('symfonybricks', {'identifier': '/brick-'~brick.id, 'limit': 10}) }}
@@ -212,7 +214,7 @@
 
                 // bind click event to scroll to chapter
                 a.click(function() {
-                    var offset = $(this).data('offset-top') - $('#info').height();
+                    var offset = $(this).data('offset-top') - $('#info').height() - 80;
                     $('html, body').animate({scrollTop: offset}, 200);
                 });
                 // add <a> tag to chapters list in <ul>

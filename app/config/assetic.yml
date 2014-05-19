@@ -37,8 +37,9 @@ assetic:
         stylesheets:
             inputs:
                 - %kernel.root_dir%/../web/assets/bootstrap-3.0.0/dist/css/bootstrap.min.css
-                - @lesses
                 - %kernel.root_dir%/../web/assets/rainbow-1.1.9/themes/github.css
+
+                - @lesses
             filters: [?yui_css, cssrewrite]
 
         javascripts_header:

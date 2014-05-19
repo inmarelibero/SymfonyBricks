@@ -18,43 +18,36 @@ body.route-brick_show {
 
     #brick-head {
         h1 {
-            font-size: 50px;
-            margin-bottom: 10px;
+            font-size: 40px;
+            margin-bottom: 15px;
         }
     }
 
-    #info {
-        margin-bottom: 40px;
+    #info { margin-bottom: 40px;
         &, a { font-size: 12px; }
+
         #tags {
-
+            a {
+                margin-right:   4px;
+                span.glyphicon { margin-right: 2px; }
+            }
         }
-        #star {
-            text-align: right;
-        }
-    }
-
-    #brick {
-        .description {
-            font-size: 14px;
-            padding-bottom: 20px;
-        }
+        #star { text-align: right; }
     }
 
     #footer-info {
         margin: 30px 0px;
         padding: 10px;
-        border: 1px solid #CCC;
+        border: 1px solid @sb_green_medium;
         border-radius: 4px;
-        background: @sb_green_medium;
 
         &, a {
             font-size:  16px;
             font-weight: normal;
-            color:  #FFF;
+            color:  @sb_green_medium;
         }
         .glyphicon {
-            color: #333;
+            color: #444;
         }
         a:hover {
             color: @sb_green_dark_light;
@@ -115,13 +108,53 @@ body.route-brick_show {
     }
 
     #brick {
+        .description {
+            font-size: 14px;
+            padding-bottom: 20px;
+        }
+
         .content {
+            border:             1px solid rgba(0, 0, 0, 0.1);
+            border-radius:      2px;
+            -webkit-box-shadow: 0 1px 2px 1px rgba(0,0,0,.1);
+            box-shadow:         0 1px 2px 1px rgba(0,0,0,.1);
+            padding:            10px;
+
             h1, h2, h3, h4, h5, h6 { font-family: 'open_sansbold'; }
 
             h1 {
                 font-size:  20px;
                 margin-top: 40px;
                 border-bottom:  1px solid #CCC;
+                margin-bottom: 30px;
+                font-family: 'open_sansregular';
+
+                // ribbon
+                display: inline-block;
+                color:  #FFF;
+                border-color: #DE3859!important;
+                background-color: #D95C5C!important;
+                position: relative;
+                left: -30px;
+                padding: 5px 10px 5px 30px;
+                border-radius: 0 4px 4px 0;
+                border-color: rgba(0,0,0,.15);
+
+                &:after {
+                    position: absolute;
+                    content: "";
+                    top: 100%;
+                    left: 0;
+                    border-top: 0 solid transparent;
+                    border-right-width: 1em;
+                    border-right-color: inherit;
+                    border-right-style: solid;
+                    border-bottom: 1em solid transparent;
+                    border-left: 0 solid transparent;
+                    width: 0;
+                    height: 0;
+                }
+                // !ribbon
 
                 &:first-child { margin-top: 0px; }
             }
@@ -142,6 +175,35 @@ body.route-brick_show {
                 padding:    0px;
                 border-radius: 0px;
                 background: transparent;
+
+                code {
+                    line-height:    16px;
+                    padding-left:   0px;
+                    margin-left:    0px;
+                    position:       relative;
+                    left:           42px;
+
+                    span.line {
+                        position:               absolute;
+                        left:                   -42px;
+                        padding:                3px 10px 3px 1px;
+                        margin-right:           10px;
+
+                        border-right:           1px solid #999;
+
+                        -webkit-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+
+                        line-height:            16px;
+                        font-size:              13px;
+                        color:                  #999;
+                        letter-spacing:         -1px;
+
+                        pointer-events: none;
+                    }
+                }
             }
         }
     }
