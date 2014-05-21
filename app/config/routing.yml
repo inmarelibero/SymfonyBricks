@@ -1,3 +1,7 @@
+################################################################################################
+# FRONTEND
+################################################################################################
+
 # BricksRedirectBundle controllers are loaded before any other
 bricks_redirect:
     resource: "@BricksRedirectBundle/Controller/"
@@ -51,11 +55,18 @@ bricks_message:
     requirements:
         _locale:  %route_locale_requirements%
 
+################################################################################################
+# ADMIN
+################################################################################################
+# BricksAdminBundle
 bricks_admin:
     resource: "@BricksAdminBundle/Controller/"
     type:     annotation
     prefix:   /admin/
 
+################################################################################################
+# LOGIN
+################################################################################################
 # additional unlocalized login action
 login:
     pattern:   /login
@@ -66,10 +77,18 @@ logout:
     pattern:   /logout
     defaults:  { _controller: FOSUserBundle:Security:logout, _locale: %locale% }
 
-# FOSJsRoutingBundle routes
-fos_js_routing:
-    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"        
+github_login:
+    pattern: /login/check-github
 
+twitter_login:
+    pattern: /login/check-twitter
+
+sensiolabsconnect_login:
+    pattern: /login/check-sensiolabsconnect
+
+################################################################################################
+# FOSUser
+################################################################################################
 # FOSUserBundle routes
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
@@ -106,6 +125,14 @@ fos_user_change_password:
     requirements:
         _locale:  %route_locale_requirements%
 
+################################################################################################
+# Bundles
+################################################################################################
+# FOSJsRoutingBundle
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+# FOSMessageBundle
 fos_message:
     resource: "@FOSMessageBundle/Resources/config/routing.xml"
     prefix: /{_locale}/user/message
@@ -113,7 +140,7 @@ fos_message:
     requirements:
         _locale:  %route_locale_requirements%
 
-# PrestaSitemapBundle routes
+# PrestaSitemapBundle
 PrestaSitemapBundle:
     resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
     prefix:   /
@@ -130,13 +157,6 @@ hwi_oauth_connect:
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
     prefix:   /connect
-
-github_login:
-    pattern: /login/check-github
-twitter_login:
-    pattern: /login/check-twitter
-sensiolabsconnect_login:
-    pattern: /login/check-sensiolabsconnect
 
 # AvalancheImagineBundle
 _imagine:
