@@ -1,0 +1,8 @@
+eko_feed:
+    feeds:
+        brick:
+            title:       'SymfonyBricks.com'
+            description: 'List of published bricks'
+            link:        'https://symfonybicks.com'
+            encoding:    'utf-8'
+            author:      'SymfonyBricks' # Only required for Atom feeds

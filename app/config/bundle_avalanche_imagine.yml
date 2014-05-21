@@ -1,0 +1,9 @@
+avalanche_imagine:
+    source_root:  %kernel.root_dir%/../web
+    web_root:     %kernel.root_dir%/../web
+    cache_prefix: media_cache
+    driver:       gd
+    filters:
+        user_profile_small_thumb:
+            type:    thumbnail
+            options: { size: [26, 26], mode: inset }

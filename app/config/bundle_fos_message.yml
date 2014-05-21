@@ -1,0 +1,8 @@
+fos_message:
+    db_driver: orm
+    thread_class: Bricks\MessageBundle\Entity\Thread
+    message_class: Bricks\MessageBundle\Entity\Message
+    new_thread_form:
+        type: message_bundle.new_thread_form.type.default
+    reply_form:
+        type: message_bundle.reply_message_form.type.default

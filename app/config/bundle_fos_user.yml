@@ -1,0 +1,24 @@
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Bricks\UserBundle\Entity\User
+
+    from_email:
+        address:        contact@symfonybricks.com
+        sender_name:    SymfonyBricks.com
+
+    service:
+        mailer: fos_user.mailer.twig_swift
+
+    registration:
+        confirmation:
+            enabled:    true
+            template:   BricksUserBundle:Registration:registration.email.twig
+
+    resetting:
+        email:
+            template:   BricksUserBundle:Resetting:resetting.email.twig
+
+    profile:
+        form:
+            type: bricks_user_profile

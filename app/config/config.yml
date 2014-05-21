@@ -1,11 +1,21 @@
 imports:
     - { resource: parameters.yml }
-    - { resource: assetic.yml }
     - { resource: locales.yml }
     - { resource: security.yml }
-    - { resource: hwi_oauth.yml }
 
+    # bundles config
+    - { resource: bundle_assetic.yml }
+    - { resource: bundle_avalanche_imagine.yml }
     - { resource: bundle_copiaincolla_metatags.yml }
+    - { resource: bundle_eko_feed.yml }
+    - { resource: bundle_fos_message.yml }
+    - { resource: bundle_fos_user.yml }
+    - { resource: bundle_hwi_oauth.yml }
+    - { resource: bundle_knp_disqus.yml }
+    - { resource: bundle_knp_markdown.yml }
+    - { resource: bundle_presta_sitemap.yml }
+    - { resource: bundle_stof_doctrine_extensions.yml }
+    - { resource: bundle_vich_uploader.yml }
 
 parameters:
     locale:   en #default locale
@@ -67,89 +77,7 @@ swiftmailer:
     spool:      { type: memory }
 
 services:
- twig.extension.text:
-     class: Twig_Extensions_Extension_Text
-     tags:
-         - { name: twig.extension }
-
-fos_user:
-    db_driver: orm
-    firewall_name: main
-    user_class: Bricks\UserBundle\Entity\User
-
-    from_email:
-        address:        contact@symfonybricks.com
-        sender_name:    SymfonyBricks.com
-
-    service:
-        mailer: fos_user.mailer.twig_swift
-
-    registration:
-        confirmation:
-            enabled:    true
-            template:   BricksUserBundle:Registration:registration.email.twig
-
-    resetting:
-        email:
-            template:   BricksUserBundle:Resetting:resetting.email.twig
-
-    profile:
-        form:
-            type: bricks_user_profile
-
-stof_doctrine_extensions:
-    default_locale: %locale%
-    orm:
-        default:
-            timestampable: true
-            sluggable: true
-            loggable: true
-
-knp_disqus:
-    api_key: WVvKRRE3fnk8HDSq4foXmBo5pr3KPTmaWsa3QyC8LpYOroTfeuL6AAItlw4n3ehg
-
-fos_message:
-    db_driver: orm
-    thread_class: Bricks\MessageBundle\Entity\Thread
-    message_class: Bricks\MessageBundle\Entity\Message
-    new_thread_form:
-        type: message_bundle.new_thread_form.type.default
-    reply_form:
-        type: message_bundle.reply_message_form.type.default
-
-presta_sitemap:
-    dumper_base_url: "https://symfonybricks.com/"
-
-vich_uploader:
-    db_driver: orm
-    storage: vich_uploader.storage.filesystem
-    mappings:
-        user_profile_image:
-            uri_prefix: /uploads/users
-            upload_destination: %kernel.root_dir%/../web/uploads/users
-            delete_on_remove: true
-            delete_on_update: true
-            namer: bricks.namer_uniqid
-
-avalanche_imagine:
-    source_root:  %kernel.root_dir%/../web
-    web_root:     %kernel.root_dir%/../web
-    cache_prefix: media_cache
-    driver:       gd
-    filters:
-        user_profile_small_thumb:
-            type:    thumbnail
-            options: { size: [26, 26], mode: inset }
-
-eko_feed:
-    feeds:
-        brick:
-            title:       'SymfonyBricks.com'
-            description: 'List of published bricks'
-            link:        'https://symfonybicks.com'
-            encoding:    'utf-8'
-            author:      'SymfonyBricks' # Only required for Atom feeds
-
-knp_markdown:
-    parser:
-        service: markdown.parser.max
+   twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }
