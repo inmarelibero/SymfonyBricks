@@ -21,18 +21,19 @@
         "incenteev/composer-parameter-handler": "~2.0",
 
         "friendsofsymfony/user-bundle": "~2.0@dev",
-        "leafo/lessphp": "dev-master",
+        "leafo/lessphp": "0.4.*@dev",
         "stof/doctrine-extensions-bundle": "~1.1@dev",
         "knplabs/knp-markdown-bundle": "1.2.*@dev",
         "friendsofsymfony/jsrouting-bundle": "~1.1",
-        "knplabs/knp-disqus-bundle": "dev-master",
-        "friendsofsymfony/message-bundle": "dev-master",
+        "knplabs/knp-disqus-bundle": "1.1.*@dev",
+        "friendsofsymfony/message-bundle": "1.2.*@dev",
         "presta/sitemap-bundle": "1.2.*",
         "pk/markdownify-bundle": "2.1.*",
-        "vich/uploader-bundle": "dev-master",
+        "vich/uploader-bundle": "v0.9.0",
         "avalanche123/imagine-bundle": "v2.1",
         "eko/feedbundle": "1.0.*@dev",
-        "hwi/oauth-bundle": "0.3.*@dev"
+        "hwi/oauth-bundle": "0.3.*@dev",
+        "copiaincolla/metatags-bundle": "2.*"
     },
     "scripts": {
         "post-install-cmd": [
@@ -57,6 +58,7 @@
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
+        "symfony-assets-install":"symlink",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         },

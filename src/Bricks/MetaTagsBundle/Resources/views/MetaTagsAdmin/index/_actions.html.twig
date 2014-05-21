@@ -1,0 +1,22 @@
+{# edit button #}
+{% if entity %}
+    <a href="{{ path('admin_metatag_edit', {'id': entity.id }) }}" class="btn btn-default btn-xs pull-right">
+        edit
+    </a>
+{% else %}
+    <a href="{{ path('admin_metatag_new', {'url': item.url }) }}" class="btn btn-default btn-xs pull-right">
+        edit
+    </a>
+{% endif %}
+
+{# delete button #}
+{% if entity %}
+    {% render controller('CopiaincollaMetaTagsBundle:MetaTagsAdmin:_deleteForm', {id: entity.id}) %}
+{% endif %}
+
+{# show button #}
+{% if entity %}
+    <a href="{{ path('admin_metatag_show', {'id': entity.id }) }}" class="btn btn-default btn-xs pull-right">
+        show
+    </a>
+{% endif %}

@@ -1,13 +1,9 @@
 {% extends 'BricksSiteBundle:UserProfile:layout.html.twig' %}
 
 {# META TAGS blocks #}
-{% set meta_title_content = user.username~" | SymfonyBricks.com" %}
-{% set meta_description_content = "Public profile of "~user.username~" on SymfonyBricks.com" %}
-
-{% block meta_title_content %}{{ meta_title_content }}{% endblock %}
-{% block meta_description_content %}{{ meta_description_content }}{% endblock %}
-{% block meta_og_title_content %}{{ meta_title_content }}{% endblock %}
-{% block meta_og_description_content %}{{ meta_description_content }}{% endblock %}
+{% block meta_tags %}
+    {% render controller('CopiaincollaMetaTagsBundle:MetaTags:render', { 'inlineMetatags': {'title': user.username~' | SymfonyBricks.com', 'description': 'Public profile of '~user.username~' on SymfonyBricks.com'} }) %}
+{% endblock %}
 {# END META TAGS blocks #}
 
 {% block user_profile_content %}

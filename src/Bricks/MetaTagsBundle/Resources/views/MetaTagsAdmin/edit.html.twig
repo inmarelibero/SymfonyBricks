@@ -1,0 +1,66 @@
+{% extends 'CopiaincollaMetaTagsBundle::layout.html.twig' %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1>
+                    {{ (entity.url != '') ? 'Edit meta tag "'~entity.url~'"' : 'New meta tag'}}
+                </h1>
+
+                {% if associated_route.options.ci_metatags_help is defined %}
+                    <p>
+                        {{ associated_route.options.ci_metatags_help|raw }}
+                    </p>
+                {% endif %}
+
+                <form action="{{ (entity.id) ? path('admin_metatag_update', {id: entity.id}) : path('admin_metatag_create') }}" method="post" {{ form_enctype(form) }} class="form form-horizontal form-metatag-edit" novalidate>
+
+                    {{ form_errors(form) }}
+
+                    {#
+                    {% if form.vars.allow_editable_url == false and form.url.vars.value != '' %}
+                        <h3>{{ form.url.vars.value }}</h3>
+                    {% endif %}
+                    #}
+
+                    {{ form_row(form.url) }}
+
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.description) }}
+                    {{ form_row(form.keywords) }}
+                    {{ form_row(form.author) }}
+
+                    {{ form_row(form.language) }}
+                    {{ form_row(form.robots) }}
+                    {{ form_row(form.googlebot) }}
+
+                    {{ form_row(form.ogTitle) }}
+                    {{ form_row(form.ogDescription) }}
+                    {{ form_row(form.ogImage) }}
+
+                    <br>
+
+                    <button type="submit" class="btn btn-success btn-md">
+                        Save
+                    </button>
+                    <a href="{{ path('admin_metatag') }}" class="btn btn-primary btn-md">
+                        Back to list
+                    </a>
+                    {{ form_rest(form) }}
+                </form>
+
+                {% if entity.id %}
+                    <form action="{{ path('admin_metatag_delete', {id: entity.id}) }}" method="post">
+                        {{ form_widget(delete_form) }}
+                        <button type="submit" class="btn btn-default btn-xs">Delete</button>
+                    </form>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'CopiaincollaMetaTagsBundle::layout.html.twig' %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1>Meta Tags</h1>
+
+                <p>
+                    This list contains all the paths you want to manage.
+                    <br>
+                    For each path you can manually edit the associated meta tag infos. You can also set a list of
+                    <a href="{{ path('admin_metatag_defaults') }}">regex rules</a> to be applied to calculate the right meta tag
+                    infos to display for a given path.
+                </p>
+
+                <a href="{{ path('admin_metatag_defaults') }}" class="btn btn-primary btn-xs">
+                    Manage meta tags by regex
+                </a>
+                &nbsp;
+                <a href="{{ path('admin_metatag_new') }}" class="btn btn-primary btn-xs">
+                    Add meta tags for a custom path (not listed below)
+                </a>
+
+                <hr />
+
+                <table class="table">
+                    <tbody>
+                        {% for item in items %}
+
+                            {% set entity = item.entity %}
+
+                            <tr>
+                                <td>
+                                    {{ item.url }}
+                                </td>
+                                <td>
+                                    {% include "CopiaincollaMetaTagsBundle:MetaTagsAdmin:index/_actions.html.twig" with {"entity": item.entity} %}
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

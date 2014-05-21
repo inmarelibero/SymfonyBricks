@@ -1,8 +1,9 @@
 {% extends 'BricksSiteBundle::layout.html.twig' %}
 
 {# META TAGS blocks #}
-{% block meta_title_content %}Error {{ exception.statusCode }} | SymfonyBricks.com{% endblock %}
-{% block meta_description_content %}Exception page.{% endblock %}
+{% block meta_tags %}
+    {% render controller('CopiaincollaMetaTagsBundle:MetaTags:render', { 'inlineMetatags': {'title': 'Error '~exception.statusCode~' | SymfonyBricks.com', 'description': 'Exception '~exception.statusCode~' page.'} }) %}
+{% endblock %}
 {# END META TAGS blocks #}
 
 {% block body_class 'route-exception' %}

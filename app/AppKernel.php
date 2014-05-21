@@ -53,6 +53,9 @@ class AppKernel extends Kernel
             // HWIOAuthBundle
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
 
+            // CopiaincollaMetaTagsBundle
+            new Copiaincolla\MetaTagsBundle\CopiaincollaMetaTagsBundle(),
+
             // Bricks bundles
             new Bricks\SiteBundle\BricksSiteBundle(),
             new Bricks\WikiBundle\BricksWikiBundle(),
@@ -61,6 +64,8 @@ class AppKernel extends Kernel
             new Bricks\RedirectBundle\BricksRedirectBundle(),
             new Bricks\RSSBundle\BricksRSSBundle(),
             new Bricks\HWIOAuthBundle\BricksHWIOAuthBundle(),
+            new Bricks\AdminBundle\BricksAdminBundle(),
+            new Bricks\MetaTagsBundle\BricksMetaTagsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

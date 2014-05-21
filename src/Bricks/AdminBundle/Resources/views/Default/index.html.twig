@@ -1,0 +1,24 @@
+{% extends 'BricksSiteBundle::layout.html.twig' %}
+
+{% block main %}
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                Admin area
+
+                <br><br>
+
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_metatag') }}">
+                            Manage HTML Meta Tags
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

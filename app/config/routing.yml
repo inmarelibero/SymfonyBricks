@@ -51,6 +51,11 @@ bricks_message:
     requirements:
         _locale:  %route_locale_requirements%
 
+bricks_admin:
+    resource: "@BricksAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin/
+
 # additional unlocalized login action
 login:
     pattern:   /login
@@ -137,6 +142,11 @@ sensiolabsconnect_login:
 _imagine:
     resource: .
     type:     imagine
+
+# CopiaincollaMetaTagsBundle
+ci_metatags_bundle_admin:
+    resource: "@CopiaincollaMetaTagsBundle/Resources/config/routing.yml"
+    prefix:   /admin/
 
 # Internal routing configuration to handle ESI
 #_internal:

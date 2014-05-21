@@ -68,7 +68,7 @@ class DefaultController extends Controller
 
 
     /**
-     * @Route("/_latest-posts-on-symfonybricks-blog", name="_latestsPostsOnSymfonybricksBlog")
+     * @Route("/_latest-posts-on-symfonybricks-blog", name="_latestsPostsOnSymfonybricksBlog", options={"ci_metatags_expose"=false})
      * @Template()
      */
     public function _latestsPostsOnSymfonybricksBlogAction()

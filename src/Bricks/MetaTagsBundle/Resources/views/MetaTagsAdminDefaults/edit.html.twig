@@ -1,0 +1,46 @@
+{% extends 'BricksMetaTagsBundle::layout.html.twig' %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1>
+                    {{ (entity.id) ? 'Edit path regex rule "'~entity.pathRegex~'"' : 'New path regex rule' }}
+                </h1>
+
+                <form action="{{ (entity.id) ? path('admin_metatag_defaults_update', {id: entity.id}) : path('admin_metatag_defaults_create') }}" method="post" {{ form_enctype(form) }} class="form form-horizontal form-metatag-edit" novalidate>
+
+                    {{ form_row(form.pathRegex) }}
+
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.description) }}
+                    {{ form_row(form.keywords) }}
+                    {{ form_row(form.author) }}
+
+                    {{ form_row(form.language) }}
+                    {{ form_row(form.robots) }}
+                    {{ form_row(form.googlebot) }}
+
+                    {{ form_row(form.ogTitle) }}
+                    {{ form_row(form.ogDescription) }}
+                    {{ form_row(form.ogImage) }}
+
+                    <br>
+
+                    <button type="submit" class="btn btn-success btn-md">
+                        Save
+                    </button>
+                    <a href="{{ path('admin_metatag_defaults') }}" class="btn btn-default btn-md">
+                        Back
+                    </a>
+
+                    {{ form_rest(form) }}
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

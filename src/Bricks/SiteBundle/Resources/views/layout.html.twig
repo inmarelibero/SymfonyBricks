@@ -6,17 +6,12 @@
         {# META TAGS #}
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-        <title>{% block meta_title_content %}SymfonyBricks.com{% endblock %}</title>
-        <meta name="description" content="{% block meta_description_content %}Built by the community for the community. SymfonyBricks aims to be a repository of code, snippets and recipes useful to Symfony developers{% endblock %}" />
-        <meta name="keywords" content="{% block meta_keywords_content %}symfony, symfony2, symfony bricks, snippets, codes, recipes, cookbook, guides{% endblock %}" />
-        <meta name="robots" content="{% block meta_robots_content %}index, follow{% endblock %}" />
-        <meta name="googlebot" content="{% block meta_googlebot_content %}index, follow{% endblock %}" />
-        <meta name="author" content="{% block meta_author_content %}symfonybricks.com{% endblock %}" />
+        {% block meta_tags %}
+            {% render controller('CopiaincollaMetaTagsBundle:MetaTags:render') %}
+        {% endblock %}
+
         <meta name="language" content="{% block meta_language_content %}{{ app.request.locale }}{% endblock %}" />
 
-        <meta property="og:title" content="{% block meta_og_title_content %}SymfonyBricks.com{% endblock %}" />
-        <meta property="og:description" content="{% block meta_og_description_content %}Built by the community for the community. SymfonyBricks aims to be a repository of code, snippets and recipes useful to Symfony developers{% endblock %}" />
-        <meta property="og:image" content="{% block meta_og_image_content %}http://symfonybricks.com/img/logo-square.png{% endblock %}" />
         {# END META TAGS #}
 
         

@@ -1,0 +1,75 @@
+{% extends 'BricksMetaTagsBundle::layout.html.twig' %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1>Default meta tags</h1>
+
+                <p>
+                    This list contains the regex rules applied to calculate the right meta tag infos to display for a given path.
+                    Right atfer checking if you provided meta tag infos for a given path, theese rules are applied.
+                    <br><br>
+                    Important: the rules are in order of importance (the higher means the more important and applied before); so it's a good practice to put the most restrictive ones on the top.
+                    <br><br>
+                    Example: if you want to set the default value of the meta <b>title</b> for every path, you could add the regex rule "<b>.*</b>" and specify a <b>title</b> value.
+                    In this way, if you do not set a <b>title</b> value for some path in <a href="{{ path('admin_metatag') }}">this list</a>, the one you set for "<b>.*</b>" regex rule will be loaded.
+                </p>
+
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Path regex
+                            </th>
+                            <th colspan="3"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for entity in entities %}
+
+                            <tr>
+                                <td>
+                                    {{ entity.pathRegex }}
+                                </td>
+                                <td>
+                                    <a href="{{ path('admin_metatag_defaults_importance_raise', {'id': entity.id }) }}" class="btn btn-default btn-xs">
+                                        <span class="glyphicon glyphicon-chevron-up"></span> up
+                                    </a>
+                                    <a href="{{ path('admin_metatag_defaults_importance_lower', {'id': entity.id }) }}" class="btn btn-default btn-xs">
+                                        <span class="glyphicon glyphicon-chevron-down"></span> down
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('admin_metatag_defaults_edit', {'id': entity.id }) }}" class="btn btn-default btn-xs">
+                                        edit
+                                    </a>
+                                </td>
+                                <td>
+                                    {% render controller('CopiaincollaMetaTagsBundle:MetaTagsAdminDefaults:_deleteForm', {id: entity.id}) %}
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <br><br>
+
+                <a href="{{ path('admin_metatag_defaults_new') }}" class="btn btn-primary btn-md">
+                    Add a regex rule
+                </a>
+                &nbsp;
+                <a href="{{ path('admin_metatag') }}" class="btn btn-default btn-md">
+                    Back to paths list
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

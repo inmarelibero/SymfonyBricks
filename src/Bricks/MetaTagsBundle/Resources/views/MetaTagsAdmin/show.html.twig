@@ -1,0 +1,76 @@
+{% extends 'BricksMetaTagsBundle::layout.html.twig' %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1>Meta Tag: "{{ entity.url }}"</h1>
+
+                <br><br>
+
+                {% if (associated_route.options.ci_metatags_help is defined) %}
+                    <p>
+                        {{ associated_route.options.ci_metatags_help|raw }}
+                    </p>
+                {% endif %}
+
+                <table>
+                    <tr>
+                        <td>Url:</td>
+                        <td>{{ entity.url }}</td>
+                    </tr>
+                    <tr>
+                        <td>Title:</td>
+                        <td>{{ entity.title }}</td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td>{{ entity.description }}</td>
+                    </tr>
+                    <tr>
+                        <td>Keywords:</td>
+                        <td>{{ entity.keywords }}</td>
+                    </tr>
+                    <tr>
+                        <td>Robots:</td>
+                        <td>{{ entity.robots }}</td>
+                    </tr>
+                    <tr>
+                        <td>Googlebot:</td>
+                        <td>{{ entity.googlebot }}</td>
+                    </tr>
+                    <tr>
+                        <td>Author:</td>
+                        <td>{{ entity.author }}</td>
+                    </tr>
+                    <tr>
+                        <td>Language:</td>
+                        <td>{{ entity.language }}</td>
+                    </tr>
+                    <tr>
+                        <td>og:title:</td>
+                        <td>{{ entity.ogTitle }}</td>
+                    </tr>
+                    <tr>
+                        <td>og:description:</td>
+                        <td>{{ entity.ogDescription }}</td>
+                    </tr>
+                    <tr>
+                        <td>og:image:</td>
+                        <td>{{ entity.ogImage }}</td>
+                    </tr>
+                </table>
+
+                <hr>
+
+                <a href="{{ path('admin_metatag') }}" class="btn btn-primary btn-md">
+                    Back to meta tags list
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

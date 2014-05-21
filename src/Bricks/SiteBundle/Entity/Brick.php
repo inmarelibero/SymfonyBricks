@@ -149,6 +149,22 @@ class Brick implements RoutedItemInterface
     }
 
     /**
+     * Return the list of tags separated by comma
+     *
+     * Useful in "keywords" meta tag
+     */
+    public function getCommaSeparatedTags()
+    {
+        $tags = array();
+
+        foreach ($this->getBrickHasTags() as $bht) {
+            $tags[] = $bht->getTag();
+        }
+
+        return implode($tags, ', ');
+    }
+
+    /**
      * this method returns entity item title
      */
     public function getFeedItemTitle()

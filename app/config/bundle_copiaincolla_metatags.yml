@@ -1,0 +1,22 @@
+copiaincolla_meta_tags:
+
+    urls_loader:
+
+        exposed_routes:
+            bundles:
+                - BricksSiteBundle
+                - BricksWikiBundle
+                - BricksUserBundle
+                - FOSUserBundle
+
+        parameters:
+            fixed_params:
+                _locale: %simple_array_locales%
+
+            dynamic_routes:
+                brick_show:
+                    repository: "BricksSiteBundle:Brick"
+                    fixed_params:
+                        _locale: %simple_array_locales%
+                    object_params:
+                        slug: getSlug

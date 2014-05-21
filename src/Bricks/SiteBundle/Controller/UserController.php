@@ -16,7 +16,7 @@ class UserController extends Controller
     /**
      * Lists usernames for javascript autocompletion
      *
-     * @Route("/ajax-autocomplete-users", name="ajax_autocomplete_users", options={"expose"=true})
+     * @Route("/ajax-autocomplete-users", name="ajax_autocomplete_users", options={"expose"=true, "ci_metatags_expose"=false})
      */
     public function indexAction()
     {
