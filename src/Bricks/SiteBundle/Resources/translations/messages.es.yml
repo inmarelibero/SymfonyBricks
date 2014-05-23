@@ -42,4 +42,6 @@ back_to_the_list: Volver a la lista
 close: cerrar
 delete: eliminar
 edit: modificar
+no: no
 save: guardar
+yes: sí

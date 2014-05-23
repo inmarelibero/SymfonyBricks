@@ -41,9 +41,19 @@
                                 <td class="published">
                                     <a href="{{ path('user_brick_toggle_published', { 'id': entity.id }) }}">
                                         {% if (entity.published) %}
-                                            <span class="glyphicon glyphicon-ok-circle"></span> <span class="visible-xs">{{ 'brick.published'|trans|capitalize }}</span>
+                                            <span class="visible-sm visible-md visible-lg">
+                                                <span class="glyphicon glyphicon-ok-circle"></span> {{ 'yes'|trans }}
+                                            </span>
+                                            <span class="visible-xs">
+                                                <span class="glyphicon glyphicon-ok-circle"></span> {{ 'brick.published'|trans|capitalize }}
+                                            </span>
                                         {% else %}
-                                            <span class="glyphicon glyphicon-remove-circle"></span> <span class="visible-xs">{{ 'brick.not_published'|trans|capitalize }}</span>
+                                            <span class="visible-sm visible-md visible-lg">
+                                                <span class="glyphicon glyphicon-remove-circle"></span> {{ 'no'|trans }}
+                                            </span>
+                                            <span class="visible-xs">
+                                                <span class="glyphicon glyphicon-remove-circle"></span> {{ 'brick.not_published'|trans|capitalize }}
+                                            </span>
                                         {% endif %}
                                     </a>
                                 </td>

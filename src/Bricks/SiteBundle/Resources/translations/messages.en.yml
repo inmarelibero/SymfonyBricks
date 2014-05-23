@@ -46,4 +46,6 @@ back_to_the_list: Back to the list
 close: close
 delete: delete
 edit: edit
+no: no
 save: save
+yes: yes
