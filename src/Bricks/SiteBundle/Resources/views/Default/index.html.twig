@@ -56,7 +56,7 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="bricks-wrapper">
                     <p class="head">
                         {{ 'bricks.head'|trans({'%total%': bricks|length}, 'route_homepage')|raw }}
@@ -73,7 +73,6 @@
                                         <a href="{{ path('brick_show', {slug: brick.slug}) }}" class="title">
                                             {{ brick.title }}
                                         </a>
-                                        <br>
                                         <p class="brick-info">
 
                                             <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
@@ -83,7 +82,7 @@
                                             {{ macrosBrick.toggleUserStarsBrick(brick) }}
                                             &nbsp;
                                             {% if brick.brickHasTags|length > 0 %}
-                                                {{ brick_formatted_tags(brick, '&nbsp;')|raw }}
+                                                {{ brick_formatted_tags(brick)|raw }}
                                             {% endif %}
                                         </p>
                                     </div>
@@ -93,7 +92,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-4 right-col">
+            <div class="col-md-3 right-col">
 
                 {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                     <div id="form-login-wrapper">
@@ -102,13 +101,15 @@
                 {% endif %}
 
                 <div id="latest-posts-on-symfonybricks-blog">
-                    {% if 'it' == app.request.locale %}
-                        Ultimi post sul blog di <a href="http://blog.symfonybricks.com" target="_blank">SymfonyBricks</a>:
-                    {% elseif 'es' == app.request.locale %}
-                        Últimas entradas en el blog de <a href="http://blog.symfonybricks.com" target="_blank">SymfonyBricks</a>:
-                    {% else %}
-                        Latest posts on <a href="http://blog.symfonybricks.com" target="_blank">SymfonyBricks' Blog</a>:
-                    {% endif %}
+                    <strong>
+                        {% if 'it' == app.request.locale %}
+                            Dal blog di <a href="http://blog.symfonybricks.com" target="_blank">SymfonyBricks</a>
+                        {% elseif 'es' == app.request.locale %}
+                            Desde el blog de <a href="http://blog.symfonybricks.com" target="_blank">SymfonyBricks</a>
+                        {% else %}
+                            From the <a href="http://blog.symfonybricks.com" target="_blank">SymfonyBricks Blog</a>
+                        {% endif %}
+                    </strong>
 
                     <div id="posts">
                         <img src="{{ asset('img/ajax_loader.gif') }}" />
@@ -240,11 +241,11 @@
             <div class="col-md-6 col-xs-6">
                 <p class="text-italic text-small">
                     {% if 'it' == app.request.locale %}
-                        Condividi il link
+                        Condividi questa pagina
                     {% elseif 'es' == app.request.locale %}
-                        Comparte el enlace
+                        Comparte esta pagina
                     {% else %}
-                        Share the link
+                        Share this page
                     {% endif %}
                     <a href="http://symfonybricks.com">symfonybricks.com</a>
                 </p>

@@ -44,7 +44,7 @@ class BrickExtension extends \Twig_Extension
 
                 // add tag title
                 $output .= '<a href="' . $this->router->generate('brick_search', array('tag' => $tag->getSlug())) . '">';
-                $output .=      ($printIcons) ? '<span class="glyphicon glyphicon-tag"></span>' : '';
+                $output .=      ($printIcons) ? '<span class="glyphicon glyphicon-tag"></span>&nbsp;' : '';
                 $output .=      htmlspecialchars($tag->getTitle(), ENT_QUOTES, 'UTF-8');
                 $output .= '</a>';
 

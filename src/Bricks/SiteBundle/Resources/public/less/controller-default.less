@@ -135,7 +135,6 @@ body.route-index_not_localized , body.route-homepage {
             }
             #posts {
                 margin-top: 15px;
-                margin-left: 20px;
 
                 ul {
                     li {
@@ -158,12 +157,14 @@ body.route-index_not_localized , body.route-homepage {
 
                 span.glyphicon {
                     font-size: 18px;
-                    padding-top: 5px
+                    padding-top: 5px;
                 }
 
                 a.title {
                     font-size: 24px;
                     color: #555;
+                    display: block;
+
                     &:hover { color: @sb_green_medium; }
 
                     i { color: rgb(107, 107, 107); }
@@ -171,7 +172,11 @@ body.route-index_not_localized , body.route-homepage {
                 p.brick-info {
                     margin-top: 3px;
 
-                    &, a, p, span { font-size: 12px; color: rgb(107, 107, 107); }
+                    &, a, p, span {
+                        font-size: 12px;
+                        line-height: 15px;
+                        color: rgb(107, 107, 107);
+                    }
                 }
             }
         }
