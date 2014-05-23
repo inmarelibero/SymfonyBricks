@@ -1,6 +1,9 @@
 /* import assets */
 @import "variables.less";
 
+/* import bootstrap assets */
+@import "../../../../../../web/assets/bootstrap-3.0.0/less/variables.less";
+
 /******************************************************************************************
 CONTROLLER-DEFAULT.LESS
 
@@ -16,14 +19,17 @@ body.route-index_not_localized , body.route-homepage {
 
     #homepage-head-wrapper {
         padding:        20px 0px;
-        margin-bottom:  20px;
-        background:     @sb_green_medium;
-        color:          #FFF;
+        margin-bottom:  0px;
+        //color:     @sb_green_medium;
 
         .head {
-            #index-logo {
+            img#index-logo {
                 max-width:  100%;
                 overflow:   hidden;
+
+                @media (max-width: @screen-sm) {
+                    margin-bottom:  20px;
+                }
             }
             .payoff {
                 p {
@@ -31,18 +37,12 @@ body.route-index_not_localized , body.route-homepage {
                     margin-bottom:  0px;
                     font-size:  20px;
 
-                    /*
-                    strong {
-                        font-size: 30px;
-                    }
-                    */
-
                     &.first {
                         margin-top:  -6px;
-                        font-size:  23px;
+                        font-size:  30px;
                     }
                     &.second {
-                        margin-top:  13px;
+                        margin-top: 10px;
                         font-size:  16px;
                     }
 
@@ -53,6 +53,9 @@ body.route-index_not_localized , body.route-homepage {
                     }
                 }
             }
+        }
+        hr {
+            margin-top: 40px;
         }
     }
 
