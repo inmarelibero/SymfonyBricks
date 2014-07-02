@@ -1,5 +1,5 @@
 <?php
-namespace Bricks\siteBundle\Extension;
+namespace Bricks\SiteBundle\Extension;
 
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Bricks\SiteBundle\Entity\Brick;

@@ -1,6 +1,6 @@
 # Assetic Configuration
 assetic:
-    debug:          %kernel.debug%
+    debug:          "%kernel.debug%"
     use_controller: false
     java:           %java_path%
     filters:
