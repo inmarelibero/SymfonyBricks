@@ -7,6 +7,12 @@ services:
         tags:
            - { name: twig.extension }
 
+    # Enables TWIG Text Extension
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }
+
     # Custom exception listener
     kernel.listener.bricks_exception_lstener:
         class: Bricks\SiteBundle\Listener\ExceptionListener
@@ -14,6 +20,7 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
 
+    # Sitemap Listener
     bricks.sitemap.listener:
         class: Bricks\SiteBundle\Listener\SitemapListener
         arguments: [@router, @doctrine.orm.entity_manager, %interface_translation_locales%]

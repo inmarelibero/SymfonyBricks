@@ -82,9 +82,3 @@ swiftmailer:
     encryption: ssl
     auth_mode:  login
     spool:      { type: memory }
-
-services:
-   twig.extension.text:
-       class: Twig_Extensions_Extension_Text
-       tags:
-           - { name: twig.extension }
