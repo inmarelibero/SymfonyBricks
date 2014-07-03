@@ -56,6 +56,9 @@ class AppKernel extends Kernel
             // CopiaincollaMetaTagsBundle
             new Copiaincolla\MetaTagsBundle\CopiaincollaMetaTagsBundle(),
 
+            // MinifierMinifierBundle
+            new Minifier\MinifierBundle(),
+
             // Bricks bundles
             new Bricks\SiteBundle\BricksSiteBundle(),
             new Bricks\WikiBundle\BricksWikiBundle(),

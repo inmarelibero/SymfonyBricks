@@ -1,0 +1,5 @@
+minifier:
+    filter:
+        name:
+            css: minifier_css
+            js:  minifier_js

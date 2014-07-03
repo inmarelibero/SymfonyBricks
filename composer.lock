@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5d22e18dc76436056c9ed1957490a56d",
+    "hash": "b87be8d91209120166cbd75ab31c1e32",
     "packages": [
         {
             "name": "avalanche123/imagine-bundle",
@@ -2429,6 +2429,55 @@
                 "framework"
             ],
             "time": "2014-05-31 18:45:50"
+        },
+        {
+            "name": "toopay/assetic-minifier",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/toopay/assetic-minifier.git",
+                "reference": "0d158ee9d349515172975ccc18b0998905e4431e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/toopay/assetic-minifier/zipball/0d158ee9d349515172975ccc18b0998905e4431e",
+                "reference": "0d158ee9d349515172975ccc18b0998905e4431e",
+                "shasum": ""
+            },
+            "require": {
+                "kriswallsmith/assetic": "~1.1",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7",
+                "symfony/symfony": "2.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Minifier": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Taufan Aditya"
+                },
+                {
+                    "name": "Pascal Thormeier",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "Assetic Filter for pure PHP JS and CSS minification",
+            "homepage": "https://github.com/toopay/assetic-minifier",
+            "keywords": [
+                "compression",
+                "minification"
+            ],
+            "time": "2014-05-18 15:19:21"
         },
         {
             "name": "twig/extensions",

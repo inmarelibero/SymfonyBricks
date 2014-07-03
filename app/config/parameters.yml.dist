@@ -17,9 +17,6 @@ parameters:
     debug_redirects:        false
     use_assetic_controller: true
 
-    # java path required for yui compressor
-    java_path:         /usr/bin/java
-
     admin:
         mail_address: -
 
