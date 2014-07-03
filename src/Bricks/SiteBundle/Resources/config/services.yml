@@ -13,13 +13,6 @@ services:
        tags:
            - { name: twig.extension }
 
-    # Custom exception listener
-    kernel.listener.bricks_exception_lstener:
-        class: Bricks\SiteBundle\Listener\ExceptionListener
-        arguments: [@templating, @kernel]
-        tags:
-            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
-
     # Sitemap Listener
     bricks.sitemap.listener:
         class: Bricks\SiteBundle\Listener\SitemapListener
