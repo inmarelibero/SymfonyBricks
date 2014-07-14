@@ -25,35 +25,25 @@ class NewThreadMessageFromBrickFormType extends AbstractType
     {
         $builder
             ->add('body', 'textarea', array(
+                'constraints' => array(
+                    new NotBlank(array(
+                        'message' => $this->translator->trans('fos_message_bundle.form.error.please_enter_a_body', array(), 'validators')
+                    ))
+                )
             ))
             ->add('recipient', 'fos_user_username', array(
+                'constraints' => array(
+                    new SelfRecipient(),
+                    new NotBlank(array(
+                        'message' => $this->translator->trans('fos_message_bundle.form.error.no_recipient_specified', array(), 'validators')
+                    ))
+                )
             ))
             ->add('brick', 'entity', array(
                 'class' => 'Bricks\SiteBundle\Entity\Brick',
                 'property' => 'id'
             ))
         ;
-    }
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $collectionConstraint = new Collection(array(
-            'body' => new NotBlank(array(
-                'message' => $this->translator->trans('fos_message_bundle.form.error.please_enter_a_body', array(), 'validators')
-            )),
-            'recipient' => array(
-                new SelfRecipient(),
-                new NotBlank(array(
-                    'message' => $this->translator->trans('fos_message_bundle.form.error.no_recipient_specified', array(), 'validators')
-                ))
-            ),
-            'brick' => array()
-        ));
-
-        $resolver->setDefaults(array(
-            'constraints' => $collectionConstraint,
-            //'validation_groups' => array('NewThreadMessageFromBrickFormType')
-        ));
     }
 
     public function getName()

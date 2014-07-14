@@ -18,6 +18,9 @@ imports:
     - { resource: bundle_stof_doctrine_extensions.yml }
     - { resource: bundle_vich_uploader.yml }
 
+    # website config
+    - { resource: config_symfonybricks.yml }
+
 parameters:
     locale:   en #default locale
 
@@ -48,8 +51,6 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
-    globals:
-        admin: %admin%
 
 # Doctrine Configuration
 doctrine:

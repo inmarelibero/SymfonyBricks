@@ -1,0 +1,7 @@
+# Website configuration
+parameters:
+    config_symfonybricks:
+
+        # email addresses
+        email_addresses:
+            contact: contact@symfonybricks.com

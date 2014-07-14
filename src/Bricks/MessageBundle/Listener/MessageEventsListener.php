@@ -10,13 +10,13 @@ class MessageEventsListener
 {
     protected $mailer;
     protected $templating;
-    protected $adminParameter;
+    protected $configSymfonyBricks;
 
-    public function __construct(\Swift_Mailer $mailer, $templating, $adminParameter)
+    public function __construct(\Swift_Mailer $mailer, $templating, $configSymfonyBricks)
     {
         $this->mailer = $mailer;
         $this->templating = $templating;
-        $this->adminParameter = $adminParameter;
+        $this->configSymfonyBricks = $configSymfonyBricks;
     }
 
     /**
@@ -36,7 +36,7 @@ class MessageEventsListener
 
                 $email = \Swift_Message::newInstance()
                     ->setSubject("SymfonyBricks: {$sender->getUsername()} sent you a new message")
-                    ->setFrom($this->adminParameter['mail_address'])
+                    ->setFrom($this->configSymfonyBricks['email_addresses']['contact'])
                     ->setTo($recipient->getEmail())
                     ->setBody(
                         $this->templating->render(

@@ -18,22 +18,9 @@
             <tag name="kernel.event_listener" event="fos_message.post_send" method="onPostSend" />
             <argument type="service" id="mailer"/>
             <argument type="service" id="templating"/>
-            <argument>%admin%</argument>
+            <argument>%config_symfonybricks%</argument>
         </service>
 
     </services>
     
-    <!--
-    <parameters>
-        <parameter key="bricks_message.example.class">Bricks\MessageBundle\Example</parameter>
-    </parameters>
-
-    <services>
-        <service id="bricks_message.example" class="%bricks_message.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
-    </services>
-    -->
 </container>

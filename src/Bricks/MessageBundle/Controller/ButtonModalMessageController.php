@@ -7,6 +7,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Bricks\SiteBundle\Entity\Brick;
@@ -60,7 +61,7 @@ class ButtonModalMessageController extends Controller
      * @method("POST")
      * @Template()
      */
-    public function ajaxSendAction()
+    public function ajaxSendAction(Request $request)
     {
         /*
          * set the sender
@@ -74,7 +75,7 @@ class ButtonModalMessageController extends Controller
         $form = $this->createForm($this->container->get('message_bundle.bricks_message_new_thread_message_from_brick_form.type'));
 
         // bind the request
-        $form->handleRequest($this->getRequest());
+        $form->handleRequest($request);
 
         // send a message
         if ($form->isValid()) {
