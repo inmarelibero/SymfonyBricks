@@ -58,6 +58,15 @@ class BrickRepository extends EntityRepository
             ;
         }
 
+        /**
+         * $params['published'] filter
+         */
+        if (array_key_exists('published', $params)) {
+            $qb->andWhere('e.published = :published')
+                ->setParameter('published', $params['published'])
+            ;
+        }
+
         // order by title
         $qb->addOrderBy('e.title');
 

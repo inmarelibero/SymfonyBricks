@@ -57,7 +57,8 @@ class BrickController extends Controller
         // search for bricks
         $entities = $em->getRepository('BricksSiteBundle:Brick')->search(array(
             'q' => $this->getRequest()->get('q'),
-            'tag_slug' => $this->getRequest()->get('tag')
+            'tag_slug' => $this->getRequest()->get('tag'),
+            'published' => true
         ));
         
         return array(
