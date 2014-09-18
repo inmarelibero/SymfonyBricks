@@ -1,0 +1,60 @@
+{% import "BricksSiteBundle::macros/macrosBrick.html.twig" as macrosBrick %}
+
+<ul class="bricks-wall">
+    {% for brick in bricks %}
+        <li>
+            <div class="media">
+                {#
+                <a class="pull-left" href="{{ path('brick_show', {slug: brick.slug}) }}">
+                    <span class="glyphicon glyphicon-file"></span>
+                </a>
+                #}
+                <div class="media-body">
+                    <a href="{{ path('brick_show', {slug: brick.slug}) }}" class="title">
+                        {{ brick.title }}
+                    </a>
+
+                    <p class="description">
+                        {{ brick.description|truncate(160, true) }}
+                    </p>
+
+                    <a href="{{ path('brick_show', {slug: brick.slug}) }}" class="read">
+                        read <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+
+                    <hr>
+
+                    <p class="brick-info">
+
+                        {% if brick.brickHasTags|length > 0 %}
+                            <span class="glyphicon glyphicon-tag"></span> {{ brick_formatted_tags(brick, ", ", false)|raw }}
+                        {% endif %}
+                        <br>
+                        <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
+                        {#
+                        <br>
+                        <span class="glyphicon glyphicon-calendar"></span> {{ brick.updatedAt|date('d M Y') }}
+                        #}
+                        <br>
+                        {{ macrosBrick.toggleUserStarsBrick(brick) }}
+                    </p>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+<script>
+    $(function(){
+
+        /**
+         * Initialize Masonry plugin
+         * @type {Window.Masonry}
+         */
+        var msnry = new Masonry('ul.bricks-wall', {
+            //columnWidth: 200,
+            itemSelector: 'li'
+        }); msny.layout();
+
+    });
+</script>

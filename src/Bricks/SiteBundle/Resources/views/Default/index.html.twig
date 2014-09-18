@@ -1,7 +1,5 @@
 {% extends 'BricksSiteBundle::layout.html.twig' %}
 
-{% import "BricksSiteBundle::macros/macrosBrick.html.twig" as macrosBrick %}
-
 {% block main %}
 
     <div id="homepage-head-wrapper">
@@ -49,34 +47,7 @@
                         {{ 'bricks.head'|trans({'%total%': bricks|length}, 'route_homepage')|raw }}
                     </p>
 
-                    <ul class="bricks-list">
-                        {% for brick in bricks %}
-                            <li>
-                                <div class="media">
-                                    <a class="pull-left" href="{{ path('brick_show', {slug: brick.slug}) }}">
-                                        <span class="glyphicon glyphicon-file"></span>
-                                    </a>
-                                    <div class="media-body">
-                                        <a href="{{ path('brick_show', {slug: brick.slug}) }}" class="title">
-                                            {{ brick.title }}
-                                        </a>
-                                        <p class="brick-info">
-
-                                            <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
-                                            &nbsp;
-                                            <span class="glyphicon glyphicon-calendar"></span> {{ brick.updatedAt|date('d M Y') }}
-                                            &nbsp;
-                                            {{ macrosBrick.toggleUserStarsBrick(brick) }}
-                                            &nbsp;
-                                            {% if brick.brickHasTags|length > 0 %}
-                                                {{ brick_formatted_tags(brick)|raw }}
-                                            {% endif %}
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    {% include 'BricksSiteBundle:Brick:_bricks_wall.html.twig' with {'bricks': bricks} %}
                 </div>
             </div>
             <div class="col-md-3 right-col">

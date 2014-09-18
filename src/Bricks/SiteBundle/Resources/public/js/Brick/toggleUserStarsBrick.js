@@ -1,7 +1,7 @@
 /**
  * initialize all .toggle-user-stars-brick elements to toggle the "Starred" state to a brick
  */
-(function($) {
+$(function() {
     $('.toggle-user-stars-brick').each(function (i, e) {
 		
 		// source element that called this function
@@ -55,4 +55,4 @@
 		});
 
     });
-}(jQuery));
+});

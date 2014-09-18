@@ -11,20 +11,7 @@
     <h3>
         {{ 'nav-userprofile.published_bricks'|trans({}, 'controller-userprofile') }}
     </h3>
-    
-    <ul class="bricks-list">
-        {% for brick in publishedBricks %}
-            <li>
-                <a href="{{ path('brick_show', {slug: brick.slug}) }}">
-                    {{ brick.title }}
-                </a>
-                <p>
-                    <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
-                    |
-                    <span class="glyphicon glyphicon-calendar"></span> last update: {{ brick.updatedAt|date('d/m/Y') }}
-                </p>
-            </li>
-        {% endfor %}
-    </ul>
-        
+
+    {% include 'BricksSiteBundle:Brick:_bricks_wall.html.twig' with {'bricks': publishedBricks} %}
+
 {% endblock %}

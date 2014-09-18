@@ -1,0 +1,92 @@
+/* import assets */
+@import "variables.less";
+
+/******************************************************************************************
+BRICKS WALL
+******************************************************************************************/
+ul.bricks-wall {
+    width: 100%;
+    margin: auto;
+    //margin-left: -2%;
+
+    li {
+        @internalPadding: 10px;
+
+        width: 46%;
+        margin: 2%;
+        margin-bottom: 30px;
+        //padding:  10px 10px 10px 10px;
+
+        box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+        //border: 1px solid #f0eeee;
+        border-radius: 8px;
+
+        &:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+            background: rgb(238, 238, 238);
+        }
+
+        span.glyphicon {
+            font-size: 18px;
+            padding-top: 5px;
+            color: #555;
+
+            &:hover { color: @sb_green_medium; }
+        }
+
+        a.title {
+            display: block;
+            padding: @internalPadding;
+
+            background: @sb_green_light;
+            border: 1px solid @sb_green_light;
+            color: #fff;
+            font-size: 21px;
+            line-height: 26px;
+            font-family: 'open_sansbold';
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+
+            &:hover { color: @sb_green_medium; }
+        }
+
+        p.description {
+            margin-top: 20px;
+            font-size: 12px;
+            padding: 0px @internalPadding;
+        }
+
+        a.read {
+            display: block;
+            margin: 0 auto;
+            margin-top: 30px;
+            padding: 3px 10px;
+
+            color: @sb_green_medium;
+
+            font-size: 12px;
+            text-align: right;
+            border-radius: 8px;
+
+            span {
+                font-size: inherit;
+                color: inherit;
+            }
+        }
+
+        hr {
+            margin: 15px 0px 5px;
+            color: #f0eeee;
+        }
+
+        p.brick-info {
+            padding: 0px @internalPadding;
+
+            &, a, p, span {
+                font-size: 11px;
+                line-height: 15px;
+                color: rgb(107, 107, 107);
+            }
+        }
+    }
+}

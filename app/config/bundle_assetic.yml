@@ -54,13 +54,16 @@ assetic:
                 # http://sugarjs.com/
                 - %kernel.root_dir%/../web/assets/sugarjs-1.4.1/sugar.min.js
 
-                #https://github.com/ccampbell/rainbow
+                # https://github.com/ccampbell/rainbow
                 - %kernel.root_dir%/../web/assets/rainbow-1.1.9/js/rainbow.min.js
                 - %kernel.root_dir%/../web/assets/rainbow-1.1.9/js/language/generic.js
                 - %kernel.root_dir%/../web/assets/rainbow-1.1.9/js/language/php.js
                 - %kernel.root_dir%/../web/assets/rainbow-1.1.9/js/language/html.js
                 - %kernel.root_dir%/../web/assets/rainbow-1.1.9/js/language/javascript.js
                 - %kernel.root_dir%/../web/assets/rainbow.linenumbers-master/js/rainbow.linenumbers.js
+
+                # Masonry
+                - %kernel.root_dir%/../web/assets/masonry/masonry.pkgd.min.js
 
                 - %kernel.root_dir%/../web/bundles/brickssite/js/*.js
                 - %kernel.root_dir%/../web/bundles/brickssite/js/*/*.js
