@@ -1,0 +1,4 @@
+fpn_tag:
+    model:
+        tag_class:     Bricks\SiteBundle\Entity\Tag
+        tagging_class: Bricks\SiteBundle\Entity\Tagging

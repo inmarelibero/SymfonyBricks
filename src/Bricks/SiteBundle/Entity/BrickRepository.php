@@ -17,7 +17,7 @@ class BrickRepository extends EntityRepository
      *
      * $params = array(
      *     'q' => string, search $params['q'] in Bricks' title
-     *     'tag_slug' => string, search Bricks having $params['tag_slug'] as Tag (search Tag by $params['tag_slug'], exact matching)
+     *     'tag_name' => string, search Bricks having $params['tag_name'] as Tag
      * )
      *
      * @param array $params array of parameters
@@ -48,14 +48,17 @@ class BrickRepository extends EntityRepository
          *
          * search in Tag.slug field
          */
-        if (array_key_exists('tag_slug', $params) && '' !== trim($params['tag_slug'])) {
+        if (array_key_exists('tag_name', $params) && '' !== trim($params['tag_name'])) {
 
-            $qb->innerJoin('e.brickHasTags', 'bht')
-                ->innerJoin('bht.tag', 't')
+            // find all brick ids matching a particular query
+            $tagRepo = $em->getRepository('BricksSiteBundle:Tag');
+            $ids = $tagRepo->getResourceIdsForTag('brick_tag', $params['tag_name']);
 
-                ->andWhere('t.slug = :tag_slug')
-                ->setParameter('tag_slug', $params['tag_slug'])
-            ;
+            if (count($ids) > 0) {
+                $qb->add('where', $qb->expr()->in('e.id', $ids));
+            } else {
+                $qb->andWhere('e.id IS NULL');
+            }
         }
 
         /**

@@ -4,14 +4,15 @@ namespace Bricks\SiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-
+use FPN\TagBundle\Entity\Tag as BaseTag;
+use FPN\TagBundle\Entity\Tagging as BaseTagging;
 /**
  * Bricks\SiteBundle\Entity\Tag
  *
  * @ORM\Entity(repositoryClass="Bricks\SiteBundle\Entity\TagRepository")
  * @ORM\Table(name="tag")
  */
-class Tag
+class Tag extends BaseTag
 {
     /**
      * @var integer $id
@@ -20,49 +21,35 @@ class Tag
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
-     * @var text $title
-     *
-     * @ORM\Column(type="text")
+     * @ORM\OneToMany(targetEntity="Bricks\SiteBundle\Entity\Tagging", mappedBy="tag", fetch="EAGER")
      */
-    private $title;
-
-    /**
-     * @Gedmo\Slug(fields={"title"})
-     * @ORM\Column(length=128, unique=true)
-     */
-    private $slug;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="Bricks\SiteBundle\Entity\BrickHasTag", mappedBy="tag", cascade={"persist"})
-     */
-    private $brickHasTags;
+    protected $tagging;
     
     /**************************************************************************************************
      *	custom functions
     **************************************************************************************************/
     public function __toString()
     {
-        return $this->title;
+        return $this->name;
     }
-    
-    /**************************************************************************************************
-     *	getters and setters
-    **************************************************************************************************/
+
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct($name=null)
     {
-        $this->brickHasTags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tagging = new \Doctrine\Common\Collections\ArrayCollection();
+
+        parent::__construct($name);
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -70,81 +57,39 @@ class Tag
     }
 
     /**
-     * Set title
+     * Add tagging
      *
-     * @param string $title
+     * @param \Bricks\SiteBundle\Entity\Tagging $tagging
      * @return Tag
      */
-    public function setTitle($title)
+    public function addTagging(\Bricks\SiteBundle\Entity\Tagging $tagging)
     {
-        $this->title = $title;
-    
+        $this->tagging[] = $tagging;
+
         return $this;
     }
 
     /**
-     * Get title
+     * Remove tagging
      *
-     * @return string 
+     * @param \Bricks\SiteBundle\Entity\Tagging $tagging
      */
-    public function getTitle()
+    public function removeTagging(BaseTagging $tagging)
     {
-        return $this->title;
+        $this->tagging->removeElement($tagging);
     }
 
     /**
-     * Set slug
+     * Get tagging
      *
-     * @param string $slug
-     * @return Tag
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setSlug($slug)
+    public function getTagging()
     {
-        $this->slug = $slug;
+        return $this->tagging;
+    }
     
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * Add brickHasTags
-     *
-     * @param \Bricks\SiteBundle\Entity\BrickHasTag $brickHasTags
-     * @return Tag
-     */
-    public function addBrickHasTag(\Bricks\SiteBundle\Entity\BrickHasTag $brickHasTags)
-    {
-        $this->brickHasTags[] = $brickHasTags;
-    
-        return $this;
-    }
-
-    /**
-     * Remove brickHasTags
-     *
-     * @param \Bricks\SiteBundle\Entity\BrickHasTag $brickHasTags
-     */
-    public function removeBrickHasTag(\Bricks\SiteBundle\Entity\BrickHasTag $brickHasTags)
-    {
-        $this->brickHasTags->removeElement($brickHasTags);
-    }
-
-    /**
-     * Get brickHasTags
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getBrickHasTags()
-    {
-        return $this->brickHasTags;
-    }
+    /**************************************************************************************************
+     *	getters and setters
+    **************************************************************************************************/
 }

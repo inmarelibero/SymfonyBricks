@@ -34,6 +34,10 @@ assetic:
                 - %kernel.root_dir%/../web/assets/bootstrap-3.0.0/dist/css/bootstrap.min.css
                 - %kernel.root_dir%/../web/assets/rainbow-1.1.9/themes/github.css
 
+                # Tag-it
+                - %kernel.root_dir%/../web/assets/aehlke-tag-it-1d84585/css/jquery.tagit.css
+                - %kernel.root_dir%/../web/assets/aehlke-tag-it-1d84585/css/tagit.ui-zendesk.css
+
                 - @lesses
             filters: [?minifier_css, cssrewrite]
 
@@ -45,6 +49,7 @@ assetic:
 
         javascripts_footer:
             inputs:
+
                 - %kernel.root_dir%/../web/assets/bootstrap-3.0.0/dist/js/bootstrap.min.js
                 - %kernel.root_dir%/../web/assets/socialite/socialite.js
 
@@ -54,6 +59,15 @@ assetic:
                 # http://sugarjs.com/
                 - %kernel.root_dir%/../web/assets/sugarjs-1.4.1/sugar.min.js
 
+                # jQueryUI 1.11.1
+                - %kernel.root_dir%/../web/assets/jquery-ui-1.11.1/jquery-ui.min.js
+
+                # Tag-it
+                - %kernel.root_dir%/../web/assets/aehlke-tag-it-1d84585/js/tag-it.min.js
+
+                # Masonry
+                - %kernel.root_dir%/../web/assets/masonry-3.1.5/dist/masonry.pkgd.js
+
                 # https://github.com/ccampbell/rainbow
                 - %kernel.root_dir%/../web/assets/rainbow-1.1.9/js/rainbow.min.js
                 - %kernel.root_dir%/../web/assets/rainbow-1.1.9/js/language/generic.js
@@ -62,10 +76,8 @@ assetic:
                 - %kernel.root_dir%/../web/assets/rainbow-1.1.9/js/language/javascript.js
                 - %kernel.root_dir%/../web/assets/rainbow.linenumbers-master/js/rainbow.linenumbers.js
 
-                # Masonry
-                - %kernel.root_dir%/../web/assets/masonry/masonry.pkgd.min.js
-
                 - %kernel.root_dir%/../web/bundles/brickssite/js/*.js
                 - %kernel.root_dir%/../web/bundles/brickssite/js/*/*.js
                 - %kernel.root_dir%/../web/bundles/bricksmessage/js/*.js
+
             filters: [?minifier_js, cssrewrite]

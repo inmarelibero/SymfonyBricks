@@ -28,8 +28,8 @@ user:
 # bricks related interfaces
 brick:
     actions: azioni
-    brickHasTags:
-        help_text: Scrivi il tag qui e premi "Invio"
+    tags: tags
+    tags_help_text: Scrivi il tag qui e premi "Invio":
     canonical_url: Url Canonico
     confirm_deletion: "Questa operazione non può essere annullata. Continuare?"
     content: contenuto

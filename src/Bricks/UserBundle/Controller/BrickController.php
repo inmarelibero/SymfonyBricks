@@ -98,17 +98,25 @@ class BrickController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $entity  = new Brick();
-        $form = $this->createForm(new BrickType($em), $entity);
-        
-        $formHandler = $this->container->get('brick.form.handler');
-        
-        if ($formHandler->process($form)) {
+        $form = $this->createForm(new BrickType(), $entity);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
             // set the user
             $user = $this->container->get('security.context')->getToken()->getUser();
             $entity->setUser($user);
 
+            // persist entity
             $em->persist($entity);
             $em->flush();
+
+            // persist tags
+            $tagManager = $this->get('fpn_tag.tag_manager');
+            $tags = $tagManager->loadOrCreateTags(explode(",", $form->get('tags')->getData()));
+
+            $tagManager->replaceTags($tags, $entity);
+            $tagManager->saveTagging($entity);
 
             $this->get('session')->getFlashBag()->add('success', 'alert.brick.create.success');
 
@@ -142,7 +150,10 @@ class BrickController extends Controller
         // check user permissions on this brick
         $this->checkUserCanEditBrick($entity);
 
-        $editForm = $this->createForm(new BrickType($em), $entity);
+        $tagManager = $this->get('fpn_tag.tag_manager');
+        $tagManager->loadTagging($entity);
+
+        $editForm = $this->createForm(new BrickType(), $entity);
 
         return array(
             'entity'      => $entity,
@@ -170,10 +181,23 @@ class BrickController extends Controller
         // check user permissions on this brick
         $this->checkUserCanEditBrick($entity);
 
-        $form = $this->createForm(new BrickType($em), $entity);
-        $formHandler = $this->container->get('brick.form.handler');
+        $form = $this->createForm(new BrickType(), $entity);
 
-        if ($formHandler->process($form)) {
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+
+            // persis tentity
+            $em->persist($entity);
+            $em->flush();
+
+            // persist tags
+            $tagManager = $this->get('fpn_tag.tag_manager');
+            $tags = $tagManager->loadOrCreateTags(explode(",", $form->get('tags')->getData()));
+
+            $tagManager->replaceTags($tags, $entity);
+            $tagManager->saveTagging($entity);
+
             $this->get('session')->getFlashBag()->add('success', 'alert.brick.update.success');
 
             return $this->redirect($this->generateUrl('user_brick_edit', array('id' => $id)));

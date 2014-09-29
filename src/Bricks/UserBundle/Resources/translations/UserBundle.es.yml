@@ -28,8 +28,8 @@ user:
 # bricks related interfaces
 brick:
     actions: acciones
-    brickHasTags:
-        help_text: Escribe la etiqueta aquí y pulsa "Intro"
+    tags: tags
+    tags_help_text: Escribe la etiqueta aquí y pulsa "Intro":
     canonical_url: Url canónica
     confirm_deletion: "Esta operación no puede ser anulada. ¿Seguir?"
     content: contenido
@@ -123,5 +123,4 @@ brick:
             title: "Brick: Licencia"
     license: licencia
     preview: previsualización
-    tags: tags
     title: titulo

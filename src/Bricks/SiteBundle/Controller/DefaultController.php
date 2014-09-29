@@ -21,6 +21,11 @@ class DefaultController extends Controller
 
         $entities = $em->getRepository('BricksSiteBundle:Brick')->findPublished();
 
+        $tagManager = $this->get('fpn_tag.tag_manager');
+        foreach ($entities as &$entity) {
+            $tagManager->loadTagging($entity);
+        }
+
         return array(
             'bricks' => $entities
         );

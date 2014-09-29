@@ -35,24 +35,19 @@ class BrickExtension extends \Twig_Extension
         $output = '';
         
         // number of $brick->getBrickHasTags() array elements
-        $brickHasTagsLength = count($brick->getBrickHasTags());
+        $brickHasTagsLength = count($brick->getTags());
         
-        foreach ($brick->getBrickHasTags() as $k => $bht) {
-            $tag = $bht->getTag();
-            
-            if ($tag) {
+        foreach ($brick->getTags() as $k => $tag) {
+            // add tag title
+            $output .= '<a href="' . $this->router->generate('brick_search', array('tag' => $tag->getName())) . '">';
+            $output .=      ($printIcons) ? '<span class="glyphicon glyphicon-tag"></span>&nbsp;' : '';
+            $output .=      htmlspecialchars($tag->getName(), ENT_QUOTES, 'UTF-8');
+            $output .= '</a>';
 
-                // add tag title
-                $output .= '<a href="' . $this->router->generate('brick_search', array('tag' => $tag->getSlug())) . '">';
-                $output .=      ($printIcons) ? '<span class="glyphicon glyphicon-tag"></span>&nbsp;' : '';
-                $output .=      htmlspecialchars($tag->getTitle(), ENT_QUOTES, 'UTF-8');
-                $output .= '</a>';
-
-                // if not last iteration
-                if ($k < $brickHasTagsLength-1) {
-                    // add separator
-                    $output .= $separator;
-                }
+            // if not last iteration
+            if ($k < $brickHasTagsLength-1) {
+                // add separator
+                $output .= $separator;
             }
         }
 

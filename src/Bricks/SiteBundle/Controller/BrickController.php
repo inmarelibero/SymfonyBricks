@@ -57,9 +57,14 @@ class BrickController extends Controller
         // search for bricks
         $entities = $em->getRepository('BricksSiteBundle:Brick')->search(array(
             'q' => $this->getRequest()->get('q'),
-            'tag_slug' => $this->getRequest()->get('tag'),
+            'tag_name' => $this->getRequest()->get('tag'),
             'published' => true
         ));
+
+        $tagManager = $this->get('fpn_tag.tag_manager');
+        foreach ($entities as &$entity) {
+            $tagManager->loadTagging($entity);
+        }
         
         return array(
             'entities' => $entities
@@ -200,6 +205,9 @@ class BrickController extends Controller
         if (!$entity->getPublished()) {
             return $this->redirect($this->generateUrl('brick_not_published'), 307);
         }
+
+        $tagManager = $this->get('fpn_tag.tag_manager');
+        $tagManager->loadTagging($entity);
 
         return array(
             'brick' => $entity

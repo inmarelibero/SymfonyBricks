@@ -26,7 +26,7 @@
 
                     <p class="brick-info">
 
-                        {% if brick.brickHasTags|length > 0 %}
+                        {% if brick.tags|length > 0 %}
                             <span class="glyphicon glyphicon-tag"></span> {{ brick_formatted_tags(brick, ", ", false)|raw }}
                         {% endif %}
                         <br>

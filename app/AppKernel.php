@@ -59,6 +59,9 @@ class AppKernel extends Kernel
             // MinifierMinifierBundle
             new Minifier\MinifierBundle(),
 
+            // FPNTagBundle
+            new FPN\TagBundle\FPNTagBundle(),
+
             // Bricks bundles
             new Bricks\SiteBundle\BricksSiteBundle(),
             new Bricks\WikiBundle\BricksWikiBundle(),

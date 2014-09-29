@@ -11,12 +11,6 @@ use Bricks\UserBundle\Form\DataTransformer\TagsToIdsTransformer;
 
 class BrickType extends AbstractType
 {
-    private $em;
-    
-    public function __construct($em) {
-        $this->em = $em;
-    }
-    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $brick = $builder->getData();
@@ -36,14 +30,14 @@ class BrickType extends AbstractType
                 'empty_value' => '== no license =='
             ))
         ;
-        
-        // data transformer for brickHasTags field
-        $transformer = new TagsToIdsTransformer($this->em, $brick);
-        
-        // add brickHasTags field, with Data Transformer
-        $builder->add(
-            $builder->create('brickHasTags', 'hidden')->addModelTransformer($transformer)
-        );
+
+        /*
+         * add tags field
+         */
+        $builder->add('tags', 'text', array(
+            'mapped' => false,
+            'data' => implode(",", $brick->getTags()->toArray())
+        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

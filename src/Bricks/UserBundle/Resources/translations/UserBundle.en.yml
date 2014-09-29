@@ -28,8 +28,8 @@ user:
 # bricks related interfaces
 brick:
     actions: actions
-    brickHasTags:
-        help_text: Write the tag here and press "Enter"
+    tags: tags
+    tags_help_text: Write the tag here and press "Enter":
     canonical_url: Canonical Url
     confirm_deletion: "This operation cannot be undone. Confirm the deletion?"
     content: content
@@ -123,5 +123,4 @@ brick:
             title: "Brick: License"
     license: license
     preview: preview
-    tags: tags
     title: title

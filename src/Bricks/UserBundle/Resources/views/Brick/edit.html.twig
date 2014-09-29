@@ -64,11 +64,10 @@
                         </div>
                         <div class="controls">
 
-                            <div id="tags-labels">
-                                <input id="input-add-tag" class="tags-input" type="text" placeholder="{{ 'brick.brickHasTags.help_text'|trans({}, 'UserBundle') }}" />
-                            </div>
+                            {{ 'brick.tags_help_text'|trans({}, 'UserBundle') }}
+                            <br>
 
-                            {{ form_widget(form.brickHasTags) }}
+                            {{ form_widget(form.tags) }}
                         </div>
                     </div>
                 </div>
@@ -186,7 +185,7 @@
 {% block javascripts_footer %}
 
     <script type="text/javascript">
-        jQuery(function($) {
+        $(function() {
         	/****************************************************************************************
              * tabbed panes for Brick content/preview
              ***************************************************************************************/
@@ -229,15 +228,11 @@
             })
 
             /****************************************************************************************
-             * Tag management
+             * Tags management
              ***************************************************************************************/
 
-            $('#input-add-tag').tagsManager({
-                prefilled: "{{ form.brickHasTags.vars.value }}",
-                output: '#{{ form.brickHasTags.vars.id }}',
-                validator: function(input) {
-                    return input.stripTags() == input;
-                }
+            $('#{{ form.tags.vars.id }}').tagit({
+                allowSpaces: true
             });
 
         });

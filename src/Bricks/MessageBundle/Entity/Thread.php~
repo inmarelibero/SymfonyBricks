@@ -150,4 +150,27 @@ class Thread extends BaseThread
     {
         return $this->brick;
     }
+
+    /**
+     * Add metadata
+     *
+     * @param \Bricks\MessageBundle\Entity\ThreadMetadata $metadata
+     * @return Thread
+     */
+    public function addMetadatum(\Bricks\MessageBundle\Entity\ThreadMetadata $metadata)
+    {
+        $this->metadata[] = $metadata;
+
+        return $this;
+    }
+
+    /**
+     * Remove metadata
+     *
+     * @param \Bricks\MessageBundle\Entity\ThreadMetadata $metadata
+     */
+    public function removeMetadatum(\Bricks\MessageBundle\Entity\ThreadMetadata $metadata)
+    {
+        $this->metadata->removeElement($metadata);
+    }
 }

@@ -118,4 +118,27 @@ class Message extends BaseMessage
     {
         return $this->metadata;
     }
+
+    /**
+     * Add metadata
+     *
+     * @param \Bricks\MessageBundle\Entity\MessageMetadata $metadata
+     * @return Message
+     */
+    public function addMetadatum(\Bricks\MessageBundle\Entity\MessageMetadata $metadata)
+    {
+        $this->metadata[] = $metadata;
+
+        return $this;
+    }
+
+    /**
+     * Remove metadata
+     *
+     * @param \Bricks\MessageBundle\Entity\MessageMetadata $metadata
+     */
+    public function removeMetadatum(\Bricks\MessageBundle\Entity\MessageMetadata $metadata)
+    {
+        $this->metadata->removeElement($metadata);
+    }
 }

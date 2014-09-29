@@ -6,12 +6,6 @@
 
     <services>
 
-        <service id="brick.form.handler" class="Bricks\UserBundle\Form\Handler\BrickFormHandler" scope="request">
-            <argument type="service" id="form.factory" />
-            <argument type="service" id="request" />
-            <argument type="service" id="doctrine.orm.entity_manager" />
-        </service>
-
         <service id="bricks_user.profile.form.type" class="Bricks\UserBundle\Form\Type\ProfileFormType">
             <tag name="form.type" alias="bricks_user_profile" />
             <argument>%fos_user.model.user.class%</argument>

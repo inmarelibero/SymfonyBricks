@@ -10,6 +10,7 @@ imports:
     - { resource: bundle_eko_feed.yml }
     - { resource: bundle_fos_message.yml }
     - { resource: bundle_fos_user.yml }
+    - { resource: bundle_fpn_tag.yml }
     - { resource: bundle_hwi_oauth.yml }
     - { resource: bundle_knp_disqus.yml }
     - { resource: bundle_knp_markdown.yml }

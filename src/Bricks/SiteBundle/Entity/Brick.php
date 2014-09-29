@@ -5,17 +5,21 @@ namespace Bricks\SiteBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Eko\FeedBundle\Item\Writer\RoutedItemInterface;
+use DoctrineExtensions\Taggable\Taggable;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Bricks\SiteBundle\Entity\Brick
  *
- * @ORM\Table(name="brick")
  * @ORM\Entity(repositoryClass="Bricks\SiteBundle\Entity\BrickRepository")
- * 
+ * @ORM\Table(name="brick")
+ *
  * @Gedmo\Loggable(logEntryClass="Bricks\SiteBundle\Entity\BrickLogEntry")
  */
-class Brick implements RoutedItemInterface
+class Brick implements RoutedItemInterface, Taggable
 {
+    private $tags;
+
     /**
      * @var integer $id
      *
@@ -87,11 +91,6 @@ class Brick implements RoutedItemInterface
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="Bricks\SiteBundle\Entity\BrickHasTag", mappedBy="brick", cascade={"persist"})
-     */
-    public $brickHasTags;
-
-    /**
      * @ORM\OneToMany(targetEntity="Bricks\SiteBundle\Entity\UserStarsBrick", mappedBy="user", cascade={"persist"})
      */
     private $userStarsBricks;
@@ -157,10 +156,9 @@ class Brick implements RoutedItemInterface
     {
         $tags = array();
 
-        foreach ($this->getBrickHasTags() as $bht) {
-            $tags[] = $bht->getTag();
+        foreach ($this->getTags() as $tag) {
+            $tags[] = $tag->getName();
         }
-
         return implode($tags, ', ');
     }
 
@@ -214,6 +212,23 @@ class Brick implements RoutedItemInterface
         return '';
     }
 
+    public function getTags()
+    {
+        $this->tags = $this->tags ?: new ArrayCollection();
+
+        return $this->tags;
+    }
+
+    public function getTaggableType()
+    {
+        return 'brick_tag';
+    }
+
+    public function getTaggableId()
+    {
+        return $this->getId();
+    }
+
     /**************************************************************************************************
      *	getters and setters
     **************************************************************************************************/
@@ -222,10 +237,9 @@ class Brick implements RoutedItemInterface
      */
     public function __construct()
     {
-        $this->brickHasTags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->userStarsBricks = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
@@ -245,7 +259,7 @@ class Brick implements RoutedItemInterface
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
@@ -268,7 +282,7 @@ class Brick implements RoutedItemInterface
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
@@ -291,7 +305,7 @@ class Brick implements RoutedItemInterface
     public function setContent($content)
     {
         $this->content = $content;
-    
+
         return $this;
     }
 
@@ -314,7 +328,7 @@ class Brick implements RoutedItemInterface
     public function setSlug($slug)
     {
         $this->slug = $slug;
-    
+
         return $this;
     }
 
@@ -339,6 +353,29 @@ class Brick implements RoutedItemInterface
     }
 
     /**
+     * Set publishedAt
+     *
+     * @param \DateTime $publishedAt
+     * @return Brick
+     */
+    public function setPublishedAt($publishedAt)
+    {
+        $this->publishedAt = $publishedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get publishedAt
+     *
+     * @return \DateTime 
+     */
+    public function getPublishedAt()
+    {
+        return $this->publishedAt;
+    }
+
+    /**
      * Set canonicalUrl
      *
      * @param string $canonicalUrl
@@ -347,7 +384,7 @@ class Brick implements RoutedItemInterface
     public function setCanonicalUrl($canonicalUrl)
     {
         $this->canonicalUrl = $canonicalUrl;
-    
+
         return $this;
     }
 
@@ -370,7 +407,7 @@ class Brick implements RoutedItemInterface
     public function setUpdatedAt($updatedAt)
     {
         $this->updated_at = $updatedAt;
-    
+
         return $this;
     }
 
@@ -393,7 +430,7 @@ class Brick implements RoutedItemInterface
     public function setCreatedAt($createdAt)
     {
         $this->created_at = $createdAt;
-    
+
         return $this;
     }
 
@@ -416,7 +453,7 @@ class Brick implements RoutedItemInterface
     public function setUser(\Bricks\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
-    
+
         return $this;
     }
 
@@ -431,39 +468,6 @@ class Brick implements RoutedItemInterface
     }
 
     /**
-     * Add brickHasTags
-     *
-     * @param \Bricks\SiteBundle\Entity\BrickHasTag $brickHasTags
-     * @return Brick
-     */
-    public function addBrickHasTag(\Bricks\SiteBundle\Entity\BrickHasTag $brickHasTags)
-    {
-        $this->brickHasTags[] = $brickHasTags;
-    
-        return $this;
-    }
-
-    /**
-     * Remove brickHasTags
-     *
-     * @param \Bricks\SiteBundle\Entity\BrickHasTag $brickHasTags
-     */
-    public function removeBrickHasTag(\Bricks\SiteBundle\Entity\BrickHasTag $brickHasTags)
-    {
-        $this->brickHasTags->removeElement($brickHasTags);
-    }
-
-    /**
-     * Get brickHasTags
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getBrickHasTags()
-    {
-        return $this->brickHasTags;
-    }
-
-    /**
      * Add userStarsBricks
      *
      * @param \Bricks\SiteBundle\Entity\UserStarsBrick $userStarsBricks
@@ -472,7 +476,7 @@ class Brick implements RoutedItemInterface
     public function addUserStarsBrick(\Bricks\SiteBundle\Entity\UserStarsBrick $userStarsBricks)
     {
         $this->userStarsBricks[] = $userStarsBricks;
-    
+
         return $this;
     }
 
@@ -505,7 +509,7 @@ class Brick implements RoutedItemInterface
     public function setBrickLicense(\Bricks\SiteBundle\Entity\BrickLicense $brickLicense = null)
     {
         $this->brickLicense = $brickLicense;
-    
+
         return $this;
     }
 
@@ -517,28 +521,5 @@ class Brick implements RoutedItemInterface
     public function getBrickLicense()
     {
         return $this->brickLicense;
-    }
-
-    /**
-     * Set publishedAt
-     *
-     * @param \DateTime $publishedAt
-     * @return Brick
-     */
-    public function setPublishedAt($publishedAt)
-    {
-        $this->publishedAt = $publishedAt;
-    
-        return $this;
-    }
-
-    /**
-     * Get publishedAt
-     *
-     * @return \DateTime 
-     */
-    public function getPublishedAt()
-    {
-        return $this->publishedAt;
     }
 }
