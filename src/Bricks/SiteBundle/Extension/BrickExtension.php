@@ -34,8 +34,8 @@ class BrickExtension extends \Twig_Extension
     {
         $output = '';
         
-        // number of $brick->getBrickHasTags() array elements
-        $brickHasTagsLength = count($brick->getTags());
+        // number of tags array elements
+        $tagsLenth = count($brick->getTags());
         
         foreach ($brick->getTags() as $k => $tag) {
             // add tag title
@@ -45,7 +45,7 @@ class BrickExtension extends \Twig_Extension
             $output .= '</a>';
 
             // if not last iteration
-            if ($k < $brickHasTagsLength-1) {
+            if ($k < $tagsLenth-1) {
                 // add separator
                 $output .= $separator;
             }
