@@ -20,14 +20,14 @@ use Bricks\UserBundle\Form\Type\BrickType;
 class BrickController extends Controller
 {
     /**
-     * Lists all Brick entities.
+     * Lists all Brick entities related to the currently authenticated user
      *
      * @Route("/", name="user_brick")
      * @Template()
      */
     public function indexAction()
     {
-        $user = $this->container->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.context')->getToken()->getUser();
         
         $em = $this->getDoctrine()->getManager();
 
@@ -42,19 +42,17 @@ class BrickController extends Controller
     }
     
     /**
-     * Lists all starred Brick entities.
+     * Lists all starred Brick entities related to the currently authenticated user
      *
      * @Route("/starred", name="user_brick_starred")
      * @Template()
      */
     public function starredAction()
     {
-        $user = $this->container->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.context')->getToken()->getUser();
         
-        $entities = $user->getStarredBricks();
-
         return array(
-            'entities' => $entities,
+            'entities' => $user->getStarredBricks()
         );
     }
 
@@ -70,6 +68,9 @@ class BrickController extends Controller
 
         $entity = new Brick();
 
+        /*
+         * process the "content" parameter, prepopulate the "content" Brick field
+         */
         if ($this->getRequest()->getMethod() == 'POST') {
             $c = $this->getRequest()->get('content');
 
@@ -98,13 +99,14 @@ class BrickController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $entity  = new Brick();
+
         $form = $this->createForm(new BrickType(), $entity);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            // set the user
-            $user = $this->container->get('security.context')->getToken()->getUser();
+            // set user
+            $user = $this->get('security.context')->getToken()->getUser();
             $entity->setUser($user);
 
             // persist entity
@@ -118,6 +120,7 @@ class BrickController extends Controller
             $tagManager->replaceTags($tags, $entity);
             $tagManager->saveTagging($entity);
 
+            // set flash message
             $this->get('session')->getFlashBag()->add('success', 'alert.brick.create.success');
 
             return $this->redirect($this->generateUrl('user_brick_edit', array('id' => $entity->getId())));
@@ -150,6 +153,7 @@ class BrickController extends Controller
         // check user permissions on this brick
         $this->checkUserCanEditBrick($entity);
 
+        // load brick tags
         $tagManager = $this->get('fpn_tag.tag_manager');
         $tagManager->loadTagging($entity);
 
@@ -198,6 +202,7 @@ class BrickController extends Controller
             $tagManager->replaceTags($tags, $entity);
             $tagManager->saveTagging($entity);
 
+            // set flash message
             $this->get('session')->getFlashBag()->add('success', 'alert.brick.update.success');
 
             return $this->redirect($this->generateUrl('user_brick_edit', array('id' => $id)));
@@ -214,7 +219,7 @@ class BrickController extends Controller
     /**
      * Return the markdown formattation of an input text
      * 
-     * \@TODO: refactor this function to some general utility class
+     * //@TODO: refactor this function to some general utility class
      * 
      * @Route("/_render-markdown", name="_user_brick_renderMarkdown")
      * @Template()
@@ -226,7 +231,9 @@ class BrickController extends Controller
     {
         $content = $this->getRequest()->get('content');
         
-        return array('content' => $content);
+        return array(
+            'content' => $content
+        );
     }
 
     /**
@@ -238,6 +245,7 @@ class BrickController extends Controller
     public function deleteAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
+
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -250,7 +258,8 @@ class BrickController extends Controller
 
             // check user permissions on this brick
             $this->checkUserCanEditBrick($entity);
-            
+
+            // remove the entity
             $em->remove($entity);
             $em->flush();
             
@@ -269,29 +278,28 @@ class BrickController extends Controller
      */
     public function _deleteFormAction($id)
     {
+        $form = $this->createFormBuilder(array('id' => $id))
+            ->add('id', 'hidden')
+            ->getForm()
+        ;
+
         return array(
-            'form' =>$this->createDeleteForm($id)->createView(),
+            'form' => $form->createView(),
             'id' => $id
         );
     }
 
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
-        ;
-    }
-    
     /**
      * check if a uer can edit a brick
+     *
+     * //@TODO: refactor to a service
      * 
      * @param unknown_type $brick
      * @throws AccessDeniedException
      */
     private function checkUserCanEditBrick(Brick $brick)
     {
-        $user = $this->container->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.context')->getToken()->getUser();
         
         if (!$brick->getUser() || $brick->getUser()->getId() != $user->getId()) {
             throw new AccessDeniedException('Yo are not allowed to access this content');
