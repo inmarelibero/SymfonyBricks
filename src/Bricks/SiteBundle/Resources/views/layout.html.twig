@@ -64,7 +64,7 @@
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
-                            <form action="{{ path('brick_search') }}" class="navbar-form navbar-left" role="search">
+                            <form action="{{ path('resource_search') }}" class="navbar-form navbar-left" role="search">
                                 <div class="form-group">
                                     <input name="q" class="form-control" placeholder="Search" size="16" type="text">
                                 </div>
@@ -146,6 +146,16 @@
                                                     <span class="glyphicon glyphicon-book"></span> {{ 'user_navbar.bricks'|trans({}, 'UserBundle')|capitalize }}
                                                 </a>
                                             </li>
+
+                                            {% if is_granted('ROLE_ADMIN') %}
+                                                <li>
+                                                    <a href="{{ path('admin_external_resource') }}">
+                                                        <span class="glyphicon glyphicon-link"></span>
+                                                        {{ 'user_navbar.external_resources'|trans({}, 'UserBundle')|capitalize }} ({{ app.user.externalResources|length }})
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+
                                             <li class="divider"></li>
                                             <li>
                                                 <a href="{{ path('fos_user_profile_edit') }}" onclick="_gaq.push(['_trackEvent', 'SymfonyBricks', 'Menu', 'user profile edit']);">

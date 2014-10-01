@@ -110,6 +110,12 @@ class User extends BaseUser implements ParticipantInterface
     protected $bricks;
 
     /**
+     * @ORM\OneToMany(targetEntity="Bricks\SiteBundle\Entity\ExternalResource", mappedBy="user", cascade={"persist"})
+     * @ORM\OrderBy({"created_at" = "ASC"})
+     */
+    protected $externalResources;
+
+    /**
      * @ORM\OneToMany(targetEntity="Bricks\SiteBundle\Entity\UserStarsBrick", mappedBy="user", cascade={"persist"})
      */
     protected $userStarsBricks;

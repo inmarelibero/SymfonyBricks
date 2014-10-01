@@ -43,33 +43,6 @@ class BrickController extends Controller
     {
         return array();
     }
-
-    /**
-     * Search bricks
-     *
-     * @Route("/search", name="brick_search")
-     * @Template()
-     */
-    public function searchAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        
-        // search for bricks
-        $entities = $em->getRepository('BricksSiteBundle:Brick')->search(array(
-            'q' => $this->getRequest()->get('q'),
-            'tag_name' => $this->getRequest()->get('tag'),
-            'published' => true
-        ));
-
-        $tagManager = $this->get('fpn_tag.tag_manager');
-        foreach ($entities as &$entity) {
-            $tagManager->loadTagging($entity);
-        }
-        
-        return array(
-            'entities' => $entities
-        );
-    }
     
     /**
      * Toggle the "star" of a brick from a user

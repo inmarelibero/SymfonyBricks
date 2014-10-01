@@ -43,9 +43,11 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="bricks-wrapper">
+                    {#
                     <p class="head">
                         {{ 'bricks.head'|trans({'%total%': bricks|length}, 'route_homepage')|raw }}
                     </p>
+                    #}
 
                     {% include 'BricksSiteBundle:Brick:_bricks_wall.html.twig' with {'bricks': bricks} %}
                 </div>

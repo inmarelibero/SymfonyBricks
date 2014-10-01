@@ -1,0 +1,165 @@
+{% extends "BricksUserBundle::layout.html.twig" %}
+
+{% import "BricksSiteBundle::macros/macrosInfo.html.twig" as macrosInfo %}
+
+{% block main %}
+
+    <div class="container">
+
+        <form action="{{ (entity.isNew) ? path('user_external_resource_create') : path('user_external_resource_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }} id="user-external_resource-edit" class="form" novalidate>
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <p>
+                        <div class="pull-right">
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok"></span> {{ 'save'|trans|capitalize }}
+                        </button>
+                        <a href="{{ path('user_external_resource') }}" class="btn">
+                            <span class="glyphicon glyphicon-chevron-left"></span> {{ 'back_to_the_list'|trans|capitalize }}
+                        </a>
+                        </div>
+
+                        <h1>{{ (entity.isNew) ? 'external_resource.create_new_external_resource'|trans({}, 'UserBundle'): 'external_resource.edit_external_resource'|trans({}, 'UserBundle') }}</h1>
+                    </p>
+
+                    <br>
+
+
+                    {# TITLE #}
+                    <div class="form-group {{ (form_errors(form.title))?'has-error':'' }}">
+                        <div class="control-label">
+                            <strong>
+                                {{ 'external_resource.title'|trans({}, 'UserBundle')|capitalize }}
+                            </strong>
+
+                            {# info modal #}
+                            {{ macrosInfo.bootstrapInfoModal('external_resource.help.title.title'|trans({}, 'UserBundle'), 'external_resource.help.title.body'|trans({}, 'UserBundle')) }}
+                        </div>
+                        <div class="controls">
+                            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+
+                            {% if form_errors(form.title) %}
+                                <div class="form-errors">
+                                    {{ form_errors(form.title) }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    {# DESCRIPTION #}
+                    <div class="form-group">
+                        <div class="control-label">
+                            <strong>
+                                {{ 'external_resource.description'|trans({}, 'UserBundle')|capitalize }}
+                            </strong>
+
+                            {# info modal #}
+                            {{ macrosInfo.bootstrapInfoModal('external_resource.help.description.title'|trans({}, 'UserBundle'), 'external_resource.help.description.body'|trans({}, 'UserBundle')) }}
+                        </div>
+                        <div class="controls">
+                            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    {# TAGS #}
+                    <div class="form-group">
+                        <div class="control-label">
+                            <strong>
+                                {{ 'external_resource.tags'|trans({}, 'UserBundle')|capitalize }}
+                            </strong>
+
+                            {# info modal #}
+                            {{ macrosInfo.bootstrapInfoModal('external_resource.help.tags.title'|trans({}, 'UserBundle'), 'external_resource.help.tags.body'|trans({}, 'UserBundle')) }}
+                        </div>
+                        <div class="controls">
+
+                            {{ 'external_resource.tags_help_text'|trans({}, 'UserBundle') }}
+                            <br>
+
+                            {{ form_widget(form.tags) }}
+                        </div>
+                    </div>
+
+                    {# URL #}
+                    <div class="form-group {{ (form_errors(form.url))?'has-error':'' }}">
+                        <div class="control-label">
+                            <strong>
+                                {{ 'external_resource.url'|trans({}, 'UserBundle')|capitalize }}
+                            </strong>
+
+                            {# info modal #}
+                            {{ macrosInfo.bootstrapInfoModal('external_resource.help.url.title'|trans({}, 'UserBundle'), 'external_resource.help.url.body'|trans({}, 'UserBundle')) }}
+                        </div>
+                        <div class="controls">
+                            {{ form_widget(form.url, {'attr': {'class': 'form-control'}}) }}
+
+                            {% if form_errors(form.url) %}
+                                <div class="form-errors">
+                                    {{ form_errors(form.url) }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    {# URL #}
+                    <div class="form-group">
+                        <div class="control-label">
+                            <strong>
+                                {{ 'external_resource.published'|trans({}, 'UserBundle')|capitalize }}
+                            </strong>
+
+                            {# info modal #}
+                            {{ macrosInfo.bootstrapInfoModal('external_resource.help.published.title'|trans({}, 'UserBundle'), 'external_resource.help.published.body'|trans({}, 'UserBundle')) }}
+                        </div>
+                        <div class="controls">
+                            {{ form_widget(form.published, {'attr': {'class': 'form-control'}}) }} {{ 'external_resource.published'|trans|capitalize }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    {# actions #}
+                    <div class="form-group">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-success">
+                                <span class="glyphicon glyphicon-ok"></span> {{ 'save'|trans|capitalize }}
+                            </button>
+                            <a href="{{ path('user_external_resource') }}" class="btn">
+                                <span class="glyphicon glyphicon-chevron-left"></span> {{ 'back_to_the_list'|trans|capitalize }}
+                            </a>
+                        </div>
+                    </div>
+
+                    {{ form_rest(form) }}
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts_footer %}
+
+    <script type="text/javascript">
+        $(function() {
+
+            /****************************************************************************************
+             * Tags management
+             ***************************************************************************************/
+
+            $('#{{ form.tags.vars.id }}').tagit({
+                allowSpaces: true
+            });
+
+        });
+    </script>
+    
+{% endblock %}

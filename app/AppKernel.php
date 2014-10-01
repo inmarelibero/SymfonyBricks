@@ -62,6 +62,9 @@ class AppKernel extends Kernel
             // FPNTagBundle
             new FPN\TagBundle\FPNTagBundle(),
 
+            // KnpTimeBundle
+            new Knp\Bundle\TimeBundle\KnpTimeBundle(),
+
             // Bricks bundles
             new Bricks\SiteBundle\BricksSiteBundle(),
             new Bricks\WikiBundle\BricksWikiBundle(),

@@ -1,0 +1,78 @@
+{% extends "BricksUserBundle::layout.html.twig" %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <a href="{{ path('user_external_resource_new') }}" class="btn btn-primary pull-right">
+                    <span class="glyphicon glyphicon-plus"></span> {{ 'external_resource.create_new_external_resource'|trans({}, 'UserBundle') }}
+                </a>
+
+                <h1>External Resources</h1>
+
+                <table id="external-resources-table" class="records_list table table-striped">
+                    <thead>
+                        <tr>
+                            <td>
+                                <span class="glyphicon glyphicon-book"></span> {{ 'external_resource.title'|trans|capitalize }}
+                            </td>
+                            <td class="published">
+                                <span class="glyphicon glyphicon-bullhorn"></span> {{ 'external_resource.published'|trans|capitalize }}
+                            </td>
+                            <td class="last_update">
+                                <span class="glyphicon glyphicon-calendar"></span> {{ 'external_resource.last_update'|trans|capitalize }}
+                            </td>
+                            <td class="actions">
+                                <span class="glyphicon glyphicon-reorder"></span>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entity in entities %}
+                            <tr>
+                                <td>
+                                    <a href="{{ path('user_external_resource_edit', { 'id': entity.id }) }}">{{ entity.title }}</a>
+                                </td>
+                                <td class="published">
+                                    <a href="{{ path('user_external_resource_toggle_published', { 'id': entity.id }) }}">
+                                        {% if (entity.published) %}
+                                            <span class="visible-sm visible-md visible-lg">
+                                                <span class="glyphicon glyphicon-ok-circle"></span> {{ 'yes'|trans }}
+                                            </span>
+                                            <span class="visible-xs">
+                                                <span class="glyphicon glyphicon-ok-circle"></span> {{ 'external_resource.published'|trans|capitalize }}
+                                            </span>
+                                        {% else %}
+                                            <span class="visible-sm visible-md visible-lg">
+                                                <span class="glyphicon glyphicon-remove-circle"></span> {{ 'no'|trans }}
+                                            </span>
+                                            <span class="visible-xs">
+                                                <span class="glyphicon glyphicon-remove-circle"></span> {{ 'external_resource.not_published'|trans|capitalize }}
+                                            </span>
+                                        {% endif %}
+                                    </a>
+                                </td>
+                                <td class="last_update">
+                                    <span class="visible-xs">{{ 'external_resource.last_update'|trans|capitalize }}:</span>
+
+                                    {{ entity.updatedat|date('d M Y') }}
+                                    <br class="hidden-xs">
+                                    {{ entity.updatedat|date('H:i:s') }}
+
+                                </td>
+                                <td class="actions">
+                                    <a href="{{ path('user_external_resource_edit', { 'id': entity.id }) }}" ><span class="glyphicon glyphicon-edit"></span></a>
+                                    {% render(controller('BricksUserBundle:ExternalResource:_deleteForm', {'id': entity.id})) %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

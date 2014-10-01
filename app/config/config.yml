@@ -14,6 +14,7 @@ imports:
     - { resource: bundle_hwi_oauth.yml }
     - { resource: bundle_knp_disqus.yml }
     - { resource: bundle_knp_markdown.yml }
+    - { resource: bundle_knp_time.yml }
     - { resource: bundle_minifier.yml }
     - { resource: bundle_presta_sitemap.yml }
     - { resource: bundle_stof_doctrine_extensions.yml }

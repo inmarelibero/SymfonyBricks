@@ -5,20 +5,20 @@ namespace Bricks\SiteBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use DoctrineExtensions\Taggable\Taggable;
-use Eko\FeedBundle\Item\Writer\RoutedItemInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Eko\FeedBundle\Item\Writer\RoutedItemInterface;
 
 use Bricks\SiteBundle\Model\Resource;
 
 /**
- * Bricks\SiteBundle\Entity\Brick
+ * Bricks\SiteBundle\Entity\ExternalResource
  *
- * @ORM\Entity(repositoryClass="Bricks\SiteBundle\Entity\BrickRepository")
- * @ORM\Table(name="brick")
+ * @ORM\Entity(repositoryClass="Bricks\SiteBundle\Entity\ExternalResourceRepository")
+ * @ORM\Table(name="external_resource")
  *
- * @Gedmo\Loggable(logEntryClass="Bricks\SiteBundle\Entity\BrickLogEntry")
+ * @Gedmo\Loggable(logEntryClass="Bricks\SiteBundle\Entity\ExternalResourceLogEntry")
  */
-class Brick implements RoutedItemInterface, Taggable, Resource
+class ExternalResource implements RoutedItemInterface, Taggable, Resource
 {
     private $tags;
 
@@ -48,14 +48,6 @@ class Brick implements RoutedItemInterface, Taggable, Resource
     private $description;
 
     /**
-     * @var text $content
-     *
-     * @Gedmo\Versioned
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $content;
-
-    /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(length=128, unique=true)
      */
@@ -77,14 +69,16 @@ class Brick implements RoutedItemInterface, Taggable, Resource
     private $publishedAt;
 
     /**
-     * @var text $canonicalUrl
+     * @var text $url
      *
      * @Gedmo\Versioned
-     * @ORM\Column(type="text", name="canonical_url", nullable=true)
+     * @ORM\Column(type="text", name="url", nullable=true)
      */
-    private $canonicalUrl;
+    private $url;
 
     /**
+     * The owner of the resource (eg. a user that submits a link to his own blog)
+     *
      * @var object $user
      *
      * @ORM\ManyToOne(targetEntity="Bricks\UserBundle\Entity\User")
@@ -93,17 +87,14 @@ class Brick implements RoutedItemInterface, Taggable, Resource
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="Bricks\SiteBundle\Entity\UserStarsBrick", mappedBy="user", cascade={"persist"})
-     */
-    private $userStarsBricks;
-
-    /**
-     * @var object $brickLicense
+     * The user who reported
      *
-     * @ORM\ManyToOne(targetEntity="Bricks\SiteBundle\Entity\BrickLicense")
-     * @ORM\JoinColumn(name="brick_license_id", referencedColumnName="id", nullable=true)
+     * @var object $user
+     *
+     * @ORM\ManyToOne(targetEntity="Bricks\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="reporter_id", referencedColumnName="id", nullable=true)
      */
-    private $brickLicense;
+    private $reporter;
 
     /**
      * @var datetime $updated_at
@@ -150,21 +141,6 @@ class Brick implements RoutedItemInterface, Taggable, Resource
     }
 
     /**
-     * Return the list of tags separated by comma
-     *
-     * Useful in "keywords" meta tag
-     */
-    public function getCommaSeparatedTags()
-    {
-        $tags = array();
-
-        foreach ($this->getTags() as $tag) {
-            $tags[] = $tag->getName();
-        }
-        return implode($tags, ', ');
-    }
-
-    /**
      * this method returns entity item title
      */
     public function getFeedItemTitle()
@@ -177,7 +153,7 @@ class Brick implements RoutedItemInterface, Taggable, Resource
      */
     public function getFeedItemDescription()
     {
-        return "A new brick has been published on SymfonyBricks.com: \"{$this->getTitle()}\"";
+        return "A new external resource has been published on SymfonyBricks.com: \"{$this->getTitle()}\"";
     }
 
     /**
@@ -193,7 +169,7 @@ class Brick implements RoutedItemInterface, Taggable, Resource
      */
     public function getFeedItemRouteName()
     {
-        return 'brick_show';
+        return 'external_resource_show';
     }
 
     /**
@@ -223,7 +199,7 @@ class Brick implements RoutedItemInterface, Taggable, Resource
 
     public function getTaggableType()
     {
-        return 'brick_tag';
+        return 'external_resource_tag';
     }
 
     public function getTaggableId()
@@ -238,19 +214,12 @@ class Brick implements RoutedItemInterface, Taggable, Resource
      */
     public function getResourceType()
     {
-        return self::TYPE_BRICK;
+        return self::TYPE_EXTERNAL_RESOURCE;
     }
 
     /**************************************************************************************************
      *	getters and setters
     **************************************************************************************************/
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->userStarsBricks = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id
@@ -266,7 +235,7 @@ class Brick implements RoutedItemInterface, Taggable, Resource
      * Set title
      *
      * @param string $title
-     * @return Brick
+     * @return ExternalResource
      */
     public function setTitle($title)
     {
@@ -289,7 +258,7 @@ class Brick implements RoutedItemInterface, Taggable, Resource
      * Set description
      *
      * @param string $description
-     * @return Brick
+     * @return ExternalResource
      */
     public function setDescription($description)
     {
@@ -309,33 +278,10 @@ class Brick implements RoutedItemInterface, Taggable, Resource
     }
 
     /**
-     * Set content
-     *
-     * @param string $content
-     * @return Brick
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    /**
-     * Get content
-     *
-     * @return string 
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
      * Set slug
      *
      * @param string $slug
-     * @return Brick
+     * @return ExternalResource
      */
     public function setSlug($slug)
     {
@@ -368,7 +314,7 @@ class Brick implements RoutedItemInterface, Taggable, Resource
      * Set publishedAt
      *
      * @param \DateTime $publishedAt
-     * @return Brick
+     * @return ExternalResource
      */
     public function setPublishedAt($publishedAt)
     {
@@ -388,33 +334,33 @@ class Brick implements RoutedItemInterface, Taggable, Resource
     }
 
     /**
-     * Set canonicalUrl
+     * Set url
      *
-     * @param string $canonicalUrl
-     * @return Brick
+     * @param string $url
+     * @return ExternalResource
      */
-    public function setCanonicalUrl($canonicalUrl)
+    public function setUrl($url)
     {
-        $this->canonicalUrl = $canonicalUrl;
+        $this->url = $url;
 
         return $this;
     }
 
     /**
-     * Get canonicalUrl
+     * Get url
      *
      * @return string 
      */
-    public function getCanonicalUrl()
+    public function getUrl()
     {
-        return $this->canonicalUrl;
+        return $this->url;
     }
 
     /**
      * Set updated_at
      *
      * @param \DateTime $updatedAt
-     * @return Brick
+     * @return ExternalResource
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -437,7 +383,7 @@ class Brick implements RoutedItemInterface, Taggable, Resource
      * Set created_at
      *
      * @param \DateTime $createdAt
-     * @return Brick
+     * @return ExternalResource
      */
     public function setCreatedAt($createdAt)
     {
@@ -460,7 +406,7 @@ class Brick implements RoutedItemInterface, Taggable, Resource
      * Set user
      *
      * @param \Bricks\UserBundle\Entity\User $user
-     * @return Brick
+     * @return ExternalResource
      */
     public function setUser(\Bricks\UserBundle\Entity\User $user = null)
     {
@@ -480,58 +426,25 @@ class Brick implements RoutedItemInterface, Taggable, Resource
     }
 
     /**
-     * Add userStarsBricks
+     * Set reporter
      *
-     * @param \Bricks\SiteBundle\Entity\UserStarsBrick $userStarsBricks
-     * @return Brick
+     * @param \Bricks\UserBundle\Entity\User $reporter
+     * @return ExternalResource
      */
-    public function addUserStarsBrick(\Bricks\SiteBundle\Entity\UserStarsBrick $userStarsBricks)
+    public function setReporter(\Bricks\UserBundle\Entity\User $reporter = null)
     {
-        $this->userStarsBricks[] = $userStarsBricks;
+        $this->reporter = $reporter;
 
         return $this;
     }
 
     /**
-     * Remove userStarsBricks
+     * Get reporter
      *
-     * @param \Bricks\SiteBundle\Entity\UserStarsBrick $userStarsBricks
+     * @return \Bricks\UserBundle\Entity\User 
      */
-    public function removeUserStarsBrick(\Bricks\SiteBundle\Entity\UserStarsBrick $userStarsBricks)
+    public function getReporter()
     {
-        $this->userStarsBricks->removeElement($userStarsBricks);
-    }
-
-    /**
-     * Get userStarsBricks
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getUserStarsBricks()
-    {
-        return $this->userStarsBricks;
-    }
-
-    /**
-     * Set brickLicense
-     *
-     * @param \Bricks\SiteBundle\Entity\BrickLicense $brickLicense
-     * @return Brick
-     */
-    public function setBrickLicense(\Bricks\SiteBundle\Entity\BrickLicense $brickLicense = null)
-    {
-        $this->brickLicense = $brickLicense;
-
-        return $this;
-    }
-
-    /**
-     * Get brickLicense
-     *
-     * @return \Bricks\SiteBundle\Entity\BrickLicense 
-     */
-    public function getBrickLicense()
-    {
-        return $this->brickLicense;
+        return $this->reporter;
     }
 }

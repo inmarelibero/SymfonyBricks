@@ -10,17 +10,41 @@
                 </a>
                 #}
                 <div class="media-body">
+                    <div class="head">
+                        {% if brick.getResourceType() == 'BRICK' %}
+                            <span class="glyphicon glyphicon-book pull-left"></span>
+                            <span class="pull-left">
+                                &nbsp;published on symfonybricks.com
+                            </span>
+                        {% elseif brick.getResourceType() == 'EXTERNAL_RESOURCE' %}
+                            <span class="glyphicon glyphicon-link pull-left"></span>
+                            <span class="pull-left">
+                                &nbsp;external resource
+                            </span>
+                        {% endif %}
+
+                        <span class="pull-right">
+                            {{ time_diff(brick.publishedAt) }}
+                        </span>
+                    </div>
+
                     <a href="{{ path('brick_show', {slug: brick.slug}) }}" class="title">
                         {{ brick.title }}
                     </a>
 
                     <p class="description">
-                        {{ brick.description|truncate(160, true) }}
+                        {{ brick.description|truncate(240, true) }}
                     </p>
 
-                    <a href="{{ path('brick_show', {slug: brick.slug}) }}" class="read">
-                        read <span class="glyphicon glyphicon-chevron-right"></span>
-                    </a>
+                    {% if brick.getResourceType() == 'BRICK' %}
+                        <a href="{{ path('brick_show', {slug: brick.slug}) }}" class="read">
+                            read <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    {% elseif brick.getResourceType() == 'EXTERNAL_RESOURCE' %}
+                        <a href="{{ brick.url }}" class="read" target="_blank">
+                            {{ brick.url|truncate(40) }} <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    {% endif %}
 
                     <hr>
 
@@ -29,8 +53,10 @@
                         {% if brick.tags|length > 0 %}
                             <span class="glyphicon glyphicon-tag"></span> {{ brick_formatted_tags(brick, ", ", false)|raw }}
                         {% endif %}
-                        <br>
-                        <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
+                        {% if brick.resourceType == 'BRICK' %}
+                            <br>
+                            <span class="glyphicon glyphicon-user"></span> <a href="{{ path('userprofile_show', {'username': brick.user.username}) }}">{{ brick.user }}</a>
+                        {% endif %}
                         {#
                         <br>
                         <span class="glyphicon glyphicon-calendar"></span> {{ brick.updatedAt|date('d M Y') }}

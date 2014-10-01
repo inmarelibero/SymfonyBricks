@@ -1,0 +1,9 @@
+{% set formId = 'form_user_external_resource_delete_'~id %}
+
+{# delete form #}
+<form id="{{ formId }}" style="display: none;" action="{{ path('user_external_resource_delete', {'id': id}) }}" method="post" {{ form_enctype(form) }} onSubmit="return confirm('{{ 'external_resource.confirm_deletion'|trans({}, 'UserBundle') }}');">
+    {{ form_widget(form) }}
+</form>
+
+{# <a> tag with javascript submit() function #}
+<a href="javascript:void(0);" onClick="$('#{{ formId }}').submit();"><span class="glyphicon glyphicon-trash"></span></a>

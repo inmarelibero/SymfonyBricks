@@ -1,0 +1,14 @@
+Bricks\SiteBundle\Entity\Brick:
+    properties:
+        title:
+            - NotBlank:
+                message: 'Please provide a title'
+
+Bricks\SiteBundle\Entity\ExternalResource:
+    properties:
+        title:
+            - NotBlank:
+                message: 'Please provide a title'
+        url:
+            - NotBlank:
+                message: 'Please provide a url'

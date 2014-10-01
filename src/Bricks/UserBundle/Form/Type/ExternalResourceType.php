@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityRepository;
 
 use Bricks\UserBundle\Form\DataTransformer\TagsToIdsTransformer;
 
-class BrickType extends AbstractType
+class ExternalResourceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -18,17 +18,8 @@ class BrickType extends AbstractType
         $builder
             ->add('title', 'text')
             ->add('description', 'textarea')
-            ->add('canonical_url', 'text')
-            ->add('content', 'textarea')
-            ->add('brick_license', 'entity', array(
-                'class' => 'BricksSiteBundle:BrickLicense',
-                'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->orderBy('u.title', 'ASC');
-                },
-                'property' => 'title',
-                'empty_value' => '== no license =='
-            ))
+            ->add('url', 'text')
+            ->add('published', 'checkbox')
         ;
 
         /*
@@ -43,12 +34,12 @@ class BrickType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Bricks\SiteBundle\Entity\Brick'
+            'data_class' => 'Bricks\SiteBundle\Entity\ExternalResource'
         ));
     }
 
     public function getName()
     {
-        return 'bricks_userbundle_bricktype';
+        return 'bricks_userbundle_external_resourcetype';
     }
 }

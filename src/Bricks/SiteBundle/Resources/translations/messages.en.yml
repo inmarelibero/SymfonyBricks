@@ -41,6 +41,12 @@ brick:
     starring_text: Starred
     title: title
 
+external_resource:
+    last_update: last update
+    published: published
+    title: title
+    url: url
+
 # general translations (alphabetical order)
 back_to_the_list: Back to the list
 close: close

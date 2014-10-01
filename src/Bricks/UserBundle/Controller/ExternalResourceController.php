@@ -9,20 +9,20 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use Bricks\SiteBundle\Entity\Brick;
-use Bricks\UserBundle\Form\Type\BrickType;
+use Bricks\SiteBundle\Entity\ExternalResource;
+use Bricks\UserBundle\Form\Type\ExternalResourceType;
 
 /**
- * Brick controller.
+ * ExternalResource controller.
  *
- * @Route("/user/brick")
+ * @Route("/user/externalresource")
  */
-class BrickController extends Controller
+class ExternalResourceController extends Controller
 {
     /**
-     * Lists all Brick entities related to the currently authenticated user
+     * Lists all ExternalResource entities related to the currently authenticated user
      *
-     * @Route("/", name="user_brick")
+     * @Route("/", name="user_external_resource")
      * @Template()
      */
     public function indexAction()
@@ -31,7 +31,7 @@ class BrickController extends Controller
         
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BricksSiteBundle:Brick')->findBy(
+        $entities = $em->getRepository('BricksSiteBundle:ExternalResource')->findBy(
             array('user' => $user->getId()),
             array('title' => 'ASC')
         );
@@ -42,9 +42,9 @@ class BrickController extends Controller
     }
     
     /**
-     * Lists all starred Brick entities related to the currently authenticated user
+     * Lists all starred ExternalResource entities related to the currently authenticated user
      *
-     * @Route("/starred", name="user_brick_starred")
+     * @Route("/starred", name="user_external_resource_starred")
      * @Template()
      */
     public function starredAction()
@@ -52,24 +52,24 @@ class BrickController extends Controller
         $user = $this->get('security.context')->getToken()->getUser();
         
         return array(
-            'entities' => $user->getStarredBricks()
+            'entities' => $user->getStarredExternalResources()
         );
     }
 
     /**
-     * Displays a form to create a new Brick entity.
+     * Displays a form to create a new ExternalResource entity.
      *
-     * @Route("/new", name="user_brick_new", options={"expose"=true})
-     * @Template("BricksUserBundle:Brick:edit.html.twig")
+     * @Route("/new", name="user_external_resource_new", options={"expose"=true})
+     * @Template("BricksUserBundle:ExternalResource:edit.html.twig")
      */
     public function newAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = new Brick();
+        $entity = new ExternalResource();
 
         /*
-         * process the "content" parameter, prepopulate the "content" Brick field
+         * process the "content" parameter, prepopulate the "content" ExternalResource field
          */
         if ($this->getRequest()->getMethod() == 'POST') {
             $c = $this->getRequest()->get('content');
@@ -79,7 +79,7 @@ class BrickController extends Controller
             $entity->setContent($c);
         }
 
-        $form   = $this->createForm(new BrickType($em), $entity);
+        $form   = $this->createForm(new ExternalResourceType($em), $entity);
 
         return array(
             'entity' => $entity,
@@ -88,26 +88,26 @@ class BrickController extends Controller
     }
 
     /**
-     * Creates a new Brick entity.
+     * Creates a new ExternalResource entity.
      *
-     * @Route("/create", name="user_brick_create")
+     * @Route("/create", name="user_external_resource_create")
      * @Method("POST")
-     * @Template("BricksUserBundle:Brick:edit.html.twig")
+     * @Template("BricksUserBundle:ExternalResource:edit.html.twig")
      */
     public function createAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         
-        $entity  = new Brick();
+        $entity  = new ExternalResource();
 
-        $form = $this->createForm(new BrickType(), $entity);
+        $form = $this->createForm(new ExternalResourceType(), $entity);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            // set user
+            // set reporter
             $user = $this->get('security.context')->getToken()->getUser();
-            $entity->setUser($user);
+            $entity->setReporter($user);
 
             // persist entity
             $em->persist($entity);
@@ -121,12 +121,12 @@ class BrickController extends Controller
             $tagManager->saveTagging($entity);
 
             // set flash message
-            $this->get('session')->getFlashBag()->add('success', 'alert.brick.create.success');
+            $this->get('session')->getFlashBag()->add('success', 'alert.external_resource.create.success');
 
-            return $this->redirect($this->generateUrl('user_brick_edit', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('user_external_resource_edit', array('id' => $entity->getId())));
         }
 
-        $this->get('session')->getFlashBag()->add('danger', 'alert.brick.create.error');
+        $this->get('session')->getFlashBag()->add('danger', 'alert.external_resource.create.error');
 
         return array(
             'entity' => $entity,
@@ -135,29 +135,29 @@ class BrickController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing Brick entity.
+     * Displays a form to edit an existing ExternalResource entity.
      *
-     * @Route("/{id}/edit", name="user_brick_edit")
+     * @Route("/{id}/edit", name="user_external_resource_edit")
      * @Template()
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BricksSiteBundle:Brick')->find($id);
+        $entity = $em->getRepository('BricksSiteBundle:ExternalResource')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Brick entity.');
+            throw $this->createNotFoundException('Unable to find ExternalResource entity.');
         }
 
-        // check user permissions on this brick
-        $this->checkUserCanEditBrick($entity);
+        // check user permissions on this external_resource
+        $this->checkUserCanEditExternalResource($entity);
 
-        // load brick tags
+        // load external_resource tags
         $tagManager = $this->get('fpn_tag.tag_manager');
         $tagManager->loadTagging($entity);
 
-        $editForm = $this->createForm(new BrickType(), $entity);
+        $editForm = $this->createForm(new ExternalResourceType(), $entity);
 
         return array(
             'entity'      => $entity,
@@ -166,26 +166,26 @@ class BrickController extends Controller
     }
 
     /**
-     * Edits an existing Brick entity.
+     * Edits an existing ExternalResource entity.
      *
-     * @Route("/{id}/update", name="user_brick_update")
+     * @Route("/{id}/update", name="user_external_resource_update")
      * @Method("POST")
-     * @Template("BricksUserBundle:Brick:edit.html.twig")
+     * @Template("BricksUserBundle:ExternalResource:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BricksSiteBundle:Brick')->find($id);
+        $entity = $em->getRepository('BricksSiteBundle:ExternalResource')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Brick entity.');
+            throw $this->createNotFoundException('Unable to find ExternalResource entity.');
         }
 
-        // check user permissions on this brick
-        $this->checkUserCanEditBrick($entity);
+        // check user permissions on this external_resource
+        $this->checkUserCanEditExternalResource($entity);
 
-        $form = $this->createForm(new BrickType(), $entity);
+        $form = $this->createForm(new ExternalResourceType(), $entity);
 
         $form->handleRequest($request);
 
@@ -203,12 +203,12 @@ class BrickController extends Controller
             $tagManager->saveTagging($entity);
 
             // set flash message
-            $this->get('session')->getFlashBag()->add('success', 'alert.brick.update.success');
+            $this->get('session')->getFlashBag()->add('success', 'alert.external_resource.update.success');
 
-            return $this->redirect($this->generateUrl('user_brick_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('user_external_resource_edit', array('id' => $id)));
         }
 
-        $this->get('session')->getFlashBag()->add('error', 'alert.brick.update.error');
+        $this->get('session')->getFlashBag()->add('error', 'alert.external_resource.update.error');
 
         return array(
             'entity'  => $entity,
@@ -221,7 +221,7 @@ class BrickController extends Controller
      * 
      * //@TODO: refactor this function to some general utility class
      * 
-     * @Route("/_render-markdown", name="_user_brick_renderMarkdown")
+     * @Route("/_render-markdown", name="_user_external_resource_renderMarkdown")
      * @Template()
      * @method("POST")
      * 
@@ -237,9 +237,9 @@ class BrickController extends Controller
     }
 
     /**
-     * Deletes a Brick entity.
+     * Deletes a ExternalResource entity.
      *
-     * @Route("/{id}/delete", name="user_brick_delete")
+     * @Route("/{id}/delete", name="user_external_resource_delete")
      * @Method("POST")
      */
     public function deleteAction(Request $request, $id)
@@ -250,29 +250,29 @@ class BrickController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('BricksSiteBundle:Brick')->find($id);
+            $entity = $em->getRepository('BricksSiteBundle:ExternalResource')->find($id);
             
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Brick entity.');
+                throw $this->createNotFoundException('Unable to find ExternalResource entity.');
             }
 
-            // check user permissions on this brick
-            $this->checkUserCanEditBrick($entity);
+            // check user permissions on this external_resource
+            $this->checkUserCanEditExternalResource($entity);
 
             // remove the entity
             $em->remove($entity);
             $em->flush();
             
-            $this->get('session')->getFlashBag()->add('success', 'alert.brick.delete.success');
+            $this->get('session')->getFlashBag()->add('success', 'alert.external_resource.delete.success');
         } else {
-            $this->get('session')->getFlashBag()->add('error', 'alert.brick.delete.error');
+            $this->get('session')->getFlashBag()->add('error', 'alert.external_resource.delete.error');
         }
 
-        return $this->redirect($this->generateUrl('user_brick'));
+        return $this->redirect($this->generateUrl('user_external_resource'));
     }
     
     /**
-     * returns a partial template to delete a brick
+     * returns a partial template to delete a external_resource
      * 
      * @Template
      */
@@ -291,18 +291,18 @@ class BrickController extends Controller
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
             ->getForm()
-            ;
+        ;
     }
 
     /**
-     * check if a uer can edit a brick
+     * check if a uer can edit a external_resource
      *
      * //@TODO: refactor to a service
      * 
-     * @param unknown_type $brick
+     * @param unknown_type $external_resource
      * @throws AccessDeniedException
      */
-    private function checkUserCanEditBrick(Brick $brick)
+    private function checkUserCanEditExternalResource(ExternalResource $external_resource)
     {
         $user = $this->get('security.context')->getToken()->getUser();
 
@@ -311,15 +311,15 @@ class BrickController extends Controller
             return true;
         }
         
-        if (!$brick->getUser() || $brick->getUser()->getId() != $user->getId()) {
+        if (!$external_resource->getUser() || $external_resource->getUser()->getId() != $user->getId()) {
             throw new AccessDeniedException('You are not allowed to access this content');
         }
     }
     
     /**
-     * Toggle the "published" state of a brick
+     * Toggle the "published" state of a external_resource
      * 
-     * @Route("/toggle-published/{id}", name="user_brick_toggle_published")
+     * @Route("/toggle-published/{id}", name="user_external_resource_toggle_published")
      * 
      * @param unknown_type $id
      */
@@ -327,14 +327,14 @@ class BrickController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BricksSiteBundle:Brick')->find($id);
+        $entity = $em->getRepository('BricksSiteBundle:ExternalResource')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Brick entity.');
+            throw $this->createNotFoundException('Unable to find ExternalResource entity.');
         }
         
-        // check user permissions on this brick
-        $this->checkUserCanEditBrick($entity);
+        // check user permissions on this external_resource
+        $this->checkUserCanEditExternalResource($entity);
 
         // toggle "published"
         $entity->setPublished(!$entity->getPublished());
@@ -344,11 +344,11 @@ class BrickController extends Controller
         $em->flush();
         
         if ($entity->getPublished()) {
-            $this->get('session')->getFlashBag()->add('success', 'alert.brick.togglePublished.published');
+            $this->get('session')->getFlashBag()->add('success', 'alert.external_resource.togglePublished.published');
         } else {
-            $this->get('session')->getFlashBag()->add('success', 'alert.brick.togglePublished.unpublished');
+            $this->get('session')->getFlashBag()->add('success', 'alert.external_resource.togglePublished.unpublished');
         }
         
-        return $this->redirect($this->generateUrl('user_brick'));
+        return $this->redirect($this->generateUrl('user_external_resource'));
     }
 }

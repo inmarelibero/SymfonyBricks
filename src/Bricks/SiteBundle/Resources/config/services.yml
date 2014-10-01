@@ -23,3 +23,8 @@ services:
     # custom file namer
     bricks.namer_uniqid:
         class: Bricks\SiteBundle\Namer\BricksNamer
+
+    # Brick Resource Service
+    bricks.resource.service:
+        class: Bricks\SiteBundle\Service\ResourceService
+        arguments: [@doctrine.orm.entity_manager]

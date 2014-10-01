@@ -15,6 +15,7 @@ user_navbar:
     create_brick_by_fetching_url: Create brick by retrieving url content
     dashboard: DASHBOARD
     edit_profile: Edit profile
+    external_resources: external resources
     logout: Logout
     message: Messages
     profile: PROFILE
@@ -24,8 +25,7 @@ user:
         account_associated: "You currently have a %oauth_provider% account successfully connected. Click <a href=\"%url%\">here</a> to replace it with another one."
         account_not_associated: "Click <a href=\"%url%\">here</a> to connect your %oauth_provider% account to SymfonyBricks' one."
 
-# Bricks
-# bricks related interfaces
+# Bricks related interfaces
 brick:
     actions: actions
     tags: tags
@@ -123,4 +123,60 @@ brick:
             title: "Brick: License"
     license: license
     preview: preview
+    title: title
+
+# External Resource related interfaces
+external_resource:
+    actions: actions
+    tags: tags
+    tags_help_text: Write the tag here and press "Enter":
+    url: Url
+    confirm_deletion: "This operation cannot be undone. Confirm the deletion?"
+    create_new_external_resource: Create new external resource
+    description: description
+    published: published
+    help:
+        title:
+            body: |
+                This is the title of the external resource
+                <br><br>
+                A good <b>Title</b> should be:
+                <br>
+                <ul>
+                    <li>
+                        <b>full of keywords</b>: try putting in the title all the keywords related
+                    </li>
+                    <li>
+                        <b>comprehensive</b>: the title should be as short and simple as possible; this field will be displayed in the whole symfonybricks.com as well as in the result pages of the search engines
+                    </li>
+                </ul>
+            title: "External Resource: Title"
+
+        description:
+            body: |
+                You can provide a brief additional description
+                <br><br>
+                As well as the Title, also this field contains sensible informations for the search engines.
+            title: "External Resource: Description"
+
+        url:
+            body: |
+                The URI
+            title: "External Resource: Canonical url"
+
+        tags:
+            body: |
+                Tags are labels of text you can attach to a brick; a tag can be composed by one or more words.
+                <br><br>
+                A good tag should observe the following rules:
+                <br>
+                <ul>
+                    <li>
+                        <b>be short:</b> most of the times a tag is a single word, like <b>configuration</b>, <b>doctrine</b>, <b>databse</b>.
+                    </li>
+                    <li>
+                        <b>singular:</b> if possible, try to use a <i>singular nouns</i>; for example use <b>databse</b> instead of <b>databases</b>.
+                    </li>
+                </ul>
+            title: "Brick: Tags"
     title: title

@@ -13,19 +13,20 @@ ul.bricks-wall {
         @internalPadding: 10px;
 
         width: 46%;
-        margin: 2%;
+        margin: 0 2% 2% 0%;
         margin-bottom: 30px;
         //padding:  10px 10px 10px 10px;
 
-        box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
-        //border: 1px solid #f0eeee;
-        border-radius: 8px;
+        box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.07);
+        border: 1px solid #E2E2E2;
+        border-radius: 6px;
 
         &:hover {
             box-shadow: 0 0 10px rgba(0, 0, 0, .3);
             background: rgb(238, 238, 238);
         }
 
+        /*
         span.glyphicon {
             font-size: 18px;
             padding-top: 5px;
@@ -33,36 +34,56 @@ ul.bricks-wall {
 
             &:hover { color: @sb_green_medium; }
         }
+        */
+
+        .head {
+            padding: 3px @internalPadding;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            overflow: hidden;
+
+            background: #8D8D8D;
+
+            font-size:  18px;
+            margin-bottom:  20px;
+
+            span {
+                color: #FFF;
+                font-size: 10px;
+            }
+        }
 
         a.title {
             display: block;
-            padding: @internalPadding;
+            padding: 0px @internalPadding @internalPadding - 5px @internalPadding;
 
-            background: @sb_green_light;
-            border: 1px solid @sb_green_light;
-            color: #fff;
-            font-size: 21px;
-            line-height: 26px;
+            //background: @sb_green_light;
+            //border: 1px solid @sb_green_light;
+            color: #000;
+            font-size: 17px;
+            line-height: 20px;
             font-family: 'open_sansbold';
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
 
-            &:hover { color: @sb_green_medium; }
+            &:hover { color: #8e8e8e; }
         }
 
         p.description {
-            margin-top: 20px;
-            font-size: 12px;
             padding: 0px @internalPadding;
+            margin: 0px;
+            text-align: justify;
+
+            font-size: 12px;
+            color:  #8e8e8e;
         }
 
         a.read {
             display: block;
             margin: 0 auto;
-            margin-top: 30px;
+            margin-top: 0px;
             padding: 3px 10px;
+            margin-top: 20px;
 
-            color: @sb_green_medium;
+            color: #000;
 
             font-size: 12px;
             text-align: right;
@@ -75,13 +96,14 @@ ul.bricks-wall {
         }
 
         hr {
-            margin: 15px 0px 0px;
-            color: #f0eeee;
+            margin: 5px 10px 0px;
+            color: #E2E2E2;
         }
 
         p.brick-info {
-            padding: 5px @internalPadding 10px;
-            background-color: #F8F8F8;
+            padding: @internalPadding - 5 @internalPadding @internalPadding + 5 @internalPadding;
+
+            //background-color: rgba(248, 248, 248, 0.7);
             margin: 0px;
             border-bottom-left-radius: 8px;
             border-bottom-right-radius: 8px;
@@ -89,7 +111,11 @@ ul.bricks-wall {
             &, a, p, span {
                 font-size: 11px;
                 line-height: 15px;
-                color: rgb(107, 107, 107);
+                color:  #8e8e8e;
+
+            }
+            a:hover {
+                opacity: 0.5;
             }
         }
     }

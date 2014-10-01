@@ -110,6 +110,12 @@ class User extends BaseUser implements ParticipantInterface
     protected $bricks;
 
     /**
+     * @ORM\OneToMany(targetEntity="Bricks\SiteBundle\Entity\ExternalResource", mappedBy="user", cascade={"persist"})
+     * @ORM\OrderBy({"created_at" = "ASC"})
+     */
+    protected $externalResources;
+
+    /**
      * @ORM\OneToMany(targetEntity="Bricks\SiteBundle\Entity\UserStarsBrick", mappedBy="user", cascade={"persist"})
      */
     protected $userStarsBricks;
@@ -479,5 +485,38 @@ class User extends BaseUser implements ParticipantInterface
     public function getUserStarsBricks()
     {
         return $this->userStarsBricks;
+    }
+
+    /**
+     * Add externalResources
+     *
+     * @param \Bricks\SiteBundle\Entity\ExternalResource $externalResources
+     * @return User
+     */
+    public function addExternalResource(\Bricks\SiteBundle\Entity\ExternalResource $externalResources)
+    {
+        $this->externalResources[] = $externalResources;
+
+        return $this;
+    }
+
+    /**
+     * Remove externalResources
+     *
+     * @param \Bricks\SiteBundle\Entity\ExternalResource $externalResources
+     */
+    public function removeExternalResource(\Bricks\SiteBundle\Entity\ExternalResource $externalResources)
+    {
+        $this->externalResources->removeElement($externalResources);
+    }
+
+    /**
+     * Get externalResources
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getExternalResources()
+    {
+        return $this->externalResources;
     }
 }

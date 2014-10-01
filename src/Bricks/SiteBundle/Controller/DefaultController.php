@@ -17,10 +17,12 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $entities = $this->get('bricks.resource.service')->search(array(
+            'published' => true,
+            'max_results' => 12
+        ));
 
-        $entities = $em->getRepository('BricksSiteBundle:Brick')->findPublished();
-
+        // load tags
         $tagManager = $this->get('fpn_tag.tag_manager');
         foreach ($entities as &$entity) {
             $tagManager->loadTagging($entity);
@@ -87,6 +89,31 @@ class DefaultController extends Controller
 
         return array(
             'feeds' => $feeds
+        );
+    }
+
+    /**
+     * Search resources
+     *
+     * @Route("/search", name="resource_search")
+     * @Template()
+     */
+    public function searchAction()
+    {
+        $entities = $this->get('bricks.resource.service')->search(array(
+            'q' => $this->getRequest()->get('q'),
+            'tag_name' => $this->getRequest()->get('tag'),
+            'published' => true
+        ));
+
+        // load tags
+        $tagManager = $this->get('fpn_tag.tag_manager');
+        foreach ($entities as &$entity) {
+            $tagManager->loadTagging($entity);
+        }
+
+        return array(
+            'entities' => $entities
         );
     }
 }
