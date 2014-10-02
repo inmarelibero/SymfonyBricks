@@ -28,9 +28,15 @@
                         </span>
                     </div>
 
-                    <a href="{{ path('brick_show', {slug: brick.slug}) }}" class="title">
-                        {{ brick.title }}
-                    </a>
+                    {% if brick.getResourceType() == 'BRICK' %}
+                        <a href="{{ path('brick_show', {slug: brick.slug}) }}" class="title">
+                            {{ brick.title }}
+                        </a>
+                    {% elseif brick.getResourceType() == 'EXTERNAL_RESOURCE' %}
+                        <a href="{{ brick.url }}" class="title" target="_blank">
+                            {{ brick.title }}
+                        </a>
+                    {% endif %}
 
                     <p class="description">
                         {{ brick.description|truncate(240, true) }}
