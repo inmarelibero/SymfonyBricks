@@ -92,7 +92,7 @@
         <hr>
 
         <div class="row" style="text-align: justify;">
-            <div class="col-md-5">
+            <div class="col-md-12">
                 <h2>
                     {% if 'it' == app.request.locale %}
                         Open source
@@ -128,7 +128,9 @@
                     Everyone is invited to collaborate: you can give a hand in many, many ways. We are open source lovers, like all the people contributing to Symfony. And we help each other ;)
                 {% endif %}
             </div>
-            <div class="col-md-5 col-md-offset-2">
+        </div>
+        <div class="row" style="text-align: justify;">
+            <div class="col-md-12">
                 <h2>
                     {% if 'it' == app.request.locale %}
                         Per la comunità
@@ -161,7 +163,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h3>
+                <h2>
                     {% if 'it' == app.request.locale %}
                         Partecipa
                     {% elseif 'es' == app.request.locale %}
@@ -169,7 +171,7 @@
                     {% else %}
                         Get involved
                     {% endif %}
-                </h3>
+                </h2>
                 {% if 'it' == app.request.locale %}
                     La prima cosa che puoi fare è mantenerti aggiornato attraverso Twitter e spargere la voce su SymfonyBricks.
                 {% elseif 'es' == app.request.locale %}
@@ -177,38 +179,15 @@
                 {% else %}
                     The first important thing you can do is to use Twitter to stay tuned with the latest updates and to spread the word about SymfonyBricks.
                 {% endif %}
-            </div>
-        </div>
-        <br><br>
-        <div class="row">
-            <div class="col-md-6 col-xs-6" style="text-align: right;">
-                <p class="text-italic text-small">
-                    {% if 'it' == app.request.locale %}
-                        Segui SymfonyBricks su Twitter
-                    {% elseif 'es' == app.request.locale %}
-                        Sigue SymfonyBricks en Twitter
-                    {% else %}
-                        Follow SymfonyBricks on Twitter
-                    {% endif %}
-                </p>
+
+                <br><br>
+
                 <a  class="socialite twitter-follow"
                     href="https://twitter.com/SymfonyBricks"
                     data-show-count="false"
                 >
                     Follow @SymfonyBricks
                 </a>
-            </div>
-            <div class="col-md-6 col-xs-6">
-                <p class="text-italic text-small">
-                    {% if 'it' == app.request.locale %}
-                        Condividi questa pagina
-                    {% elseif 'es' == app.request.locale %}
-                        Comparte esta pagina
-                    {% else %}
-                        Share this page
-                    {% endif %}
-                    <a href="http://symfonybricks.com">symfonybricks.com</a>
-                </p>
                 <a  class="socialite twitter-share"
                     href="http://twitter.com/share"
                     data-url="http://symfonybricks.com/"
@@ -219,7 +198,7 @@
             </div>
         </div>
 
-        <br><br><br>
+        <br>
 
         <div class="row">
             <div class="col-md-12">
