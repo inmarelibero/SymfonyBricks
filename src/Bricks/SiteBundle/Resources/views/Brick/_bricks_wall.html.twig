@@ -2,7 +2,7 @@
 
 <ul class="bricks-wall">
     {% for brick in bricks %}
-        <li>
+        <li class="{% if brick.getResourceType() == 'BRICK' %}resource-type-brick{% elseif brick.getResourceType() == 'EXTERNAL_RESOURCE' %}resource-type-external-resource{% endif %}">
             <div class="media">
                 {#
                 <a class="pull-left" href="{{ path('brick_show', {slug: brick.slug}) }}">

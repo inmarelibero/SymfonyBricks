@@ -34,6 +34,22 @@ ul.bricks-wall {
             &:hover { color: @sb_green_medium; }
         }
         */
+        &.resource-type-brick {
+            .head {
+                background: #F1CF10;
+                span {
+                    color: #330000;
+                }
+            }
+        }
+        &.resource-type-external-resource {
+            .head {
+                background: #CC0000;
+                span {
+                    color: #FFFFFF;
+                }
+            }
+        }
 
         .head {
             padding: 3px @internalPadding;
@@ -45,7 +61,7 @@ ul.bricks-wall {
             margin-bottom:  20px;
 
             span {
-                color: #FFF;
+                color: #FFFFFF;
                 font-size: 10px;
             }
         }
