@@ -26,7 +26,7 @@
                 </form>
 
                 {% if entities|length > 0 %}
-                    {% include 'BricksSiteBundle:Brick:_bricks_wall.html.twig' with {'bricks': entities} %}
+                    {% include 'BricksSiteBundle:Brick:_bricks_wall.html.twig' with {'resources': resources} %}
                 {% else %}
                     {{ 'brick.search.no_results'|trans }}
                 {% endif %}

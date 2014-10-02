@@ -1,0 +1,116 @@
+/******************************************************************************************
+CONTROLLER-EXTERNAL-RESOURCE.LESS
+
+rules for all the templates loaded through Bricks\SiteBundle\ExternalResourceController
+******************************************************************************************/
+/* import assets */
+@import "variables.less";
+
+/* import bootstrap assets */
+@import "../../../../../../web/assets/bootstrap-3.0.0/less/mixins.less";
+
+/**
+    show an external resource
+    
+    route: external_resource_show
+*/
+body.route-external_resource_show {
+
+    #external-resource-head {
+        h1 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+    }
+
+    .redirection {
+        margin-top: 80px;
+        margin-bottom: 80px;
+
+        font-style: italic;
+    }
+
+    #info { margin-bottom: 40px;
+        &, a { font-size: 12px; }
+
+        #tags {
+            a {
+                margin-right:   4px;
+                span.glyphicon { margin-right: 2px; }
+            }
+        }
+        #star { text-align: right; }
+    }
+
+    #footer-info {
+        margin: 30px 0px;
+        padding: 10px;
+        border: 1px solid @sb_green_medium;
+        border-radius: 4px;
+
+        &, a {
+            font-size:  16px;
+            font-weight: normal;
+            color:  @sb_green_medium;
+        }
+        .glyphicon {
+            color: #444;
+        }
+        a:hover {
+            color: @sb_green_dark_light;
+        }
+
+        table {
+            tr {
+                th, td {
+                    padding: 3px 5px 3px 0px;
+
+                    span, p, a {
+                        margin-bottom: 0px;
+                    }
+                }
+            }
+        }
+
+        .message-actions { margin-top:  30px; }
+    }
+
+    #affix-info {
+        top:      0px;
+        left:   0px;
+        z-index:  100;
+
+        margin-bottom:  30px;
+        width:  100%;
+
+        .content {
+            float:  left;
+            width:  100%;
+            #gradient > .vertical(#F1F1F1, #E0E0E0);
+            border-radius: 4px;
+        }
+
+        &.affix-top {
+            .container {
+                padding:    0px;
+            }
+        }
+        &.affix {
+            #scroll-to-top { visibility: visible; }
+        }
+
+        #brick-chapters { float: left; }
+        #scroll-to-top {
+            visibility:   hidden;
+            float: left;
+            margin-top:   4px;
+            margin-left:  20px;
+        }
+
+        #social-share {
+            float:  right;
+            margin-top: 4px;
+            margin-right: 20px;
+        }
+    }
+}

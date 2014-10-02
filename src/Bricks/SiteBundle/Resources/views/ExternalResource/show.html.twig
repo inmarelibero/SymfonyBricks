@@ -1,0 +1,109 @@
+{% extends 'BricksSiteBundle::layout.html.twig' %}
+
+{# META TAGS blocks #}
+{% block meta_tags %}
+    {% render controller('CopiaincollaMetaTagsBundle:MetaTags:render', {'vars': {'entity': entity}}) %}
+{% endblock %}
+{# END META TAGS blocks #}
+
+{% block main %}
+
+    <div class="container">
+
+        <div itemscope itemtype ="http://schema.org/CreativeWork">
+
+            <div class="row">
+                <div class="col-md-12" id="external-resource-head">
+                    <h1>
+                        <strong>{{ entity.title }}</strong>
+                    </h1>
+                </div>
+            </div>
+
+            <div class="row" id="info">
+                <div class="col-md-11" id="tags">
+                    {{ brick_formatted_tags(entity)|raw }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="description" itemprop="description">
+                        {{ entity.description|nl2br }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row redirection">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="description" itemprop="description">
+
+                        <p>
+                            <img src="/img/ajax_loader.gif" style="float: left; height: 20px; margin: 11px 20px 30px 0px;" />
+
+                            In 5 seconds you will be automatically redirected to<br>
+                            <a href="{{ entity.url }}" target="_blank">{{ entity.url }}</a>
+                        </p>
+
+                        <br><br>
+
+                        <p style="margin-left: 40px;">
+                            If you don't want to wait, <a href="{{ entity.url }}" target="_blank">click here</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="footer-info">
+                        <table>
+                            <tr>
+                                <th>
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </th>
+                                <td>
+                                    {{ 'external_resource.last_update'|trans }}:
+                                    <time itemprop="dateModified" datetime="{{ entity.updatedAt|date('Y-m-d') }}">
+                                        {{ entity.updatedAt|date('d M Y') }}
+                                    </time>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="glyphicon glyphicon-tag"></span>
+                                </th>
+                                <td>
+                                    {{ brick_formatted_tags(entity, ', ', false)|raw }}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-md-12">
+                    {{ knp_disqus_render('symfonybricks', {'identifier': '/external-resource-'~entity.id, 'limit': 10}) }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        $(function() {
+
+            setTimeout(function() {
+                window.location = '{{ entity.url }}';
+            }, 5000);
+
+
+        });
+
+    </script>
+
+{% endblock %}

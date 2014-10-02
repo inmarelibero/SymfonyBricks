@@ -49,7 +49,7 @@
                     </p>
                     #}
 
-                    {% include 'BricksSiteBundle:Brick:_bricks_wall.html.twig' with {'bricks': bricks} %}
+                    {% include 'BricksSiteBundle:Brick:_bricks_wall.html.twig' with {'resources': resources} %}
                 </div>
             </div>
             <div class="col-md-3 right-col">
@@ -109,7 +109,7 @@
                 {% else %}
                     The source code of the web site you are visiting is fully available on <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">Github</a>: ready to be examined, forked, and improved.
                 {% endif %}
-                <br><br>
+                <br>
                 {% if 'it' == app.request.locale %}
                     Chiunque è invitato a collaborare: puoi dare una mano in molto modi. Siamo fan dell'open source, come tutte le persone che contribuiscono a Symfony. E ci aiutiamo ;)
                 {% elseif 'es' == app.request.locale %}
@@ -139,7 +139,7 @@
                     The purpose is to become an homogeneous repository of code snippets, recipes and guides (and other we cannot even imagine now) about Symfony and topics related to it.
                 {% endif %}
 
-                <br><br>
+                <br>
 
                 {% if 'it' == app.request.locale %}
                     I contenuti di questo sito sono inviati da te: in base alle tue possibilità potrai condividere una nuova guida, contribuire alla sua traduzione, migliorarla, correggere errori, o semplicemente esprimere un giudizio sulla sua utilità.

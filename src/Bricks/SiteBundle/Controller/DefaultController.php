@@ -29,7 +29,7 @@ class DefaultController extends Controller
         }
 
         return array(
-            'bricks' => $entities
+            'resources' => $entities
         );
     }
     
@@ -113,7 +113,7 @@ class DefaultController extends Controller
         }
 
         return array(
-            'entities' => $entities
+            'resources' => $entities
         );
     }
 }
