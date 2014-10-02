@@ -103,22 +103,12 @@
                     {% endif %}
                 </h2>
                 {% if 'it' == app.request.locale %}
-                    Il codice sorgente del sito web che stai visitando è interamente disponibile su github: pronto per essere esaminato e migliorato.
+                    Il codice sorgente del sito web che stai visitando è interamente disponibile su <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">ithub</a>: pronto per essere esaminato e migliorato.
                 {% elseif 'es' == app.request.locale %}
-                    El código fuente de la página web que estás visitando es totalmente disponible en github: listo para ser examinado y mejorado.
+                    El código fuente de la página web que estás visitando es totalmente disponible en <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">Github</a>: listo para ser examinado y mejorado.
                 {% else %}
-                    The source code of the web site you are visiting is fully available on github: ready to be examined, forked, and improved.
+                    The source code of the web site you are visiting is fully available on <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">Github</a>: ready to be examined, forked, and improved.
                 {% endif %}
-                <br>
-                <a href="https://github.com/inmarelibero/SymfonyBricks" target="_new">
-                    {% if 'it' == app.request.locale %}
-                        Accedi al repository github.
-                    {% elseif 'es' == app.request.locale %}
-                        Visita el repositorio github.
-                    {% else %}
-                        Check out the github repository.
-                    {% endif %}
-                </a>
                 <br><br>
                 {% if 'it' == app.request.locale %}
                     Chiunque è invitato a collaborare: puoi dare una mano in molto modi. Siamo fan dell'open source, come tutte le persone che contribuiscono a Symfony. E ci aiutiamo ;)
