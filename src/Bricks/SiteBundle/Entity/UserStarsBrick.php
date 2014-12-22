@@ -37,7 +37,7 @@ class UserStarsBrick
     /**
      * @var object $user
      *
-     * @ORM\ManyToOne(targetEntity="Bricks\UserBundle\Entity\User", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Bricks\UserBundle\Entity\User", inversedBy="userStarsBricks", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     private $user;

@@ -81,7 +81,7 @@ class ExternalResource implements RoutedItemInterface, Taggable, Resource
      *
      * @var object $user
      *
-     * @ORM\ManyToOne(targetEntity="Bricks\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Bricks\UserBundle\Entity\User", inversedBy="externalResources")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
      */
     private $user;

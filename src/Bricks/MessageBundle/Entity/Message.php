@@ -23,7 +23,7 @@ class Message extends BaseMessage
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Bricks\MessageBundle\Entity\Thread")
+     * @ORM\ManyToOne(targetEntity="Bricks\MessageBundle\Entity\Thread", inversedBy="messages")
      * @ORM\JoinColumn(name="thread_id", referencedColumnName="id")
      */
     protected $thread;

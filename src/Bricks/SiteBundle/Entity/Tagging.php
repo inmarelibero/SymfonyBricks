@@ -28,7 +28,7 @@ class Tagging extends BaseTagging
     /**
      * @var object $user
      *
-     * @ORM\ManyToOne(targetEntity="Bricks\SiteBundle\Entity\Tag")
+     * @ORM\ManyToOne(targetEntity="Bricks\SiteBundle\Entity\Tag", inversedBy="tagging")
      * @ORM\JoinColumn(name="tag_id", referencedColumnName="id")
      */
     protected $tag;
