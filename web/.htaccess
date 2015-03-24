@@ -9,9 +9,9 @@ DirectoryIndex app.php
     RewriteEngine On
 
     # redirect https
-    RewriteCond %{HTTPS} !=on
-    RewriteCond %{HTTP_HOST} ^symfonybricks\.com
-    RewriteRule ^(.*)$ https://symfonybricks.com/$1 [R,L]
+    #RewriteCond %{HTTPS} !=on
+    #RewriteCond %{HTTP_HOST} ^symfonybricks\.com
+    #RewriteRule ^(.*)$ https://symfonybricks.com/$1 [R,L]
 
 
     # Determine the RewriteBase automatically and set it as environment variable.
